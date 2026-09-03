@@ -1,0 +1,26 @@
+{
+  "product": "Wrap",
+  "exe": "Wrap.exe",
+  "default": "Faceform\\Wrap 2025.10.8",
+  "icon": "wrap.ico",
+  "qt": [
+    [5, 15, 3]
+  ],
+  "modules": [
+    "Core",
+    "Gui",
+    "Widgets"
+  ],
+  "handlers": [
+    "WrapProjectFile"
+  ],
+  "extensions": [
+    ".wrap"
+  ],
+  "payload": {
+    "WrapChineseHook.dll": "build/out/WrapChineseHook.dll",
+    "WrapChineseLauncher.exe": "build/out/WrapChineseLauncher.exe",
+    "translations/dictionary_zh.json": "translations/dictionary_zh.json"
+  },
+  "id": "WrapChinese"
+}

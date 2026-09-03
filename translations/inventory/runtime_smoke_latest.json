@@ -1,0 +1,13 @@
+{
+    "$schema": "sp-translation-v1",
+    "description": "Wrap 运行时增量采集的待审词条",
+    "id": "wrap-runtime-untranslated",
+    "language": "zh-CN",
+    "translations": {
+        "Can't start Wrap": "",
+        "Failed to create OpenGL context": "",
+        "PointDetector": "",
+        "RigidAlignment": "",
+        "Unsupported OpenGL Version": ""
+    }
+}

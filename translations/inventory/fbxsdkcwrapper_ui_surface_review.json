@@ -1,0 +1,482 @@
+{
+  "$schema": "wrap-dll-ui-surface-review-v1",
+  "source": "C:\\Program Files\\Faceform\\Wrap 2025.10.8\\FbxSdkCWrapper.dll",
+  "rawCandidates": 9476,
+  "linksQt": false,
+  "canDrawUiDirectly": false,
+  "candidateCount": 78,
+  "notes": [
+    "FbxSdkCWrapper.dll is loaded by Wrap but does not link Qt.",
+    "Most embedded strings belong to the Autodesk FBX SDK and other parsers. Only resource/format labels and messages that Wrap may surface are retained for manual review."
+  ],
+  "candidates": [
+    {
+      "source": "Axis system is Left Handed: exporter should convert scene.",
+      "count": 1,
+      "offset": 6166840,
+      "score": 7
+    },
+    {
+      "source": "Invalid direction for up-axis: exporter should convert scene.",
+      "count": 1,
+      "offset": 6166776,
+      "score": 7
+    },
+    {
+      "source": "Mapping mode not supported for textures:",
+      "count": 1,
+      "offset": 6171936,
+      "score": 7
+    },
+    {
+      "source": "Texture blend mode not recognized:",
+      "count": 1,
+      "offset": 6154240,
+      "score": 7
+    },
+    {
+      "source": "The following texture(s) will not be embedded in your scene, as the plug-in cannot locate them:",
+      "count": 1,
+      "offset": 6050800,
+      "score": 7
+    },
+    {
+      "source": "This texture parameter not supported:",
+      "count": 1,
+      "offset": 6154280,
+      "score": 7
+    },
+    {
+      "source": "Unable to load texture file:",
+      "count": 2,
+      "offset": 6142208,
+      "score": 7
+    },
+    {
+      "source": "Adaptive Optics AOA File Exporter",
+      "count": 1,
+      "offset": 6151568,
+      "score": 6
+    },
+    {
+      "source": "Adaptive Optics AOA File Importer",
+      "count": 1,
+      "offset": 6150896,
+      "score": 6
+    },
+    {
+      "source": "Background Texture",
+      "count": 2,
+      "offset": 5909288,
+      "score": 6
+    },
+    {
+      "source": "Bad File format version (%f), trying 1.10",
+      "count": 1,
+      "offset": 6312512,
+      "score": 6
+    },
+    {
+      "source": "Bake Frame Start No Reset",
+      "count": 1,
+      "offset": 5897656,
+      "score": 6
+    },
+    {
+      "source": "Camera Switcher",
+      "count": 13,
+      "offset": 5954664,
+      "score": 6
+    },
+    {
+      "source": "Can't read data frame rate",
+      "count": 1,
+      "offset": 6329968,
+      "score": 6
+    },
+    {
+      "source": "Can't read file format version (%s), trying version 1.10",
+      "count": 1,
+      "offset": 6312560,
+      "score": 6
+    },
+    {
+      "source": "Can't read frame count",
+      "count": 1,
+      "offset": 6329944,
+      "score": 6
+    },
+    {
+      "source": "Could not export texture",
+      "count": 5,
+      "offset": 6169496,
+      "score": 6
+    },
+    {
+      "source": "Could not find a material to export the texture",
+      "count": 1,
+      "offset": 6171992,
+      "score": 6
+    },
+    {
+      "source": "Could not find texture",
+      "count": 1,
+      "offset": 6171768,
+      "score": 6
+    },
+    {
+      "source": "Create reference node",
+      "count": 3,
+      "offset": 6068488,
+      "score": 6
+    },
+    {
+      "source": "Create Reference Node",
+      "count": 1,
+      "offset": 6074496,
+      "score": 6
+    },
+    {
+      "source": "Current Preset",
+      "count": 2,
+      "offset": 5893344,
+      "score": 6
+    },
+    {
+      "source": "Embedded Files",
+      "count": 1,
+      "offset": 6252872,
+      "score": 6
+    },
+    {
+      "source": "Error writing texture file \"",
+      "count": 4,
+      "offset": 6143904,
+      "score": 6
+    },
+    {
+      "source": "Extract Folder",
+      "count": 1,
+      "offset": 5893904,
+      "score": 6
+    },
+    {
+      "source": "FBX AutoCAD (*.DXF) exporter",
+      "count": 1,
+      "offset": 6177944,
+      "score": 6
+    },
+    {
+      "source": "FBX COLLADA exporter",
+      "count": 1,
+      "offset": 6166360,
+      "score": 6
+    },
+    {
+      "source": "FBX File Format",
+      "count": 1,
+      "offset": 6071480,
+      "score": 6
+    },
+    {
+      "source": "File Exists",
+      "count": 1,
+      "offset": 6339216,
+      "score": 6
+    },
+    {
+      "source": "File exists",
+      "count": 1,
+      "offset": 7706008,
+      "score": 6
+    },
+    {
+      "source": "File Format",
+      "count": 2,
+      "offset": 5898968,
+      "score": 6
+    },
+    {
+      "source": "File units converted to",
+      "count": 1,
+      "offset": 5895688,
+      "score": 6
+    },
+    {
+      "source": "Foreground Texture",
+      "count": 2,
+      "offset": 5909560,
+      "score": 6
+    },
+    {
+      "source": "Frame Count",
+      "count": 2,
+      "offset": 6073608,
+      "score": 6
+    },
+    {
+      "source": "Frame Rate",
+      "count": 3,
+      "offset": 6072392,
+      "score": 6
+    },
+    {
+      "source": "Frame rate used",
+      "count": 2,
+      "offset": 6069368,
+      "score": 6
+    },
+    {
+      "source": "Frame Start",
+      "count": 2,
+      "offset": 6073552,
+      "score": 6
+    },
+    {
+      "source": "Global Settings",
+      "count": 1,
+      "offset": 6070840,
+      "score": 6
+    },
+    {
+      "source": "Global settings",
+      "count": 1,
+      "offset": 6071816,
+      "score": 6
+    },
+    {
+      "source": "Invalid parameter while reading layered texture Alphas",
+      "count": 1,
+      "offset": 6203432,
+      "score": 6
+    },
+    {
+      "source": "Motion Analysis TRC File Exporter",
+      "count": 1,
+      "offset": 6268128,
+      "score": 6
+    },
+    {
+      "source": "Motion Analysis TRC File Importer",
+      "count": 1,
+      "offset": 6266064,
+      "score": 6
+    },
+    {
+      "source": "One Click Merge for Texture only",
+      "count": 1,
+      "offset": 5893648,
+      "score": 6
+    },
+    {
+      "source": "Preset Selected",
+      "count": 2,
+      "offset": 5895424,
+      "score": 6
+    },
+    {
+      "source": "Reference node",
+      "count": 2,
+      "offset": 6072520,
+      "score": 6
+    },
+    {
+      "source": "Reference Node",
+      "count": 2,
+      "offset": 6073256,
+      "score": 6
+    },
+    {
+      "source": "Show Warning Manager",
+      "count": 2,
+      "offset": 5896464,
+      "score": 6
+    },
+    {
+      "source": "Superfluo MCD File Exporter",
+      "count": 1,
+      "offset": 6151536,
+      "score": 6
+    },
+    {
+      "source": "Superfluo MCD File Importer",
+      "count": 1,
+      "offset": 6150864,
+      "score": 6
+    },
+    {
+      "source": "Texture alpha",
+      "count": 1,
+      "offset": 6017392,
+      "score": 6
+    },
+    {
+      "source": "Texture filename changed to: \"",
+      "count": 2,
+      "offset": 6143535,
+      "score": 6
+    },
+    {
+      "source": "Texture filename: \"",
+      "count": 2,
+      "offset": 6143568,
+      "score": 6
+    },
+    {
+      "source": "Texture UV by Polygon",
+      "count": 1,
+      "offset": 6073056,
+      "score": 6
+    },
+    {
+      "source": "Textures animation",
+      "count": 2,
+      "offset": 6083728,
+      "score": 6
+    },
+    {
+      "source": "Unable to create .fbm folder to extract embedded files",
+      "count": 1,
+      "offset": 6201152,
+      "score": 6
+    },
+    {
+      "source": "Unable to locate texture file \"",
+      "count": 2,
+      "offset": 6143872,
+      "score": 6
+    },
+    {
+      "source": "Unknown texture",
+      "count": 1,
+      "offset": 5892312,
+      "score": 6
+    },
+    {
+      "source": "Unsupported opaque mode for transparent texture: \"",
+      "count": 1,
+      "offset": 6160016,
+      "score": 6
+    },
+    {
+      "source": "Vicon C3D File Exporter",
+      "count": 1,
+      "offset": 6272496,
+      "score": 6
+    },
+    {
+      "source": "Vicon C3D File Importer",
+      "count": 1,
+      "offset": 6271888,
+      "score": 6
+    },
+    {
+      "source": "file exists",
+      "count": 1,
+      "offset": 6706752,
+      "score": 5
+    },
+    {
+      "source": "Meaningless to get rotation axis from non-rotation op.",
+      "count": 1,
+      "offset": 6285192,
+      "score": 5
+    },
+    {
+      "source": "Meaningless to set rotation axis on non-rotation or fixed angle rotation op.",
+      "count": 1,
+      "offset": 6284848,
+      "score": 5
+    },
+    {
+      "source": "Unrecognized up_axis value:",
+      "count": 1,
+      "offset": 6155072,
+      "score": 5
+    },
+    {
+      "source": "Auto Axis Conversion",
+      "count": 1,
+      "offset": 5896792,
+      "score": 4
+    },
+    {
+      "source": "Axis Conversion",
+      "count": 3,
+      "offset": 5894232,
+      "score": 4
+    },
+    {
+      "source": "BoneLengthAxis Y",
+      "count": 1,
+      "offset": 6329544,
+      "score": 4
+    },
+    {
+      "source": "CalibrationUnits mm",
+      "count": 1,
+      "offset": 6329472,
+      "score": 4
+    },
+    {
+      "source": "GlobalAxisofGravity Y",
+      "count": 1,
+      "offset": 6329520,
+      "score": 4
+    },
+    {
+      "source": "Invalid up-axis: default Y up is used",
+      "count": 1,
+      "offset": 6166736,
+      "score": 4
+    },
+    {
+      "source": "RotationUnits Degrees",
+      "count": 1,
+      "offset": 6329496,
+      "score": 4
+    },
+    {
+      "source": "Scene units converted to",
+      "count": 1,
+      "offset": 5897336,
+      "score": 4
+    },
+    {
+      "source": "Total Units Scale",
+      "count": 2,
+      "offset": 5895608,
+      "score": 4
+    },
+    {
+      "source": "Units Conversion Factor",
+      "count": 1,
+      "offset": 5895768,
+      "score": 4
+    },
+    {
+      "source": "Unknown axis of gravity",
+      "count": 1,
+      "offset": 6330088,
+      "score": 4
+    },
+    {
+      "source": "Unknown bone length axis",
+      "count": 1,
+      "offset": 6330112,
+      "score": 4
+    },
+    {
+      "source": "Unknown calibration units",
+      "count": 1,
+      "offset": 6330032,
+      "score": 4
+    },
+    {
+      "source": "Unknown rotation units",
+      "count": 1,
+      "offset": 6330064,
+      "score": 4
+    }
+  ]
+}

@@ -1,0 +1,4657 @@
+{
+  "$schema": "wrap-node-parameter-static-inventory-v1",
+  "source": "C:\\Program Files\\Faceform\\Wrap 2025.10.8\\Wrap.exe",
+  "method": "Consecutive NUL-separated display-label/internal-key pairs in node definition blocks",
+  "candidateCount": 655,
+  "candidates": [
+    {
+      "source": "Full Geometry",
+      "offset": 29084391,
+      "parameterKeyExamples": [
+        "geomFull"
+      ]
+    },
+    {
+      "source": "Subset Geometry",
+      "offset": 29084414,
+      "parameterKeyExamples": [
+        "geomSubset"
+      ]
+    },
+    {
+      "source": "Polygons on Full Geometry",
+      "offset": 29084441,
+      "parameterKeyExamples": [
+        "polygons"
+      ]
+    },
+    {
+      "source": "Base Geometry",
+      "offset": 29094359,
+      "parameterKeyExamples": [
+        "geom",
+        "baseGeom"
+      ]
+    },
+    {
+      "source": "Blends",
+      "offset": 29094378,
+      "parameterKeyExamples": [
+        "blends"
+      ]
+    },
+    {
+      "source": "Fast Texture Blending Preview (Editor Only)",
+      "offset": 29094392,
+      "parameterKeyExamples": [
+        "preview"
+      ]
+    },
+    {
+      "source": "Weights",
+      "offset": 29094444,
+      "parameterKeyExamples": [
+        "weights"
+      ]
+    },
+    {
+      "source": "Geometry Source",
+      "offset": 29115181,
+      "parameterKeyExamples": [
+        "geomSource"
+      ]
+    },
+    {
+      "source": "Vertex Masks",
+      "offset": 29115208,
+      "parameterKeyExamples": [
+        "vertexMasks"
+      ]
+    },
+    {
+      "source": "Visible Polygons",
+      "offset": 29115233,
+      "parameterKeyExamples": [
+        "visiblePolygons"
+      ]
+    },
+    {
+      "source": "Brush Type",
+      "offset": 29115297,
+      "parameterKeyExamples": [
+        "brushType"
+      ]
+    },
+    {
+      "source": "Falloff",
+      "offset": 29115350,
+      "parameterKeyExamples": [
+        "falloff"
+      ]
+    },
+    {
+      "source": "Use Geodesic Distance",
+      "offset": 29115440,
+      "parameterKeyExamples": [
+        "useGeodesicDistance"
+      ]
+    },
+    {
+      "source": "Vertex Mask Index",
+      "offset": 29115482,
+      "parameterKeyExamples": [
+        "vertexMaskIndex"
+      ]
+    },
+    {
+      "source": "Visible Polygons Index",
+      "offset": 29115516,
+      "parameterKeyExamples": [
+        "visiblePolygonsIndex"
+      ]
+    },
+    {
+      "source": "Reference Camera Index",
+      "offset": 29115560,
+      "parameterKeyExamples": [
+        "referenceCameraIndex"
+      ]
+    },
+    {
+      "source": "Wireframe Mode",
+      "offset": 29115678,
+      "parameterKeyExamples": [
+        "wireframeMode"
+      ]
+    },
+    {
+      "source": "Show Reference Geometry",
+      "offset": 29115707,
+      "parameterKeyExamples": [
+        "showReferenceGeom"
+      ]
+    },
+    {
+      "source": "Use Geometry Opacity",
+      "offset": 29115749,
+      "parameterKeyExamples": [
+        "useGeomOpacity"
+      ]
+    },
+    {
+      "source": "Geometry Opacity",
+      "offset": 29115785,
+      "parameterKeyExamples": [
+        "geomOpacity"
+      ]
+    },
+    {
+      "source": "Affect Borders",
+      "offset": 29115814,
+      "parameterKeyExamples": [
+        "affectBorders"
+      ]
+    },
+    {
+      "source": "Include Backfaces",
+      "offset": 29115843,
+      "parameterKeyExamples": [
+        "canUseBackfaces"
+      ]
+    },
+    {
+      "source": "Projection Dist",
+      "offset": 29115946,
+      "parameterKeyExamples": [
+        "projectionDist"
+      ]
+    },
+    {
+      "source": "Custom Projection Dist (cm)",
+      "offset": 29115977,
+      "parameterKeyExamples": [
+        "customProjectionDist"
+      ]
+    },
+    {
+      "source": "Min Size Factor",
+      "offset": 29116026,
+      "parameterKeyExamples": [
+        "minFactor"
+      ]
+    },
+    {
+      "source": "Max Size Factor",
+      "offset": 29116052,
+      "parameterKeyExamples": [
+        "maxFactor"
+      ]
+    },
+    {
+      "source": "Mask Color",
+      "offset": 29116078,
+      "parameterKeyExamples": [
+        "maskColor"
+      ]
+    },
+    {
+      "source": "Triangles",
+      "offset": 29141166,
+      "parameterKeyExamples": [
+        "targetCountOfTriangles"
+      ]
+    },
+    {
+      "source": "Keep UVs",
+      "offset": 29141199,
+      "parameterKeyExamples": [
+        "isKeepUV"
+      ]
+    },
+    {
+      "source": "Visual Param",
+      "offset": 29161621,
+      "parameterKeyExamples": [
+        "visualParam",
+        "boundaryType"
+      ]
+    },
+    {
+      "source": "Premultiply",
+      "offset": 29164625,
+      "parameterKeyExamples": [
+        "premult"
+      ]
+    },
+    {
+      "source": "Source Geometry with Texture to Deform",
+      "offset": 29180496,
+      "parameterKeyExamples": [
+        "geomSrc"
+      ]
+    },
+    {
+      "source": "Target Geometry with Texture",
+      "offset": 29180543,
+      "parameterKeyExamples": [
+        "geomDst"
+      ]
+    },
+    {
+      "source": "Point Correspondences",
+      "offset": 29180580,
+      "parameterKeyExamples": [
+        "points"
+      ]
+    },
+    {
+      "source": "Free Source Polygons",
+      "offset": 29180609,
+      "parameterKeyExamples": [
+        "polygons"
+      ]
+    },
+    {
+      "source": "Mask of Fixed Vertices",
+      "offset": 29180639,
+      "parameterKeyExamples": [
+        "mask"
+      ]
+    },
+    {
+      "source": "Global Translation",
+      "offset": 29180775,
+      "parameterKeyExamples": [
+        "globalTranslation"
+      ]
+    },
+    {
+      "source": "Rings",
+      "offset": 29181269,
+      "parameterKeyExamples": [
+        "cameraGeneratorRings"
+      ]
+    },
+    {
+      "source": "Clear Existing Cameras",
+      "offset": 29181384,
+      "parameterKeyExamples": [
+        "cameraGeneratorClearExistingCameras"
+      ]
+    },
+    {
+      "source": "Padding",
+      "offset": 29181751,
+      "parameterKeyExamples": [
+        "padding"
+      ]
+    },
+    {
+      "source": "Left Geometry",
+      "offset": 29192872,
+      "parameterKeyExamples": [
+        "geomLeft"
+      ]
+    },
+    {
+      "source": "Right Geometry",
+      "offset": 29192895,
+      "parameterKeyExamples": [
+        "geomRight"
+      ]
+    },
+    {
+      "source": "Source Geometry",
+      "offset": 29203863,
+      "parameterKeyExamples": [
+        "geomSrc",
+        "sourceGeometry"
+      ]
+    },
+    {
+      "source": "Target Geometry",
+      "offset": 29203887,
+      "parameterKeyExamples": [
+        "geomDst",
+        "geomTarget",
+        "targetGeom",
+        "targetGeometry"
+      ]
+    },
+    {
+      "source": "Excluded Vertex Mask",
+      "offset": 29203911,
+      "parameterKeyExamples": [
+        "vertexMask"
+      ]
+    },
+    {
+      "source": "Check Normals",
+      "offset": 29203943,
+      "parameterKeyExamples": [
+        "checkNormals"
+      ]
+    },
+    {
+      "source": "Limit Distance",
+      "offset": 29203970,
+      "parameterKeyExamples": [
+        "limitDist"
+      ]
+    },
+    {
+      "source": "Floating Geometry",
+      "offset": 29207799,
+      "parameterKeyExamples": [
+        "geomFloating",
+        "geomBase"
+      ]
+    },
+    {
+      "source": "Fixed Geometry",
+      "offset": 29207830,
+      "parameterKeyExamples": [
+        "geomFixed",
+        "geomTarget"
+      ]
+    },
+    {
+      "source": "Fit Translation",
+      "offset": 29207884,
+      "parameterKeyExamples": [
+        "fitTranslation",
+        "findTranslation",
+        "translationType"
+      ]
+    },
+    {
+      "source": "Fit Rotation",
+      "offset": 29207915,
+      "parameterKeyExamples": [
+        "fitRotation",
+        "findRotation",
+        "rotationType"
+      ]
+    },
+    {
+      "source": "Fit Scale",
+      "offset": 29207940,
+      "parameterKeyExamples": [
+        "fitScale",
+        "findScale",
+        "scaleType"
+      ]
+    },
+    {
+      "source": "Save Normals",
+      "offset": 29209198,
+      "parameterKeyExamples": [
+        "saveNormals"
+      ]
+    },
+    {
+      "source": "Create Intermediate Directories",
+      "offset": 29209224,
+      "parameterKeyExamples": [
+        "createDirectories",
+        "saveFittedControlsDir"
+      ]
+    },
+    {
+      "source": "Include Transform",
+      "offset": 29209274,
+      "parameterKeyExamples": [
+        "includeTransform"
+      ]
+    },
+    {
+      "source": "Save as Sequence",
+      "offset": 29209309,
+      "parameterKeyExamples": [
+        "isSequence"
+      ]
+    },
+    {
+      "source": "Vertex Quant",
+      "offset": 29213442,
+      "parameterKeyExamples": [
+        "dracoVertexQuant"
+      ]
+    },
+    {
+      "source": "Tex Coord Quant",
+      "offset": 29213472,
+      "parameterKeyExamples": [
+        "dracoTexCoordQuant"
+      ]
+    },
+    {
+      "source": "Normal Quant",
+      "offset": 29213507,
+      "parameterKeyExamples": [
+        "dracoNormalQuant"
+      ]
+    },
+    {
+      "source": "Compression",
+      "offset": 29213537,
+      "parameterKeyExamples": [
+        "dracoCompression"
+      ]
+    },
+    {
+      "source": "Input Geometry",
+      "offset": 29219031,
+      "parameterKeyExamples": [
+        "geom"
+      ]
+    },
+    {
+      "source": "Smooth UV Vertices",
+      "offset": 29219078,
+      "parameterKeyExamples": [
+        "smoothVerticesUV"
+      ]
+    },
+    {
+      "source": "Smooth Vertices",
+      "offset": 29219114,
+      "parameterKeyExamples": [
+        "smoothVertices"
+      ]
+    },
+    {
+      "source": "Excluded Target Polygons",
+      "offset": 29225387,
+      "parameterKeyExamples": [
+        "polygonsDst"
+      ]
+    },
+    {
+      "source": "Resolution",
+      "offset": 29225458,
+      "parameterKeyExamples": [
+        "resolution"
+      ]
+    },
+    {
+      "source": "Filter Method",
+      "offset": 29225480,
+      "parameterKeyExamples": [
+        "filter"
+      ]
+    },
+    {
+      "source": "Pivot Translation",
+      "offset": 29227542,
+      "parameterKeyExamples": [
+        "pivotTranslation"
+      ]
+    },
+    {
+      "source": "Pivot Rotation",
+      "offset": 29227577,
+      "parameterKeyExamples": [
+        "pivotRotation"
+      ]
+    },
+    {
+      "source": "Edit Pivot",
+      "offset": 29227606,
+      "parameterKeyExamples": [
+        "editPivot"
+      ]
+    },
+    {
+      "source": "Reset Pivot",
+      "offset": 29227667,
+      "parameterKeyExamples": [
+        "resetPivot"
+      ]
+    },
+    {
+      "source": "Center Pivot",
+      "offset": 29227690,
+      "parameterKeyExamples": [
+        "centerPivot"
+      ]
+    },
+    {
+      "source": "Excluded Floating Polygons",
+      "offset": 29299329,
+      "parameterKeyExamples": [
+        "polygons",
+        "excludedFloatingPolygons",
+        "excludedPolygons"
+      ]
+    },
+    {
+      "source": "Blendshapes Reference",
+      "offset": 29299489,
+      "parameterKeyExamples": [
+        "blendshapeFileNames"
+      ]
+    },
+    {
+      "source": "Num Components",
+      "offset": 29299531,
+      "parameterKeyExamples": [
+        "nComponents",
+        "numComponents"
+      ]
+    },
+    {
+      "source": "N Nodes to Use",
+      "offset": 29299558,
+      "parameterKeyExamples": [
+        "nNodesToUse"
+      ]
+    },
+    {
+      "source": "ICP",
+      "offset": 29299607,
+      "parameterKeyExamples": [
+        "icp"
+      ]
+    },
+    {
+      "source": "Coarse-to-fine Iterations",
+      "offset": 29299645,
+      "parameterKeyExamples": [
+        "nCoarseToFineIterations",
+        "coarseToFineIterations"
+      ]
+    },
+    {
+      "source": "Sampling Radius Initial (cm)",
+      "offset": 29299695,
+      "parameterKeyExamples": [
+        "samplingRadiusInitial"
+      ]
+    },
+    {
+      "source": "Sampling Radius Final (cm)",
+      "offset": 29299746,
+      "parameterKeyExamples": [
+        "samplingRadiusFinal"
+      ]
+    },
+    {
+      "source": "Use Rigid Alignment",
+      "offset": 29299873,
+      "parameterKeyExamples": [
+        "useRigidAlignment"
+      ]
+    },
+    {
+      "source": "Use Retargeting",
+      "offset": 29299911,
+      "parameterKeyExamples": [
+        "useRetargeting"
+      ]
+    },
+    {
+      "source": "Show Labels",
+      "offset": 29305290,
+      "parameterKeyExamples": [
+        "showLabels"
+      ]
+    },
+    {
+      "source": "Clip Number",
+      "offset": 29305357,
+      "parameterKeyExamples": [
+        "clipNumber"
+      ]
+    },
+    {
+      "source": "Screen Resolution",
+      "offset": 29305380,
+      "parameterKeyExamples": [
+        "resolution",
+        "cameraResolution"
+      ]
+    },
+    {
+      "source": "Screen Points",
+      "offset": 29320330,
+      "parameterKeyExamples": [
+        "screenPoints",
+        "screenPointsView",
+        "referenceGeom"
+      ]
+    },
+    {
+      "source": "Use Camera Resolution",
+      "offset": 29320371,
+      "parameterKeyExamples": [
+        "useCameraResolution"
+      ]
+    },
+    {
+      "source": "Show Point Labels",
+      "offset": 29320431,
+      "parameterKeyExamples": [
+        "showPointLabels",
+        "showLabels"
+      ]
+    },
+    {
+      "source": "Fail on Mistrace",
+      "offset": 29320465,
+      "parameterKeyExamples": [
+        "failOnMistrace"
+      ]
+    },
+    {
+      "source": "MSAA",
+      "offset": 29322084,
+      "parameterKeyExamples": [
+        "multisampling"
+      ]
+    },
+    {
+      "source": "Accept Non-Zero Distortion",
+      "offset": 29322103,
+      "parameterKeyExamples": [
+        "acceptNonZeroDistortion"
+      ]
+    },
+    {
+      "source": "Transparent Background",
+      "offset": 29322251,
+      "parameterKeyExamples": [
+        "backgroundOpacity"
+      ]
+    },
+    {
+      "source": "Show Backfaces",
+      "offset": 29322292,
+      "parameterKeyExamples": [
+        "backfaces"
+      ]
+    },
+    {
+      "source": "OpenGL Resolution Limit",
+      "offset": 29322317,
+      "parameterKeyExamples": [
+        "previewResolution"
+      ]
+    },
+    {
+      "source": "Upper Right Lip Selection",
+      "offset": 29360973,
+      "parameterKeyExamples": [
+        "rightUpperLipPolygonSelection"
+      ]
+    },
+    {
+      "source": "Upper Left Lip Selection",
+      "offset": 29361029,
+      "parameterKeyExamples": [
+        "leftUpperLipPolygonSelection"
+      ]
+    },
+    {
+      "source": "Lower Right Lip Selection",
+      "offset": 29361083,
+      "parameterKeyExamples": [
+        "rightLowerLipPolygonSelection"
+      ]
+    },
+    {
+      "source": "Lower Left Lip Selection",
+      "offset": 29361139,
+      "parameterKeyExamples": [
+        "leftLowerLipPolygonSelection"
+      ]
+    },
+    {
+      "source": "Mouth Socket Selection",
+      "offset": 29361193,
+      "parameterKeyExamples": [
+        "mouthSocketPolygonSelection"
+      ]
+    },
+    {
+      "source": "Camera Resolution",
+      "offset": 29361244,
+      "parameterKeyExamples": [
+        "resolution"
+      ]
+    },
+    {
+      "source": "Show Polygon Selections",
+      "offset": 29361315,
+      "parameterKeyExamples": [
+        "showPolygonSelections"
+      ]
+    },
+    {
+      "source": "Facial Detection",
+      "offset": 29361361,
+      "parameterKeyExamples": [
+        "detection",
+        "facialDetection"
+      ]
+    },
+    {
+      "source": "Spline Data Storage",
+      "offset": 29361388,
+      "parameterKeyExamples": [
+        "splineDataStorage"
+      ]
+    },
+    {
+      "source": "Facial Annotation",
+      "offset": 29364540,
+      "parameterKeyExamples": [
+        "annotation",
+        "facialAnnotation"
+      ]
+    },
+    {
+      "source": "Control Points Weight",
+      "offset": 29365057,
+      "parameterKeyExamples": [
+        "controlPointsWeight"
+      ]
+    },
+    {
+      "source": "Detection Weight",
+      "offset": 29365149,
+      "parameterKeyExamples": [
+        "detectionWeight"
+      ]
+    },
+    {
+      "source": "Semantic Points Weight",
+      "offset": 29365182,
+      "parameterKeyExamples": [
+        "semanticPointsWeight"
+      ]
+    },
+    {
+      "source": "Shape Change Threshold",
+      "offset": 29365384,
+      "parameterKeyExamples": [
+        "shapeChangeThreshold"
+      ]
+    },
+    {
+      "source": "Intensity",
+      "offset": 29376227,
+      "parameterKeyExamples": [
+        "intensity"
+      ]
+    },
+    {
+      "source": "Smooth Iterations",
+      "offset": 29376247,
+      "parameterKeyExamples": [
+        "smoothIterations",
+        "samplingSmoothIterations",
+        "smoothStrengthWeight"
+      ]
+    },
+    {
+      "source": "Draw Interval",
+      "offset": 29376564,
+      "parameterKeyExamples": [
+        "drawInterval"
+      ]
+    },
+    {
+      "source": "Multiply Output",
+      "offset": 29376591,
+      "parameterKeyExamples": [
+        "multiply"
+      ]
+    },
+    {
+      "source": "Invert Output",
+      "offset": 29376616,
+      "parameterKeyExamples": [
+        "invert"
+      ]
+    },
+    {
+      "source": "Polygroups",
+      "offset": 29376665,
+      "parameterKeyExamples": [
+        "importPolygroups"
+      ]
+    },
+    {
+      "source": "Materials",
+      "offset": 29376693,
+      "parameterKeyExamples": [
+        "importMaterials"
+      ]
+    },
+    {
+      "source": "Export Mask",
+      "offset": 29376719,
+      "parameterKeyExamples": [
+        "exportMask"
+      ]
+    },
+    {
+      "source": "Original Geometry",
+      "offset": 29382759,
+      "parameterKeyExamples": [
+        "geomA"
+      ]
+    },
+    {
+      "source": "Geometry to Replace with",
+      "offset": 29382783,
+      "parameterKeyExamples": [
+        "geomB"
+      ]
+    },
+    {
+      "source": "Blend",
+      "offset": 29382824,
+      "parameterKeyExamples": [
+        "blend"
+      ]
+    },
+    {
+      "source": "Polygon Selection",
+      "offset": 29384213,
+      "parameterKeyExamples": [
+        "polygonSelection"
+      ]
+    },
+    {
+      "source": "Shrink",
+      "offset": 29395320,
+      "parameterKeyExamples": [
+        "smoothingLaplacianNeighboursType"
+      ]
+    },
+    {
+      "source": "Smoothing In Radius",
+      "offset": 29395518,
+      "parameterKeyExamples": [
+        "sidePrior"
+      ]
+    },
+    {
+      "source": "Symmetrize",
+      "offset": 29395548,
+      "parameterKeyExamples": [
+        "minLevel"
+      ]
+    },
+    {
+      "source": "Base Mask",
+      "offset": 29397255,
+      "parameterKeyExamples": [
+        "maskBase"
+      ]
+    },
+    {
+      "source": "Additional Masks",
+      "offset": 29397274,
+      "parameterKeyExamples": [
+        "masksRest"
+      ]
+    },
+    {
+      "source": "Boundary Type",
+      "offset": 29402049,
+      "parameterKeyExamples": [
+        "boundaryType",
+        "undistortionType"
+      ]
+    },
+    {
+      "source": "Undistortion Method",
+      "offset": 29402076,
+      "parameterKeyExamples": [
+        "undistortionType",
+        "removeOuterPoints"
+      ]
+    },
+    {
+      "source": "Reset Optical Center",
+      "offset": 29402113,
+      "parameterKeyExamples": [
+        "resetOpticalCenter",
+        "isAcceptZeroDistortion"
+      ]
+    },
+    {
+      "source": "Accept Zero Distortion",
+      "offset": 29402153,
+      "parameterKeyExamples": [
+        "isAcceptZeroDistortion",
+        "showMode"
+      ]
+    },
+    {
+      "source": "Background",
+      "offset": 29406109,
+      "parameterKeyExamples": [
+        "background"
+      ]
+    },
+    {
+      "source": "Foreground",
+      "offset": 29406131,
+      "parameterKeyExamples": [
+        "foreground"
+      ]
+    },
+    {
+      "source": "Wrap Method",
+      "offset": 29406237,
+      "parameterKeyExamples": [
+        "wrap"
+      ]
+    },
+    {
+      "source": "If Different Pixel Types",
+      "offset": 29406275,
+      "parameterKeyExamples": [
+        "ifDifferentPixelTypes"
+      ]
+    },
+    {
+      "source": "If Different Channels Count",
+      "offset": 29406322,
+      "parameterKeyExamples": [
+        "ifDifferentChannelsNumber"
+      ]
+    },
+    {
+      "source": "Background Image",
+      "offset": 29409628,
+      "parameterKeyExamples": [
+        "backgroundImage"
+      ]
+    },
+    {
+      "source": "Font",
+      "offset": 29409713,
+      "parameterKeyExamples": [
+        "font"
+      ]
+    },
+    {
+      "source": "Bold",
+      "offset": 29409723,
+      "parameterKeyExamples": [
+        "bold"
+      ]
+    },
+    {
+      "source": "Italic",
+      "offset": 29409733,
+      "parameterKeyExamples": [
+        "italic"
+      ]
+    },
+    {
+      "source": "Size (px)",
+      "offset": 29409759,
+      "parameterKeyExamples": [
+        "size"
+      ]
+    },
+    {
+      "source": "Line Spacing",
+      "offset": 29409774,
+      "parameterKeyExamples": [
+        "lineSpacing"
+      ]
+    },
+    {
+      "source": "Custom Alignment",
+      "offset": 29409848,
+      "parameterKeyExamples": [
+        "customAlignment"
+      ]
+    },
+    {
+      "source": "Image A",
+      "offset": 29412986,
+      "parameterKeyExamples": [
+        "imageA"
+      ]
+    },
+    {
+      "source": "Image B",
+      "offset": 29413001,
+      "parameterKeyExamples": [
+        "imageB"
+      ]
+    },
+    {
+      "source": "Predivide/Postmultiply",
+      "offset": 29413096,
+      "parameterKeyExamples": [
+        "preDividePostMultiply"
+      ]
+    },
+    {
+      "source": "Neutral Geometry",
+      "offset": 29417278,
+      "parameterKeyExamples": [
+        "geomBase",
+        "neutral",
+        "geomNeutral",
+        "neutralGeom"
+      ]
+    },
+    {
+      "source": "Neutral Points",
+      "offset": 29417331,
+      "parameterKeyExamples": [
+        "pointsBase"
+      ]
+    },
+    {
+      "source": "Initial Target Points",
+      "offset": 29417357,
+      "parameterKeyExamples": [
+        "initPoints"
+      ]
+    },
+    {
+      "source": "Show Point Cycles",
+      "offset": 29417390,
+      "parameterKeyExamples": [
+        "showCycles"
+      ]
+    },
+    {
+      "source": "Show Point Names",
+      "offset": 29417419,
+      "parameterKeyExamples": [
+        "showNames"
+      ]
+    },
+    {
+      "source": "Show Patches",
+      "offset": 29417446,
+      "parameterKeyExamples": [
+        "showPatches"
+      ]
+    },
+    {
+      "source": "Show Alignment Points",
+      "offset": 29417471,
+      "parameterKeyExamples": [
+        "showAlignPoints"
+      ]
+    },
+    {
+      "source": "Show Free Polygons",
+      "offset": 29417509,
+      "parameterKeyExamples": [
+        "showFreePolygons"
+      ]
+    },
+    {
+      "source": "Point Patch Resolution (px)",
+      "offset": 29417866,
+      "parameterKeyExamples": [
+        "pointResolution"
+      ]
+    },
+    {
+      "source": "Camera Distance (cm)",
+      "offset": 29417910,
+      "parameterKeyExamples": [
+        "cameraDist"
+      ]
+    },
+    {
+      "source": "Normal Radius (cm)",
+      "offset": 29417942,
+      "parameterKeyExamples": [
+        "normalRad"
+      ]
+    },
+    {
+      "source": "Feature Size (px)",
+      "offset": 29417971,
+      "parameterKeyExamples": [
+        "featureSize"
+      ]
+    },
+    {
+      "source": "Patch Blur Iterations",
+      "offset": 29418017,
+      "parameterKeyExamples": [
+        "blurIterations"
+      ]
+    },
+    {
+      "source": "Patch Blur Weight",
+      "offset": 29418054,
+      "parameterKeyExamples": [
+        "blurWeight"
+      ]
+    },
+    {
+      "source": "Sample Radius (cm)",
+      "offset": 29418083,
+      "parameterKeyExamples": [
+        "sampleRadius",
+        "samplingDynamicTextures"
+      ]
+    },
+    {
+      "source": "Pinned Points",
+      "offset": 29418115,
+      "parameterKeyExamples": [
+        "pinned"
+      ]
+    },
+    {
+      "source": "Hidden Points",
+      "offset": 29418136,
+      "parameterKeyExamples": [
+        "hidden"
+      ]
+    },
+    {
+      "source": "Selected Point",
+      "offset": 29418157,
+      "parameterKeyExamples": [
+        "selected"
+      ]
+    },
+    {
+      "source": "Sync Views",
+      "offset": 29418181,
+      "parameterKeyExamples": [
+        "syncViews"
+      ]
+    },
+    {
+      "source": "Initial Geometry",
+      "offset": 29554843,
+      "parameterKeyExamples": [
+        "geomFloating"
+      ]
+    },
+    {
+      "source": "Markers on Initial Geometry",
+      "offset": 29554873,
+      "parameterKeyExamples": [
+        "markersOnFloatingGeom",
+        "markersOnFloatingGeometry"
+      ]
+    },
+    {
+      "source": "Sampling Mask",
+      "offset": 29555112,
+      "parameterKeyExamples": [
+        "maskSamplingRadius"
+      ]
+    },
+    {
+      "source": "Stabilization Mask",
+      "offset": 29555145,
+      "parameterKeyExamples": [
+        "maskStabilization"
+      ]
+    },
+    {
+      "source": "Fixed Mask",
+      "offset": 29555182,
+      "parameterKeyExamples": [
+        "maskFixedVertices"
+      ]
+    },
+    {
+      "source": "Uncertainty Mask",
+      "offset": 29555211,
+      "parameterKeyExamples": [
+        "maskUncertaintyRegion"
+      ]
+    },
+    {
+      "source": "Smoothing Mask",
+      "offset": 29555250,
+      "parameterKeyExamples": [
+        "maskSmoothing"
+      ]
+    },
+    {
+      "source": "Stabilization Sampling Radius (cm)",
+      "offset": 29555280,
+      "parameterKeyExamples": [
+        "stabilizationSamplingRadius"
+      ]
+    },
+    {
+      "source": "Stabilization Smoothness Weight",
+      "offset": 29555344,
+      "parameterKeyExamples": [
+        "stabilizationSmoothnessWeight"
+      ]
+    },
+    {
+      "source": "Neutral Reference",
+      "offset": 29555507,
+      "parameterKeyExamples": [
+        "neutralFileName"
+      ]
+    },
+    {
+      "source": "Stereo Pairs",
+      "offset": 29555583,
+      "parameterKeyExamples": [
+        "stereoPairsIndices"
+      ]
+    },
+    {
+      "source": "Blendshape Reference Textures",
+      "offset": 29555743,
+      "parameterKeyExamples": [
+        "expressionTexturesFileNames"
+      ]
+    },
+    {
+      "source": "Blendshape Reference Meshes",
+      "offset": 29555801,
+      "parameterKeyExamples": [
+        "expressionGeomsFileNames"
+      ]
+    },
+    {
+      "source": "Texture Color Space",
+      "offset": 29555854,
+      "parameterKeyExamples": [
+        "textureColorSpace"
+      ]
+    },
+    {
+      "source": "Outer Iterations",
+      "offset": 29555892,
+      "parameterKeyExamples": [
+        "outerIterations"
+      ]
+    },
+    {
+      "source": "Inner Iterations",
+      "offset": 29555925,
+      "parameterKeyExamples": [
+        "innerIterations"
+      ]
+    },
+    {
+      "source": "N Nodes To Use",
+      "offset": 29555987,
+      "parameterKeyExamples": [
+        "nNodesToUse"
+      ]
+    },
+    {
+      "source": "Downsample Iterations",
+      "offset": 29556014,
+      "parameterKeyExamples": [
+        "downsampleIterations"
+      ]
+    },
+    {
+      "source": "Texture Update Iterations",
+      "offset": 29556106,
+      "parameterKeyExamples": [
+        "textureUpdateIterations"
+      ]
+    },
+    {
+      "source": "Image Width Initial",
+      "offset": 29556156,
+      "parameterKeyExamples": [
+        "resolutionInitial",
+        "imgWidthInitial"
+      ]
+    },
+    {
+      "source": "Image Width Final",
+      "offset": 29556194,
+      "parameterKeyExamples": [
+        "resolutionFinal",
+        "imgWidthFinal"
+      ]
+    },
+    {
+      "source": "Illumination Estimator Sampling Radius (cm)",
+      "offset": 29556320,
+      "parameterKeyExamples": [
+        "samplingRadiusForHarmonics"
+      ]
+    },
+    {
+      "source": "Illumination Estimator Smoothness Weight",
+      "offset": 29556392,
+      "parameterKeyExamples": [
+        "harmonicSmoothnessWeight"
+      ]
+    },
+    {
+      "source": "Resample Iterations",
+      "offset": 29556458,
+      "parameterKeyExamples": [
+        "resampleIterations"
+      ]
+    },
+    {
+      "source": "Image Fitting Weight Initial",
+      "offset": 29556577,
+      "parameterKeyExamples": [
+        "imageFittingInitial"
+      ]
+    },
+    {
+      "source": "Image Fitting Weight Final",
+      "offset": 29556626,
+      "parameterKeyExamples": [
+        "imageFittingFinal"
+      ]
+    },
+    {
+      "source": "Depth Fitting Weight Initial",
+      "offset": 29556671,
+      "parameterKeyExamples": [
+        "depthFittingInitial"
+      ]
+    },
+    {
+      "source": "Depth Fitting Weight Final",
+      "offset": 29556720,
+      "parameterKeyExamples": [
+        "depthFittingFinal"
+      ]
+    },
+    {
+      "source": "Blendshapes Regularization Weight",
+      "offset": 29556768,
+      "parameterKeyExamples": [
+        "blendshapesRegularization"
+      ]
+    },
+    {
+      "source": "Blendshapes Constraint Weight",
+      "offset": 29556828,
+      "parameterKeyExamples": [
+        "blendshapesConstraint"
+      ]
+    },
+    {
+      "source": "Image Fitting Trust Threshold",
+      "offset": 29556880,
+      "parameterKeyExamples": [
+        "fittingImageTrustThreshold",
+        "viewDistanceWeight"
+      ]
+    },
+    {
+      "source": "Depth Fitting Trust Threshold",
+      "offset": 29556937,
+      "parameterKeyExamples": [
+        "fittingDepthTrustThreshold"
+      ]
+    },
+    {
+      "source": "Smoothness Weight on Mask Final",
+      "offset": 29557056,
+      "parameterKeyExamples": [
+        "smoothnessFinal"
+      ]
+    },
+    {
+      "source": "Smoothness Weight Initial",
+      "offset": 29557104,
+      "parameterKeyExamples": [
+        "smoothnessUnmaskedInitial"
+      ]
+    },
+    {
+      "source": "Smoothness Weight Final",
+      "offset": 29557156,
+      "parameterKeyExamples": [
+        "smoothnessUnmaskedFinal"
+      ]
+    },
+    {
+      "source": "Depth Fitting Normals Threshold",
+      "offset": 29557264,
+      "parameterKeyExamples": [
+        "depthNormalThreshold"
+      ]
+    },
+    {
+      "source": "Detection Eyes Weight Initial",
+      "offset": 29557871,
+      "parameterKeyExamples": [
+        "detectionEyesInitial"
+      ]
+    },
+    {
+      "source": "Detection Eyes Weight Final",
+      "offset": 29557922,
+      "parameterKeyExamples": [
+        "detectionEyesFinal"
+      ]
+    },
+    {
+      "source": "Detection Inner Lips Weight Final",
+      "offset": 29558168,
+      "parameterKeyExamples": [
+        "detectionInnerLipsFinal"
+      ]
+    },
+    {
+      "source": "Fixed Vertices Weight",
+      "offset": 29558226,
+      "parameterKeyExamples": [
+        "fixedVerticesWeight"
+      ]
+    },
+    {
+      "source": "Uncertainty Region Weight",
+      "offset": 29558268,
+      "parameterKeyExamples": [
+        "uncertaintyRegion"
+      ]
+    },
+    {
+      "source": "Inner Mask Radius (cm) Initial",
+      "offset": 29558312,
+      "parameterKeyExamples": [
+        "innerMaskRadiusInitial"
+      ]
+    },
+    {
+      "source": "Inner Mask Radius (cm) Final",
+      "offset": 29558366,
+      "parameterKeyExamples": [
+        "innerMaskRadiusFinal"
+      ]
+    },
+    {
+      "source": "Grayscale Method",
+      "offset": 29558416,
+      "parameterKeyExamples": [
+        "grayscaleMode"
+      ]
+    },
+    {
+      "source": "Texture Downscale",
+      "offset": 29558447,
+      "parameterKeyExamples": [
+        "scaleTexture"
+      ]
+    },
+    {
+      "source": "Outer Mask Radius (cm) Initial",
+      "offset": 29558480,
+      "parameterKeyExamples": [
+        "outerMaskRadiusInitial"
+      ]
+    },
+    {
+      "source": "Outer Mask Radius (cm) Final",
+      "offset": 29558534,
+      "parameterKeyExamples": [
+        "outerMaskRadiusFinal"
+      ]
+    },
+    {
+      "source": "Show",
+      "offset": 29558584,
+      "parameterKeyExamples": [
+        "showMode",
+        "showPoints",
+        "showResultPoints"
+      ]
+    },
+    {
+      "source": "Detection",
+      "offset": 29558636,
+      "parameterKeyExamples": [
+        "showDetection"
+      ]
+    },
+    {
+      "source": "Names",
+      "offset": 29558660,
+      "parameterKeyExamples": [
+        "showPointsNames"
+      ]
+    },
+    {
+      "source": "Dynamic Texture",
+      "offset": 29558761,
+      "parameterKeyExamples": [
+        "useDynamicTexture"
+      ]
+    },
+    {
+      "source": "Illumination Simulation",
+      "offset": 29558795,
+      "parameterKeyExamples": [
+        "useLightingSimulation"
+      ]
+    },
+    {
+      "source": "Deformation Type",
+      "offset": 29558841,
+      "parameterKeyExamples": [
+        "deformationType"
+      ]
+    },
+    {
+      "source": "Blendshape Compression Type",
+      "offset": 29558874,
+      "parameterKeyExamples": [
+        "blendshapeCompressionType"
+      ]
+    },
+    {
+      "source": "Vertex Mask",
+      "offset": 29582576,
+      "parameterKeyExamples": [
+        "vertexMask"
+      ]
+    },
+    {
+      "source": "Discard Invisible Points",
+      "offset": 29584919,
+      "parameterKeyExamples": [
+        "discardInvisiblePoints"
+      ]
+    },
+    {
+      "source": "Discard Outer Points",
+      "offset": 29584967,
+      "parameterKeyExamples": [
+        "discardOuterPoints"
+      ]
+    },
+    {
+      "source": "Base geometry",
+      "offset": 29587782,
+      "parameterKeyExamples": [
+        "geomBase"
+      ]
+    },
+    {
+      "source": "Target geometry",
+      "offset": 29587805,
+      "parameterKeyExamples": [
+        "geomTarget"
+      ]
+    },
+    {
+      "source": "Target Images",
+      "offset": 29604346,
+      "parameterKeyExamples": [
+        "detections"
+      ]
+    },
+    {
+      "source": "Downsampling Iterations",
+      "offset": 29604430,
+      "parameterKeyExamples": [
+        "nDownsamplingIterations"
+      ]
+    },
+    {
+      "source": "View Distance Consistency",
+      "offset": 29604555,
+      "parameterKeyExamples": [
+        "autoCompute"
+      ]
+    },
+    {
+      "source": "Prefit Type",
+      "offset": 29604617,
+      "parameterKeyExamples": [
+        "showEyeGeoms"
+      ]
+    },
+    {
+      "source": "Show Eye Geoms",
+      "offset": 29604642,
+      "parameterKeyExamples": [
+        "resizedWidth"
+      ]
+    },
+    {
+      "source": "Reducing Mask on X Size",
+      "offset": 29604689,
+      "parameterKeyExamples": [
+        "optimizationErodeXKernelSize"
+      ]
+    },
+    {
+      "source": "Reducing Mask on Y Size",
+      "offset": 29604742,
+      "parameterKeyExamples": [
+        "optimizationErodeYKernelSize"
+      ]
+    },
+    {
+      "source": "Reference Frame",
+      "offset": 29608288,
+      "parameterKeyExamples": [
+        "closedEyeThreshold"
+      ]
+    },
+    {
+      "source": "Closed Eye Threshold",
+      "offset": 29608323,
+      "parameterKeyExamples": [
+        "frameRanges"
+      ]
+    },
+    {
+      "source": "Frame Ranges",
+      "offset": 29608356,
+      "parameterKeyExamples": [
+        "keyFramesIndices"
+      ]
+    },
+    {
+      "source": "Keyframes Values",
+      "offset": 29608412,
+      "parameterKeyExamples": [
+        "default"
+      ]
+    },
+    {
+      "source": "Deformable Geometry",
+      "offset": 29611902,
+      "parameterKeyExamples": [
+        "deformableGeom"
+      ]
+    },
+    {
+      "source": "Deformation Source Geometry",
+      "offset": 29611937,
+      "parameterKeyExamples": [
+        "collisionGeom",
+        "deformationSourceGeom"
+      ]
+    },
+    {
+      "source": "Reference Deformable Geometry",
+      "offset": 29612002,
+      "parameterKeyExamples": [
+        "referenceDeformableGeom"
+      ]
+    },
+    {
+      "source": "Reference Deformation Source Geometry",
+      "offset": 29612056,
+      "parameterKeyExamples": [
+        "referenceCollisionGeom"
+      ]
+    },
+    {
+      "source": "Reference Geometry",
+      "offset": 29623178,
+      "parameterKeyExamples": [
+        "geomReference",
+        "pointsOnTriangleReference",
+        "floatingGeometry"
+      ]
+    },
+    {
+      "source": "Neighbors",
+      "offset": 29623307,
+      "parameterKeyExamples": [
+        "nNeighbors",
+        "nIterations"
+      ]
+    },
+    {
+      "source": "Averaging Strength",
+      "offset": 29623351,
+      "parameterKeyExamples": [
+        "averagingStrength",
+        "gaussianSigma"
+      ]
+    },
+    {
+      "source": "Gaussian Sigma",
+      "offset": 29623388,
+      "parameterKeyExamples": [
+        "gaussianSigma"
+      ]
+    },
+    {
+      "source": "Geometry Points",
+      "offset": 29630393,
+      "parameterKeyExamples": [
+        "geometryPoints"
+      ]
+    },
+    {
+      "source": "View Cameras",
+      "offset": 29633439,
+      "parameterKeyExamples": [
+        "viewCameras"
+      ]
+    },
+    {
+      "source": "View Images",
+      "offset": 29633464,
+      "parameterKeyExamples": [
+        "viewImages"
+      ]
+    },
+    {
+      "source": "View Masks",
+      "offset": 29633487,
+      "parameterKeyExamples": [
+        "viewMasks"
+      ]
+    },
+    {
+      "source": "Mask Threshold",
+      "offset": 29633530,
+      "parameterKeyExamples": [
+        "maskThreshold"
+      ]
+    },
+    {
+      "source": "Visibility Threshold",
+      "offset": 29633559,
+      "parameterKeyExamples": [
+        "visibilityThreshold"
+      ]
+    },
+    {
+      "source": "Blur",
+      "offset": 29644488,
+      "parameterKeyExamples": [
+        "blur"
+      ]
+    },
+    {
+      "source": "Draw Left Eye",
+      "offset": 29644498,
+      "parameterKeyExamples": [
+        "isDrawLeftEye"
+      ]
+    },
+    {
+      "source": "Draw Right Eye",
+      "offset": 29644526,
+      "parameterKeyExamples": [
+        "isDrawRightEye"
+      ]
+    },
+    {
+      "source": "Draw Lips",
+      "offset": 29644556,
+      "parameterKeyExamples": [
+        "isDrawLips"
+      ]
+    },
+    {
+      "source": "Draw Inner Lips",
+      "offset": 29644577,
+      "parameterKeyExamples": [
+        "isDrawInnerLips"
+      ]
+    },
+    {
+      "source": "Rigidity",
+      "offset": 29647708,
+      "parameterKeyExamples": [
+        "rigidityWeight"
+      ]
+    },
+    {
+      "source": "Import Principal Point",
+      "offset": 29655193,
+      "parameterKeyExamples": [
+        "importPrincipalPoint"
+      ]
+    },
+    {
+      "source": "Camera Name",
+      "offset": 29655237,
+      "parameterKeyExamples": [
+        "cameraName"
+      ]
+    },
+    {
+      "source": "Override Resolution",
+      "offset": 29655260,
+      "parameterKeyExamples": [
+        "overrideResolution"
+      ]
+    },
+    {
+      "source": "Use Old RS Rotation",
+      "offset": 29655321,
+      "parameterKeyExamples": [
+        "oldRotation"
+      ]
+    },
+    {
+      "source": "View Rotation",
+      "offset": 29655457,
+      "parameterKeyExamples": [
+        "viewRotation"
+      ]
+    },
+    {
+      "source": "Override Near/Far Planes",
+      "offset": 29655484,
+      "parameterKeyExamples": [
+        "overridePlanes"
+      ]
+    },
+    {
+      "source": "Near Plane",
+      "offset": 29655524,
+      "parameterKeyExamples": [
+        "near"
+      ]
+    },
+    {
+      "source": "Far Plane",
+      "offset": 29655540,
+      "parameterKeyExamples": [
+        "far"
+      ]
+    },
+    {
+      "source": "Input Image",
+      "offset": 29658951,
+      "parameterKeyExamples": [
+        "inputImage"
+      ]
+    },
+    {
+      "source": "Pixel Sample Ratio",
+      "offset": 29658986,
+      "parameterKeyExamples": [
+        "pixelSampleRatio"
+      ]
+    },
+    {
+      "source": "Origin X",
+      "offset": 29659022,
+      "parameterKeyExamples": [
+        "originX"
+      ]
+    },
+    {
+      "source": "Origin Y",
+      "offset": 29659039,
+      "parameterKeyExamples": [
+        "originY"
+      ]
+    },
+    {
+      "source": "Ignore Transparent Pixels",
+      "offset": 29659056,
+      "parameterKeyExamples": [
+        "isIgnoringTransparentPixels"
+      ]
+    },
+    {
+      "source": "Alpha Threshold",
+      "offset": 29659110,
+      "parameterKeyExamples": [
+        "alphaThreshold"
+      ]
+    },
+    {
+      "source": "Remove Outer Points",
+      "offset": 29661464,
+      "parameterKeyExamples": [
+        "removeOuterPoints",
+        "resetOpticalCenter"
+      ]
+    },
+    {
+      "source": "Fail if Off Screen",
+      "offset": 29662718,
+      "parameterKeyExamples": [
+        "failIfOffScreen"
+      ]
+    },
+    {
+      "source": "Ignore UV",
+      "offset": 29663903,
+      "parameterKeyExamples": [
+        "ignoreUV"
+      ]
+    },
+    {
+      "source": "Floating Vertex Mask",
+      "offset": 29681047,
+      "parameterKeyExamples": [
+        "mask"
+      ]
+    },
+    {
+      "source": "Collider Geometry",
+      "offset": 29681073,
+      "parameterKeyExamples": [
+        "collider"
+      ]
+    },
+    {
+      "source": "Max Iterations",
+      "offset": 29681100,
+      "parameterKeyExamples": [
+        "nMaxIters",
+        "nMaxIterations"
+      ]
+    },
+    {
+      "source": "Iteration Accuracy",
+      "offset": 29681125,
+      "parameterKeyExamples": [
+        "solverTolerance"
+      ]
+    },
+    {
+      "source": "Smoothness Weight",
+      "offset": 29681160,
+      "parameterKeyExamples": [
+        "edgesSmoothnessWeight",
+        "smoothnessWeight",
+        "smootlessWeight",
+        "bonesNameToLocalMatrix"
+      ]
+    },
+    {
+      "source": "Initial Vertex Weights",
+      "offset": 29681200,
+      "parameterKeyExamples": [
+        "verticesDeviationWeight"
+      ]
+    },
+    {
+      "source": "Collision Weight",
+      "offset": 29681247,
+      "parameterKeyExamples": [
+        "collisionsWeight"
+      ]
+    },
+    {
+      "source": "Collision Weight Decay",
+      "offset": 29681281,
+      "parameterKeyExamples": [
+        "collisionsWeightDecay"
+      ]
+    },
+    {
+      "source": "Resolution Distance (cm)",
+      "offset": 29681326,
+      "parameterKeyExamples": [
+        "resolveDistance"
+      ]
+    },
+    {
+      "source": "Max Collision Distance (cm)",
+      "offset": 29681367,
+      "parameterKeyExamples": [
+        "maxCollisionDistance"
+      ]
+    },
+    {
+      "source": "Detect From Collider",
+      "offset": 29681416,
+      "parameterKeyExamples": [
+        "detectFromCollider"
+      ]
+    },
+    {
+      "source": "Detect Self-Intersections",
+      "offset": 29681456,
+      "parameterKeyExamples": [
+        "detectSelfCollisions"
+      ]
+    },
+    {
+      "source": "Deformation Target Geometry",
+      "offset": 29712284,
+      "parameterKeyExamples": [
+        "deformationTargetGeom"
+      ]
+    },
+    {
+      "source": "Surface Subdivisions",
+      "offset": 29712334,
+      "parameterKeyExamples": [
+        "surfaceSubdivisions"
+      ]
+    },
+    {
+      "source": "Place on Surface",
+      "offset": 29712375,
+      "parameterKeyExamples": [
+        "placeOnSurface"
+      ]
+    },
+    {
+      "source": "Scale Distance",
+      "offset": 29712407,
+      "parameterKeyExamples": [
+        "scaleDistance"
+      ]
+    },
+    {
+      "source": "Reference Objects",
+      "offset": 29716710,
+      "parameterKeyExamples": [
+        "referenceObjects"
+      ]
+    },
+    {
+      "source": "Floating Neutral",
+      "offset": 29716745,
+      "parameterKeyExamples": [
+        "floatingNeutral"
+      ]
+    },
+    {
+      "source": "Floating Objects",
+      "offset": 29716778,
+      "parameterKeyExamples": [
+        "floatingObjects"
+      ]
+    },
+    {
+      "source": "Objects Masks",
+      "offset": 29716811,
+      "parameterKeyExamples": [
+        "objectsMasks"
+      ]
+    },
+    {
+      "source": "Fixed Vertices Mask",
+      "offset": 29716869,
+      "parameterKeyExamples": [
+        "fixedVerticesMask"
+      ]
+    },
+    {
+      "source": "Free Polygons",
+      "offset": 29716907,
+      "parameterKeyExamples": [
+        "freePolygons"
+      ]
+    },
+    {
+      "source": "Self Contact First Polygons",
+      "offset": 29716959,
+      "parameterKeyExamples": [
+        "selfContactSecondPolygons"
+      ]
+    },
+    {
+      "source": "Self Contact Second Polygons",
+      "offset": 29717013,
+      "parameterKeyExamples": [
+        "autoCompute"
+      ]
+    },
+    {
+      "source": "Self Contact Weight",
+      "offset": 29717170,
+      "parameterKeyExamples": [
+        "selfContactWeight"
+      ]
+    },
+    {
+      "source": "Max Self Contact Distance 1 (cm)",
+      "offset": 29717272,
+      "parameterKeyExamples": [
+        "maxSelfContactDistance1"
+      ]
+    },
+    {
+      "source": "Max Self Contact Distance 4 (cm)",
+      "offset": 29717464,
+      "parameterKeyExamples": [
+        "maxSelfContactDistance4"
+      ]
+    },
+    {
+      "source": "Self Contact Scaling 1",
+      "offset": 29717521,
+      "parameterKeyExamples": [
+        "selfContactScaling1"
+      ]
+    },
+    {
+      "source": "Self Contact Scaling 2",
+      "offset": 29717564,
+      "parameterKeyExamples": [
+        "selfContactScaling2"
+      ]
+    },
+    {
+      "source": "Self Contact Scaling 3",
+      "offset": 29717607,
+      "parameterKeyExamples": [
+        "selfContactScaling3"
+      ]
+    },
+    {
+      "source": "Self Contact Scaling 4",
+      "offset": 29717650,
+      "parameterKeyExamples": [
+        "selfContactScaling4"
+      ]
+    },
+    {
+      "source": "Geom Sequence",
+      "offset": 29730851,
+      "parameterKeyExamples": [
+        "sequence"
+      ]
+    },
+    {
+      "source": "Kernel",
+      "offset": 29731006,
+      "parameterKeyExamples": [
+        "kernel"
+      ]
+    },
+    {
+      "source": "Kernel Eps",
+      "offset": 29731020,
+      "parameterKeyExamples": [
+        "kernelEps"
+      ]
+    },
+    {
+      "source": "N Samples per Batch",
+      "offset": 29731041,
+      "parameterKeyExamples": [
+        "nBatch"
+      ]
+    },
+    {
+      "source": "Neutral Target Geometry",
+      "offset": 29774906,
+      "parameterKeyExamples": [
+        "geomNeutralTarget"
+      ]
+    },
+    {
+      "source": "Crop Mesh by Mask",
+      "offset": 29774996,
+      "parameterKeyExamples": [
+        "cropMeshByMask"
+      ]
+    },
+    {
+      "source": "Fit Transformation",
+      "offset": 29775029,
+      "parameterKeyExamples": [
+        "isTransformFittingEnabled"
+      ]
+    },
+    {
+      "source": "Smoothing Type",
+      "offset": 29775091,
+      "parameterKeyExamples": [
+        "smoothingType"
+      ]
+    },
+    {
+      "source": "Clamp Weights",
+      "offset": 29775120,
+      "parameterKeyExamples": [
+        "clampWeights"
+      ]
+    },
+    {
+      "source": "Blendshapes Weight Multipliers",
+      "offset": 29775312,
+      "parameterKeyExamples": [
+        "blendshapeWeightMultipliers"
+      ]
+    },
+    {
+      "source": "Fit Iterations",
+      "offset": 29775371,
+      "parameterKeyExamples": [
+        "nIterations"
+      ]
+    },
+    {
+      "source": "Sampling Mode",
+      "offset": 29775438,
+      "parameterKeyExamples": [
+        "samplingType"
+      ]
+    },
+    {
+      "source": "Geodesic Sampling Radius (cm)",
+      "offset": 29775465,
+      "parameterKeyExamples": [
+        "samplingRadius"
+      ]
+    },
+    {
+      "source": "Sampling Blur Iterations",
+      "offset": 29775510,
+      "parameterKeyExamples": [
+        "nSamplingBlurIters"
+      ]
+    },
+    {
+      "source": "Sampling Blur Step Size",
+      "offset": 29775554,
+      "parameterKeyExamples": [
+        "samplingBlurStepSize"
+      ]
+    },
+    {
+      "source": "Sampling File Name",
+      "offset": 29775640,
+      "parameterKeyExamples": [
+        "importPatchesFileName"
+      ]
+    },
+    {
+      "source": "Regularization Weight",
+      "offset": 29775715,
+      "parameterKeyExamples": [
+        "regulatizationWeight"
+      ]
+    },
+    {
+      "source": "Exclude Patch Weight Sum",
+      "offset": 29775758,
+      "parameterKeyExamples": [
+        "excludePatchesSum"
+      ]
+    },
+    {
+      "source": "Exclude Patch Weight Mean",
+      "offset": 29775801,
+      "parameterKeyExamples": [
+        "excludePatchesMean"
+      ]
+    },
+    {
+      "source": "Geometry with Surfaces To Stick",
+      "offset": 29787352,
+      "parameterKeyExamples": [
+        "geom"
+      ]
+    },
+    {
+      "source": "First Surface Mask",
+      "offset": 29787389,
+      "parameterKeyExamples": [
+        "firstSurfaceMask"
+      ]
+    },
+    {
+      "source": "Second Surface Mask",
+      "offset": 29787425,
+      "parameterKeyExamples": [
+        "secondSurfaceMask"
+      ]
+    },
+    {
+      "source": "Deformable Region Mask",
+      "offset": 29787463,
+      "parameterKeyExamples": [
+        "deformableRegionMask"
+      ]
+    },
+    {
+      "source": "Max Solver Iterations",
+      "offset": 29787537,
+      "parameterKeyExamples": [
+        "nMaxSolverIterations"
+      ]
+    },
+    {
+      "source": "Stick Radius (cm)",
+      "offset": 29787580,
+      "parameterKeyExamples": [
+        "stickRadius"
+      ]
+    },
+    {
+      "source": "Falloff Radius (cm)",
+      "offset": 29787610,
+      "parameterKeyExamples": [
+        "falloffRadius"
+      ]
+    },
+    {
+      "source": "Sticking Weight",
+      "offset": 29787644,
+      "parameterKeyExamples": [
+        "stickingWeight"
+      ]
+    },
+    {
+      "source": "Smoothess Weight",
+      "offset": 29787675,
+      "parameterKeyExamples": [
+        "smoothnessWeight"
+      ]
+    },
+    {
+      "source": "Scale Multiplier",
+      "offset": 29795283,
+      "parameterKeyExamples": [
+        "scaleMultiplier"
+      ]
+    },
+    {
+      "source": "Template Geom",
+      "offset": 29800745,
+      "parameterKeyExamples": [
+        "templateGeom"
+      ]
+    },
+    {
+      "source": "Deformable Geom",
+      "offset": 29800772,
+      "parameterKeyExamples": [
+        "deformableGeom"
+      ]
+    },
+    {
+      "source": "First Contour Points",
+      "offset": 29800803,
+      "parameterKeyExamples": [
+        "firstContourPoints"
+      ]
+    },
+    {
+      "source": "Second Contour Points",
+      "offset": 29800843,
+      "parameterKeyExamples": [
+        "secondContourPoints"
+      ]
+    },
+    {
+      "source": "Reference Geom",
+      "offset": 29800885,
+      "parameterKeyExamples": [
+        "referenceGeom",
+        "excludedMask"
+      ]
+    },
+    {
+      "source": "First Screen Points",
+      "offset": 29800914,
+      "parameterKeyExamples": [
+        "firstScreenPoints"
+      ]
+    },
+    {
+      "source": "Second Screen Points",
+      "offset": 29800952,
+      "parameterKeyExamples": [
+        "secondScreenPoints"
+      ]
+    },
+    {
+      "source": "Deformation Radius (cm)",
+      "offset": 29800992,
+      "parameterKeyExamples": [
+        "deformationRadius"
+      ]
+    },
+    {
+      "source": "Contour Type",
+      "offset": 29801034,
+      "parameterKeyExamples": [
+        "contourType"
+      ]
+    },
+    {
+      "source": "Offset Distance (cm)",
+      "offset": 29801059,
+      "parameterKeyExamples": [
+        "offsetDistance"
+      ]
+    },
+    {
+      "source": "Offset Attenuation",
+      "offset": 29801095,
+      "parameterKeyExamples": [
+        "offsetAttenuation"
+      ]
+    },
+    {
+      "source": "Offset Falloff Type",
+      "offset": 29801132,
+      "parameterKeyExamples": [
+        "offsetType"
+      ]
+    },
+    {
+      "source": "Offset Lattice Radius Middle (cm)",
+      "offset": 29801168,
+      "parameterKeyExamples": [
+        "latticeRadius"
+      ]
+    },
+    {
+      "source": "Offset Lattice Radius Corner (cm)",
+      "offset": 29801216,
+      "parameterKeyExamples": [
+        "latticeRadiusCorner"
+      ]
+    },
+    {
+      "source": "Use Geodesic Lattice",
+      "offset": 29801300,
+      "parameterKeyExamples": [
+        "useGeodesic"
+      ]
+    },
+    {
+      "source": "Stick Value",
+      "offset": 29801343,
+      "parameterKeyExamples": [
+        "stickValue"
+      ]
+    },
+    {
+      "source": "Contour Bias",
+      "offset": 29801366,
+      "parameterKeyExamples": [
+        "contourBias"
+      ]
+    },
+    {
+      "source": "Stick Distance (cm)",
+      "offset": 29801391,
+      "parameterKeyExamples": [
+        "stickDistance"
+      ]
+    },
+    {
+      "source": "Stick Falloff (cm)",
+      "offset": 29801425,
+      "parameterKeyExamples": [
+        "stickFalloff"
+      ]
+    },
+    {
+      "source": "Falloff Type",
+      "offset": 29801457,
+      "parameterKeyExamples": [
+        "falloffTypeStickByDistance"
+      ]
+    },
+    {
+      "source": "Smooth Neighbours",
+      "offset": 29801609,
+      "parameterKeyExamples": [
+        "nNeighboursStickByDistance"
+      ]
+    },
+    {
+      "source": "Pin Borders",
+      "offset": 29801654,
+      "parameterKeyExamples": [
+        "pinBordersStickByDistance"
+      ]
+    },
+    {
+      "source": "Reference Closing Threshold",
+      "offset": 29801692,
+      "parameterKeyExamples": [
+        "referenceClosingThreshold"
+      ]
+    },
+    {
+      "source": "Reference Closing Falloff",
+      "offset": 29801746,
+      "parameterKeyExamples": [
+        "referenceClosingFalloff"
+      ]
+    },
+    {
+      "source": "Copy Distance",
+      "offset": 29801824,
+      "parameterKeyExamples": [
+        "copyDistanceReference"
+      ]
+    },
+    {
+      "source": "Reference Distance (cm)",
+      "offset": 29801860,
+      "parameterKeyExamples": [
+        "referenceDistance"
+      ]
+    },
+    {
+      "source": "Reference Falloff (cm)",
+      "offset": 29801902,
+      "parameterKeyExamples": [
+        "referenceFalloff"
+      ]
+    },
+    {
+      "source": "Pixels per Centimeter",
+      "offset": 29802140,
+      "parameterKeyExamples": [
+        "pixelScale",
+        "pixelsPerCentimeter"
+      ]
+    },
+    {
+      "source": "Screen Point Offset",
+      "offset": 29802173,
+      "parameterKeyExamples": [
+        "screenPointsEdgeOffset"
+      ]
+    },
+    {
+      "source": "Reality Capture",
+      "offset": 29819071,
+      "parameterKeyExamples": [
+        "cameras"
+      ]
+    },
+    {
+      "source": "Reference Points On Triangle",
+      "offset": 29819189,
+      "parameterKeyExamples": [
+        "fittingmask"
+      ]
+    },
+    {
+      "source": "Fitting Mask",
+      "offset": 29819230,
+      "parameterKeyExamples": [
+        "imagesForPreview"
+      ]
+    },
+    {
+      "source": "Images For Preview",
+      "offset": 29819260,
+      "parameterKeyExamples": [
+        "excludedFloatingPolygonsForPreview"
+      ]
+    },
+    {
+      "source": "Excluded Floating Polygons For Preview",
+      "offset": 29819320,
+      "parameterKeyExamples": [
+        "profilePath"
+      ]
+    },
+    {
+      "source": "Face Shape Profile Path",
+      "offset": 29819371,
+      "parameterKeyExamples": [
+        "applyFittedTransform"
+      ]
+    },
+    {
+      "source": "Apply Fitted Transform",
+      "offset": 29819416,
+      "parameterKeyExamples": [
+        "iters"
+      ]
+    },
+    {
+      "source": "Optimization Iteration",
+      "offset": 29819445,
+      "parameterKeyExamples": [
+        "smoothness"
+      ]
+    },
+    {
+      "source": "Markers Weights",
+      "offset": 29819505,
+      "parameterKeyExamples": [
+        "blendshapesRegularization"
+      ]
+    },
+    {
+      "source": "Blendshapes Regularization",
+      "offset": 29819547,
+      "parameterKeyExamples": [
+        "softBoxRegularization"
+      ]
+    },
+    {
+      "source": "SoftBox Regularization",
+      "offset": 29819596,
+      "parameterKeyExamples": [
+        "scaleWeightsForFittingMask"
+      ]
+    },
+    {
+      "source": "Scale Weights For Fitting Mask",
+      "offset": 29819648,
+      "parameterKeyExamples": [
+        "thresholdForFittingMask"
+      ]
+    },
+    {
+      "source": "Threshold Weights For Fitting Mask",
+      "offset": 29819704,
+      "parameterKeyExamples": [
+        "isUseVarsFromPrevFit"
+      ]
+    },
+    {
+      "source": "Use Init From Previous Frame",
+      "offset": 29819760,
+      "parameterKeyExamples": [
+        "visualParam"
+      ]
+    },
+    {
+      "source": "Spline Base Name",
+      "offset": 29829875,
+      "parameterKeyExamples": [
+        "baseName"
+      ]
+    },
+    {
+      "source": "Spline Padding",
+      "offset": 29829901,
+      "parameterKeyExamples": [
+        "splinePadding"
+      ]
+    },
+    {
+      "source": "Spline-Point Separator",
+      "offset": 29829932,
+      "parameterKeyExamples": [
+        "separator"
+      ]
+    },
+    {
+      "source": "Auto Point Padding",
+      "offset": 29829965,
+      "parameterKeyExamples": [
+        "autoPointPadding"
+      ]
+    },
+    {
+      "source": "Point Padding",
+      "offset": 29830001,
+      "parameterKeyExamples": [
+        "pointPadding"
+      ]
+    },
+    {
+      "source": "Point Sampling Mode",
+      "offset": 29830077,
+      "parameterKeyExamples": [
+        "pointSamplingMode"
+      ]
+    },
+    {
+      "source": "Num Points per Spline",
+      "offset": 29830115,
+      "parameterKeyExamples": [
+        "pointsPerSpline"
+      ]
+    },
+    {
+      "source": "Num Points per Segment",
+      "offset": 29830153,
+      "parameterKeyExamples": [
+        "pointsPerSegment"
+      ]
+    },
+    {
+      "source": "Snap to Vertices",
+      "offset": 29830244,
+      "parameterKeyExamples": [
+        "snapToVertices",
+        "snapToVerticesLeft"
+      ]
+    },
+    {
+      "source": "Fitting Vertex Mask",
+      "offset": 29852347,
+      "parameterKeyExamples": [
+        "fittingVertexMask"
+      ]
+    },
+    {
+      "source": "Distance Constrained Points",
+      "offset": 29852385,
+      "parameterKeyExamples": [
+        "distanceConstrainedPoints",
+        "targetVerticesPath"
+      ]
+    },
+    {
+      "source": "Use Current Controls as Init",
+      "offset": 29852517,
+      "parameterKeyExamples": [
+        "useCurrentControllerAsInit"
+      ]
+    },
+    {
+      "source": "Make Prefit",
+      "offset": 29852573,
+      "parameterKeyExamples": [
+        "makePrefit"
+      ]
+    },
+    {
+      "source": "Initial Control Weight",
+      "offset": 29852596,
+      "parameterKeyExamples": [
+        "initialControlWeight"
+      ]
+    },
+    {
+      "source": "Point Weight",
+      "offset": 29852662,
+      "parameterKeyExamples": [
+        "pointWeight"
+      ]
+    },
+    {
+      "source": "Point Activation Max Distance",
+      "offset": 29852687,
+      "parameterKeyExamples": [
+        "pointActivationMaxDistance"
+      ]
+    },
+    {
+      "source": "Vertex Weight",
+      "offset": 29852744,
+      "parameterKeyExamples": [
+        "vertexWeight"
+      ]
+    },
+    {
+      "source": "Shape Weight",
+      "offset": 29852771,
+      "parameterKeyExamples": [
+        "shapeWeight"
+      ]
+    },
+    {
+      "source": "Include Controls",
+      "offset": 29852854,
+      "parameterKeyExamples": [
+        "includeControls"
+      ]
+    },
+    {
+      "source": "Exclude Controls",
+      "offset": 29852887,
+      "parameterKeyExamples": [
+        "excludeControls"
+      ]
+    },
+    {
+      "source": "Control Names to Regularization Weights",
+      "offset": 29852928,
+      "parameterKeyExamples": [
+        "controlNamesToRegularizationWeights"
+      ]
+    },
+    {
+      "source": "Symmetry Control Weight",
+      "offset": 29853004,
+      "parameterKeyExamples": [
+        "symmetryControlWeight"
+      ]
+    },
+    {
+      "source": "Second Symmetry Suffix",
+      "offset": 29853096,
+      "parameterKeyExamples": [
+        "secondSymmetrySuffix"
+      ]
+    },
+    {
+      "source": "Fit Symmetry Include Controls",
+      "offset": 29853140,
+      "parameterKeyExamples": [
+        "fitSymmetryIncludeControls"
+      ]
+    },
+    {
+      "source": "Fit Symmetry Exclude Controls",
+      "offset": 29853197,
+      "parameterKeyExamples": [
+        "fitSymmetryExcludeControls"
+      ]
+    },
+    {
+      "source": "Compute Current Frame",
+      "offset": 29867371,
+      "parameterKeyExamples": [
+        "forceCompute"
+      ]
+    },
+    {
+      "source": "Compute Frame Range",
+      "offset": 29867406,
+      "parameterKeyExamples": [
+        "computeFrameRange"
+      ]
+    },
+    {
+      "source": "Primary Orientation",
+      "offset": 29871477,
+      "parameterKeyExamples": [
+        "orientation"
+      ]
+    },
+    {
+      "source": "Items per Line",
+      "offset": 29871509,
+      "parameterKeyExamples": [
+        "itemsPerLine"
+      ]
+    },
+    {
+      "source": "Use Custom Cell Resolution",
+      "offset": 29871537,
+      "parameterKeyExamples": [
+        "useCustomCellResolution"
+      ]
+    },
+    {
+      "source": "Custom Cell Resolution",
+      "offset": 29871588,
+      "parameterKeyExamples": [
+        "customCellResolution"
+      ]
+    },
+    {
+      "source": "Scaling Mode",
+      "offset": 29871655,
+      "parameterKeyExamples": [
+        "scaling"
+      ]
+    },
+    {
+      "source": "Padding, px",
+      "offset": 29871676,
+      "parameterKeyExamples": [
+        "padding"
+      ]
+    },
+    {
+      "source": "Spacing, px",
+      "offset": 29871696,
+      "parameterKeyExamples": [
+        "spacing"
+      ]
+    },
+    {
+      "source": "Text",
+      "offset": 29871896,
+      "parameterKeyExamples": [
+        "text"
+      ]
+    },
+    {
+      "source": "Text Alignment Vertical",
+      "offset": 29871978,
+      "parameterKeyExamples": [
+        "textAlignmentVertical"
+      ]
+    },
+    {
+      "source": "Text Padding, px",
+      "offset": 29872024,
+      "parameterKeyExamples": [
+        "textPadding"
+      ]
+    },
+    {
+      "source": "Font Color",
+      "offset": 29872053,
+      "parameterKeyExamples": [
+        "fontColor"
+      ]
+    },
+    {
+      "source": "Font Size, pt",
+      "offset": 29872074,
+      "parameterKeyExamples": [
+        "fontSize"
+      ]
+    },
+    {
+      "source": "Preview Image",
+      "offset": 29880472,
+      "parameterKeyExamples": [
+        "image"
+      ]
+    },
+    {
+      "source": "Name Number Padding",
+      "offset": 29880521,
+      "parameterKeyExamples": [
+        "padding"
+      ]
+    },
+    {
+      "source": "Inverse Order",
+      "offset": 29880549,
+      "parameterKeyExamples": [
+        "inverseOrder"
+      ]
+    },
+    {
+      "source": "Only Semantic Points",
+      "offset": 29880576,
+      "parameterKeyExamples": [
+        "onlySemanticPoints"
+      ]
+    },
+    {
+      "source": "Input Rig controls number (%1) mismatches controls list number (%2)",
+      "offset": 29890928,
+      "parameterKeyExamples": [
+        "blendRig"
+      ]
+    },
+    {
+      "source": "Visual parameters",
+      "offset": 29892242,
+      "parameterKeyExamples": [
+        "blendRig"
+      ]
+    },
+    {
+      "source": "Path To Neural Rig",
+      "offset": 29892295,
+      "parameterKeyExamples": [
+        "pathToNameRigControls"
+      ]
+    },
+    {
+      "source": "Path To Controls List",
+      "offset": 29892336,
+      "parameterKeyExamples": [
+        "visualParams",
+        "errorOnMissingControls"
+      ]
+    },
+    {
+      "source": "Reference Blendshape Rig",
+      "offset": 29896062,
+      "parameterKeyExamples": [
+        "blendRigReference"
+      ]
+    },
+    {
+      "source": "Control Values",
+      "offset": 29896105,
+      "parameterKeyExamples": [
+        "controlValues"
+      ]
+    },
+    {
+      "source": "Rig to Copy Controls from",
+      "offset": 29898151,
+      "parameterKeyExamples": [
+        "blendRigSrc"
+      ]
+    },
+    {
+      "source": "Rig to Copy Controls to",
+      "offset": 29898189,
+      "parameterKeyExamples": [
+        "blendRigDst"
+      ]
+    },
+    {
+      "source": "Geom To Latent",
+      "offset": 29900719,
+      "parameterKeyExamples": [
+        "pathToNeuralRigEncoder"
+      ]
+    },
+    {
+      "source": "Path To Neural Rig Encoder",
+      "offset": 29902157,
+      "parameterKeyExamples": [
+        "pathToNameRigControls"
+      ]
+    },
+    {
+      "source": "Image for Preview",
+      "offset": 29903338,
+      "parameterKeyExamples": [
+        "imagePreview"
+      ]
+    },
+    {
+      "source": "Show Denoised Screen Points",
+      "offset": 29903420,
+      "parameterKeyExamples": [
+        "showResult"
+      ]
+    },
+    {
+      "source": "Show Original Screen Points",
+      "offset": 29903459,
+      "parameterKeyExamples": [
+        "showSource"
+      ]
+    },
+    {
+      "source": "If Missing",
+      "offset": 29903624,
+      "parameterKeyExamples": [
+        "missingPolicy"
+      ]
+    },
+    {
+      "source": "Image Top",
+      "offset": 29916519,
+      "parameterKeyExamples": [
+        "imageTop"
+      ]
+    },
+    {
+      "source": "Image Bottom",
+      "offset": 29916538,
+      "parameterKeyExamples": [
+        "imageBottom"
+      ]
+    },
+    {
+      "source": "Camera Top",
+      "offset": 29916563,
+      "parameterKeyExamples": [
+        "cameraTop"
+      ]
+    },
+    {
+      "source": "Camera Bottom",
+      "offset": 29916584,
+      "parameterKeyExamples": [
+        "cameraBottom"
+      ]
+    },
+    {
+      "source": "Neutral Transform",
+      "offset": 29918986,
+      "parameterKeyExamples": [
+        "transforms"
+      ]
+    },
+    {
+      "source": "Transforms",
+      "offset": 29919015,
+      "parameterKeyExamples": [
+        "weights"
+      ]
+    },
+    {
+      "source": "Reference Image",
+      "offset": 29921746,
+      "parameterKeyExamples": [
+        "referenceImage",
+        "refImage"
+      ]
+    },
+    {
+      "source": "Reference Facial Detection",
+      "offset": 29921777,
+      "parameterKeyExamples": [
+        "referenceFacialDetection",
+        "refFacialDetection",
+        "facialDetectionReference",
+        "refDetection"
+      ]
+    },
+    {
+      "source": "Profile Path",
+      "offset": 29921837,
+      "parameterKeyExamples": [
+        "profilePath"
+      ]
+    },
+    {
+      "source": "Crop Translate X",
+      "offset": 29921862,
+      "parameterKeyExamples": [
+        "translateX"
+      ]
+    },
+    {
+      "source": "Crop Translate Y",
+      "offset": 29921890,
+      "parameterKeyExamples": [
+        "translateY"
+      ]
+    },
+    {
+      "source": "Crop Scale",
+      "offset": 29921918,
+      "parameterKeyExamples": [
+        "scale"
+      ]
+    },
+    {
+      "source": "Welding Radius",
+      "offset": 29921935,
+      "parameterKeyExamples": [
+        "weldRad"
+      ]
+    },
+    {
+      "source": "Falloff Radius",
+      "offset": 29921958,
+      "parameterKeyExamples": [
+        "followRad"
+      ]
+    },
+    {
+      "source": "Tie Corners",
+      "offset": 29921983,
+      "parameterKeyExamples": [
+        "isTieCorners"
+      ]
+    },
+    {
+      "source": "Light Sources",
+      "offset": 29940998,
+      "parameterKeyExamples": [
+        "lightGeoms"
+      ]
+    },
+    {
+      "source": "Ray Bounces",
+      "offset": 29941090,
+      "parameterKeyExamples": [
+        "rayBouncesCount"
+      ]
+    },
+    {
+      "source": "Samples per Pixel",
+      "offset": 29941118,
+      "parameterKeyExamples": [
+        "samplesPerPixelCount"
+      ]
+    },
+    {
+      "source": "MSAA x4",
+      "offset": 29941157,
+      "parameterKeyExamples": [
+        "msaa"
+      ]
+    },
+    {
+      "source": "Camera Light Source Translation",
+      "offset": 29941392,
+      "parameterKeyExamples": [
+        "cameraLightTranslation"
+      ]
+    },
+    {
+      "source": "Camera Light Source Scale",
+      "offset": 29941447,
+      "parameterKeyExamples": [
+        "cameraLightScale"
+      ]
+    },
+    {
+      "source": "Camera Light Source Color",
+      "offset": 29941490,
+      "parameterKeyExamples": [
+        "cameraLightColor"
+      ]
+    },
+    {
+      "source": "Camera Light Brightness",
+      "offset": 29941533,
+      "parameterKeyExamples": [
+        "cameraLightBrightness"
+      ]
+    },
+    {
+      "source": "Neutral Mesh File Name",
+      "offset": 29945155,
+      "parameterKeyExamples": [
+        "neutralMeshFileName"
+      ]
+    },
+    {
+      "source": "Save Neutral",
+      "offset": 29945198,
+      "parameterKeyExamples": [
+        "saveNeutral"
+      ]
+    },
+    {
+      "source": "Blendshape Folder Name",
+      "offset": 29945259,
+      "parameterKeyExamples": [
+        "blendshapeFolderName"
+      ]
+    },
+    {
+      "source": "Save Blendshapes",
+      "offset": 29945303,
+      "parameterKeyExamples": [
+        "saveBlendshapes"
+      ]
+    },
+    {
+      "source": "Relaxation Mask Folder Name",
+      "offset": 29945364,
+      "parameterKeyExamples": [
+        "relaxationMaskFolderName"
+      ]
+    },
+    {
+      "source": "Save Relaxation Masks",
+      "offset": 29945417,
+      "parameterKeyExamples": [
+        "saveRelaxationMasks"
+      ]
+    },
+    {
+      "source": "Cube Size",
+      "offset": 29947202,
+      "parameterKeyExamples": [
+        "cubeSize"
+      ]
+    },
+    {
+      "source": "Optimizing Rig Neutral Geom",
+      "offset": 29949459,
+      "parameterKeyExamples": [
+        "referenceBlendrig"
+      ]
+    },
+    {
+      "source": "Reference Blendrig",
+      "offset": 29949505,
+      "parameterKeyExamples": [
+        "distanceConstrainedPoints"
+      ]
+    },
+    {
+      "source": "Target Vertices Path",
+      "offset": 29949597,
+      "parameterKeyExamples": [
+        "targetControlsPath",
+        "optimizeIterations"
+      ]
+    },
+    {
+      "source": "Target Controls Path",
+      "offset": 29949637,
+      "parameterKeyExamples": [
+        "blendshapesMasksPath"
+      ]
+    },
+    {
+      "source": "To Reference Rig Defgrads Weight",
+      "offset": 29949888,
+      "parameterKeyExamples": [
+        "zeroAllDeltasWeight"
+      ]
+    },
+    {
+      "source": "Zero All Deltas Weight",
+      "offset": 29949941,
+      "parameterKeyExamples": [
+        "zeroMaskedDeltasWeight"
+      ]
+    },
+    {
+      "source": "Zero Masked Deltas Weight",
+      "offset": 29949987,
+      "parameterKeyExamples": [
+        "toTargetVerticesPotsWeight"
+      ]
+    },
+    {
+      "source": "To Target Vertices Pots Weight",
+      "offset": 29950040,
+      "parameterKeyExamples": [
+        "toReferenceRigPotsWeight"
+      ]
+    },
+    {
+      "source": "To Reference Rig Pots Weight",
+      "offset": 29950096,
+      "parameterKeyExamples": [
+        "solveIterations"
+      ]
+    },
+    {
+      "source": "Solve Iterations",
+      "offset": 29950141,
+      "parameterKeyExamples": [
+        "fitControls"
+      ]
+    },
+    {
+      "source": "Fit Controls",
+      "offset": 29950170,
+      "parameterKeyExamples": [
+        "nFitControlsIterations"
+      ]
+    },
+    {
+      "source": "Fit Controls Iterations",
+      "offset": 29950206,
+      "parameterKeyExamples": [
+        "saveFittedControls"
+      ]
+    },
+    {
+      "source": "Save Fitted Controls",
+      "offset": 29950249,
+      "parameterKeyExamples": [
+        "createIntermediateDirectories"
+      ]
+    },
+    {
+      "source": "Save Fitted Controls Dir",
+      "offset": 29950358,
+      "parameterKeyExamples": [
+        "includeFittedSeparatelyControls"
+      ]
+    },
+    {
+      "source": "Tie Loop Corners",
+      "offset": 29979650,
+      "parameterKeyExamples": [
+        "isTieLoopCorners"
+      ]
+    },
+    {
+      "source": "Z Offset",
+      "offset": 29979706,
+      "parameterKeyExamples": [
+        "zOffset"
+      ]
+    },
+    {
+      "source": "Reference Screen Points",
+      "offset": 29980949,
+      "parameterKeyExamples": [
+        "refScreenPoints"
+      ]
+    },
+    {
+      "source": "Fit Mask",
+      "offset": 29995959,
+      "parameterKeyExamples": [
+        "fitMask"
+      ]
+    },
+    {
+      "source": "Smooth Mask",
+      "offset": 29995976,
+      "parameterKeyExamples": [
+        "smoothMask"
+      ]
+    },
+    {
+      "source": "Blendshape Name",
+      "offset": 30004223,
+      "parameterKeyExamples": [
+        "blendshapeName"
+      ]
+    },
+    {
+      "source": "Initial Facial Detection",
+      "offset": 30057218,
+      "parameterKeyExamples": [
+        "facialDetectionInitial"
+      ]
+    },
+    {
+      "source": "Segment",
+      "offset": 30057343,
+      "parameterKeyExamples": [
+        "segment"
+      ]
+    },
+    {
+      "source": "Neutral Image",
+      "offset": 30057359,
+      "parameterKeyExamples": [
+        "neutralImagePath"
+      ]
+    },
+    {
+      "source": "Blendshape Images",
+      "offset": 30057390,
+      "parameterKeyExamples": [
+        "blendshapeImagePaths"
+      ]
+    },
+    {
+      "source": "Neutral Detection",
+      "offset": 30057429,
+      "parameterKeyExamples": [
+        "neutralDetectionPath"
+      ]
+    },
+    {
+      "source": "Blendshape Detections",
+      "offset": 30057468,
+      "parameterKeyExamples": [
+        "blendshapeDetectionPaths"
+      ]
+    },
+    {
+      "source": "Config",
+      "offset": 30057515,
+      "parameterKeyExamples": [
+        "configPath",
+        "config"
+      ]
+    },
+    {
+      "source": "Patch Bias Y Start",
+      "offset": 30057533,
+      "parameterKeyExamples": [
+        "patchBiasYStart"
+      ]
+    },
+    {
+      "source": "Patch Bias Y End",
+      "offset": 30057568,
+      "parameterKeyExamples": [
+        "patchBiasYEnd"
+      ]
+    },
+    {
+      "source": "Number of Pyramids",
+      "offset": 30057599,
+      "parameterKeyExamples": [
+        "nPyramids"
+      ]
+    },
+    {
+      "source": "Number of Patches to Track End",
+      "offset": 30057688,
+      "parameterKeyExamples": [
+        "nPatchesToTrackEnd"
+      ]
+    },
+    {
+      "source": "Patch Weight Start",
+      "offset": 30057738,
+      "parameterKeyExamples": [
+        "patchWeightStart"
+      ]
+    },
+    {
+      "source": "Patch Weight End",
+      "offset": 30057774,
+      "parameterKeyExamples": [
+        "patchWeightEnd"
+      ]
+    },
+    {
+      "source": "Patch Height Start",
+      "offset": 30057806,
+      "parameterKeyExamples": [
+        "patchHeightStart"
+      ]
+    },
+    {
+      "source": "Patch Height End",
+      "offset": 30057842,
+      "parameterKeyExamples": [
+        "patchHeightEnd"
+      ]
+    },
+    {
+      "source": "Patch Scale Start",
+      "offset": 30057874,
+      "parameterKeyExamples": [
+        "patchScaleStart"
+      ]
+    },
+    {
+      "source": "Patch Scale End",
+      "offset": 30057908,
+      "parameterKeyExamples": [
+        "patchScaleEnd"
+      ]
+    },
+    {
+      "source": "Downscale Factor Start",
+      "offset": 30057938,
+      "parameterKeyExamples": [
+        "downscaleFactorStart"
+      ]
+    },
+    {
+      "source": "Downscale Factor End",
+      "offset": 30057982,
+      "parameterKeyExamples": [
+        "downscaleFactorEnd"
+      ]
+    },
+    {
+      "source": "Number of Region Divider Start",
+      "offset": 30058024,
+      "parameterKeyExamples": [
+        "nRegionDeviderStart"
+      ]
+    },
+    {
+      "source": "Number of Region Divider End",
+      "offset": 30058075,
+      "parameterKeyExamples": [
+        "nRegionDeviderEnd"
+      ]
+    },
+    {
+      "source": "Number of Blur Iterations Start",
+      "offset": 30058128,
+      "parameterKeyExamples": [
+        "nBlurIterationsStart"
+      ]
+    },
+    {
+      "source": "Number of Blur Iterations End",
+      "offset": 30058181,
+      "parameterKeyExamples": [
+        "nBlurIterationsEnd"
+      ]
+    },
+    {
+      "source": "Average Adjacent Weight Start",
+      "offset": 30058230,
+      "parameterKeyExamples": [
+        "averageAdjacentWeightStart"
+      ]
+    },
+    {
+      "source": "Average Adjacent Weight End",
+      "offset": 30058287,
+      "parameterKeyExamples": [
+        "averageAdjacentWeightEnd"
+      ]
+    },
+    {
+      "source": "Threshold Sparsity Sampling End",
+      "offset": 30058416,
+      "parameterKeyExamples": [
+        "thresholdSparsitySamplingEnd"
+      ]
+    },
+    {
+      "source": "Number of Components Start",
+      "offset": 30058477,
+      "parameterKeyExamples": [
+        "nComponentsStart"
+      ]
+    },
+    {
+      "source": "Number of Components End",
+      "offset": 30058521,
+      "parameterKeyExamples": [
+        "nComponentsEnd"
+      ]
+    },
+    {
+      "source": "Number of GN Iterations Prefit",
+      "offset": 30058568,
+      "parameterKeyExamples": [
+        "nGNIterationsPrefit"
+      ]
+    },
+    {
+      "source": "Number of GN Iterations Fit",
+      "offset": 30058619,
+      "parameterKeyExamples": [
+        "nGNIterationsFit"
+      ]
+    },
+    {
+      "source": "Weight Smooth Start",
+      "offset": 30058664,
+      "parameterKeyExamples": [
+        "weightSmoothStart"
+      ]
+    },
+    {
+      "source": "Weight Smooth End",
+      "offset": 30058702,
+      "parameterKeyExamples": [
+        "weightSmoothEnd"
+      ]
+    },
+    {
+      "source": "Weight Blendshape Regularization Start",
+      "offset": 30058736,
+      "parameterKeyExamples": [
+        "weightBlendshapeRegularizationStart"
+      ]
+    },
+    {
+      "source": "Weight Photometric Start",
+      "offset": 30059047,
+      "parameterKeyExamples": [
+        "weightPhotometricStart"
+      ]
+    },
+    {
+      "source": "Weight Photometric End",
+      "offset": 30059095,
+      "parameterKeyExamples": [
+        "weightPhotometricEnd"
+      ]
+    },
+    {
+      "source": "Photometric Robust Radius Start",
+      "offset": 30059144,
+      "parameterKeyExamples": [
+        "photometricRobustRadiusStart"
+      ]
+    },
+    {
+      "source": "Photometric Robust Radius End",
+      "offset": 30059205,
+      "parameterKeyExamples": [
+        "photometricRobustRadiusEnd"
+      ]
+    },
+    {
+      "source": "Weight Points Prefit Start",
+      "offset": 30059437,
+      "parameterKeyExamples": [
+        "weightPointsPrefitStart"
+      ]
+    },
+    {
+      "source": "Weight Points Prefit End",
+      "offset": 30059488,
+      "parameterKeyExamples": [
+        "weightPointsPrefitEnd"
+      ]
+    },
+    {
+      "source": "Component Mode",
+      "offset": 30073367,
+      "parameterKeyExamples": [
+        "componentMode"
+      ]
+    },
+    {
+      "source": "Global Components",
+      "offset": 30073396,
+      "parameterKeyExamples": [
+        "componentsGlobal"
+      ]
+    },
+    {
+      "source": "Mean Postfix",
+      "offset": 30073619,
+      "parameterKeyExamples": [
+        "neutralsPostfix"
+      ]
+    },
+    {
+      "source": "Component Number Padding",
+      "offset": 30073648,
+      "parameterKeyExamples": [
+        "componentsPadding"
+      ]
+    },
+    {
+      "source": "Separator",
+      "offset": 30073791,
+      "parameterKeyExamples": [
+        "separator"
+      ]
+    },
+    {
+      "source": "Smooth Strength",
+      "offset": 30073854,
+      "parameterKeyExamples": [
+        "samplingSmoothStrength"
+      ]
+    },
+    {
+      "source": "Oversamples",
+      "offset": 30074016,
+      "parameterKeyExamples": [
+        "pcaOversamples"
+      ]
+    },
+    {
+      "source": "Compute Mean",
+      "offset": 30074068,
+      "parameterKeyExamples": [
+        "pcaComputeMean"
+      ]
+    },
+    {
+      "source": "Rotation Order",
+      "offset": 30085082,
+      "parameterKeyExamples": [
+        "rotationOrder"
+      ]
+    },
+    {
+      "source": "Cluster Name",
+      "offset": 30085111,
+      "parameterKeyExamples": [
+        "clusterName"
+      ]
+    },
+    {
+      "source": "Joint Rig",
+      "offset": 30091175,
+      "parameterKeyExamples": [
+        "jointRig",
+        "rig"
+      ]
+    },
+    {
+      "source": "Neutral Geom",
+      "offset": 30091194,
+      "parameterKeyExamples": [
+        "neutralGeom"
+      ]
+    },
+    {
+      "source": "Inverted",
+      "offset": 30091219,
+      "parameterKeyExamples": [
+        "isInverted"
+      ]
+    },
+    {
+      "source": "Weights Type",
+      "offset": 30092604,
+      "parameterKeyExamples": [
+        "weightsType"
+      ]
+    },
+    {
+      "source": "Step Size",
+      "offset": 30092651,
+      "parameterKeyExamples": [
+        "stepSize"
+      ]
+    },
+    {
+      "source": "Smooth Boundaries",
+      "offset": 30092670,
+      "parameterKeyExamples": [
+        "smoothBoundaries"
+      ]
+    },
+    {
+      "source": "Source Points",
+      "offset": 30093797,
+      "parameterKeyExamples": [
+        "sourcePoints"
+      ]
+    },
+    {
+      "source": "Show Invisible Points",
+      "offset": 30093858,
+      "parameterKeyExamples": [
+        "showInvisiblePoints"
+      ]
+    },
+    {
+      "source": "Miss",
+      "offset": 30093932,
+      "parameterKeyExamples": [
+        "miss"
+      ]
+    },
+    {
+      "source": "Max Projection Distance (cm)",
+      "offset": 30093942,
+      "parameterKeyExamples": [
+        "maxProjectionDistance"
+      ]
+    },
+    {
+      "source": "Capacity",
+      "offset": 30095985,
+      "parameterKeyExamples": [
+        "capacity"
+      ]
+    },
+    {
+      "source": "Reference JointRig",
+      "offset": 30097818,
+      "parameterKeyExamples": [
+        "referenceGeom"
+      ]
+    },
+    {
+      "source": "Excluded Mask",
+      "offset": 30097879,
+      "parameterKeyExamples": [
+        "autoCompute"
+      ]
+    },
+    {
+      "source": "Optimize Iteration",
+      "offset": 30097977,
+      "parameterKeyExamples": [
+        "saveOptimizedPosesDir"
+      ]
+    },
+    {
+      "source": "Save Optimized Poses Dir",
+      "offset": 30098018,
+      "parameterKeyExamples": [
+        "saveOptimizedPoses"
+      ]
+    },
+    {
+      "source": "Save Optimized Poses",
+      "offset": 30098062,
+      "parameterKeyExamples": [
+        "mutableBonesConfig"
+      ]
+    },
+    {
+      "source": "Mutable Bones Config",
+      "offset": 30098102,
+      "parameterKeyExamples": [
+        "transformOptimizeIteration"
+      ]
+    },
+    {
+      "source": "Rotation Regularization Weight",
+      "offset": 30098296,
+      "parameterKeyExamples": [
+        "translationRegularizationWeight"
+      ]
+    },
+    {
+      "source": "Translation Regularization Weight",
+      "offset": 30098360,
+      "parameterKeyExamples": [
+        "skinningOptimizeIterations"
+      ]
+    },
+    {
+      "source": "Skinning Optimize Iterations",
+      "offset": 30098421,
+      "parameterKeyExamples": [
+        "neighboursDepth"
+      ]
+    },
+    {
+      "source": "Neighbours Depth",
+      "offset": 30098466,
+      "parameterKeyExamples": [
+        "smoothIterations"
+      ]
+    },
+    {
+      "source": "Smooth Stretch Weight",
+      "offset": 30098539,
+      "parameterKeyExamples": [
+        "bonesPerVertex"
+      ]
+    },
+    {
+      "source": "Bones Per Vertex",
+      "offset": 30098576,
+      "parameterKeyExamples": [
+        "smoothnessWeight"
+      ]
+    },
+    {
+      "source": "Init transforms per bones",
+      "offset": 30098651,
+      "parameterKeyExamples": [
+        "default"
+      ]
+    },
+    {
+      "source": "References Blend Rig",
+      "offset": 30109014,
+      "parameterKeyExamples": [
+        "pathToControlsPredictor",
+        "pathToProfile"
+      ]
+    },
+    {
+      "source": "Path To Controls Predictor",
+      "offset": 30109059,
+      "parameterKeyExamples": [
+        "pathToControlsList"
+      ]
+    },
+    {
+      "source": "Floating Image",
+      "offset": 30111783,
+      "parameterKeyExamples": [
+        "floatingImage"
+      ]
+    },
+    {
+      "source": "Deformation Flow",
+      "offset": 30111812,
+      "parameterKeyExamples": [
+        "deformationFlow"
+      ]
+    },
+    {
+      "source": "Upscaling Factor",
+      "offset": 30113056,
+      "parameterKeyExamples": [
+        "upscalingFactor"
+      ]
+    },
+    {
+      "source": "Point Pairs",
+      "offset": 30114951,
+      "parameterKeyExamples": [
+        "pointPairs"
+      ]
+    },
+    {
+      "source": "Geometry Left",
+      "offset": 30114974,
+      "parameterKeyExamples": [
+        "geomLeft"
+      ]
+    },
+    {
+      "source": "Geometry Right",
+      "offset": 30114997,
+      "parameterKeyExamples": [
+        "geomRight"
+      ]
+    },
+    {
+      "source": "Geometry points",
+      "offset": 30119005,
+      "parameterKeyExamples": [
+        "geometryPoints"
+      ]
+    },
+    {
+      "source": "Screen Point Weight",
+      "offset": 30119093,
+      "parameterKeyExamples": [
+        "weightSP"
+      ]
+    },
+    {
+      "source": "Rotation Weight",
+      "offset": 30119122,
+      "parameterKeyExamples": [
+        "weightRot"
+      ]
+    },
+    {
+      "source": "Pivot Weight",
+      "offset": 30119148,
+      "parameterKeyExamples": [
+        "weightPivot"
+      ]
+    },
+    {
+      "source": "Optimize Pivot",
+      "offset": 30119173,
+      "parameterKeyExamples": [
+        "usePivot"
+      ]
+    },
+    {
+      "source": "Dizable Z Rotation",
+      "offset": 30119279,
+      "parameterKeyExamples": [
+        "disableZRotation"
+      ]
+    },
+    {
+      "source": "Example Ind to Return",
+      "offset": 30119335,
+      "parameterKeyExamples": [
+        "returnExampleInd"
+      ]
+    },
+    {
+      "source": "First Keypoint Vertical Shift",
+      "offset": 30125482,
+      "parameterKeyExamples": [
+        "p2"
+      ]
+    },
+    {
+      "source": "First Keypoint Depth Shift",
+      "offset": 30125515,
+      "parameterKeyExamples": [
+        "p3"
+      ]
+    },
+    {
+      "source": "First Keypoint Tangent Length",
+      "offset": 30125545,
+      "parameterKeyExamples": [
+        "p4"
+      ]
+    },
+    {
+      "source": "First Keypoint Tangent Rotation",
+      "offset": 30125584,
+      "parameterKeyExamples": [
+        "p5"
+      ]
+    },
+    {
+      "source": "Eyefold Inner Width",
+      "offset": 30125619,
+      "parameterKeyExamples": [
+        "p6"
+      ]
+    },
+    {
+      "source": "Eyefold Rotation",
+      "offset": 30125642,
+      "parameterKeyExamples": [
+        "p7"
+      ]
+    },
+    {
+      "source": "Last Keypoint Vertical Shift",
+      "offset": 30125662,
+      "parameterKeyExamples": [
+        "p8"
+      ]
+    },
+    {
+      "source": "Last Keypoint Depth Shift",
+      "offset": 30125694,
+      "parameterKeyExamples": [
+        "p9"
+      ]
+    },
+    {
+      "source": "Geom",
+      "offset": 30125876,
+      "parameterKeyExamples": [
+        "geom"
+      ]
+    },
+    {
+      "source": "Show Reference Geom",
+      "offset": 30125915,
+      "parameterKeyExamples": [
+        "showReferenceGeom"
+      ]
+    },
+    {
+      "source": "Show Grid",
+      "offset": 30125953,
+      "parameterKeyExamples": [
+        "showGrid"
+      ]
+    },
+    {
+      "source": "Show Output Geom",
+      "offset": 30125972,
+      "parameterKeyExamples": [
+        "showOutputGeom"
+      ]
+    },
+    {
+      "source": "Output Geom Opacity",
+      "offset": 30126004,
+      "parameterKeyExamples": [
+        "outputGeomOpacity"
+      ]
+    },
+    {
+      "source": "Horizontal Vertices",
+      "offset": 30126042,
+      "parameterKeyExamples": [
+        "nHorizontalVertices"
+      ]
+    },
+    {
+      "source": "Upper Part Vertices",
+      "offset": 30126082,
+      "parameterKeyExamples": [
+        "nUpperPartVertices"
+      ]
+    },
+    {
+      "source": "Fold Vertices",
+      "offset": 30126121,
+      "parameterKeyExamples": [
+        "nFoldVertices"
+      ]
+    },
+    {
+      "source": "Lower Part Vertices",
+      "offset": 30126149,
+      "parameterKeyExamples": [
+        "nLowerPartVertices"
+      ]
+    },
+    {
+      "source": "Depth Multiplier",
+      "offset": 30126188,
+      "parameterKeyExamples": [
+        "depthMultiplier"
+      ]
+    },
+    {
+      "source": "Rotate Grid",
+      "offset": 30126221,
+      "parameterKeyExamples": [
+        "rotateGrid"
+      ]
+    },
+    {
+      "source": "Reverse Ramp Order",
+      "offset": 30126244,
+      "parameterKeyExamples": [
+        "reverseRampOrder"
+      ]
+    },
+    {
+      "source": "Splines Smooth Iterations",
+      "offset": 30126280,
+      "parameterKeyExamples": [
+        "nSmoothIterations"
+      ]
+    },
+    {
+      "source": "Splines Smooth Neighbours",
+      "offset": 30126324,
+      "parameterKeyExamples": [
+        "nSmoothNeighbours"
+      ]
+    },
+    {
+      "source": "Splines Smooth Average Ratio",
+      "offset": 30126368,
+      "parameterKeyExamples": [
+        "smoothAverageRatio"
+      ]
+    },
+    {
+      "source": "Fit Vertical Shift",
+      "offset": 30126416,
+      "parameterKeyExamples": [
+        "fitVerticalShift"
+      ]
+    },
+    {
+      "source": "Fit Depth Shift",
+      "offset": 30126452,
+      "parameterKeyExamples": [
+        "fitDepthShift"
+      ]
+    },
+    {
+      "source": "Fit Tangent Length",
+      "offset": 30126482,
+      "parameterKeyExamples": [
+        "fitTangentLength"
+      ]
+    },
+    {
+      "source": "Fit Tangent Rotation",
+      "offset": 30126518,
+      "parameterKeyExamples": [
+        "fitTangentRotation"
+      ]
+    },
+    {
+      "source": "Eyefold Outer Width",
+      "offset": 30131667,
+      "parameterKeyExamples": [
+        "outputGeomOpacity"
+      ]
+    },
+    {
+      "source": "Input Audio",
+      "offset": 30147358,
+      "parameterKeyExamples": [
+        "referencesBlendRig"
+      ]
+    },
+    {
+      "source": "Path To Profile",
+      "offset": 30147424,
+      "parameterKeyExamples": [
+        "autoCompute"
+      ]
+    },
+    {
+      "source": "Guidance Weight",
+      "offset": 30147497,
+      "parameterKeyExamples": [
+        "solvingIterations"
+      ]
+    },
+    {
+      "source": "Solving Iterations",
+      "offset": 30147531,
+      "parameterKeyExamples": [
+        "slidingWindowSize"
+      ]
+    },
+    {
+      "source": "Sliding Window Size",
+      "offset": 30147568,
+      "parameterKeyExamples": [
+        "seed"
+      ]
+    },
+    {
+      "source": "Seed",
+      "offset": 30147593,
+      "parameterKeyExamples": [
+        "method"
+      ]
+    },
+    {
+      "source": "Shrink memory",
+      "offset": 30147625,
+      "parameterKeyExamples": [
+        "smoothMethod"
+      ]
+    },
+    {
+      "source": "Smoothness parameters",
+      "offset": 30150946,
+      "parameterKeyExamples": [
+        "referencesAudio"
+      ]
+    },
+    {
+      "source": "Geom Index",
+      "offset": 30161723,
+      "parameterKeyExamples": [
+        "geomIndex"
+      ]
+    },
+    {
+      "source": "Denoise Image",
+      "offset": 30161833,
+      "parameterKeyExamples": [
+        "denoiseImage"
+      ]
+    },
+    {
+      "source": "Light Source Position",
+      "offset": 30161860,
+      "parameterKeyExamples": [
+        "lightPosition"
+      ]
+    },
+    {
+      "source": "Light Source Scale",
+      "offset": 30161896,
+      "parameterKeyExamples": [
+        "lightScale"
+      ]
+    },
+    {
+      "source": "Light Source Color",
+      "offset": 30161926,
+      "parameterKeyExamples": [
+        "lightColor"
+      ]
+    },
+    {
+      "source": "Light Brightness",
+      "offset": 30161956,
+      "parameterKeyExamples": [
+        "lightBrightness"
+      ]
+    },
+    {
+      "source": "Audio",
+      "offset": 30164460,
+      "parameterKeyExamples": [
+        "audio"
+      ]
+    },
+    {
+      "source": "Gain Multiplier",
+      "offset": 30164473,
+      "parameterKeyExamples": [
+        "gain"
+      ]
+    },
+    {
+      "source": "Source Rig",
+      "offset": 30170165,
+      "parameterKeyExamples": [
+        "blendRigSrc"
+      ]
+    },
+    {
+      "source": "Target Rig",
+      "offset": 30170188,
+      "parameterKeyExamples": [
+        "blendRigTgt"
+      ]
+    },
+    {
+      "source": "Rules File",
+      "offset": 30170223,
+      "parameterKeyExamples": [
+        "fileName"
+      ]
+    },
+    {
+      "source": "Base BlendRig",
+      "offset": 30175241,
+      "parameterKeyExamples": [
+        "baseBlendRig"
+      ]
+    },
+    {
+      "source": "Mixed BlendRigs",
+      "offset": 30175268,
+      "parameterKeyExamples": [
+        "mixedBlendRigs"
+      ]
+    },
+    {
+      "source": "On BlendRigControls Name Mismatch",
+      "offset": 30175352,
+      "parameterKeyExamples": [
+        "mismatchPolicy"
+      ]
+    },
+    {
+      "source": "Lazy Evaluation",
+      "offset": 30175401,
+      "parameterKeyExamples": [
+        "lazyEval"
+      ]
+    },
+    {
+      "source": "Positive X Gradient Image",
+      "offset": 30194329,
+      "parameterKeyExamples": [
+        "xPosImage"
+      ]
+    },
+    {
+      "source": "Negative X Gradient Image",
+      "offset": 30194365,
+      "parameterKeyExamples": [
+        "xNegImage"
+      ]
+    },
+    {
+      "source": "Positive Y Gradient Image",
+      "offset": 30194401,
+      "parameterKeyExamples": [
+        "yPosImage"
+      ]
+    },
+    {
+      "source": "Negative Y Gradient Image",
+      "offset": 30194437,
+      "parameterKeyExamples": [
+        "yNegImage"
+      ]
+    },
+    {
+      "source": "Positive Z Gradient Image",
+      "offset": 30194473,
+      "parameterKeyExamples": [
+        "zPosImage"
+      ]
+    },
+    {
+      "source": "Negative Z Gradient Image",
+      "offset": 30194509,
+      "parameterKeyExamples": [
+        "zNegImage"
+      ]
+    },
+    {
+      "source": "Channel",
+      "offset": 30194546,
+      "parameterKeyExamples": [
+        "channel"
+      ]
+    },
+    {
+      "source": "Convert from",
+      "offset": 30197527,
+      "parameterKeyExamples": [
+        "convertFrom"
+      ]
+    },
+    {
+      "source": "Convert to",
+      "offset": 30197552,
+      "parameterKeyExamples": [
+        "convertTo"
+      ]
+    },
+    {
+      "source": "Normalize",
+      "offset": 30197573,
+      "parameterKeyExamples": [
+        "normalize"
+      ]
+    },
+    {
+      "source": "Generate Z",
+      "offset": 30197593,
+      "parameterKeyExamples": [
+        "generateZ"
+      ]
+    },
+    {
+      "source": "Normal Maps",
+      "offset": 30203527,
+      "parameterKeyExamples": [
+        "targetNormalMaps"
+      ]
+    },
+    {
+      "source": "Vertex Mask Smoothing",
+      "offset": 30203697,
+      "parameterKeyExamples": [
+        "vertexMaskSmoothing"
+      ]
+    },
+    {
+      "source": "Vertex Mask Sampling",
+      "offset": 30203739,
+      "parameterKeyExamples": [
+        "vertexMaskSampling"
+      ]
+    },
+    {
+      "source": "Blendshape File Names",
+      "offset": 30204007,
+      "parameterKeyExamples": [
+        "blendshapeFileNames"
+      ]
+    },
+    {
+      "source": "Min Cos Between Camera And Normal",
+      "offset": 30204232,
+      "parameterKeyExamples": [
+        "minCosBetweenRayAndNormal"
+      ]
+    },
+    {
+      "source": "Normals Fitting Weight Initial",
+      "offset": 30204296,
+      "parameterKeyExamples": [
+        "normalsFitWeightInitial"
+      ]
+    },
+    {
+      "source": "Normals Fitting Weight Final",
+      "offset": 30204351,
+      "parameterKeyExamples": [
+        "normalsFitWeightFinal"
+      ]
+    },
+    {
+      "source": "Smooth Weight Initial",
+      "offset": 30204402,
+      "parameterKeyExamples": [
+        "smoothInitial"
+      ]
+    },
+    {
+      "source": "Smooth Weight Final",
+      "offset": 30204438,
+      "parameterKeyExamples": [
+        "smoothFinal"
+      ]
+    },
+    {
+      "source": "Smooth Weight on Mask Initial",
+      "offset": 30204470,
+      "parameterKeyExamples": [
+        "maskSmoothInitial"
+      ]
+    },
+    {
+      "source": "Smooth Weight on Mask Final",
+      "offset": 30204518,
+      "parameterKeyExamples": [
+        "maskSmoothFinal"
+      ]
+    },
+    {
+      "source": "Marker Weight Initial",
+      "offset": 30204562,
+      "parameterKeyExamples": [
+        "markersInitial"
+      ]
+    },
+    {
+      "source": "Marker Weight Final",
+      "offset": 30204599,
+      "parameterKeyExamples": [
+        "markersFinal"
+      ]
+    },
+    {
+      "source": "Pose Name",
+      "offset": 30211588,
+      "parameterKeyExamples": [
+        "poseName"
+      ]
+    },
+    {
+      "source": "Lower Limit",
+      "offset": 30213206,
+      "parameterKeyExamples": [
+        "lowerLimit"
+      ]
+    },
+    {
+      "source": "Upper Limit",
+      "offset": 30213229,
+      "parameterKeyExamples": [
+        "upperLimit"
+      ]
+    },
+    {
+      "source": "Other Side Suffix",
+      "offset": 30213376,
+      "parameterKeyExamples": [
+        "otherSideSuffix"
+      ]
+    },
+    {
+      "source": "Side Dominance",
+      "offset": 30213410,
+      "parameterKeyExamples": [
+        "sideDominance"
+      ]
+    },
+    {
+      "source": "Points Per Segments",
+      "offset": 30224051,
+      "parameterKeyExamples": [
+        "nPointsPerSegments"
+      ]
+    },
+    {
+      "source": "Line Width",
+      "offset": 30224090,
+      "parameterKeyExamples": [
+        "linesWidth"
+      ]
+    },
+    {
+      "source": "Point Size",
+      "offset": 30224112,
+      "parameterKeyExamples": [
+        "pointsWidth"
+      ]
+    },
+    {
+      "source": "Zoom Factor",
+      "offset": 30224135,
+      "parameterKeyExamples": [
+        "zoomFactor"
+      ]
+    },
+    {
+      "source": "Transform Geometry",
+      "offset": 30230238,
+      "parameterKeyExamples": [
+        "transformGeom"
+      ]
+    },
+    {
+      "source": "Edit Rest Pose",
+      "offset": 30230271,
+      "parameterKeyExamples": [
+        "isRestPose"
+      ]
+    },
+    {
+      "source": "Joint Name",
+      "offset": 30230317,
+      "parameterKeyExamples": [
+        "jointName"
+      ]
+    },
+    {
+      "source": "Transformation Mode",
+      "offset": 30230338,
+      "parameterKeyExamples": [
+        "transformationMode"
+      ]
+    }
+  ]
+}

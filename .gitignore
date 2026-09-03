@@ -1,0 +1,47 @@
+# Prerequisites
+*.d
+
+# Compiled Object files
+*.slo
+*.lo
+*.o
+*.obj
+
+# Precompiled Headers
+*.gch
+*.pch
+
+# Compiled Dynamic libraries
+*.so
+*.dylib
+*.dll
+
+# Fortran module files
+*.mod
+*.smod
+
+# Compiled Static libraries
+*.lai
+*.la
+*.a
+*.lib
+
+# Executables
+*.exe
+*.out
+*.app
+
+# Build and local runtime artifacts
+build/
+__pycache__/
+*.pyc
+*.res
+*.exp
+*.ilk
+*.pdb
+*.log
+*.tmp
+
+# Release installers under dist are intentionally versionable.
+!/dist/
+!/dist/**

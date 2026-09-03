@@ -1,0 +1,5540 @@
+{
+  "$schema": "wrap-static-missing-ui-v1",
+  "sources": [
+    {
+      "path": "C:\\Program Files\\Faceform\\Wrap 2025.10.8\\Wrap.exe",
+      "rawCandidates": 20822,
+      "role": "desktop-ui-source"
+    },
+    {
+      "path": "C:\\Program Files\\Faceform\\Wrap 2025.10.8\\WrapCmd.exe",
+      "rawCandidates": 15479,
+      "role": "shared-core-noise-filter"
+    },
+    {
+      "path": "C:\\Program Files\\Faceform\\Wrap 2025.10.8\\WrapServer.exe",
+      "rawCandidates": 15577,
+      "role": "shared-core-noise-filter"
+    },
+    {
+      "path": "C:\\Program Files\\Faceform\\Wrap 2025.10.8\\Gallery\\standardGallery.json",
+      "role": "gallery-visible-names"
+    }
+  ],
+  "dictionaryEntries": 608,
+  "runtimeUiAnchors": 146,
+  "candidateCount": 591,
+  "galleryMissingCount": 0,
+  "galleryMissing": [],
+  "reasonCounts": {
+    "desktop-only-high-score": 454,
+    "near-confirmed-ui": 96,
+    "node-type-registry": 56
+  },
+  "notes": [
+    "Excluded absolute paths, serialized property names, C++ symbols, shader text, bundled Python/Qt/codec strings, layout serialization diagnostics and OpenGL debug output.",
+    "Candidates are not automatically promoted to the release dictionary; each still needs translation review."
+  ],
+  "candidates": [
+    {
+      "source": "%1: has errors in %2.",
+      "count": 1,
+      "offset": 29211690,
+      "score": 6,
+      "reasons": [
+        "desktop-only-high-score"
+      ]
+    },
+    {
+      "source": "%1: last finished frame is %2, interrupted on %3.",
+      "count": 1,
+      "offset": 29211640,
+      "score": 6,
+      "reasons": [
+        "desktop-only-high-score"
+      ]
+    },
+    {
+      "source": "Alembic file does not contain any geometry objects",
+      "count": 1,
+      "offset": 29158376,
+      "score": 6,
+      "reasons": [
+        "desktop-only-high-score"
+      ]
+    },
+    {
+      "source": "AlexTexture",
+      "count": 1,
+      "offset": null,
+      "score": 8,
+      "reasons": [
+        "gallery-project-node-name"
+      ],
+      "resourceFiles": [
+        "Scans\\Alex.wrap"
+      ]
+    },
+    {
+      "source": "AlignGeomToCameras",
+      "count": 2,
+      "offset": 28966168,
+      "score": 2,
+      "reasons": [
+        "node-type-registry"
+      ]
+    },
+    {
+      "source": "An error occured while reading the file:",
+      "count": 2,
+      "offset": 29189040,
+      "score": 7,
+      "reasons": [
+        "desktop-only-high-score"
+      ]
+    },
+    {
+      "source": "AnatomicalRetarget",
+      "count": 2,
+      "offset": 28966187,
+      "score": 2,
+      "reasons": [
+        "node-type-registry"
+      ]
+    },
+    {
+      "source": "Angle of View",
+      "count": 2,
+      "offset": 29180924,
+      "score": 6,
+      "reasons": [
+        "near-confirmed-ui"
+      ]
+    },
+    {
+      "source": "Angle Threshold",
+      "count": 1,
+      "offset": 29181570,
+      "score": 4,
+      "reasons": [
+        "near-confirmed-ui"
+      ]
+    },
+    {
+      "source": "Animate Camera Leap on Find",
+      "count": 1,
+      "offset": 30299612,
+      "score": 6,
+      "reasons": [
+        "desktop-only-high-score"
+      ]
+    },
+    {
+      "source": "Any files (*.*)",
+      "count": 1,
+      "offset": 28999229,
+      "score": 6,
+      "reasons": [
+        "desktop-only-high-score"
+      ]
+    },
+    {
+      "source": "Any Files (*.*)",
+      "count": 1,
+      "offset": 30293028,
+      "score": 6,
+      "reasons": [
+        "desktop-only-high-score"
+      ]
+    },
+    {
+      "source": "At least two image files are needed",
+      "count": 1,
+      "offset": 30301384,
+      "score": 6,
+      "reasons": [
+        "desktop-only-high-score"
+      ]
+    },
+    {
+      "source": "At least two model files are needed",
+      "count": 1,
+      "offset": 30301280,
+      "score": 6,
+      "reasons": [
+        "desktop-only-high-score"
+      ]
+    },
+    {
+      "source": "Audio will be muted during playback: Frame Skipping is disabled",
+      "count": 1,
+      "offset": 30281904,
+      "score": 6,
+      "reasons": [
+        "desktop-only-high-score"
+      ]
+    },
+    {
+      "source": "Auto Save",
+      "count": 1,
+      "offset": 30298648,
+      "score": 6,
+      "reasons": [
+        "desktop-only-high-score"
+      ]
+    },
+    {
+      "source": "Auto-Reset Project Script Context",
+      "count": 1,
+      "offset": 30300048,
+      "score": 6,
+      "reasons": [
+        "desktop-only-high-score"
+      ]
+    },
+    {
+      "source": "Basemesh",
+      "count": 5,
+      "offset": null,
+      "score": 8,
+      "reasons": [
+        "gallery-project-node-name"
+      ],
+      "resourceFiles": [
+        "Blendshapes\\Basemesh.wrap",
+        "Projects\\HighpolyWrappingInTwoSteps.wrap",
+        "Projects\\TextureTransfer.wrap",
+        "Projects\\Wrapping.wrap",
+        "Projects\\WrappingInTwoSteps.wrap"
+      ]
+    },
+    {
+      "source": "BlendDetectionWrapping",
+      "count": 1,
+      "offset": 28964613,
+      "score": 2,
+      "reasons": [
+        "node-type-registry"
+      ]
+    },
+    {
+      "source": "BlendRigToGeom",
+      "count": 2,
+      "offset": 28966232,
+      "score": 2,
+      "reasons": [
+        "node-type-registry"
+      ]
+    },
+    {
+      "source": "Blendshape %1",
+      "count": 1,
+      "offset": 29301747,
+      "score": 6,
+      "reasons": [
+        "desktop-only-high-score"
+      ]
+    },
+    {
+      "source": "Blendshape Reference %1",
+      "count": 1,
+      "offset": 29621723,
+      "score": 6,
+      "reasons": [
+        "desktop-only-high-score"
+      ]
+    },
+    {
+      "source": "BlendStabilization",
+      "count": 1,
+      "offset": 28971775,
+      "score": 2,
+      "reasons": [
+        "node-type-registry"
+      ]
+    },
+    {
+      "source": "Brush1",
+      "count": 1,
+      "offset": null,
+      "score": 8,
+      "reasons": [
+        "gallery-project-node-name"
+      ],
+      "resourceFiles": [
+        "Projects\\SelectPointsWithSplines.wrap"
+      ]
+    },
+    {
+      "source": "Calibration failed, cameras cannot be exported",
+      "count": 1,
+      "offset": 30305432,
+      "score": 6,
+      "reasons": [
+        "desktop-only-high-score"
+      ]
+    },
+    {
+      "source": "Camera Generator",
+      "count": 2,
+      "offset": 29188797,
+      "score": 6,
+      "reasons": [
+        "desktop-only-high-score"
+      ]
+    },
+    {
+      "source": "Camera List",
+      "count": 2,
+      "offset": 29313953,
+      "score": 6,
+      "reasons": [
+        "desktop-only-high-score"
+      ]
+    },
+    {
+      "source": "Camera Params",
+      "count": 2,
+      "offset": 29188783,
+      "score": 6,
+      "reasons": [
+        "desktop-only-high-score"
+      ]
+    },
+    {
+      "source": "Camera Reproj. Error: %1 pxl",
+      "count": 3,
+      "offset": 30302410,
+      "score": 6,
+      "reasons": [
+        "desktop-only-high-score"
+      ]
+    },
+    {
+      "source": "Cameras have equal names",
+      "count": 1,
+      "offset": 30310960,
+      "score": 6,
+      "reasons": [
+        "desktop-only-high-score"
+      ]
+    },
+    {
+      "source": "Cameras not found, %1 nodes of other types found instead.",
+      "count": 1,
+      "offset": 29314288,
+      "score": 7,
+      "reasons": [
+        "desktop-only-high-score"
+      ]
+    },
+    {
+      "source": "Cameras not found, 1 node of other type found instead.",
+      "count": 1,
+      "offset": 29314232,
+      "score": 7,
+      "reasons": [
+        "desktop-only-high-score"
+      ]
+    },
+    {
+      "source": "Cameras Per Ring",
+      "count": 2,
+      "offset": 29181296,
+      "score": 6,
+      "reasons": [
+        "near-confirmed-ui"
+      ]
+    },
+    {
+      "source": "Can't apply layout '%1'",
+      "count": 1,
+      "offset": 30365997,
+      "score": 6,
+      "reasons": [
+        "desktop-only-high-score",
+        "near-confirmed-ui"
+      ]
+    },
+    {
+      "source": "Can't clear Python context: %1!",
+      "count": 1,
+      "offset": 30294344,
+      "score": 5,
+      "reasons": [
+        "near-confirmed-ui"
+      ]
+    },
+    {
+      "source": "Can't Compute Node",
+      "count": 1,
+      "offset": 29096025,
+      "score": 6,
+      "reasons": [
+        "desktop-only-high-score"
+      ]
+    },
+    {
+      "source": "Can't compute the node",
+      "count": 13,
+      "offset": 29212432,
+      "score": 6,
+      "reasons": [
+        "desktop-only-high-score"
+      ]
+    },
+    {
+      "source": "Can't create a folder",
+      "count": 1,
+      "offset": 30280425,
+      "score": 6,
+      "reasons": [
+        "desktop-only-high-score"
+      ]
+    },
+    {
+      "source": "Can't delete an excess autosave:",
+      "count": 1,
+      "offset": 30280520,
+      "score": 7,
+      "reasons": [
+        "desktop-only-high-score"
+      ]
+    },
+    {
+      "source": "Can't export, calibration failed!",
+      "count": 1,
+      "offset": 30306968,
+      "score": 7,
+      "reasons": [
+        "desktop-only-high-score"
+      ]
+    },
+    {
+      "source": "Can't open the gallery dir",
+      "count": 1,
+      "offset": 30331544,
+      "score": 6,
+      "reasons": [
+        "desktop-only-high-score"
+      ]
+    },
+    {
+      "source": "Can't open the link",
+      "count": 3,
+      "offset": 30284252,
+      "score": 6,
+      "reasons": [
+        "desktop-only-high-score",
+        "near-confirmed-ui"
+      ]
+    },
+    {
+      "source": "Can't parse camera at number %1:",
+      "count": 1,
+      "offset": 30303192,
+      "score": 7,
+      "reasons": [
+        "desktop-only-high-score"
+      ]
+    },
+    {
+      "source": "Can't parse cameras, invalid number.",
+      "count": 1,
+      "offset": 30303152,
+      "score": 7,
+      "reasons": [
+        "desktop-only-high-score"
+      ]
+    },
+    {
+      "source": "Can't parse points, number of point sequences different from the specified pattern size",
+      "count": 1,
+      "offset": 30304888,
+      "score": 6,
+      "reasons": [
+        "desktop-only-high-score"
+      ]
+    },
+    {
+      "source": "Can't parse points, number of point sequences differs from chosen frames number",
+      "count": 1,
+      "offset": 30304808,
+      "score": 6,
+      "reasons": [
+        "desktop-only-high-score"
+      ]
+    },
+    {
+      "source": "Can't parse points. Incorrect point sequence format.",
+      "count": 1,
+      "offset": 30303688,
+      "score": 7,
+      "reasons": [
+        "desktop-only-high-score"
+      ]
+    },
+    {
+      "source": "Can't parse points. Incorrect point sequence storage format",
+      "count": 1,
+      "offset": 30303768,
+      "score": 6,
+      "reasons": [
+        "desktop-only-high-score"
+      ]
+    },
+    {
+      "source": "Can't parse points. Points count should be in range [%1, %2]",
+      "count": 1,
+      "offset": 30303624,
+      "score": 6,
+      "reasons": [
+        "desktop-only-high-score"
+      ]
+    },
+    {
+      "source": "Can't parse points. The end of the series of values encountered, but more was expected.",
+      "count": 1,
+      "offset": 30303832,
+      "score": 7,
+      "reasons": [
+        "desktop-only-high-score"
+      ]
+    },
+    {
+      "source": "Can't parse removed frames indices, index at %1 is not number.",
+      "count": 1,
+      "offset": 30303232,
+      "score": 7,
+      "reasons": [
+        "desktop-only-high-score"
+      ]
+    },
+    {
+      "source": "Can't parse setup, removed frame is not chosen",
+      "count": 1,
+      "offset": 30305152,
+      "score": 6,
+      "reasons": [
+        "desktop-only-high-score"
+      ]
+    },
+    {
+      "source": "Can't parse setup, removed frames more than chosen",
+      "count": 1,
+      "offset": 30305096,
+      "score": 6,
+      "reasons": [
+        "desktop-only-high-score"
+      ]
+    },
+    {
+      "source": "Can't parser error occurred:",
+      "count": 1,
+      "offset": 29769278,
+      "score": 7,
+      "reasons": [
+        "desktop-only-high-score"
+      ]
+    },
+    {
+      "source": "Can't processed videofile",
+      "count": 1,
+      "offset": 30305840,
+      "score": 6,
+      "reasons": [
+        "desktop-only-high-score"
+      ]
+    },
+    {
+      "source": "Can't remove single frame",
+      "count": 1,
+      "offset": 30307283,
+      "score": 6,
+      "reasons": [
+        "desktop-only-high-score"
+      ]
+    },
+    {
+      "source": "Can't save checkerboard at",
+      "count": 1,
+      "offset": 30310636,
+      "score": 6,
+      "reasons": [
+        "desktop-only-high-score"
+      ]
+    },
+    {
+      "source": "Can't save checkerboard geom file at",
+      "count": 1,
+      "offset": 30308584,
+      "score": 6,
+      "reasons": [
+        "desktop-only-high-score"
+      ]
+    },
+    {
+      "source": "Can't save file at",
+      "count": 1,
+      "offset": 30308739,
+      "score": 6,
+      "reasons": [
+        "desktop-only-high-score"
+      ]
+    },
+    {
+      "source": "Can't save file to",
+      "count": 1,
+      "offset": 30309782,
+      "score": 6,
+      "reasons": [
+        "desktop-only-high-score"
+      ]
+    },
+    {
+      "source": "Can't save Left camera at",
+      "count": 2,
+      "offset": 30308684,
+      "score": 6,
+      "reasons": [
+        "desktop-only-high-score"
+      ]
+    },
+    {
+      "source": "Can't save Right camera at",
+      "count": 2,
+      "offset": 30308711,
+      "score": 6,
+      "reasons": [
+        "desktop-only-high-score"
+      ]
+    },
+    {
+      "source": "Can't save texture at",
+      "count": 2,
+      "offset": 30308635,
+      "score": 6,
+      "reasons": [
+        "desktop-only-high-score"
+      ]
+    },
+    {
+      "source": "Can't save the image with \"%1\" extension!",
+      "count": 1,
+      "offset": 30288528,
+      "score": 7,
+      "reasons": [
+        "desktop-only-high-score"
+      ]
+    },
+    {
+      "source": "Can't save the project file \"%1\": %2",
+      "count": 1,
+      "offset": 30280664,
+      "score": 6,
+      "reasons": [
+        "desktop-only-high-score"
+      ]
+    },
+    {
+      "source": "Can't save to the file: %1. %2",
+      "count": 1,
+      "offset": 30288576,
+      "score": 6,
+      "reasons": [
+        "desktop-only-high-score"
+      ]
+    },
+    {
+      "source": "Can't save transforms at",
+      "count": 2,
+      "offset": 30308658,
+      "score": 6,
+      "reasons": [
+        "desktop-only-high-score"
+      ]
+    },
+    {
+      "source": "Cannot create trigger \"%1\" with specified arguments",
+      "count": 1,
+      "offset": 29195080,
+      "score": 6,
+      "reasons": [
+        "desktop-only-high-score"
+      ]
+    },
+    {
+      "source": "Cannot load image:",
+      "count": 1,
+      "offset": 30301158,
+      "score": 7,
+      "reasons": [
+        "desktop-only-high-score"
+      ]
+    },
+    {
+      "source": "Change Mask Path",
+      "count": 1,
+      "offset": 29772176,
+      "score": 6,
+      "reasons": [
+        "desktop-only-high-score"
+      ]
+    },
+    {
+      "source": "CheckerBoard can't be saved at",
+      "count": 1,
+      "offset": 30310688,
+      "score": 6,
+      "reasons": [
+        "desktop-only-high-score"
+      ]
+    },
+    {
+      "source": "CheckerBoard Geom Filename",
+      "count": 1,
+      "offset": 30311085,
+      "score": 6,
+      "reasons": [
+        "desktop-only-high-score"
+      ]
+    },
+    {
+      "source": "Choose Folder To Export Data",
+      "count": 1,
+      "offset": 30308552,
+      "score": 6,
+      "reasons": [
+        "desktop-only-high-score"
+      ]
+    },
+    {
+      "source": "Chosen frame index at %1 is out of range",
+      "count": 1,
+      "offset": 30305728,
+      "score": 6,
+      "reasons": [
+        "desktop-only-high-score"
+      ]
+    },
+    {
+      "source": "Clear Cameras",
+      "count": 2,
+      "offset": 29188499,
+      "score": 6,
+      "reasons": [
+        "desktop-only-high-score"
+      ]
+    },
+    {
+      "source": "Clear Context",
+      "count": 1,
+      "offset": 30294390,
+      "score": 4,
+      "reasons": [
+        "near-confirmed-ui"
+      ]
+    },
+    {
+      "source": "Clear Frame Ranges",
+      "count": 1,
+      "offset": 29608903,
+      "score": 6,
+      "reasons": [
+        "desktop-only-high-score"
+      ]
+    },
+    {
+      "source": "Clear Keyframes",
+      "count": 1,
+      "offset": 29608951,
+      "score": 6,
+      "reasons": [
+        "desktop-only-high-score"
+      ]
+    },
+    {
+      "source": "Close application",
+      "count": 1,
+      "offset": 30334652,
+      "score": 6,
+      "reasons": [
+        "desktop-only-high-score",
+        "near-confirmed-ui"
+      ]
+    },
+    {
+      "source": "Color Picker",
+      "count": 1,
+      "offset": 29000580,
+      "score": 6,
+      "reasons": [
+        "desktop-only-high-score",
+        "near-confirmed-ui"
+      ]
+    },
+    {
+      "source": "Compute Projects",
+      "count": 1,
+      "offset": 30292944,
+      "score": 6,
+      "reasons": [
+        "desktop-only-high-score"
+      ]
+    },
+    {
+      "source": "Connect Geom to preview results",
+      "count": 2,
+      "offset": 29303936,
+      "score": 6,
+      "reasons": [
+        "desktop-only-high-score"
+      ]
+    },
+    {
+      "source": "Connect geometry input to display resulting vertex mask in visual editor",
+      "count": 7,
+      "offset": 29384456,
+      "score": 6,
+      "reasons": [
+        "desktop-only-high-score"
+      ]
+    },
+    {
+      "source": "Connect Image to preview results",
+      "count": 4,
+      "offset": 29306864,
+      "score": 6,
+      "reasons": [
+        "desktop-only-high-score"
+      ]
+    },
+    {
+      "source": "Connect images to display result in visual editor",
+      "count": 1,
+      "offset": 29702776,
+      "score": 6,
+      "reasons": [
+        "desktop-only-high-score"
+      ]
+    },
+    {
+      "source": "Controls from Reference Blend Rig",
+      "count": 1,
+      "offset": 29897040,
+      "score": 6,
+      "reasons": [
+        "desktop-only-high-score"
+      ]
+    },
+    {
+      "source": "Controls from Reference BlendRig",
+      "count": 1,
+      "offset": 29896968,
+      "score": 6,
+      "reasons": [
+        "desktop-only-high-score"
+      ]
+    },
+    {
+      "source": "Copy From Main Camera",
+      "count": 1,
+      "offset": 29313547,
+      "score": 6,
+      "reasons": [
+        "desktop-only-high-score"
+      ]
+    },
+    {
+      "source": "Copy from Project",
+      "count": 1,
+      "offset": 30300449,
+      "score": 6,
+      "reasons": [
+        "desktop-only-high-score"
+      ]
+    },
+    {
+      "source": "Copy Indexed Files",
+      "count": 2,
+      "offset": 30293264,
+      "score": 6,
+      "reasons": [
+        "desktop-only-high-score"
+      ]
+    },
+    {
+      "source": "Copying controls from Referenece Blend Rig will erase existing controls script. Continue?",
+      "count": 2,
+      "offset": 29896808,
+      "score": 7,
+      "reasons": [
+        "desktop-only-high-score"
+      ]
+    },
+    {
+      "source": "Create a geom node in Graph to preview UV",
+      "count": 1,
+      "offset": 30282760,
+      "score": 6,
+      "reasons": [
+        "desktop-only-high-score",
+        "near-confirmed-ui"
+      ]
+    },
+    {
+      "source": "Create an audio node in Graph to preview waveform",
+      "count": 1,
+      "offset": 30283008,
+      "score": 6,
+      "reasons": [
+        "desktop-only-high-score",
+        "near-confirmed-ui"
+      ]
+    },
+    {
+      "source": "Create camera",
+      "count": 1,
+      "offset": 29191486,
+      "score": 6,
+      "reasons": [
+        "desktop-only-high-score"
+      ]
+    },
+    {
+      "source": "Create Keyframe",
+      "count": 1,
+      "offset": 30224998,
+      "score": 6,
+      "reasons": [
+        "desktop-only-high-score"
+      ]
+    },
+    {
+      "source": "Create Keyframe For All Segments",
+      "count": 1,
+      "offset": 30225016,
+      "score": 6,
+      "reasons": [
+        "desktop-only-high-score"
+      ]
+    },
+    {
+      "source": "Create Multiple Nodes",
+      "count": 1,
+      "offset": 30339312,
+      "score": 6,
+      "reasons": [
+        "desktop-only-high-score"
+      ]
+    },
+    {
+      "source": "Current frame %1 has %2 vertices, but Neutral geom has %3",
+      "count": 1,
+      "offset": 29766264,
+      "score": 6,
+      "reasons": [
+        "desktop-only-high-score"
+      ]
+    },
+    {
+      "source": "Current View",
+      "count": 2,
+      "offset": 29631696,
+      "score": 6,
+      "reasons": [
+        "desktop-only-high-score"
+      ]
+    },
+    {
+      "source": "Custom Project Template",
+      "count": 1,
+      "offset": 30314466,
+      "score": 6,
+      "reasons": [
+        "desktop-only-high-score"
+      ]
+    },
+    {
+      "source": "Custom Projects",
+      "count": 1,
+      "offset": 30314490,
+      "score": 6,
+      "reasons": [
+        "desktop-only-high-score"
+      ]
+    },
+    {
+      "source": "Decoding frame",
+      "count": 1,
+      "offset": 29709884,
+      "score": 6,
+      "reasons": [
+        "near-confirmed-ui"
+      ]
+    },
+    {
+      "source": "Default (New Project)",
+      "count": 1,
+      "offset": 30300376,
+      "score": 6,
+      "reasons": [
+        "desktop-only-high-score"
+      ]
+    },
+    {
+      "source": "Default Color Space",
+      "count": 1,
+      "offset": 30298585,
+      "score": 6,
+      "reasons": [
+        "desktop-only-high-score"
+      ]
+    },
+    {
+      "source": "Default Timeline",
+      "count": 2,
+      "offset": 28964292,
+      "score": 4,
+      "reasons": [
+        "near-confirmed-ui"
+      ]
+    },
+    {
+      "source": "DeformationTransfer",
+      "count": 2,
+      "offset": 28966345,
+      "score": 2,
+      "reasons": [
+        "node-type-registry"
+      ]
+    },
+    {
+      "source": "Deformer Data Paths",
+      "count": 1,
+      "offset": 29434892,
+      "score": 6,
+      "reasons": [
+        "desktop-only-high-score"
+      ]
+    },
+    {
+      "source": "Delete All Keyframes",
+      "count": 1,
+      "offset": 30225065,
+      "score": 6,
+      "reasons": [
+        "desktop-only-high-score"
+      ]
+    },
+    {
+      "source": "Delete All Points",
+      "count": 2,
+      "offset": 29344157,
+      "score": 6,
+      "reasons": [
+        "desktop-only-high-score"
+      ]
+    },
+    {
+      "source": "Delete All Splines",
+      "count": 2,
+      "offset": 29835566,
+      "score": 6,
+      "reasons": [
+        "desktop-only-high-score"
+      ]
+    },
+    {
+      "source": "Delete Keyframe",
+      "count": 1,
+      "offset": 30225049,
+      "score": 6,
+      "reasons": [
+        "desktop-only-high-score"
+      ]
+    },
+    {
+      "source": "DeltaTransfer",
+      "count": 2,
+      "offset": 28966390,
+      "score": 2,
+      "reasons": [
+        "node-type-registry"
+      ]
+    },
+    {
+      "source": "Detecting calibration board on frame",
+      "count": 1,
+      "offset": 30309448,
+      "score": 6,
+      "reasons": [
+        "desktop-only-high-score"
+      ]
+    },
+    {
+      "source": "Detection has %1 semantic points on inner %2 lip contour. But %3 required!",
+      "count": 1,
+      "offset": 29348328,
+      "score": 7,
+      "reasons": [
+        "desktop-only-high-score"
+      ]
+    },
+    {
+      "source": "Detection was successfully saved",
+      "count": 1,
+      "offset": 29370384,
+      "score": 6,
+      "reasons": [
+        "desktop-only-high-score"
+      ]
+    },
+    {
+      "source": "DetectionToMask",
+      "count": 2,
+      "offset": 28967206,
+      "score": 2,
+      "reasons": [
+        "node-type-registry"
+      ]
+    },
+    {
+      "source": "DetectionToScreenPoints",
+      "count": 2,
+      "offset": 28974905,
+      "score": 2,
+      "reasons": [
+        "node-type-registry"
+      ]
+    },
+    {
+      "source": "Developer's Changelog",
+      "count": 1,
+      "offset": 30318304,
+      "score": 4,
+      "reasons": [
+        "near-confirmed-ui"
+      ]
+    },
+    {
+      "source": "DimpleTexture",
+      "count": 1,
+      "offset": null,
+      "score": 8,
+      "reasons": [
+        "gallery-project-node-name"
+      ],
+      "resourceFiles": [
+        "Expressions\\Dimple.wrap"
+      ]
+    },
+    {
+      "source": "Distance Threshold (cm)",
+      "count": 1,
+      "offset": 29181601,
+      "score": 4,
+      "reasons": [
+        "near-confirmed-ui"
+      ]
+    },
+    {
+      "source": "Don't show this warning again",
+      "count": 1,
+      "offset": 30281056,
+      "score": 6,
+      "reasons": [
+        "desktop-only-high-score"
+      ]
+    },
+    {
+      "source": "Edit First Sequence",
+      "count": 3,
+      "offset": 30301953,
+      "score": 4,
+      "reasons": [
+        "near-confirmed-ui"
+      ]
+    },
+    {
+      "source": "Edit Second Sequence",
+      "count": 3,
+      "offset": 30301973,
+      "score": 4,
+      "reasons": [
+        "near-confirmed-ui"
+      ]
+    },
+    {
+      "source": "EditDetection",
+      "count": 1,
+      "offset": 28965526,
+      "score": 2,
+      "reasons": [
+        "node-type-registry"
+      ]
+    },
+    {
+      "source": "EditFacialDetection",
+      "count": 2,
+      "offset": 28965540,
+      "score": 2,
+      "reasons": [
+        "node-type-registry"
+      ]
+    },
+    {
+      "source": "Editor Color Preview",
+      "count": 1,
+      "offset": 30298564,
+      "score": 6,
+      "reasons": [
+        "desktop-only-high-score"
+      ]
+    },
+    {
+      "source": "Empty data on Left view. Can't calibrate.",
+      "count": 1,
+      "offset": 30309224,
+      "score": 7,
+      "reasons": [
+        "desktop-only-high-score"
+      ]
+    },
+    {
+      "source": "Empty data on Right view. Can't calibrate.",
+      "count": 1,
+      "offset": 30309272,
+      "score": 7,
+      "reasons": [
+        "desktop-only-high-score"
+      ]
+    },
+    {
+      "source": "Enable Frame Skipping",
+      "count": 1,
+      "offset": 30281968,
+      "score": 6,
+      "reasons": [
+        "desktop-only-high-score"
+      ]
+    },
+    {
+      "source": "Enter Layout Preset Name",
+      "count": 1,
+      "offset": 30369418,
+      "score": 6,
+      "reasons": [
+        "desktop-only-high-score"
+      ]
+    },
+    {
+      "source": "Error during models interpolation:",
+      "count": 1,
+      "offset": 30301080,
+      "score": 7,
+      "reasons": [
+        "desktop-only-high-score"
+      ]
+    },
+    {
+      "source": "Error Exporting Patches",
+      "count": 2,
+      "offset": 29643410,
+      "score": 6,
+      "reasons": [
+        "desktop-only-high-score"
+      ]
+    },
+    {
+      "source": "Error in %1: %2%3",
+      "count": 1,
+      "offset": 30331756,
+      "score": 6,
+      "reasons": [
+        "desktop-only-high-score"
+      ]
+    },
+    {
+      "source": "Error Occured",
+      "count": 1,
+      "offset": 29211817,
+      "score": 6,
+      "reasons": [
+        "desktop-only-high-score"
+      ]
+    },
+    {
+      "source": "Error occured while running initialization python script",
+      "count": 1,
+      "offset": 30280752,
+      "score": 6,
+      "reasons": [
+        "desktop-only-high-score"
+      ]
+    },
+    {
+      "source": "ExampleBasedTexture",
+      "count": 1,
+      "offset": 28973693,
+      "score": 2,
+      "reasons": [
+        "node-type-registry"
+      ]
+    },
+    {
+      "source": "Exit camera mode",
+      "count": 1,
+      "offset": 29191514,
+      "score": 6,
+      "reasons": [
+        "desktop-only-high-score"
+      ]
+    },
+    {
+      "source": "Export All To Disk",
+      "count": 1,
+      "offset": 30308533,
+      "score": 6,
+      "reasons": [
+        "desktop-only-high-score"
+      ]
+    },
+    {
+      "source": "Export All To Wrap4D",
+      "count": 3,
+      "offset": 30302353,
+      "score": 6,
+      "reasons": [
+        "desktop-only-high-score"
+      ]
+    },
+    {
+      "source": "Export Annotation",
+      "count": 1,
+      "offset": 29349302,
+      "score": 6,
+      "reasons": [
+        "desktop-only-high-score"
+      ]
+    },
+    {
+      "source": "Export Camera",
+      "count": 2,
+      "offset": 29313406,
+      "score": 6,
+      "reasons": [
+        "desktop-only-high-score"
+      ]
+    },
+    {
+      "source": "Export Cameras To File",
+      "count": 1,
+      "offset": 30305485,
+      "score": 6,
+      "reasons": [
+        "desktop-only-high-score"
+      ]
+    },
+    {
+      "source": "Export Cameras to Files",
+      "count": 3,
+      "offset": 30302304,
+      "score": 6,
+      "reasons": [
+        "desktop-only-high-score"
+      ]
+    },
+    {
+      "source": "Export Cameras To Files",
+      "count": 1,
+      "offset": 30309825,
+      "score": 6,
+      "reasons": [
+        "desktop-only-high-score"
+      ]
+    },
+    {
+      "source": "Export Cameras to Wrap4D",
+      "count": 4,
+      "offset": 30302328,
+      "score": 6,
+      "reasons": [
+        "desktop-only-high-score"
+      ]
+    },
+    {
+      "source": "Export detection to file",
+      "count": 1,
+      "offset": 29370352,
+      "score": 6,
+      "reasons": [
+        "desktop-only-high-score"
+      ]
+    },
+    {
+      "source": "Export Error",
+      "count": 1,
+      "offset": 30308622,
+      "score": 6,
+      "reasons": [
+        "desktop-only-high-score"
+      ]
+    },
+    {
+      "source": "Export file",
+      "count": 3,
+      "offset": 29343944,
+      "score": 6,
+      "reasons": [
+        "desktop-only-high-score"
+      ]
+    },
+    {
+      "source": "Export Parameters",
+      "count": 1,
+      "offset": 29783628,
+      "score": 6,
+      "reasons": [
+        "desktop-only-high-score"
+      ]
+    },
+    {
+      "source": "Export Patch Vertex Masks",
+      "count": 2,
+      "offset": 29643245,
+      "score": 6,
+      "reasons": [
+        "desktop-only-high-score"
+      ]
+    },
+    {
+      "source": "Export Screen Points",
+      "count": 1,
+      "offset": 29635646,
+      "score": 6,
+      "reasons": [
+        "desktop-only-high-score"
+      ]
+    },
+    {
+      "source": "Export to File",
+      "count": 3,
+      "offset": 30302063,
+      "score": 6,
+      "reasons": [
+        "desktop-only-high-score",
+        "near-confirmed-ui"
+      ]
+    },
+    {
+      "source": "Export Transform",
+      "count": 1,
+      "offset": 29228464,
+      "score": 6,
+      "reasons": [
+        "desktop-only-high-score"
+      ]
+    },
+    {
+      "source": "Expression",
+      "count": 2,
+      "offset": null,
+      "score": 8,
+      "reasons": [
+        "gallery-project-node-name"
+      ],
+      "resourceFiles": [
+        "Projects\\BlendWrapping.wrap",
+        "Projects\\PointDetector.wrap"
+      ]
+    },
+    {
+      "source": "ExpressionTexture",
+      "count": 2,
+      "offset": null,
+      "score": 8,
+      "reasons": [
+        "gallery-project-node-name"
+      ],
+      "resourceFiles": [
+        "Projects\\BlendWrapping.wrap",
+        "Projects\\PointDetector.wrap"
+      ]
+    },
+    {
+      "source": "EyebrowsUpJawOpenTexture",
+      "count": 1,
+      "offset": null,
+      "score": 8,
+      "reasons": [
+        "gallery-project-node-name"
+      ],
+      "resourceFiles": [
+        "Expressions\\EyebrowsUpJawOpen.wrap"
+      ]
+    },
+    {
+      "source": "Facial Detection Cameras",
+      "count": 1,
+      "offset": 29189903,
+      "score": 6,
+      "reasons": [
+        "desktop-only-high-score"
+      ]
+    },
+    {
+      "source": "FacialAnnotation",
+      "count": 3,
+      "offset": 28965452,
+      "score": 2,
+      "reasons": [
+        "node-type-registry"
+      ]
+    },
+    {
+      "source": "FacialDetection",
+      "count": 3,
+      "offset": 28965476,
+      "score": 2,
+      "reasons": [
+        "node-type-registry"
+      ]
+    },
+    {
+      "source": "FacialWrapping",
+      "count": 4,
+      "offset": 28964636,
+      "score": 2,
+      "reasons": [
+        "node-type-registry"
+      ]
+    },
+    {
+      "source": "Failed to Compute",
+      "count": 1,
+      "offset": 30292727,
+      "score": 6,
+      "reasons": [
+        "desktop-only-high-score"
+      ]
+    },
+    {
+      "source": "Failed to copy file",
+      "count": 2,
+      "offset": 30293285,
+      "score": 6,
+      "reasons": [
+        "desktop-only-high-score"
+      ]
+    },
+    {
+      "source": "Failed to export annotation. %1",
+      "count": 1,
+      "offset": 29349320,
+      "score": 6,
+      "reasons": [
+        "desktop-only-high-score"
+      ]
+    },
+    {
+      "source": "Failed to extract file %1",
+      "count": 1,
+      "offset": 30331074,
+      "score": 6,
+      "reasons": [
+        "desktop-only-high-score"
+      ]
+    },
+    {
+      "source": "Failed to find a file name with index %1",
+      "count": 1,
+      "offset": 30293448,
+      "score": 6,
+      "reasons": [
+        "desktop-only-high-score"
+      ]
+    },
+    {
+      "source": "Failed to get file info for index %1",
+      "count": 1,
+      "offset": 30330952,
+      "score": 6,
+      "reasons": [
+        "desktop-only-high-score"
+      ]
+    },
+    {
+      "source": "Failed to import detection. %1",
+      "count": 1,
+      "offset": 29349392,
+      "score": 6,
+      "reasons": [
+        "desktop-only-high-score"
+      ]
+    },
+    {
+      "source": "Failed to import weights. %1",
+      "count": 1,
+      "offset": 29783664,
+      "score": 6,
+      "reasons": [
+        "desktop-only-high-score"
+      ]
+    },
+    {
+      "source": "Failed to load a project",
+      "count": 1,
+      "offset": 29735792,
+      "score": 6,
+      "reasons": [
+        "desktop-only-high-score"
+      ]
+    },
+    {
+      "source": "Failed to load gallery items from file: %1. %2",
+      "count": 1,
+      "offset": 30332336,
+      "score": 6,
+      "reasons": [
+        "desktop-only-high-score"
+      ]
+    },
+    {
+      "source": "Failed to load layout from the clipboard:",
+      "count": 1,
+      "offset": 30285432,
+      "score": 7,
+      "reasons": [
+        "desktop-only-high-score"
+      ]
+    },
+    {
+      "source": "Failed to load nodes from the clipboard:",
+      "count": 1,
+      "offset": 30285384,
+      "score": 7,
+      "reasons": [
+        "desktop-only-high-score"
+      ]
+    },
+    {
+      "source": "Failed to load the project from the gallery. %1",
+      "count": 1,
+      "offset": 30332384,
+      "score": 6,
+      "reasons": [
+        "desktop-only-high-score"
+      ]
+    },
+    {
+      "source": "Failed to open file for writing %1",
+      "count": 1,
+      "offset": 30331104,
+      "score": 6,
+      "reasons": [
+        "desktop-only-high-score"
+      ]
+    },
+    {
+      "source": "Failed to open the dir: %1",
+      "count": 1,
+      "offset": 30331517,
+      "score": 6,
+      "reasons": [
+        "desktop-only-high-score"
+      ]
+    },
+    {
+      "source": "Failed to open the link: %1",
+      "count": 3,
+      "offset": 30284224,
+      "score": 6,
+      "reasons": [
+        "desktop-only-high-score",
+        "near-confirmed-ui"
+      ]
+    },
+    {
+      "source": "Failed to open ZIP file",
+      "count": 1,
+      "offset": 30330845,
+      "score": 6,
+      "reasons": [
+        "desktop-only-high-score"
+      ]
+    },
+    {
+      "source": "Failed to read folder \"%1\":",
+      "count": 1,
+      "offset": 30333261,
+      "score": 7,
+      "reasons": [
+        "desktop-only-high-score"
+      ]
+    },
+    {
+      "source": "Failed to read index file",
+      "count": 1,
+      "offset": 30293210,
+      "score": 6,
+      "reasons": [
+        "desktop-only-high-score"
+      ]
+    },
+    {
+      "source": "Failed to save the geometry to a file: %1",
+      "count": 1,
+      "offset": 30288288,
+      "score": 6,
+      "reasons": [
+        "desktop-only-high-score"
+      ]
+    },
+    {
+      "source": "Failed to save the named points on triangle to a file: %1",
+      "count": 1,
+      "offset": 30295456,
+      "score": 6,
+      "reasons": [
+        "desktop-only-high-score"
+      ]
+    },
+    {
+      "source": "Failed to save the screen points to a file: %1",
+      "count": 1,
+      "offset": 30295664,
+      "score": 6,
+      "reasons": [
+        "desktop-only-high-score"
+      ]
+    },
+    {
+      "source": "Failed to save the vertex mask to a file: %1",
+      "count": 1,
+      "offset": 30294976,
+      "score": 6,
+      "reasons": [
+        "desktop-only-high-score"
+      ]
+    },
+    {
+      "source": "Failed to save to file \"%1\"",
+      "count": 1,
+      "offset": 29189114,
+      "score": 6,
+      "reasons": [
+        "desktop-only-high-score"
+      ]
+    },
+    {
+      "source": "Failed to unzip encypted file %1",
+      "count": 1,
+      "offset": 30331000,
+      "score": 6,
+      "reasons": [
+        "desktop-only-high-score"
+      ]
+    },
+    {
+      "source": "File can't be saved at",
+      "count": 1,
+      "offset": 30310908,
+      "score": 6,
+      "reasons": [
+        "desktop-only-high-score"
+      ]
+    },
+    {
+      "source": "File Color Space",
+      "count": 1,
+      "offset": 29164667,
+      "score": 6,
+      "reasons": [
+        "near-confirmed-ui"
+      ]
+    },
+    {
+      "source": "File Directory",
+      "count": 1,
+      "offset": 30314563,
+      "score": 6,
+      "reasons": [
+        "desktop-only-high-score"
+      ]
+    },
+    {
+      "source": "File doesn't exist",
+      "count": 2,
+      "offset": 30305821,
+      "score": 6,
+      "reasons": [
+        "desktop-only-high-score"
+      ]
+    },
+    {
+      "source": "File is not a video",
+      "count": 1,
+      "offset": 29709698,
+      "score": 6,
+      "reasons": [
+        "near-confirmed-ui"
+      ]
+    },
+    {
+      "source": "First Frame Offset",
+      "count": 1,
+      "offset": 29709815,
+      "score": 6,
+      "reasons": [
+        "near-confirmed-ui"
+      ]
+    },
+    {
+      "source": "First Square Color",
+      "count": 3,
+      "offset": 30302129,
+      "score": 6,
+      "reasons": [
+        "desktop-only-high-score"
+      ]
+    },
+    {
+      "source": "First Square Color is out of range",
+      "count": 1,
+      "offset": 30304744,
+      "score": 6,
+      "reasons": [
+        "desktop-only-high-score"
+      ]
+    },
+    {
+      "source": "FirstWrapping",
+      "count": 2,
+      "offset": null,
+      "score": 8,
+      "reasons": [
+        "gallery-project-node-name"
+      ],
+      "resourceFiles": [
+        "Projects\\HighpolyWrappingInTwoSteps.wrap",
+        "Projects\\WrappingInTwoSteps.wrap"
+      ]
+    },
+    {
+      "source": "Fit to view 2D",
+      "count": 1,
+      "offset": 29327784,
+      "score": 6,
+      "reasons": [
+        "desktop-only-high-score"
+      ]
+    },
+    {
+      "source": "FitEyesDirection",
+      "count": 2,
+      "offset": 28966441,
+      "score": 2,
+      "reasons": [
+        "node-type-registry"
+      ]
+    },
+    {
+      "source": "FitFaceToScreenPoints",
+      "count": 2,
+      "offset": 28966458,
+      "score": 2,
+      "reasons": [
+        "node-type-registry"
+      ]
+    },
+    {
+      "source": "Fitting Final",
+      "count": 1,
+      "offset": 29181021,
+      "score": 4,
+      "reasons": [
+        "near-confirmed-ui"
+      ]
+    },
+    {
+      "source": "Fitting Initial",
+      "count": 1,
+      "offset": 29180992,
+      "score": 4,
+      "reasons": [
+        "near-confirmed-ui"
+      ]
+    },
+    {
+      "source": "FitToRig",
+      "count": 1,
+      "offset": 28975160,
+      "score": 2,
+      "reasons": [
+        "node-type-registry"
+      ]
+    },
+    {
+      "source": "Flip X",
+      "count": 1,
+      "offset": 29164720,
+      "score": 4,
+      "reasons": [
+        "near-confirmed-ui"
+      ]
+    },
+    {
+      "source": "Flip Y",
+      "count": 1,
+      "offset": 29164733,
+      "score": 4,
+      "reasons": [
+        "near-confirmed-ui"
+      ]
+    },
+    {
+      "source": "Folder not selected",
+      "count": 1,
+      "offset": 30308499,
+      "score": 6,
+      "reasons": [
+        "desktop-only-high-score"
+      ]
+    },
+    {
+      "source": "Frame %1",
+      "count": 1,
+      "offset": 29211528,
+      "score": 6,
+      "reasons": [
+        "desktop-only-high-score"
+      ]
+    },
+    {
+      "source": "Frame Number",
+      "count": 1,
+      "offset": 29770706,
+      "score": 6,
+      "reasons": [
+        "desktop-only-high-score"
+      ]
+    },
+    {
+      "source": "Frame range %1-%2%3",
+      "count": 1,
+      "offset": 29211548,
+      "score": 6,
+      "reasons": [
+        "desktop-only-high-score"
+      ]
+    },
+    {
+      "source": "Frame Rotation",
+      "count": 1,
+      "offset": 30312385,
+      "score": 6,
+      "reasons": [
+        "desktop-only-high-score"
+      ]
+    },
+    {
+      "source": "Frame Skipping: OFF",
+      "count": 1,
+      "offset": 30338488,
+      "score": 6,
+      "reasons": [
+        "desktop-only-high-score",
+        "near-confirmed-ui"
+      ]
+    },
+    {
+      "source": "Frame Skipping: ON",
+      "count": 1,
+      "offset": 30338560,
+      "score": 6,
+      "reasons": [
+        "desktop-only-high-score",
+        "near-confirmed-ui"
+      ]
+    },
+    {
+      "source": "Free Polygons Floating",
+      "count": 3,
+      "offset": 29238629,
+      "score": 4,
+      "reasons": [
+        "near-confirmed-ui"
+      ]
+    },
+    {
+      "source": "FreePolygons",
+      "count": 2,
+      "offset": null,
+      "score": 8,
+      "reasons": [
+        "gallery-project-node-name"
+      ],
+      "resourceFiles": [
+        "Projects\\BlendWrapping.wrap",
+        "Projects\\WrappingInTwoSteps.wrap"
+      ]
+    },
+    {
+      "source": "From File",
+      "count": 3,
+      "offset": 29164645,
+      "score": 6,
+      "reasons": [
+        "near-confirmed-ui"
+      ]
+    },
+    {
+      "source": "Gallery folder doesn't exist: %1",
+      "count": 1,
+      "offset": 30332296,
+      "score": 6,
+      "reasons": [
+        "desktop-only-high-score"
+      ]
+    },
+    {
+      "source": "Generate Cameras",
+      "count": 2,
+      "offset": 29188631,
+      "score": 6,
+      "reasons": [
+        "desktop-only-high-score"
+      ]
+    },
+    {
+      "source": "Geometry has no topological symmetry",
+      "count": 5,
+      "offset": 29137920,
+      "score": 6,
+      "reasons": [
+        "desktop-only-high-score"
+      ]
+    },
+    {
+      "source": "Geometry is required but not set",
+      "count": 1,
+      "offset": 29343840,
+      "score": 6,
+      "reasons": [
+        "desktop-only-high-score"
+      ]
+    },
+    {
+      "source": "Global Rotation",
+      "count": 2,
+      "offset": 29180812,
+      "score": 4,
+      "reasons": [
+        "near-confirmed-ui"
+      ]
+    },
+    {
+      "source": "Guidable Texture",
+      "count": 1,
+      "offset": 29642988,
+      "score": 6,
+      "reasons": [
+        "desktop-only-high-score"
+      ]
+    },
+    {
+      "source": "GuidableDeltaMush",
+      "count": 2,
+      "offset": 28966509,
+      "score": 2,
+      "reasons": [
+        "node-type-registry"
+      ]
+    },
+    {
+      "source": "GuidableHeadStabilization",
+      "count": 2,
+      "offset": 28966527,
+      "score": 2,
+      "reasons": [
+        "node-type-registry"
+      ]
+    },
+    {
+      "source": "GuidableHeadStabilizationOld",
+      "count": 1,
+      "offset": 28971839,
+      "score": 2,
+      "reasons": [
+        "node-type-registry"
+      ]
+    },
+    {
+      "source": "GuidableMesh",
+      "count": 2,
+      "offset": 28966553,
+      "score": 2,
+      "reasons": [
+        "node-type-registry"
+      ]
+    },
+    {
+      "source": "GuidableReplace",
+      "count": 2,
+      "offset": 28966566,
+      "score": 2,
+      "reasons": [
+        "node-type-registry"
+      ]
+    },
+    {
+      "source": "GuidableRetarget",
+      "count": 2,
+      "offset": 28966582,
+      "score": 2,
+      "reasons": [
+        "node-type-registry"
+      ]
+    },
+    {
+      "source": "GuidableTexture",
+      "count": 2,
+      "offset": 28967252,
+      "score": 2,
+      "reasons": [
+        "node-type-registry"
+      ]
+    },
+    {
+      "source": "GuidableTransform",
+      "count": 1,
+      "offset": 28971890,
+      "score": 2,
+      "reasons": [
+        "node-type-registry"
+      ]
+    },
+    {
+      "source": "Has controls selected",
+      "count": 1,
+      "offset": 29766775,
+      "score": 6,
+      "reasons": [
+        "desktop-only-high-score"
+      ]
+    },
+    {
+      "source": "Has groups selected",
+      "count": 1,
+      "offset": 29766820,
+      "score": 6,
+      "reasons": [
+        "desktop-only-high-score"
+      ]
+    },
+    {
+      "source": "Has keyframes selected",
+      "count": 1,
+      "offset": 29766797,
+      "score": 6,
+      "reasons": [
+        "desktop-only-high-score"
+      ]
+    },
+    {
+      "source": "Has masks selected",
+      "count": 1,
+      "offset": 29766840,
+      "score": 6,
+      "reasons": [
+        "desktop-only-high-score"
+      ]
+    },
+    {
+      "source": "HeadStabilization",
+      "count": 2,
+      "offset": 28966599,
+      "score": 2,
+      "reasons": [
+        "node-type-registry"
+      ]
+    },
+    {
+      "source": "Helps to preview interpolated results in the rig",
+      "count": 1,
+      "offset": 29767342,
+      "score": 6,
+      "reasons": [
+        "desktop-only-high-score"
+      ]
+    },
+    {
+      "source": "Hide Selected",
+      "count": 1,
+      "offset": 29201752,
+      "score": 6,
+      "reasons": [
+        "desktop-only-high-score"
+      ]
+    },
+    {
+      "source": "Hold *A* to hide the sculpted mesh",
+      "count": 1,
+      "offset": 29137798,
+      "score": 6,
+      "reasons": [
+        "desktop-only-high-score"
+      ]
+    },
+    {
+      "source": "Hold *SPACE* to show fitted mesh",
+      "count": 1,
+      "offset": 29439113,
+      "score": 6,
+      "reasons": [
+        "desktop-only-high-score"
+      ]
+    },
+    {
+      "source": "Hold *Z* to show the source mesh",
+      "count": 1,
+      "offset": 29137833,
+      "score": 6,
+      "reasons": [
+        "desktop-only-high-score"
+      ]
+    },
+    {
+      "source": "Icon Size",
+      "count": 2,
+      "offset": 29180943,
+      "score": 4,
+      "reasons": [
+        "near-confirmed-ui"
+      ]
+    },
+    {
+      "source": "If set, connecting several nodes at once is ordered prior by types.",
+      "count": 1,
+      "offset": 30299544,
+      "score": 7,
+      "reasons": [
+        "desktop-only-high-score"
+      ]
+    },
+    {
+      "source": "If set, disables and hides all nodes, that required instant compute on loading. Usefull for instant loading heavy computational projects.",
+      "count": 1,
+      "offset": 30299832,
+      "score": 7,
+      "reasons": [
+        "desktop-only-high-score"
+      ]
+    },
+    {
+      "source": "If set, pasting from clipboard to the graph will show an error message, if any occurs.",
+      "count": 1,
+      "offset": 30299432,
+      "score": 7,
+      "reasons": [
+        "desktop-only-high-score"
+      ]
+    },
+    {
+      "source": "Image resolution and json resolution are not equal",
+      "count": 1,
+      "offset": 30308448,
+      "score": 6,
+      "reasons": [
+        "desktop-only-high-score"
+      ]
+    },
+    {
+      "source": "Image sequences are missing",
+      "count": 1,
+      "offset": 30305242,
+      "score": 6,
+      "reasons": [
+        "desktop-only-high-score"
+      ]
+    },
+    {
+      "source": "ImageFacialWrapping",
+      "count": 3,
+      "offset": 28966617,
+      "score": 2,
+      "reasons": [
+        "node-type-registry"
+      ]
+    },
+    {
+      "source": "Images don't have size",
+      "count": 1,
+      "offset": 30309382,
+      "score": 6,
+      "reasons": [
+        "desktop-only-high-score"
+      ]
+    },
+    {
+      "source": "Images have different size",
+      "count": 1,
+      "offset": 30309355,
+      "score": 6,
+      "reasons": [
+        "desktop-only-high-score"
+      ]
+    },
+    {
+      "source": "Images in folder \"%1\" must be the same size!",
+      "count": 1,
+      "offset": 30305632,
+      "score": 7,
+      "reasons": [
+        "desktop-only-high-score"
+      ]
+    },
+    {
+      "source": "Images in folders have different resolution",
+      "count": 1,
+      "offset": 30305680,
+      "score": 6,
+      "reasons": [
+        "desktop-only-high-score"
+      ]
+    },
+    {
+      "source": "Images must be the same size",
+      "count": 1,
+      "offset": 30305349,
+      "score": 6,
+      "reasons": [
+        "desktop-only-high-score"
+      ]
+    },
+    {
+      "source": "Import Camera",
+      "count": 3,
+      "offset": 29311600,
+      "score": 6,
+      "reasons": [
+        "desktop-only-high-score"
+      ]
+    },
+    {
+      "source": "Import Camera From FBX",
+      "count": 1,
+      "offset": 29314129,
+      "score": 6,
+      "reasons": [
+        "desktop-only-high-score"
+      ]
+    },
+    {
+      "source": "Import Camera From Metashape",
+      "count": 1,
+      "offset": 29313924,
+      "score": 6,
+      "reasons": [
+        "desktop-only-high-score"
+      ]
+    },
+    {
+      "source": "Import Camera From RealityCapture",
+      "count": 1,
+      "offset": 29313992,
+      "score": 6,
+      "reasons": [
+        "desktop-only-high-score"
+      ]
+    },
+    {
+      "source": "Import Cameras",
+      "count": 1,
+      "offset": 29975849,
+      "score": 6,
+      "reasons": [
+        "desktop-only-high-score"
+      ]
+    },
+    {
+      "source": "Import file",
+      "count": 2,
+      "offset": 29344056,
+      "score": 6,
+      "reasons": [
+        "desktop-only-high-score"
+      ]
+    },
+    {
+      "source": "Import from Detection",
+      "count": 1,
+      "offset": 29348478,
+      "score": 6,
+      "reasons": [
+        "desktop-only-high-score"
+      ]
+    },
+    {
+      "source": "Import from File",
+      "count": 3,
+      "offset": 30302046,
+      "score": 6,
+      "reasons": [
+        "desktop-only-high-score",
+        "near-confirmed-ui"
+      ]
+    },
+    {
+      "source": "Import from Materials",
+      "count": 1,
+      "offset": 29378353,
+      "score": 6,
+      "reasons": [
+        "desktop-only-high-score"
+      ]
+    },
+    {
+      "source": "Import from Polygroups",
+      "count": 1,
+      "offset": 29378330,
+      "score": 6,
+      "reasons": [
+        "desktop-only-high-score"
+      ]
+    },
+    {
+      "source": "Import Old Project",
+      "count": 1,
+      "offset": 29735621,
+      "score": 6,
+      "reasons": [
+        "desktop-only-high-score"
+      ]
+    },
+    {
+      "source": "Import Parameters",
+      "count": 1,
+      "offset": 29783646,
+      "score": 6,
+      "reasons": [
+        "desktop-only-high-score"
+      ]
+    },
+    {
+      "source": "Import Screen Points",
+      "count": 1,
+      "offset": 29635719,
+      "score": 6,
+      "reasons": [
+        "desktop-only-high-score"
+      ]
+    },
+    {
+      "source": "Import Weights from File",
+      "count": 1,
+      "offset": 29783693,
+      "score": 6,
+      "reasons": [
+        "desktop-only-high-score"
+      ]
+    },
+    {
+      "source": "Imported controls;",
+      "count": 1,
+      "offset": 29735908,
+      "score": 6,
+      "reasons": [
+        "desktop-only-high-score"
+      ]
+    },
+    {
+      "source": "Imported keyframes;",
+      "count": 1,
+      "offset": 29735888,
+      "score": 6,
+      "reasons": [
+        "desktop-only-high-score"
+      ]
+    },
+    {
+      "source": "Imported mask names;",
+      "count": 1,
+      "offset": 29735927,
+      "score": 6,
+      "reasons": [
+        "desktop-only-high-score"
+      ]
+    },
+    {
+      "source": "Imported sequence mask",
+      "count": 1,
+      "offset": 29735948,
+      "score": 6,
+      "reasons": [
+        "desktop-only-high-score"
+      ]
+    },
+    {
+      "source": "Importing Old Project",
+      "count": 1,
+      "offset": 29735752,
+      "score": 6,
+      "reasons": [
+        "desktop-only-high-score"
+      ]
+    },
+    {
+      "source": "Index File",
+      "count": 1,
+      "offset": 30293173,
+      "score": 6,
+      "reasons": [
+        "desktop-only-high-score"
+      ]
+    },
+    {
+      "source": "Indices of models do not match indices of images",
+      "count": 1,
+      "offset": 30301424,
+      "score": 6,
+      "reasons": [
+        "desktop-only-high-score"
+      ]
+    },
+    {
+      "source": "Info: %1 pairs of points were used for fitting.",
+      "count": 1,
+      "offset": 29826040,
+      "score": 7,
+      "reasons": [
+        "desktop-only-high-score"
+      ]
+    },
+    {
+      "source": "Input Files",
+      "count": 1,
+      "offset": 30293161,
+      "score": 6,
+      "reasons": [
+        "desktop-only-high-score"
+      ]
+    },
+    {
+      "source": "Input Folder",
+      "count": 1,
+      "offset": 30300832,
+      "score": 6,
+      "reasons": [
+        "desktop-only-high-score"
+      ]
+    },
+    {
+      "source": "Input geometry is required",
+      "count": 1,
+      "offset": 29194042,
+      "score": 6,
+      "reasons": [
+        "desktop-only-high-score"
+      ]
+    },
+    {
+      "source": "Interpolate Keyframe Textures",
+      "count": 1,
+      "offset": 30300872,
+      "score": 6,
+      "reasons": [
+        "desktop-only-high-score"
+      ]
+    },
+    {
+      "source": "Interpolate Keyframes",
+      "count": 1,
+      "offset": 30300772,
+      "score": 6,
+      "reasons": [
+        "desktop-only-high-score"
+      ]
+    },
+    {
+      "source": "InterpolateEyes",
+      "count": 2,
+      "offset": 28966637,
+      "score": 2,
+      "reasons": [
+        "node-type-registry"
+      ]
+    },
+    {
+      "source": "InterpolateGeom",
+      "count": 2,
+      "offset": 28966653,
+      "score": 2,
+      "reasons": [
+        "node-type-registry"
+      ]
+    },
+    {
+      "source": "Invalid frame index",
+      "count": 1,
+      "offset": 30305868,
+      "score": 6,
+      "reasons": [
+        "desktop-only-high-score"
+      ]
+    },
+    {
+      "source": "Invalid image data",
+      "count": 2,
+      "offset": 30305802,
+      "score": 6,
+      "reasons": [
+        "desktop-only-high-score"
+      ]
+    },
+    {
+      "source": "Invert Frame",
+      "count": 1,
+      "offset": 29608877,
+      "score": 6,
+      "reasons": [
+        "desktop-only-high-score"
+      ]
+    },
+    {
+      "source": "Invert frame range",
+      "count": 1,
+      "offset": 29609089,
+      "score": 6,
+      "reasons": [
+        "desktop-only-high-score"
+      ]
+    },
+    {
+      "source": "Jaw",
+      "count": 1,
+      "offset": null,
+      "score": 8,
+      "reasons": [
+        "gallery-project-node-name"
+      ],
+      "resourceFiles": [
+        "Basemeshes\\WrapSkull.wrap"
+      ]
+    },
+    {
+      "source": "JointRigToGeom",
+      "count": 2,
+      "offset": 28966669,
+      "score": 2,
+      "reasons": [
+        "node-type-registry"
+      ]
+    },
+    {
+      "source": "Json Import Error",
+      "count": 1,
+      "offset": 30308344,
+      "score": 6,
+      "reasons": [
+        "desktop-only-high-score"
+      ]
+    },
+    {
+      "source": "Jump to next keyframe",
+      "count": 1,
+      "offset": 29609108,
+      "score": 6,
+      "reasons": [
+        "desktop-only-high-score"
+      ]
+    },
+    {
+      "source": "Jump to previous keyframe",
+      "count": 1,
+      "offset": 29609130,
+      "score": 6,
+      "reasons": [
+        "desktop-only-high-score"
+      ]
+    },
+    {
+      "source": "Keyframes Interpolation",
+      "count": 1,
+      "offset": 30301034,
+      "score": 6,
+      "reasons": [
+        "desktop-only-high-score"
+      ]
+    },
+    {
+      "source": "LearnableDeltaMush",
+      "count": 1,
+      "offset": 28972995,
+      "score": 2,
+      "reasons": [
+        "node-type-registry"
+      ]
+    },
+    {
+      "source": "Left Camera",
+      "count": 1,
+      "offset": 30309904,
+      "score": 6,
+      "reasons": [
+        "desktop-only-high-score"
+      ]
+    },
+    {
+      "source": "Left camera calibration",
+      "count": 1,
+      "offset": 30309485,
+      "score": 6,
+      "reasons": [
+        "desktop-only-high-score"
+      ]
+    },
+    {
+      "source": "Left Camera Filename",
+      "count": 1,
+      "offset": 30311147,
+      "score": 6,
+      "reasons": [
+        "desktop-only-high-score"
+      ]
+    },
+    {
+      "source": "Left click on any audio node in Graph to select it",
+      "count": 1,
+      "offset": 30283064,
+      "score": 6,
+      "reasons": [
+        "desktop-only-high-score",
+        "near-confirmed-ui"
+      ]
+    },
+    {
+      "source": "LeftEyeTransform",
+      "count": 1,
+      "offset": null,
+      "score": 8,
+      "reasons": [
+        "gallery-project-node-name"
+      ],
+      "resourceFiles": [
+        "Basemeshes\\WrapHead2.wrap"
+      ]
+    },
+    {
+      "source": "LeftEyeTransform1",
+      "count": 1,
+      "offset": null,
+      "score": 8,
+      "reasons": [
+        "gallery-project-node-name"
+      ],
+      "resourceFiles": [
+        "Basemeshes\\WrapHead2.wrap"
+      ]
+    },
+    {
+      "source": "Load Calibration Project",
+      "count": 3,
+      "offset": 30302478,
+      "score": 6,
+      "reasons": [
+        "desktop-only-high-score"
+      ]
+    },
+    {
+      "source": "Load camera positions from file",
+      "count": 2,
+      "offset": 29189008,
+      "score": 6,
+      "reasons": [
+        "desktop-only-high-score"
+      ]
+    },
+    {
+      "source": "Load Cameras",
+      "count": 1,
+      "offset": 29188546,
+      "score": 6,
+      "reasons": [
+        "desktop-only-high-score"
+      ]
+    },
+    {
+      "source": "Load images on each view",
+      "count": 1,
+      "offset": 30307258,
+      "score": 6,
+      "reasons": [
+        "desktop-only-high-score"
+      ]
+    },
+    {
+      "source": "Load Selection",
+      "count": 1,
+      "offset": 29199652,
+      "score": 6,
+      "reasons": [
+        "desktop-only-high-score"
+      ]
+    },
+    {
+      "source": "Load Setup",
+      "count": 1,
+      "offset": 30308411,
+      "score": 6,
+      "reasons": [
+        "desktop-only-high-score"
+      ]
+    },
+    {
+      "source": "LoadDetection",
+      "count": 2,
+      "offset": 28965492,
+      "score": 2,
+      "reasons": [
+        "node-type-registry"
+      ]
+    },
+    {
+      "source": "LoadFacialDetection",
+      "count": 2,
+      "offset": 28965506,
+      "score": 2,
+      "reasons": [
+        "node-type-registry"
+      ]
+    },
+    {
+      "source": "Loading error",
+      "count": 1,
+      "offset": 30307364,
+      "score": 6,
+      "reasons": [
+        "desktop-only-high-score"
+      ]
+    },
+    {
+      "source": "Loading Error",
+      "count": 1,
+      "offset": 30308519,
+      "score": 6,
+      "reasons": [
+        "desktop-only-high-score"
+      ]
+    },
+    {
+      "source": "Loading image",
+      "count": 1,
+      "offset": 29164454,
+      "score": 6,
+      "reasons": [
+        "near-confirmed-ui"
+      ]
+    },
+    {
+      "source": "Loading image: %1",
+      "count": 1,
+      "offset": 29164436,
+      "score": 6,
+      "reasons": [
+        "near-confirmed-ui"
+      ]
+    },
+    {
+      "source": "Loading Images",
+      "count": 3,
+      "offset": 30302078,
+      "score": 6,
+      "reasons": [
+        "desktop-only-high-score"
+      ]
+    },
+    {
+      "source": "LowerTeeth",
+      "count": 1,
+      "offset": null,
+      "score": 8,
+      "reasons": [
+        "gallery-project-node-name"
+      ],
+      "resourceFiles": [
+        "Basemeshes\\WrapTeeth.wrap"
+      ]
+    },
+    {
+      "source": "Match Wrap coordinate system",
+      "count": 1,
+      "offset": 29312594,
+      "score": 6,
+      "reasons": [
+        "desktop-only-high-score"
+      ]
+    },
+    {
+      "source": "Max Autosaves Count",
+      "count": 1,
+      "offset": 30298628,
+      "score": 6,
+      "reasons": [
+        "desktop-only-high-score"
+      ]
+    },
+    {
+      "source": "Max Error Reprojection (cm)",
+      "count": 1,
+      "offset": 29948320,
+      "score": 6,
+      "reasons": [
+        "desktop-only-high-score"
+      ]
+    },
+    {
+      "source": "Max Extra Points Per Contour:",
+      "count": 1,
+      "offset": 29349600,
+      "score": 7,
+      "reasons": [
+        "desktop-only-high-score"
+      ]
+    },
+    {
+      "source": "Max OpenGL Texture Size",
+      "count": 1,
+      "offset": 30298881,
+      "score": 6,
+      "reasons": [
+        "desktop-only-high-score"
+      ]
+    },
+    {
+      "source": "Mean Error Reprojection (cm)",
+      "count": 1,
+      "offset": 29948291,
+      "score": 6,
+      "reasons": [
+        "desktop-only-high-score"
+      ]
+    },
+    {
+      "source": "Mesh Segmentation Parameters",
+      "count": 2,
+      "offset": 29621467,
+      "score": 6,
+      "reasons": [
+        "desktop-only-high-score"
+      ]
+    },
+    {
+      "source": "Minimize and Adjust",
+      "count": 1,
+      "offset": 30317712,
+      "score": 4,
+      "reasons": [
+        "near-confirmed-ui"
+      ]
+    },
+    {
+      "source": "Missing geometry",
+      "count": 2,
+      "offset": 29834464,
+      "score": 6,
+      "reasons": [
+        "desktop-only-high-score"
+      ]
+    },
+    {
+      "source": "Missing Geometry",
+      "count": 2,
+      "offset": 29842080,
+      "score": 6,
+      "reasons": [
+        "desktop-only-high-score"
+      ]
+    },
+    {
+      "source": "Missing Neutral geometry",
+      "count": 1,
+      "offset": 29766190,
+      "score": 6,
+      "reasons": [
+        "desktop-only-high-score"
+      ]
+    },
+    {
+      "source": "Missing Reference Geometry",
+      "count": 1,
+      "offset": 29137890,
+      "score": 6,
+      "reasons": [
+        "desktop-only-high-score"
+      ]
+    },
+    {
+      "source": "Missing Source Geometry",
+      "count": 1,
+      "offset": 29137866,
+      "score": 6,
+      "reasons": [
+        "desktop-only-high-score"
+      ]
+    },
+    {
+      "source": "Modify Selected",
+      "count": 4,
+      "offset": 29344176,
+      "score": 6,
+      "reasons": [
+        "desktop-only-high-score"
+      ]
+    },
+    {
+      "source": "Multiple Nodes",
+      "count": 1,
+      "offset": 30282602,
+      "score": 6,
+      "reasons": [
+        "desktop-only-high-score",
+        "near-confirmed-ui"
+      ]
+    },
+    {
+      "source": "Name '%1' is reserved for built-in layout",
+      "count": 1,
+      "offset": 30369288,
+      "score": 6,
+      "reasons": [
+        "desktop-only-high-score"
+      ]
+    },
+    {
+      "source": "Needs recompute. Select or show to compute",
+      "count": 1,
+      "offset": 30270360,
+      "score": 6,
+      "reasons": [
+        "desktop-only-high-score"
+      ]
+    },
+    {
+      "source": "Needs recompute. Select to compute",
+      "count": 1,
+      "offset": 30270320,
+      "score": 6,
+      "reasons": [
+        "desktop-only-high-score"
+      ]
+    },
+    {
+      "source": "NeuralBlendRigToGeom",
+      "count": 2,
+      "offset": 28966806,
+      "score": 2,
+      "reasons": [
+        "node-type-registry"
+      ]
+    },
+    {
+      "source": "NeuralFaceRegression",
+      "count": 2,
+      "offset": 28966827,
+      "score": 2,
+      "reasons": [
+        "node-type-registry"
+      ]
+    },
+    {
+      "source": "NeutralPoints",
+      "count": 1,
+      "offset": null,
+      "score": 8,
+      "reasons": [
+        "gallery-project-node-name"
+      ],
+      "resourceFiles": [
+        "Projects\\PointDetector.wrap"
+      ]
+    },
+    {
+      "source": "NeutralTexture",
+      "count": 3,
+      "offset": null,
+      "score": 8,
+      "reasons": [
+        "gallery-project-node-name"
+      ],
+      "resourceFiles": [
+        "Expressions\\Neutral.wrap",
+        "Projects\\BlendWrapping.wrap",
+        "Projects\\SelectPointsWithSplines.wrap"
+      ]
+    },
+    {
+      "source": "NeutralWrappedTexture",
+      "count": 2,
+      "offset": null,
+      "score": 8,
+      "reasons": [
+        "gallery-project-node-name"
+      ],
+      "resourceFiles": [
+        "Expressions\\NeutralWrapped.wrap",
+        "Projects\\PointDetector.wrap"
+      ]
+    },
+    {
+      "source": "New Calibration Project",
+      "count": 3,
+      "offset": 30302454,
+      "score": 6,
+      "reasons": [
+        "desktop-only-high-score"
+      ]
+    },
+    {
+      "source": "New spline control points count",
+      "count": 1,
+      "offset": 29835248,
+      "score": 6,
+      "reasons": [
+        "desktop-only-high-score"
+      ]
+    },
+    {
+      "source": "Next Selected Frame",
+      "count": 3,
+      "offset": 30301851,
+      "score": 6,
+      "reasons": [
+        "desktop-only-high-score",
+        "near-confirmed-ui"
+      ]
+    },
+    {
+      "source": "Next: Checkerboard",
+      "count": 3,
+      "offset": 30302027,
+      "score": 4,
+      "reasons": [
+        "near-confirmed-ui"
+      ]
+    },
+    {
+      "source": "No calibration frames were added",
+      "count": 1,
+      "offset": 30305384,
+      "score": 6,
+      "reasons": [
+        "desktop-only-high-score"
+      ]
+    },
+    {
+      "source": "No Camera",
+      "count": 1,
+      "offset": 29189928,
+      "score": 6,
+      "reasons": [
+        "desktop-only-high-score"
+      ]
+    },
+    {
+      "source": "No camera",
+      "count": 2,
+      "offset": 29191476,
+      "score": 6,
+      "reasons": [
+        "desktop-only-high-score"
+      ]
+    },
+    {
+      "source": "No cameras or nodes of other types were found. Probably FBX file is corrupted.",
+      "count": 1,
+      "offset": 29314152,
+      "score": 7,
+      "reasons": [
+        "desktop-only-high-score"
+      ]
+    },
+    {
+      "source": "No Compute on Project Open",
+      "count": 1,
+      "offset": 30299801,
+      "score": 6,
+      "reasons": [
+        "desktop-only-high-score"
+      ]
+    },
+    {
+      "source": "No files selected",
+      "count": 1,
+      "offset": 30292992,
+      "score": 6,
+      "reasons": [
+        "desktop-only-high-score"
+      ]
+    },
+    {
+      "source": "No image files which satisfy pattern",
+      "count": 1,
+      "offset": 30301344,
+      "score": 6,
+      "reasons": [
+        "desktop-only-high-score"
+      ]
+    },
+    {
+      "source": "No images",
+      "count": 1,
+      "offset": 29191537,
+      "score": 6,
+      "reasons": [
+        "desktop-only-high-score"
+      ]
+    },
+    {
+      "source": "No materials in geometry",
+      "count": 1,
+      "offset": 29378305,
+      "score": 6,
+      "reasons": [
+        "desktop-only-high-score"
+      ]
+    },
+    {
+      "source": "No model files which satisfy pattern",
+      "count": 1,
+      "offset": 30301240,
+      "score": 6,
+      "reasons": [
+        "desktop-only-high-score"
+      ]
+    },
+    {
+      "source": "No Patches to Export",
+      "count": 2,
+      "offset": 29643363,
+      "score": 6,
+      "reasons": [
+        "desktop-only-high-score"
+      ]
+    },
+    {
+      "source": "No polygroups in geometry",
+      "count": 1,
+      "offset": 29378262,
+      "score": 6,
+      "reasons": [
+        "desktop-only-high-score"
+      ]
+    },
+    {
+      "source": "No Selection",
+      "count": 1,
+      "offset": 29129560,
+      "score": 6,
+      "reasons": [
+        "desktop-only-high-score"
+      ]
+    },
+    {
+      "source": "No viewport Audio",
+      "count": 1,
+      "offset": 30371617,
+      "score": 6,
+      "reasons": [
+        "desktop-only-high-score",
+        "near-confirmed-ui"
+      ]
+    },
+    {
+      "source": "No viewport UV",
+      "count": 1,
+      "offset": 30371602,
+      "score": 6,
+      "reasons": [
+        "desktop-only-high-score",
+        "near-confirmed-ui"
+      ]
+    },
+    {
+      "source": "Node %1 %2 has no UV",
+      "count": 1,
+      "offset": 30282984,
+      "score": 6,
+      "reasons": [
+        "desktop-only-high-score",
+        "near-confirmed-ui"
+      ]
+    },
+    {
+      "source": "Node %1 doens't have a geom output",
+      "count": 1,
+      "offset": 30282864,
+      "score": 6,
+      "reasons": [
+        "desktop-only-high-score",
+        "near-confirmed-ui"
+      ]
+    },
+    {
+      "source": "Node %1 is disabled. Enable it to preview UV",
+      "count": 1,
+      "offset": 30282904,
+      "score": 6,
+      "reasons": [
+        "desktop-only-high-score",
+        "near-confirmed-ui"
+      ]
+    },
+    {
+      "source": "Node %1 is disabled. Enable it to preview waveform",
+      "count": 1,
+      "offset": 30283160,
+      "score": 6,
+      "reasons": [
+        "desktop-only-high-score",
+        "near-confirmed-ui"
+      ]
+    },
+    {
+      "source": "Node containing clipboard extra is missing!",
+      "count": 1,
+      "offset": 30285800,
+      "score": 7,
+      "reasons": [
+        "desktop-only-high-score"
+      ]
+    },
+    {
+      "source": "Node name",
+      "count": 1,
+      "offset": 30291364,
+      "score": 6,
+      "reasons": [
+        "desktop-only-high-score"
+      ]
+    },
+    {
+      "source": "Node Transform",
+      "count": 1,
+      "offset": 29228640,
+      "score": 6,
+      "reasons": [
+        "desktop-only-high-score"
+      ]
+    },
+    {
+      "source": "Normals Facial Wrapping",
+      "count": 1,
+      "offset": 30207550,
+      "score": 6,
+      "reasons": [
+        "desktop-only-high-score"
+      ]
+    },
+    {
+      "source": "Not computed",
+      "count": 1,
+      "offset": 30290526,
+      "score": 6,
+      "reasons": [
+        "desktop-only-high-score"
+      ]
+    },
+    {
+      "source": "Number of files (%1) doesn't match the number of indices (%2)",
+      "count": 1,
+      "offset": 30293544,
+      "score": 6,
+      "reasons": [
+        "desktop-only-high-score",
+        "near-confirmed-ui"
+      ]
+    },
+    {
+      "source": "Object Paths",
+      "count": 1,
+      "offset": 29158530,
+      "score": 6,
+      "reasons": [
+        "desktop-only-high-score"
+      ]
+    },
+    {
+      "source": "Open File",
+      "count": 3,
+      "offset": 29378394,
+      "score": 6,
+      "reasons": [
+        "desktop-only-high-score"
+      ]
+    },
+    {
+      "source": "Open Rush GUI",
+      "count": 1,
+      "offset": 30318207,
+      "score": 6,
+      "reasons": [
+        "desktop-only-high-score",
+        "near-confirmed-ui"
+      ]
+    },
+    {
+      "source": "Openning ZIP was interrupted",
+      "count": 1,
+      "offset": 30330816,
+      "score": 6,
+      "reasons": [
+        "desktop-only-high-score"
+      ]
+    },
+    {
+      "source": "Optical Flow Sampling",
+      "count": 1,
+      "offset": 29181535,
+      "score": 4,
+      "reasons": [
+        "near-confirmed-ui"
+      ]
+    },
+    {
+      "source": "Optical Flow Smoothness Final",
+      "count": 1,
+      "offset": 29181160,
+      "score": 4,
+      "reasons": [
+        "near-confirmed-ui"
+      ]
+    },
+    {
+      "source": "Optical Flow Smoothness Initial",
+      "count": 1,
+      "offset": 29181112,
+      "score": 4,
+      "reasons": [
+        "near-confirmed-ui"
+      ]
+    },
+    {
+      "source": "OpticalFlow",
+      "count": 2,
+      "offset": 28967318,
+      "score": 2,
+      "reasons": [
+        "node-type-registry"
+      ]
+    },
+    {
+      "source": "OpticalFlowWrapping2",
+      "count": 3,
+      "offset": 28966882,
+      "score": 2,
+      "reasons": [
+        "node-type-registry"
+      ]
+    },
+    {
+      "source": "Override Gallery Project",
+      "count": 1,
+      "offset": 30281031,
+      "score": 6,
+      "reasons": [
+        "desktop-only-high-score"
+      ]
+    },
+    {
+      "source": "Paste Nodes",
+      "count": 1,
+      "offset": 30287488,
+      "score": 6,
+      "reasons": [
+        "desktop-only-high-score"
+      ]
+    },
+    {
+      "source": "Paste Nodes Error Message",
+      "count": 1,
+      "offset": 30299401,
+      "score": 6,
+      "reasons": [
+        "desktop-only-high-score"
+      ]
+    },
+    {
+      "source": "Paste Nodes Under Cursor",
+      "count": 1,
+      "offset": 30299376,
+      "score": 6,
+      "reasons": [
+        "desktop-only-high-score"
+      ]
+    },
+    {
+      "source": "Patch Vertex Masks was successfully saved",
+      "count": 2,
+      "offset": 29643448,
+      "score": 6,
+      "reasons": [
+        "desktop-only-high-score"
+      ]
+    },
+    {
+      "source": "PathTracedRender",
+      "count": 2,
+      "offset": 28967330,
+      "score": 2,
+      "reasons": [
+        "node-type-registry"
+      ]
+    },
+    {
+      "source": "Pixel Type",
+      "count": 3,
+      "offset": 29164699,
+      "score": 4,
+      "reasons": [
+        "near-confirmed-ui"
+      ]
+    },
+    {
+      "source": "Play forward. Shortcut: Shift+Right or Dot (.)",
+      "count": 1,
+      "offset": 30338984,
+      "score": 6,
+      "reasons": [
+        "desktop-only-high-score",
+        "near-confirmed-ui"
+      ]
+    },
+    {
+      "source": "Playback restarts at timeline boundaries.",
+      "count": 1,
+      "offset": 30338116,
+      "score": 5,
+      "reasons": [
+        "near-confirmed-ui"
+      ]
+    },
+    {
+      "source": "Please, specify the frame range",
+      "count": 1,
+      "offset": 29016016,
+      "score": 6,
+      "reasons": [
+        "desktop-only-high-score"
+      ]
+    },
+    {
+      "source": "Point %1 is out of image resolution",
+      "count": 1,
+      "offset": 30304976,
+      "score": 6,
+      "reasons": [
+        "desktop-only-high-score"
+      ]
+    },
+    {
+      "source": "Point selection is empty",
+      "count": 1,
+      "offset": 29194076,
+      "score": 6,
+      "reasons": [
+        "desktop-only-high-score"
+      ]
+    },
+    {
+      "source": "Point to Plane Weight",
+      "count": 3,
+      "offset": 29239023,
+      "score": 4,
+      "reasons": [
+        "near-confirmed-ui"
+      ]
+    },
+    {
+      "source": "Point to Point Weight",
+      "count": 3,
+      "offset": 29238965,
+      "score": 4,
+      "reasons": [
+        "near-confirmed-ui"
+      ]
+    },
+    {
+      "source": "Points don't match the geometry",
+      "count": 1,
+      "offset": 29194104,
+      "score": 6,
+      "reasons": [
+        "desktop-only-high-score"
+      ]
+    },
+    {
+      "source": "Points were successfully loaded",
+      "count": 1,
+      "offset": 29635744,
+      "score": 6,
+      "reasons": [
+        "desktop-only-high-score"
+      ]
+    },
+    {
+      "source": "Points were successfully saved",
+      "count": 3,
+      "offset": 29194144,
+      "score": 6,
+      "reasons": [
+        "desktop-only-high-score"
+      ]
+    },
+    {
+      "source": "PointsToScreenPoints",
+      "count": 2,
+      "offset": 28974823,
+      "score": 2,
+      "reasons": [
+        "node-type-registry"
+      ]
+    },
+    {
+      "source": "Pose Blend Rig Error",
+      "count": 2,
+      "offset": 29896773,
+      "score": 6,
+      "reasons": [
+        "desktop-only-high-score"
+      ]
+    },
+    {
+      "source": "Pose Blend Rig Warning",
+      "count": 2,
+      "offset": 29896898,
+      "score": 6,
+      "reasons": [
+        "desktop-only-high-score"
+      ]
+    },
+    {
+      "source": "PoseBlendRig can't copy controls: %1",
+      "count": 2,
+      "offset": 29896736,
+      "score": 6,
+      "reasons": [
+        "desktop-only-high-score"
+      ]
+    },
+    {
+      "source": "Preset '%1' exists and will be replaced",
+      "count": 1,
+      "offset": 30369336,
+      "score": 6,
+      "reasons": [
+        "desktop-only-high-score"
+      ]
+    },
+    {
+      "source": "Preset: Constant",
+      "count": 1,
+      "offset": 29012915,
+      "score": 6,
+      "reasons": [
+        "desktop-only-high-score"
+      ]
+    },
+    {
+      "source": "Preset: Linear",
+      "count": 1,
+      "offset": 29012900,
+      "score": 6,
+      "reasons": [
+        "desktop-only-high-score"
+      ]
+    },
+    {
+      "source": "Prev Frame",
+      "count": 3,
+      "offset": 30301809,
+      "score": 6,
+      "reasons": [
+        "desktop-only-high-score",
+        "near-confirmed-ui"
+      ]
+    },
+    {
+      "source": "Prev Selected Frame",
+      "count": 3,
+      "offset": 30301831,
+      "score": 6,
+      "reasons": [
+        "desktop-only-high-score",
+        "near-confirmed-ui"
+      ]
+    },
+    {
+      "source": "Process images",
+      "count": 1,
+      "offset": 30301143,
+      "score": 6,
+      "reasons": [
+        "desktop-only-high-score"
+      ]
+    },
+    {
+      "source": "Processing frames",
+      "count": 3,
+      "offset": 29709597,
+      "score": 6,
+      "reasons": [
+        "near-confirmed-ui"
+      ]
+    },
+    {
+      "source": "Project file (*.%1)",
+      "count": 1,
+      "offset": 30280626,
+      "score": 6,
+      "reasons": [
+        "desktop-only-high-score"
+      ]
+    },
+    {
+      "source": "Project Has Unsaved Modifications",
+      "count": 2,
+      "offset": 30294656,
+      "score": 6,
+      "reasons": [
+        "desktop-only-high-score",
+        "near-confirmed-ui"
+      ]
+    },
+    {
+      "source": "Projection Mask",
+      "count": 1,
+      "offset": 29188830,
+      "score": 6,
+      "reasons": [
+        "desktop-only-high-score"
+      ]
+    },
+    {
+      "source": "Projection Mask Dist (cm)",
+      "count": 1,
+      "offset": 29181706,
+      "score": 6,
+      "reasons": [
+        "near-confirmed-ui"
+      ]
+    },
+    {
+      "source": "ProjectScreenPoints",
+      "count": 2,
+      "offset": 28967651,
+      "score": 2,
+      "reasons": [
+        "node-type-registry"
+      ]
+    },
+    {
+      "source": "Python context cleared!",
+      "count": 1,
+      "offset": 30294314,
+      "score": 5,
+      "reasons": [
+        "near-confirmed-ui"
+      ]
+    },
+    {
+      "source": "Release *SPACE* to show target mesh",
+      "count": 1,
+      "offset": 29438321,
+      "score": 6,
+      "reasons": [
+        "desktop-only-high-score"
+      ]
+    },
+    {
+      "source": "Reload BlendRigControls Animations",
+      "count": 1,
+      "offset": 30192816,
+      "score": 6,
+      "reasons": [
+        "desktop-only-high-score"
+      ]
+    },
+    {
+      "source": "Remove camera",
+      "count": 1,
+      "offset": 29191500,
+      "score": 6,
+      "reasons": [
+        "desktop-only-high-score"
+      ]
+    },
+    {
+      "source": "Remove Frame",
+      "count": 3,
+      "offset": 30302004,
+      "score": 6,
+      "reasons": [
+        "desktop-only-high-score",
+        "near-confirmed-ui"
+      ]
+    },
+    {
+      "source": "Remove Keyframe",
+      "count": 2,
+      "offset": 29608935,
+      "score": 6,
+      "reasons": [
+        "desktop-only-high-score"
+      ]
+    },
+    {
+      "source": "Remove keyframe",
+      "count": 1,
+      "offset": 29609169,
+      "score": 6,
+      "reasons": [
+        "desktop-only-high-score"
+      ]
+    },
+    {
+      "source": "Remove selected controls and erase its keys data",
+      "count": 1,
+      "offset": 29767056,
+      "score": 6,
+      "reasons": [
+        "desktop-only-high-score"
+      ]
+    },
+    {
+      "source": "Remove selected controls keys from the current keyframe",
+      "count": 1,
+      "offset": 29767216,
+      "score": 6,
+      "reasons": [
+        "desktop-only-high-score"
+      ]
+    },
+    {
+      "source": "Remove selected groups",
+      "count": 1,
+      "offset": 29767554,
+      "score": 6,
+      "reasons": [
+        "desktop-only-high-score"
+      ]
+    },
+    {
+      "source": "Remove selected keyframes",
+      "count": 1,
+      "offset": 29767606,
+      "score": 6,
+      "reasons": [
+        "desktop-only-high-score"
+      ]
+    },
+    {
+      "source": "Remove selected vertex masks",
+      "count": 1,
+      "offset": 29767577,
+      "score": 6,
+      "reasons": [
+        "desktop-only-high-score"
+      ]
+    },
+    {
+      "source": "Rename All Points",
+      "count": 2,
+      "offset": 29344139,
+      "score": 6,
+      "reasons": [
+        "desktop-only-high-score"
+      ]
+    },
+    {
+      "source": "Rename Node",
+      "count": 1,
+      "offset": 30291209,
+      "score": 6,
+      "reasons": [
+        "desktop-only-high-score"
+      ]
+    },
+    {
+      "source": "Repeat: ON",
+      "count": 1,
+      "offset": 30338104,
+      "score": 4,
+      "reasons": [
+        "near-confirmed-ui"
+      ]
+    },
+    {
+      "source": "Request selected controls' values and keyframe them at the current timeline frame",
+      "count": 1,
+      "offset": 29767112,
+      "score": 6,
+      "reasons": [
+        "desktop-only-high-score"
+      ]
+    },
+    {
+      "source": "Request selected group's controls' values and keyframe them at the current timeline frame",
+      "count": 1,
+      "offset": 29767464,
+      "score": 6,
+      "reasons": [
+        "desktop-only-high-score"
+      ]
+    },
+    {
+      "source": "Request selected outer objects names and add them to the list as controls",
+      "count": 1,
+      "offset": 29766968,
+      "score": 6,
+      "reasons": [
+        "desktop-only-high-score"
+      ]
+    },
+    {
+      "source": "Resample Control Points",
+      "count": 4,
+      "offset": 29835628,
+      "score": 6,
+      "reasons": [
+        "desktop-only-high-score"
+      ]
+    },
+    {
+      "source": "Reset %1 Params",
+      "count": 1,
+      "offset": 30131361,
+      "score": 6,
+      "reasons": [
+        "desktop-only-high-score"
+      ]
+    },
+    {
+      "source": "Reset All",
+      "count": 1,
+      "offset": 29434786,
+      "score": 6,
+      "reasons": [
+        "desktop-only-high-score"
+      ]
+    },
+    {
+      "source": "Reset Controls",
+      "count": 2,
+      "offset": 29010397,
+      "score": 6,
+      "reasons": [
+        "desktop-only-high-score"
+      ]
+    },
+    {
+      "source": "Reset Last Frame",
+      "count": 1,
+      "offset": 29212571,
+      "score": 6,
+      "reasons": [
+        "desktop-only-high-score"
+      ]
+    },
+    {
+      "source": "Reset Missing",
+      "count": 1,
+      "offset": 29434796,
+      "score": 6,
+      "reasons": [
+        "desktop-only-high-score"
+      ]
+    },
+    {
+      "source": "Reset Params",
+      "count": 1,
+      "offset": 30129599,
+      "score": 6,
+      "reasons": [
+        "desktop-only-high-score"
+      ]
+    },
+    {
+      "source": "Reset to Default",
+      "count": 3,
+      "offset": 29434626,
+      "score": 6,
+      "reasons": [
+        "desktop-only-high-score"
+      ]
+    },
+    {
+      "source": "Reset Transform",
+      "count": 1,
+      "offset": 29408321,
+      "score": 6,
+      "reasons": [
+        "desktop-only-high-score"
+      ]
+    },
+    {
+      "source": "Resolution Final",
+      "count": 2,
+      "offset": 29180880,
+      "score": 4,
+      "reasons": [
+        "near-confirmed-ui"
+      ]
+    },
+    {
+      "source": "Resolution Initial",
+      "count": 2,
+      "offset": 29180843,
+      "score": 4,
+      "reasons": [
+        "near-confirmed-ui"
+      ]
+    },
+    {
+      "source": "Return All Frames",
+      "count": 3,
+      "offset": 30302286,
+      "score": 6,
+      "reasons": [
+        "desktop-only-high-score"
+      ]
+    },
+    {
+      "source": "Return Frame",
+      "count": 3,
+      "offset": 30302261,
+      "score": 6,
+      "reasons": [
+        "desktop-only-high-score"
+      ]
+    },
+    {
+      "source": "Right Camera",
+      "count": 1,
+      "offset": 30309916,
+      "score": 6,
+      "reasons": [
+        "desktop-only-high-score"
+      ]
+    },
+    {
+      "source": "Right camera calibration",
+      "count": 1,
+      "offset": 30309509,
+      "score": 6,
+      "reasons": [
+        "desktop-only-high-score"
+      ]
+    },
+    {
+      "source": "Right Camera Filename",
+      "count": 1,
+      "offset": 30311168,
+      "score": 6,
+      "reasons": [
+        "desktop-only-high-score"
+      ]
+    },
+    {
+      "source": "Right click or press Tab to create a node",
+      "count": 1,
+      "offset": 30259664,
+      "score": 6,
+      "reasons": [
+        "desktop-only-high-score"
+      ]
+    },
+    {
+      "source": "Right click, press Tab or drag and drop a file here",
+      "count": 1,
+      "offset": 30371688,
+      "score": 6,
+      "reasons": [
+        "desktop-only-high-score",
+        "near-confirmed-ui"
+      ]
+    },
+    {
+      "source": "Right geom: %1 point(s) refer to non-existent triangles",
+      "count": 1,
+      "offset": 30115704,
+      "score": 6,
+      "reasons": [
+        "desktop-only-high-score"
+      ]
+    },
+    {
+      "source": "RightEyeTransform",
+      "count": 1,
+      "offset": null,
+      "score": 8,
+      "reasons": [
+        "gallery-project-node-name"
+      ],
+      "resourceFiles": [
+        "Basemeshes\\WrapHead2.wrap"
+      ]
+    },
+    {
+      "source": "RightEyeTransform1",
+      "count": 1,
+      "offset": null,
+      "score": 8,
+      "reasons": [
+        "gallery-project-node-name"
+      ],
+      "resourceFiles": [
+        "Basemeshes\\WrapHead2.wrap"
+      ]
+    },
+    {
+      "source": "RigidHeadStabilization",
+      "count": 1,
+      "offset": 28969607,
+      "score": 2,
+      "reasons": [
+        "node-type-registry"
+      ]
+    },
+    {
+      "source": "Rigidity Weight",
+      "count": 1,
+      "offset": 29181767,
+      "score": 6,
+      "reasons": [
+        "near-confirmed-ui"
+      ]
+    },
+    {
+      "source": "Rotate View Clockwise",
+      "count": 1,
+      "offset": 29313525,
+      "score": 6,
+      "reasons": [
+        "desktop-only-high-score"
+      ]
+    },
+    {
+      "source": "Rotate View Counterclockwise",
+      "count": 1,
+      "offset": 29313496,
+      "score": 6,
+      "reasons": [
+        "desktop-only-high-score"
+      ]
+    },
+    {
+      "source": "Rotating image",
+      "count": 1,
+      "offset": 29164421,
+      "score": 6,
+      "reasons": [
+        "near-confirmed-ui"
+      ]
+    },
+    {
+      "source": "Run current project in Rush",
+      "count": 1,
+      "offset": 30318221,
+      "score": 6,
+      "reasons": [
+        "desktop-only-high-score",
+        "near-confirmed-ui"
+      ]
+    },
+    {
+      "source": "Run Project Script",
+      "count": 1,
+      "offset": 30280977,
+      "score": 6,
+      "reasons": [
+        "desktop-only-high-score"
+      ]
+    },
+    {
+      "source": "Sampling Radius (cm)",
+      "count": 1,
+      "offset": 29181499,
+      "score": 4,
+      "reasons": [
+        "near-confirmed-ui"
+      ]
+    },
+    {
+      "source": "Save %1 Blend Rig Controls",
+      "count": 1,
+      "offset": 30318489,
+      "score": 6,
+      "reasons": [
+        "desktop-only-high-score",
+        "near-confirmed-ui"
+      ]
+    },
+    {
+      "source": "Save %1 Camera",
+      "count": 1,
+      "offset": 30318369,
+      "score": 6,
+      "reasons": [
+        "desktop-only-high-score",
+        "near-confirmed-ui"
+      ]
+    },
+    {
+      "source": "Save %1 Geom",
+      "count": 1,
+      "offset": 30318326,
+      "score": 6,
+      "reasons": [
+        "desktop-only-high-score",
+        "near-confirmed-ui"
+      ]
+    },
+    {
+      "source": "Save %1 Image",
+      "count": 1,
+      "offset": 30318355,
+      "score": 6,
+      "reasons": [
+        "desktop-only-high-score",
+        "near-confirmed-ui"
+      ]
+    },
+    {
+      "source": "Save %1 Named Points on Triangle",
+      "count": 1,
+      "offset": 30318408,
+      "score": 6,
+      "reasons": [
+        "desktop-only-high-score",
+        "near-confirmed-ui"
+      ]
+    },
+    {
+      "source": "Save %1 Polygon Selection",
+      "count": 1,
+      "offset": 30318463,
+      "score": 6,
+      "reasons": [
+        "desktop-only-high-score",
+        "near-confirmed-ui"
+      ]
+    },
+    {
+      "source": "Save %1 Screen Points",
+      "count": 1,
+      "offset": 30318441,
+      "score": 6,
+      "reasons": [
+        "desktop-only-high-score",
+        "near-confirmed-ui"
+      ]
+    },
+    {
+      "source": "Save %1 Texture",
+      "count": 1,
+      "offset": 30318339,
+      "score": 6,
+      "reasons": [
+        "desktop-only-high-score",
+        "near-confirmed-ui"
+      ]
+    },
+    {
+      "source": "Save %1 Vertex Mask",
+      "count": 1,
+      "offset": 30318384,
+      "score": 6,
+      "reasons": [
+        "desktop-only-high-score",
+        "near-confirmed-ui"
+      ]
+    },
+    {
+      "source": "Save as Default",
+      "count": 1,
+      "offset": 29434817,
+      "score": 6,
+      "reasons": [
+        "desktop-only-high-score"
+      ]
+    },
+    {
+      "source": "Save Blend Rig Controls",
+      "count": 1,
+      "offset": 30295737,
+      "score": 6,
+      "reasons": [
+        "desktop-only-high-score"
+      ]
+    },
+    {
+      "source": "Save Calibration Project",
+      "count": 3,
+      "offset": 30302503,
+      "score": 6,
+      "reasons": [
+        "desktop-only-high-score"
+      ]
+    },
+    {
+      "source": "Save Calibration Project As",
+      "count": 3,
+      "offset": 30302528,
+      "score": 6,
+      "reasons": [
+        "desktop-only-high-score"
+      ]
+    },
+    {
+      "source": "Save camera positions to file",
+      "count": 2,
+      "offset": 29189084,
+      "score": 6,
+      "reasons": [
+        "desktop-only-high-score"
+      ]
+    },
+    {
+      "source": "Save Cameras",
+      "count": 2,
+      "offset": 29188595,
+      "score": 6,
+      "reasons": [
+        "desktop-only-high-score"
+      ]
+    },
+    {
+      "source": "Save Error",
+      "count": 1,
+      "offset": 30310625,
+      "score": 6,
+      "reasons": [
+        "desktop-only-high-score"
+      ]
+    },
+    {
+      "source": "Save File",
+      "count": 3,
+      "offset": 29378404,
+      "score": 6,
+      "reasons": [
+        "desktop-only-high-score"
+      ]
+    },
+    {
+      "source": "Save Geometry",
+      "count": 2,
+      "offset": 30288140,
+      "score": 6,
+      "reasons": [
+        "desktop-only-high-score"
+      ]
+    },
+    {
+      "source": "Save Named Points on Triangle",
+      "count": 1,
+      "offset": 30295325,
+      "score": 6,
+      "reasons": [
+        "desktop-only-high-score"
+      ]
+    },
+    {
+      "source": "Save Polygon Selection",
+      "count": 1,
+      "offset": 30288482,
+      "score": 6,
+      "reasons": [
+        "desktop-only-high-score"
+      ]
+    },
+    {
+      "source": "Save Project As Copy",
+      "count": 1,
+      "offset": 30280701,
+      "score": 6,
+      "reasons": [
+        "desktop-only-high-score"
+      ]
+    },
+    {
+      "source": "Save Project to Gallery",
+      "count": 1,
+      "offset": 30318125,
+      "score": 6,
+      "reasons": [
+        "desktop-only-high-score",
+        "near-confirmed-ui"
+      ]
+    },
+    {
+      "source": "Save Screen Points",
+      "count": 1,
+      "offset": 30295556,
+      "score": 6,
+      "reasons": [
+        "desktop-only-high-score"
+      ]
+    },
+    {
+      "source": "Save selection",
+      "count": 1,
+      "offset": 29199603,
+      "score": 6,
+      "reasons": [
+        "desktop-only-high-score"
+      ]
+    },
+    {
+      "source": "Save Setup",
+      "count": 1,
+      "offset": 30308387,
+      "score": 6,
+      "reasons": [
+        "desktop-only-high-score"
+      ]
+    },
+    {
+      "source": "Save Weights",
+      "count": 1,
+      "offset": 29643317,
+      "score": 6,
+      "reasons": [
+        "desktop-only-high-score"
+      ]
+    },
+    {
+      "source": "SaveDetection",
+      "count": 1,
+      "offset": 28965560,
+      "score": 2,
+      "reasons": [
+        "node-type-registry"
+      ]
+    },
+    {
+      "source": "SaveFacialDetection",
+      "count": 2,
+      "offset": 28965574,
+      "score": 2,
+      "reasons": [
+        "node-type-registry"
+      ]
+    },
+    {
+      "source": "Scan",
+      "count": 5,
+      "offset": null,
+      "score": 8,
+      "reasons": [
+        "gallery-project-node-name"
+      ],
+      "resourceFiles": [
+        "Projects\\HighpolyWrappingInTwoSteps.wrap",
+        "Projects\\SelectPointsWithSplines.wrap",
+        "Projects\\TextureTransfer.wrap",
+        "Projects\\Wrapping.wrap",
+        "Projects\\WrappingInTwoSteps.wrap"
+      ]
+    },
+    {
+      "source": "ScanTexture",
+      "count": 4,
+      "offset": null,
+      "score": 8,
+      "reasons": [
+        "gallery-project-node-name"
+      ],
+      "resourceFiles": [
+        "Projects\\HighpolyWrappingInTwoSteps.wrap",
+        "Projects\\TextureTransfer.wrap",
+        "Projects\\Wrapping.wrap",
+        "Projects\\WrappingInTwoSteps.wrap"
+      ]
+    },
+    {
+      "source": "ScreenPointsToImage",
+      "count": 2,
+      "offset": 28967404,
+      "score": 2,
+      "reasons": [
+        "node-type-registry"
+      ]
+    },
+    {
+      "source": "ScreenPointsToMesh",
+      "count": 2,
+      "offset": 28966962,
+      "score": 2,
+      "reasons": [
+        "node-type-registry"
+      ]
+    },
+    {
+      "source": "SecondWrapping",
+      "count": 2,
+      "offset": null,
+      "score": 8,
+      "reasons": [
+        "gallery-project-node-name"
+      ],
+      "resourceFiles": [
+        "Projects\\HighpolyWrappingInTwoSteps.wrap",
+        "Projects\\WrappingInTwoSteps.wrap"
+      ]
+    },
+    {
+      "source": "Select %1 Image Folder",
+      "count": 3,
+      "offset": 30301871,
+      "score": 6,
+      "reasons": [
+        "desktop-only-high-score",
+        "near-confirmed-ui"
+      ]
+    },
+    {
+      "source": "Select %1 Video File",
+      "count": 3,
+      "offset": 30301894,
+      "score": 6,
+      "reasons": [
+        "desktop-only-high-score",
+        "near-confirmed-ui"
+      ]
+    },
+    {
+      "source": "Select a downloaded gallery ZIP archive",
+      "count": 1,
+      "offset": 30332632,
+      "score": 6,
+      "reasons": [
+        "desktop-only-high-score"
+      ]
+    },
+    {
+      "source": "Select Alembic Object",
+      "count": 2,
+      "offset": 29158352,
+      "score": 6,
+      "reasons": [
+        "desktop-only-high-score"
+      ]
+    },
+    {
+      "source": "Select any keyframe which contains selected controls",
+      "count": 1,
+      "offset": 29767408,
+      "score": 6,
+      "reasons": [
+        "desktop-only-high-score"
+      ]
+    },
+    {
+      "source": "Select Auto Saves Dir",
+      "count": 1,
+      "offset": 30298476,
+      "score": 6,
+      "reasons": [
+        "desktop-only-high-score"
+      ]
+    },
+    {
+      "source": "Select color",
+      "count": 1,
+      "offset": 29000352,
+      "score": 6,
+      "reasons": [
+        "desktop-only-high-score"
+      ]
+    },
+    {
+      "source": "Select Common Dir",
+      "count": 1,
+      "offset": 30293893,
+      "score": 6,
+      "reasons": [
+        "desktop-only-high-score",
+        "near-confirmed-ui"
+      ]
+    },
+    {
+      "source": "Select dirs to add",
+      "count": 1,
+      "offset": 30193044,
+      "score": 6,
+      "reasons": [
+        "desktop-only-high-score"
+      ]
+    },
+    {
+      "source": "Select files",
+      "count": 1,
+      "offset": 28999216,
+      "score": 6,
+      "reasons": [
+        "desktop-only-high-score"
+      ]
+    },
+    {
+      "source": "Select Files",
+      "count": 1,
+      "offset": 30293045,
+      "score": 6,
+      "reasons": [
+        "desktop-only-high-score"
+      ]
+    },
+    {
+      "source": "Select Folder",
+      "count": 1,
+      "offset": 30292032,
+      "score": 6,
+      "reasons": [
+        "desktop-only-high-score"
+      ]
+    },
+    {
+      "source": "Select Gallery Dir",
+      "count": 1,
+      "offset": 30332510,
+      "score": 6,
+      "reasons": [
+        "desktop-only-high-score"
+      ]
+    },
+    {
+      "source": "Select Gallery ZIP to Add",
+      "count": 1,
+      "offset": 30332563,
+      "score": 6,
+      "reasons": [
+        "desktop-only-high-score"
+      ]
+    },
+    {
+      "source": "Select Image Folder",
+      "count": 3,
+      "offset": 30301915,
+      "score": 6,
+      "reasons": [
+        "desktop-only-high-score",
+        "near-confirmed-ui"
+      ]
+    },
+    {
+      "source": "Select Index File",
+      "count": 1,
+      "offset": 30293088,
+      "score": 6,
+      "reasons": [
+        "desktop-only-high-score"
+      ]
+    },
+    {
+      "source": "Select Keyframes",
+      "count": 1,
+      "offset": 29767391,
+      "score": 6,
+      "reasons": [
+        "desktop-only-high-score"
+      ]
+    },
+    {
+      "source": "Select materials",
+      "count": 1,
+      "offset": 29378288,
+      "score": 6,
+      "reasons": [
+        "desktop-only-high-score"
+      ]
+    },
+    {
+      "source": "Select models",
+      "count": 1,
+      "offset": 30285138,
+      "score": 6,
+      "reasons": [
+        "desktop-only-high-score"
+      ]
+    },
+    {
+      "source": "Select next",
+      "count": 1,
+      "offset": 29023773,
+      "score": 6,
+      "reasons": [
+        "desktop-only-high-score"
+      ]
+    },
+    {
+      "source": "Select point format",
+      "count": 1,
+      "offset": 29344960,
+      "score": 6,
+      "reasons": [
+        "desktop-only-high-score"
+      ]
+    },
+    {
+      "source": "Select polygroups",
+      "count": 1,
+      "offset": 29378244,
+      "score": 6,
+      "reasons": [
+        "desktop-only-high-score"
+      ]
+    },
+    {
+      "source": "Select Project Files",
+      "count": 1,
+      "offset": 30292905,
+      "score": 6,
+      "reasons": [
+        "desktop-only-high-score"
+      ]
+    },
+    {
+      "source": "Select Projects",
+      "count": 1,
+      "offset": 30292801,
+      "score": 6,
+      "reasons": [
+        "desktop-only-high-score"
+      ]
+    },
+    {
+      "source": "Select Spline Fitting Params",
+      "count": 1,
+      "offset": 29349568,
+      "score": 6,
+      "reasons": [
+        "desktop-only-high-score"
+      ]
+    },
+    {
+      "source": "Select splines format",
+      "count": 1,
+      "offset": 29835328,
+      "score": 6,
+      "reasons": [
+        "desktop-only-high-score"
+      ]
+    },
+    {
+      "source": "Select Video File",
+      "count": 3,
+      "offset": 30301935,
+      "score": 6,
+      "reasons": [
+        "desktop-only-high-score",
+        "near-confirmed-ui"
+      ]
+    },
+    {
+      "source": "SelectNamedPoints",
+      "count": 1,
+      "offset": 28964651,
+      "score": 2,
+      "reasons": [
+        "node-type-registry"
+      ]
+    },
+    {
+      "source": "SelectPointsWithSplines1",
+      "count": 1,
+      "offset": null,
+      "score": 8,
+      "reasons": [
+        "gallery-project-node-name"
+      ],
+      "resourceFiles": [
+        "Projects\\SelectPointsWithSplines.wrap"
+      ]
+    },
+    {
+      "source": "SelectPolygonsSub1",
+      "count": 2,
+      "offset": null,
+      "score": 8,
+      "reasons": [
+        "gallery-project-node-name"
+      ],
+      "resourceFiles": [
+        "Projects\\HighpolyWrappingInTwoSteps.wrap",
+        "Projects\\WrappingInTwoSteps.wrap"
+      ]
+    },
+    {
+      "source": "Set Current Frame as Reference",
+      "count": 1,
+      "offset": 29608832,
+      "score": 6,
+      "reasons": [
+        "desktop-only-high-score"
+      ]
+    },
+    {
+      "source": "Set Frame Range",
+      "count": 1,
+      "offset": 29158598,
+      "score": 6,
+      "reasons": [
+        "desktop-only-high-score"
+      ]
+    },
+    {
+      "source": "Show Node Help",
+      "count": 1,
+      "offset": 30289847,
+      "score": 6,
+      "reasons": [
+        "desktop-only-high-score"
+      ]
+    },
+    {
+      "source": "Show nodes",
+      "count": 1,
+      "offset": 29189825,
+      "score": 6,
+      "reasons": [
+        "desktop-only-high-score"
+      ]
+    },
+    {
+      "source": "Show Projections on Rays",
+      "count": 1,
+      "offset": 29948256,
+      "score": 6,
+      "reasons": [
+        "desktop-only-high-score"
+      ]
+    },
+    {
+      "source": "Show source geom and points",
+      "count": 1,
+      "offset": 30095232,
+      "score": 6,
+      "reasons": [
+        "desktop-only-high-score"
+      ]
+    },
+    {
+      "source": "Show Unselected Splines",
+      "count": 1,
+      "offset": 30225561,
+      "score": 6,
+      "reasons": [
+        "desktop-only-high-score"
+      ]
+    },
+    {
+      "source": "Skip Frames",
+      "count": 1,
+      "offset": 30300407,
+      "score": 6,
+      "reasons": [
+        "desktop-only-high-score"
+      ]
+    },
+    {
+      "source": "SmoothBlendRigControls",
+      "count": 2,
+      "offset": 28975137,
+      "score": 2,
+      "reasons": [
+        "node-type-registry"
+      ]
+    },
+    {
+      "source": "SnarlTexture",
+      "count": 1,
+      "offset": null,
+      "score": 8,
+      "reasons": [
+        "gallery-project-node-name"
+      ],
+      "resourceFiles": [
+        "Expressions\\Snarl.wrap"
+      ]
+    },
+    {
+      "source": "Sorry, the help page was not found: %1",
+      "count": 1,
+      "offset": 30289808,
+      "score": 6,
+      "reasons": [
+        "desktop-only-high-score"
+      ]
+    },
+    {
+      "source": "Sound node is computing",
+      "count": 1,
+      "offset": 30337219,
+      "score": 6,
+      "reasons": [
+        "desktop-only-high-score"
+      ]
+    },
+    {
+      "source": "Sound node is disabled",
+      "count": 1,
+      "offset": 30337175,
+      "score": 6,
+      "reasons": [
+        "desktop-only-high-score"
+      ]
+    },
+    {
+      "source": "Specify Data Paths",
+      "count": 1,
+      "offset": 30310985,
+      "score": 6,
+      "reasons": [
+        "desktop-only-high-score"
+      ]
+    },
+    {
+      "source": "Specify the paths for exporting cameras.",
+      "count": 1,
+      "offset": 30309664,
+      "score": 7,
+      "reasons": [
+        "desktop-only-high-score"
+      ]
+    },
+    {
+      "source": "Spline control points are located on triangles that are not contained in the geometry",
+      "count": 2,
+      "offset": 29834488,
+      "score": 6,
+      "reasons": [
+        "desktop-only-high-score"
+      ]
+    },
+    {
+      "source": "Spline control points are located on triangles that are not in the geometry",
+      "count": 1,
+      "offset": 29842104,
+      "score": 6,
+      "reasons": [
+        "desktop-only-high-score"
+      ]
+    },
+    {
+      "source": "Splines were successfully saved",
+      "count": 2,
+      "offset": 29834696,
+      "score": 6,
+      "reasons": [
+        "desktop-only-high-score"
+      ]
+    },
+    {
+      "source": "Stand on keyframe",
+      "count": 1,
+      "offset": 29766859,
+      "score": 6,
+      "reasons": [
+        "desktop-only-high-score"
+      ]
+    },
+    {
+      "source": "Stereo camera calibration",
+      "count": 1,
+      "offset": 30309534,
+      "score": 6,
+      "reasons": [
+        "desktop-only-high-score"
+      ]
+    },
+    {
+      "source": "Stereo Camera Calibration",
+      "count": 1,
+      "offset": 30318249,
+      "score": 6,
+      "reasons": [
+        "desktop-only-high-score",
+        "near-confirmed-ui"
+      ]
+    },
+    {
+      "source": "Stereo Camera Calibration: %1",
+      "count": 3,
+      "offset": 30301768,
+      "score": 6,
+      "reasons": [
+        "desktop-only-high-score",
+        "near-confirmed-ui"
+      ]
+    },
+    {
+      "source": "Stereo Reprojection Error: %1 pxl",
+      "count": 3,
+      "offset": 30302376,
+      "score": 6,
+      "reasons": [
+        "desktop-only-high-score"
+      ]
+    },
+    {
+      "source": "StickGeom",
+      "count": 2,
+      "offset": 28967016,
+      "score": 2,
+      "reasons": [
+        "node-type-registry"
+      ]
+    },
+    {
+      "source": "Tag %1 did not exist in the current version of the project.",
+      "count": 1,
+      "offset": 30303432,
+      "score": 7,
+      "reasons": [
+        "desktop-only-high-score"
+      ]
+    },
+    {
+      "source": "Target Folder",
+      "count": 1,
+      "offset": 30293184,
+      "score": 6,
+      "reasons": [
+        "desktop-only-high-score"
+      ]
+    },
+    {
+      "source": "TemporalSmoothing",
+      "count": 2,
+      "offset": 28967059,
+      "score": 2,
+      "reasons": [
+        "node-type-registry"
+      ]
+    },
+    {
+      "source": "Terminate on Error",
+      "count": 1,
+      "offset": 29016118,
+      "score": 6,
+      "reasons": [
+        "desktop-only-high-score"
+      ]
+    },
+    {
+      "source": "Text file (*.txt)",
+      "count": 3,
+      "offset": 29188986,
+      "score": 6,
+      "reasons": [
+        "desktop-only-high-score"
+      ]
+    },
+    {
+      "source": "Text file (*.txt);;All Files (*)",
+      "count": 1,
+      "offset": 29977984,
+      "score": 6,
+      "reasons": [
+        "desktop-only-high-score"
+      ]
+    },
+    {
+      "source": "Texture can't be saved at",
+      "count": 1,
+      "offset": 30310828,
+      "score": 6,
+      "reasons": [
+        "desktop-only-high-score"
+      ]
+    },
+    {
+      "source": "Texture Filename",
+      "count": 1,
+      "offset": 30311112,
+      "score": 6,
+      "reasons": [
+        "desktop-only-high-score"
+      ]
+    },
+    {
+      "source": "TexturingXyzMap",
+      "count": 1,
+      "offset": null,
+      "score": 8,
+      "reasons": [
+        "gallery-project-node-name"
+      ],
+      "resourceFiles": [
+        "TexturingXYZ\\VFaceMapsTransfer.wrap"
+      ]
+    },
+    {
+      "source": "TexturingXyzMesh",
+      "count": 1,
+      "offset": null,
+      "score": 8,
+      "reasons": [
+        "gallery-project-node-name"
+      ],
+      "resourceFiles": [
+        "TexturingXYZ\\VFaceMapsTransfer.wrap"
+      ]
+    },
+    {
+      "source": "The clipboard data was copied from a newer version of the application and can't be opened",
+      "count": 1,
+      "offset": 30285234,
+      "score": 6,
+      "reasons": [
+        "desktop-only-high-score"
+      ]
+    },
+    {
+      "source": "The connection was refused by the peer. Make sure the fortune server is running, and check that the host name and port settings are correct.",
+      "count": 1,
+      "offset": 29736248,
+      "score": 7,
+      "reasons": [
+        "desktop-only-high-score"
+      ]
+    },
+    {
+      "source": "The file is not a camera",
+      "count": 1,
+      "offset": 29313899,
+      "score": 6,
+      "reasons": [
+        "desktop-only-high-score"
+      ]
+    },
+    {
+      "source": "The first image sequence is missing",
+      "count": 1,
+      "offset": 30305272,
+      "score": 6,
+      "reasons": [
+        "desktop-only-high-score"
+      ]
+    },
+    {
+      "source": "The following errors occured during frame %1 computation:",
+      "count": 1,
+      "offset": 29211880,
+      "score": 7,
+      "reasons": [
+        "desktop-only-high-score"
+      ]
+    },
+    {
+      "source": "The following files has duplicate numbers: %1 and %2)",
+      "count": 1,
+      "offset": 30293392,
+      "score": 6,
+      "reasons": [
+        "desktop-only-high-score"
+      ]
+    },
+    {
+      "source": "The host was not found. Please check the host name and port settings.",
+      "count": 1,
+      "offset": 29736176,
+      "score": 7,
+      "reasons": [
+        "desktop-only-high-score"
+      ]
+    },
+    {
+      "source": "The number of points from each view must be equal to the pattern size or zero",
+      "count": 1,
+      "offset": 30305016,
+      "score": 6,
+      "reasons": [
+        "desktop-only-high-score"
+      ]
+    },
+    {
+      "source": "The paths to the camera files must be different.",
+      "count": 1,
+      "offset": 30309712,
+      "score": 7,
+      "reasons": [
+        "desktop-only-high-score"
+      ]
+    },
+    {
+      "source": "The second image sequence is missing",
+      "count": 1,
+      "offset": 30305312,
+      "score": 6,
+      "reasons": [
+        "desktop-only-high-score"
+      ]
+    },
+    {
+      "source": "This code is available in all parameter expressions:",
+      "count": 1,
+      "offset": 30294472,
+      "score": 5,
+      "reasons": [
+        "near-confirmed-ui"
+      ]
+    },
+    {
+      "source": "Timeline %1",
+      "count": 1,
+      "offset": 28964309,
+      "score": 4,
+      "reasons": [
+        "near-confirmed-ui"
+      ]
+    },
+    {
+      "source": "Toggle Wireframe",
+      "count": 1,
+      "offset": 29357785,
+      "score": 6,
+      "reasons": [
+        "desktop-only-high-score"
+      ]
+    },
+    {
+      "source": "TransferNormals",
+      "count": 2,
+      "offset": 28967434,
+      "score": 2,
+      "reasons": [
+        "node-type-registry"
+      ]
+    },
+    {
+      "source": "Transform size differs from frames number",
+      "count": 1,
+      "offset": 30305200,
+      "score": 6,
+      "reasons": [
+        "desktop-only-high-score"
+      ]
+    },
+    {
+      "source": "TransformFromScreenPoints",
+      "count": 2,
+      "offset": 28967133,
+      "score": 2,
+      "reasons": [
+        "node-type-registry"
+      ]
+    },
+    {
+      "source": "Transforms Folder",
+      "count": 1,
+      "offset": 30311129,
+      "score": 6,
+      "reasons": [
+        "desktop-only-high-score"
+      ]
+    },
+    {
+      "source": "TRIAL PERIOD",
+      "count": 1,
+      "offset": 30334475,
+      "score": 4,
+      "reasons": [
+        "near-confirmed-ui"
+      ]
+    },
+    {
+      "source": "TriangulateScreenPoints",
+      "count": 2,
+      "offset": 28967077,
+      "score": 2,
+      "reasons": [
+        "node-type-registry"
+      ]
+    },
+    {
+      "source": "UndistortFacialDetection",
+      "count": 2,
+      "offset": 28973421,
+      "score": 2,
+      "reasons": [
+        "node-type-registry"
+      ]
+    },
+    {
+      "source": "UndistortScreenPoints",
+      "count": 2,
+      "offset": 28973446,
+      "score": 2,
+      "reasons": [
+        "node-type-registry"
+      ]
+    },
+    {
+      "source": "Unknown type %1",
+      "count": 1,
+      "offset": 28965179,
+      "score": 4,
+      "reasons": [
+        "near-confirmed-ui"
+      ]
+    },
+    {
+      "source": "Unselect All",
+      "count": 2,
+      "offset": 29881035,
+      "score": 6,
+      "reasons": [
+        "desktop-only-high-score"
+      ]
+    },
+    {
+      "source": "Unsupported file version",
+      "count": 1,
+      "offset": 30308362,
+      "score": 6,
+      "reasons": [
+        "desktop-only-high-score"
+      ]
+    },
+    {
+      "source": "Unsupported OpenGL Version",
+      "count": 1,
+      "offset": 30379474,
+      "score": 6,
+      "reasons": [
+        "desktop-only-high-score"
+      ]
+    },
+    {
+      "source": "Update Keyframe",
+      "count": 1,
+      "offset": 29766695,
+      "score": 6,
+      "reasons": [
+        "desktop-only-high-score"
+      ]
+    },
+    {
+      "source": "UpperTeeth",
+      "count": 1,
+      "offset": null,
+      "score": 8,
+      "reasons": [
+        "gallery-project-node-name"
+      ],
+      "resourceFiles": [
+        "Basemeshes\\WrapTeeth.wrap"
+      ]
+    },
+    {
+      "source": "Use Projection Mask",
+      "count": 1,
+      "offset": 29181668,
+      "score": 6,
+      "reasons": [
+        "near-confirmed-ui"
+      ]
+    },
+    {
+      "source": "Use Specific Sampling Radius",
+      "count": 1,
+      "offset": 29181444,
+      "score": 4,
+      "reasons": [
+        "near-confirmed-ui"
+      ]
+    },
+    {
+      "source": "Vertex mask doesn't match current geometry",
+      "count": 1,
+      "offset": 29378528,
+      "score": 6,
+      "reasons": [
+        "desktop-only-high-score"
+      ]
+    },
+    {
+      "source": "Vertex mask was successfully saved",
+      "count": 1,
+      "offset": 29378472,
+      "score": 6,
+      "reasons": [
+        "desktop-only-high-score"
+      ]
+    },
+    {
+      "source": "Vertex Mask Weight",
+      "count": 1,
+      "offset": 29181206,
+      "score": 4,
+      "reasons": [
+        "near-confirmed-ui"
+      ]
+    },
+    {
+      "source": "Viewport Audio",
+      "count": 1,
+      "offset": 30370246,
+      "score": 6,
+      "reasons": [
+        "desktop-only-high-score",
+        "near-confirmed-ui"
+      ]
+    },
+    {
+      "source": "Viewport2D Image",
+      "count": 1,
+      "offset": 30298547,
+      "score": 6,
+      "reasons": [
+        "desktop-only-high-score"
+      ]
+    },
+    {
+      "source": "Viewport3D Texture",
+      "count": 1,
+      "offset": 30298528,
+      "score": 6,
+      "reasons": [
+        "desktop-only-high-score"
+      ]
+    },
+    {
+      "source": "WarpImage",
+      "count": 2,
+      "offset": 28967499,
+      "score": 2,
+      "reasons": [
+        "node-type-registry"
+      ]
+    },
+    {
+      "source": "WrapEye",
+      "count": 1,
+      "offset": null,
+      "score": 8,
+      "reasons": [
+        "gallery-project-node-name"
+      ],
+      "resourceFiles": [
+        "Basemeshes\\WrapHead2.wrap"
+      ]
+    },
+    {
+      "source": "WrapFlatEye",
+      "count": 1,
+      "offset": null,
+      "score": 8,
+      "reasons": [
+        "gallery-project-node-name"
+      ],
+      "resourceFiles": [
+        "Basemeshes\\WrapHead2.wrap"
+      ]
+    },
+    {
+      "source": "WrapHead2",
+      "count": 2,
+      "offset": null,
+      "score": 8,
+      "reasons": [
+        "gallery-project-node-name"
+      ],
+      "resourceFiles": [
+        "Basemeshes\\WrapHead2.wrap",
+        "Projects\\SelectPointsWithSplines.wrap"
+      ]
+    },
+    {
+      "source": "WrapHeadTexture2",
+      "count": 2,
+      "offset": null,
+      "score": 8,
+      "reasons": [
+        "gallery-project-node-name"
+      ],
+      "resourceFiles": [
+        "Basemeshes\\WrapHead2.wrap",
+        "Projects\\SelectPointsWithSplines.wrap"
+      ]
+    },
+    {
+      "source": "Wrapping Params",
+      "count": 1,
+      "offset": 29188814,
+      "score": 6,
+      "reasons": [
+        "desktop-only-high-score"
+      ]
+    },
+    {
+      "source": "Wrong frame rotation",
+      "count": 1,
+      "offset": 30308422,
+      "score": 6,
+      "reasons": [
+        "desktop-only-high-score"
+      ]
+    },
+    {
+      "source": "Yes (Realtime Preview)",
+      "count": 1,
+      "offset": 30300485,
+      "score": 6,
+      "reasons": [
+        "desktop-only-high-score"
+      ]
+    },
+    {
+      "source": "YourCharacter",
+      "count": 1,
+      "offset": null,
+      "score": 8,
+      "reasons": [
+        "gallery-project-node-name"
+      ],
+      "resourceFiles": [
+        "TexturingXYZ\\VFaceMapsTransfer.wrap"
+      ]
+    },
+    {
+      "source": "ZIP Archive (*.zip);;Any files (*.*)",
+      "count": 1,
+      "offset": 30332592,
+      "score": 6,
+      "reasons": [
+        "desktop-only-high-score"
+      ]
+    }
+  ],
+  "resourceAudit": {
+    "galleryProjectFiles": 59,
+    "visibleNodeNames": 96,
+    "missingVisibleNodeNames": 32,
+    "visibleNodeTypes": 19,
+    "missingVisibleNodeTypes": 0,
+    "peResourceUiStrings": 0,
+    "peResourceNote": "Wrap.exe PE resources contain only icon and version metadata; Qt UI strings live in .rdata."
+  },
+  "dllAudit": {
+    "applicationWrapper": "FbxSdkCWrapper.dll",
+    "rawCandidates": 9476,
+    "directQtUi": false,
+    "surfaceReviewCandidates": 78,
+    "reviewFile": "translations\\inventory\\fbxsdkcwrapper_ui_surface_review.json"
+  }
+}
