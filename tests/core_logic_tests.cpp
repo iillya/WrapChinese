@@ -68,6 +68,18 @@ int main(int argc, char** argv) {
         Qt::CTRL | Qt::SHIFT | Qt::Key_L);
     ok &= require(WrapChineseConfig::isSupportedShortcut(ctrlShiftL),
                   "modified ordinary key supported");
+    ok &= require(WrapChineseConfig::isSupportedShortcut(
+                      QKeySequence(Qt::SHIFT | Qt::Key_L)),
+                  "shift ordinary key supported");
+    ok &= require(!WrapChineseConfig::isSupportedShortcut(
+                      QKeySequence(Qt::META | Qt::Key_L)),
+                  "Win ordinary key rejected");
+    ok &= require(!WrapChineseConfig::isSupportedShortcut(
+                      QKeySequence(Qt::META | Qt::Key_F3)),
+                  "Win function key rejected");
+    ok &= require(!WrapChineseConfig::isSupportedShortcut(
+                      QKeySequence(Qt::CTRL | Qt::META | Qt::Key_L)),
+                  "Win rejected when mixed with supported modifiers");
     ok &= require(!WrapChineseConfig::isSupportedShortcut(QKeySequence(Qt::Key_L)),
                   "bare ordinary key rejected");
     ok &= require(WrapChineseConfig::shouldActivateShortcut(

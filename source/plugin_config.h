@@ -49,12 +49,13 @@ inline bool isSupportedShortcut(const QKeySequence& shortcut) noexcept {
     const int combination = shortcut[0];
     const int key = combination & ~Qt::KeyboardModifierMask;
     if (!isSupportedBaseKey(key)) return false;
+    constexpr int allowedModifiers = Qt::ControlModifier |
+                                     Qt::ShiftModifier |
+                                     Qt::AltModifier;
+    const int modifiers = combination & Qt::KeyboardModifierMask;
+    if ((modifiers & ~allowedModifiers) != 0) return false;
     if (key >= Qt::Key_F1 && key <= Qt::Key_F12) return true;
-    const Qt::KeyboardModifiers modifiers(
-        combination & Qt::KeyboardModifierMask);
-    return modifiers.testFlag(Qt::ControlModifier) ||
-           modifiers.testFlag(Qt::AltModifier) ||
-           modifiers.testFlag(Qt::MetaModifier);
+    return modifiers != Qt::NoModifier;
 }
 
 inline bool shouldActivateShortcut(const QKeySequence& configured,

@@ -85,7 +85,7 @@ shortcut=F3
 enabled=true
 ```
 
-快捷键支持 F1–F12，或 `Ctrl` / `Alt` / `Win` 加普通按键。普通字母、数字和
+快捷键支持 F1–F12，或 `Ctrl` / `Shift` / `Alt` 加普通按键。普通字母、数字和
 导航键不能在无修饰键时占用，避免影响 Wrap 输入。右键菜单设置会原子保存该
 文件；`Capture/enabled=false` 可关闭 Shift+反引号（~）采集入口。
 

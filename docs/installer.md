@@ -33,7 +33,7 @@ Wrap、`.wrap` 工程和人工添加的文件不会被删除。补丁生成的�
 ## 快捷键与采集配置
 
 统一配置位于 `%LOCALAPPDATA%\WrapChinese\WrapChinese.ini`。快捷键支持
-F1–F12，或 `Ctrl` / `Alt` / `Win` 加普通按键；按下即触发，按住不会重复。
+F1–F12，或 `Ctrl` / `Shift` / `Alt` 加普通按键；按下即触发，按住不会重复。
 将 `Capture/enabled` 改为 `false` 可关闭 Shift+反引号（~）运行时采集。卸载器只
 删除这一个插件配置文件，不会删除同目录外的用户数据。
 
