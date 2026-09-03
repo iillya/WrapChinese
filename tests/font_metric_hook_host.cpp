@@ -200,7 +200,9 @@ int main(int argc, char** argv) {
         }
         hotkeyDialogOpened = hotkeyDialog && captureButton && cancelButton;
         hotkeyDialogStyled = hotkeyDialogOpened && hotkeyDialog->width() == 400 &&
-                             captureButton->font().pixelSize() == 13;
+                             captureButton->font().pixelSize() == 13 &&
+                             !(hotkeyDialog->windowFlags() &
+                               Qt::WindowContextHelpButtonHint);
         if (hotkeyDialogOpened) {
             captureButton->click();
             cancelButton->click();

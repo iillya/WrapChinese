@@ -25,6 +25,7 @@ public:
         setObjectName(QStringLiteral("wrap_chinese_hotkey_settings"));
         setAttribute(Qt::WA_DeleteOnClose);
         setWindowModality(Qt::WindowModal);
+        setWindowFlag(Qt::WindowContextHelpButtonHint, false);
         setFixedWidth(400);
         setFont(QFont(QStringLiteral("Microsoft YaHei UI"), 10));
         setStyleSheet(QStringLiteral(
