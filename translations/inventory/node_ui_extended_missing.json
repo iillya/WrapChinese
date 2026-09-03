@@ -1,0 +1,4172 @@
+{
+  "$schema": "wrap-node-ui-extended-inventory-v1",
+  "source": "C:\\Program Files\\Faceform\\Wrap 2025.10.8\\Wrap.exe",
+  "method": "NUL-delimited strings near confirmed node parameter label/key anchors",
+  "windowBytes": 768,
+  "anchorCount": 655,
+  "candidateCount": 519,
+  "confidenceCounts": {
+    "strong": 245,
+    "contextual": 274
+  },
+  "rejectedReasonCounts": {
+    "code-or-path": 562,
+    "internal-key": 1886,
+    "lowercase-fragment": 277,
+    "shape": 143
+  },
+  "candidates": [
+    {
+      "source": "%1 should not contain isolated vertices, but contains %2",
+      "offset": 29084176,
+      "nearestParameter": "Full Geometry",
+      "distance": 215,
+      "confidence": "strong",
+      "reason": "anchored-node-string"
+    },
+    {
+      "source": "%1 should not contain isolated texture vertices, but contains %2",
+      "offset": 29084240,
+      "nearestParameter": "Full Geometry",
+      "distance": 151,
+      "confidence": "strong",
+      "reason": "anchored-node-string"
+    },
+    {
+      "source": "%1 has nan vertices",
+      "offset": 29084305,
+      "nearestParameter": "Full Geometry",
+      "distance": 86,
+      "confidence": "strong",
+      "reason": "anchored-node-string"
+    },
+    {
+      "source": "%1 has nan UVs",
+      "offset": 29084325,
+      "nearestParameter": "Full Geometry",
+      "distance": 66,
+      "confidence": "strong",
+      "reason": "anchored-node-string"
+    },
+    {
+      "source": "Subset topology does not match the combination of full topology and polygonal selection",
+      "offset": 29084600,
+      "nearestParameter": "Polygons on Full Geometry",
+      "distance": 159,
+      "confidence": "strong",
+      "reason": "anchored-node-string"
+    },
+    {
+      "source": "Base Geometry and Blend %1 have different vertex count",
+      "offset": 29094464,
+      "nearestParameter": "Weights",
+      "distance": 20,
+      "confidence": "strong",
+      "reason": "anchored-node-string"
+    },
+    {
+      "source": "Base Geometry and Blend %1 have different topology",
+      "offset": 29094520,
+      "nearestParameter": "Weights",
+      "distance": 76,
+      "confidence": "strong",
+      "reason": "anchored-node-string"
+    },
+    {
+      "source": "The topology of the source geometry doesn't match the topology of the editing geometry.",
+      "offset": 29116136,
+      "nearestParameter": "Mask Color",
+      "distance": 58,
+      "confidence": "strong",
+      "reason": "anchored-node-string"
+    },
+    {
+      "source": "Cameras count and images count doesn't match.",
+      "offset": 29116224,
+      "nearestParameter": "Mask Color",
+      "distance": 146,
+      "confidence": "strong",
+      "reason": "anchored-node-string"
+    },
+    {
+      "source": "%1 does not match geometry",
+      "offset": 29116270,
+      "nearestParameter": "Mask Color",
+      "distance": 192,
+      "confidence": "strong",
+      "reason": "anchored-node-string"
+    },
+    {
+      "source": "Unknown file format %1",
+      "offset": 29161408,
+      "nearestParameter": "Visual Param",
+      "distance": 213,
+      "confidence": "strong",
+      "reason": "anchored-node-string"
+    },
+    {
+      "source": "The geometry doesn't contain polygons",
+      "offset": 29161472,
+      "nearestParameter": "Visual Param",
+      "distance": 149,
+      "confidence": "strong",
+      "reason": "anchored-node-string"
+    },
+    {
+      "source": "%1 does not have a texture",
+      "offset": 29180311,
+      "nearestParameter": "Source Geometry with Texture to Deform",
+      "distance": 185,
+      "confidence": "strong",
+      "reason": "anchored-node-string"
+    },
+    {
+      "source": "%1 exceeds maximum number of vertices (%2) that can be processed",
+      "offset": 29180344,
+      "nearestParameter": "Source Geometry with Texture to Deform",
+      "distance": 152,
+      "confidence": "strong",
+      "reason": "anchored-node-string"
+    },
+    {
+      "source": "%1 exceeds maximum number of texture vertices (%2) that can be processed",
+      "offset": 29180416,
+      "nearestParameter": "Source Geometry with Texture to Deform",
+      "distance": 80,
+      "confidence": "strong",
+      "reason": "anchored-node-string"
+    },
+    {
+      "source": "The item is not a Json object",
+      "offset": 29192646,
+      "nearestParameter": "Left Geometry",
+      "distance": 226,
+      "confidence": "strong",
+      "reason": "anchored-node-string"
+    },
+    {
+      "source": "Failed to read point %1. %2",
+      "offset": 29192676,
+      "nearestParameter": "Left Geometry",
+      "distance": 196,
+      "confidence": "strong",
+      "reason": "anchored-node-string"
+    },
+    {
+      "source": "Json document is not an array",
+      "offset": 29192704,
+      "nearestParameter": "Left Geometry",
+      "distance": 168,
+      "confidence": "strong",
+      "reason": "anchored-node-string"
+    },
+    {
+      "source": "The points do not match with fixed geometry",
+      "offset": 29208008,
+      "nearestParameter": "Fit Scale",
+      "distance": 68,
+      "confidence": "strong",
+      "reason": "anchored-node-string"
+    },
+    {
+      "source": "Less than 3 points have been specified for floating geometry",
+      "offset": 29208056,
+      "nearestParameter": "Fit Scale",
+      "distance": 116,
+      "confidence": "strong",
+      "reason": "anchored-node-string"
+    },
+    {
+      "source": "Less than 3 points have been specified for fixed geometry",
+      "offset": 29208120,
+      "nearestParameter": "Fit Scale",
+      "distance": 180,
+      "confidence": "strong",
+      "reason": "anchored-node-string"
+    },
+    {
+      "source": "The number of points for floating and fixed geometry is not equal",
+      "offset": 29208184,
+      "nearestParameter": "Fit Scale",
+      "distance": 244,
+      "confidence": "strong",
+      "reason": "anchored-node-string"
+    },
+    {
+      "source": "Frame######.abc",
+      "offset": 29209103,
+      "nearestParameter": "Save Normals",
+      "distance": 95,
+      "confidence": "strong",
+      "reason": "anchored-node-string"
+    },
+    {
+      "source": "The object path is empty",
+      "offset": 29209510,
+      "nearestParameter": "Save as Sequence",
+      "distance": 201,
+      "confidence": "strong",
+      "reason": "anchored-node-string"
+    },
+    {
+      "source": "Can't write non-following frame: expected %1 after %2 (previous successfully written frame), but recieved %3",
+      "offset": 29209544,
+      "nearestParameter": "Save as Sequence",
+      "distance": 235,
+      "confidence": "strong",
+      "reason": "anchored-node-string"
+    },
+    {
+      "source": "Can't create the folder: \"%1\"",
+      "offset": 29213592,
+      "nearestParameter": "Compression",
+      "distance": 55,
+      "confidence": "strong",
+      "reason": "anchored-node-string"
+    },
+    {
+      "source": "Can't save the file. The folder doesn't exist: \"%1\"",
+      "offset": 29213624,
+      "nearestParameter": "Compression",
+      "distance": 87,
+      "confidence": "strong",
+      "reason": "anchored-node-string"
+    },
+    {
+      "source": "Can't save to the file \"%1\": %2",
+      "offset": 29213736,
+      "nearestParameter": "Compression",
+      "distance": 199,
+      "confidence": "strong",
+      "reason": "anchored-node-string"
+    },
+    {
+      "source": "Unknown file format \"%1\"",
+      "offset": 29213768,
+      "nearestParameter": "Compression",
+      "distance": 231,
+      "confidence": "strong",
+      "reason": "anchored-node-string"
+    },
+    {
+      "source": "GLGeometry",
+      "offset": 29218848,
+      "nearestParameter": "Input Geometry",
+      "distance": 183,
+      "confidence": "strong",
+      "reason": "anchored-node-string"
+    },
+    {
+      "source": "Source geometry does not have texture",
+      "offset": 29225632,
+      "nearestParameter": "Filter Method",
+      "distance": 152,
+      "confidence": "strong",
+      "reason": "anchored-node-string"
+    },
+    {
+      "source": "Target geometry does not have texture coordinates",
+      "offset": 29225672,
+      "nearestParameter": "Filter Method",
+      "distance": 192,
+      "confidence": "strong",
+      "reason": "anchored-node-string"
+    },
+    {
+      "source": "Neutral reference file name is not specified",
+      "offset": 29299096,
+      "nearestParameter": "Excluded Floating Polygons",
+      "distance": 233,
+      "confidence": "strong",
+      "reason": "anchored-node-string"
+    },
+    {
+      "source": "Failed to read neutral reference.",
+      "offset": 29299144,
+      "nearestParameter": "Excluded Floating Polygons",
+      "distance": 185,
+      "confidence": "strong",
+      "reason": "anchored-node-string"
+    },
+    {
+      "source": "Base geometry and neutral reference has different vertex count",
+      "offset": 29299184,
+      "nearestParameter": "Excluded Floating Polygons",
+      "distance": 145,
+      "confidence": "strong",
+      "reason": "anchored-node-string"
+    },
+    {
+      "source": "Failed to read blendshape \"%1\". %2",
+      "offset": 29300064,
+      "nearestParameter": "Use Retargeting",
+      "distance": 153,
+      "confidence": "strong",
+      "reason": "anchored-node-string"
+    },
+    {
+      "source": "Unknown format %1",
+      "offset": 29305444,
+      "nearestParameter": "Screen Resolution",
+      "distance": 64,
+      "confidence": "strong",
+      "reason": "anchored-node-string"
+    },
+    {
+      "source": "Points %1 are mistraced",
+      "offset": 29320252,
+      "nearestParameter": "Screen Points",
+      "distance": 78,
+      "confidence": "strong",
+      "reason": "anchored-node-string"
+    },
+    {
+      "source": "Points %1 and %2 more are mistraced",
+      "offset": 29320280,
+      "nearestParameter": "Screen Points",
+      "distance": 50,
+      "confidence": "strong",
+      "reason": "anchored-node-string"
+    },
+    {
+      "source": "Camera has non-zero distortion coefficients",
+      "offset": 29320504,
+      "nearestParameter": "Fail on Mistrace",
+      "distance": 39,
+      "confidence": "strong",
+      "reason": "anchored-node-string"
+    },
+    {
+      "source": "Camera is null",
+      "offset": 29322428,
+      "nearestParameter": "OpenGL Resolution Limit",
+      "distance": 111,
+      "confidence": "strong",
+      "reason": "anchored-node-string"
+    },
+    {
+      "source": "OpenGL MSAA requires OpenGL 3.2 or higher",
+      "offset": 29322496,
+      "nearestParameter": "OpenGL Resolution Limit",
+      "distance": 179,
+      "confidence": "strong",
+      "reason": "anchored-node-string"
+    },
+    {
+      "source": "Annotation has no selected polygons for lips",
+      "offset": 29364344,
+      "nearestParameter": "Facial Annotation",
+      "distance": 196,
+      "confidence": "strong",
+      "reason": "anchored-node-string"
+    },
+    {
+      "source": "Blendshapes file names are not specified",
+      "offset": 29365520,
+      "nearestParameter": "Shape Change Threshold",
+      "distance": 136,
+      "confidence": "strong",
+      "reason": "anchored-node-string"
+    },
+    {
+      "source": "Vertex mask doesn't match input geometry vertices. Please click \"Clear\" button to empty current mask.",
+      "offset": 29376776,
+      "nearestParameter": "Export Mask",
+      "distance": 57,
+      "confidence": "strong",
+      "reason": "anchored-node-string"
+    },
+    {
+      "source": "Min factor can't be bigger than Max factor",
+      "offset": 29376880,
+      "nearestParameter": "Export Mask",
+      "distance": 161,
+      "confidence": "strong",
+      "reason": "anchored-node-string"
+    },
+    {
+      "source": "Can't use geodesic distance because the input geometry has non-manifold topology",
+      "offset": 29376928,
+      "nearestParameter": "Export Mask",
+      "distance": 209,
+      "confidence": "strong",
+      "reason": "anchored-node-string"
+    },
+    {
+      "source": "The number of vertices does not match.",
+      "offset": 29382872,
+      "nearestParameter": "Blend",
+      "distance": 48,
+      "confidence": "strong",
+      "reason": "anchored-node-string"
+    },
+    {
+      "source": "Base Mask is empty",
+      "offset": 29397419,
+      "nearestParameter": "Additional Masks",
+      "distance": 145,
+      "confidence": "strong",
+      "reason": "anchored-node-string"
+    },
+    {
+      "source": "Additional Mask %1 is empty",
+      "offset": 29397438,
+      "nearestParameter": "Additional Masks",
+      "distance": 164,
+      "confidence": "strong",
+      "reason": "anchored-node-string"
+    },
+    {
+      "source": "Base Mask size and Additional Mask %1 size do not match",
+      "offset": 29397472,
+      "nearestParameter": "Additional Masks",
+      "distance": 198,
+      "confidence": "strong",
+      "reason": "anchored-node-string"
+    },
+    {
+      "source": "Geometry doesn't match mask size",
+      "offset": 29397528,
+      "nearestParameter": "Additional Masks",
+      "distance": 254,
+      "confidence": "strong",
+      "reason": "anchored-node-string"
+    },
+    {
+      "source": "The Background has %1 channels, but Foreground has %2 channels!",
+      "offset": 29406408,
+      "nearestParameter": "If Different Channels Count",
+      "distance": 86,
+      "confidence": "strong",
+      "reason": "anchored-node-string"
+    },
+    {
+      "source": "Different input pixel types!",
+      "offset": 29406472,
+      "nearestParameter": "If Different Channels Count",
+      "distance": 150,
+      "confidence": "strong",
+      "reason": "anchored-node-string"
+    },
+    {
+      "source": "The Background must have 1, 3, or 4 channels, but %1 given!",
+      "offset": 29406504,
+      "nearestParameter": "If Different Channels Count",
+      "distance": 182,
+      "confidence": "strong",
+      "reason": "anchored-node-string"
+    },
+    {
+      "source": "The Foreground must have 1, 3, or 4 channels, but %1 given!",
+      "offset": 29406568,
+      "nearestParameter": "If Different Channels Count",
+      "distance": 246,
+      "confidence": "strong",
+      "reason": "anchored-node-string"
+    },
+    {
+      "source": "Error while rendering text on CPU: %1",
+      "offset": 29409472,
+      "nearestParameter": "Background Image",
+      "distance": 156,
+      "confidence": "strong",
+      "reason": "anchored-node-string"
+    },
+    {
+      "source": "Text is not specified",
+      "offset": 29409999,
+      "nearestParameter": "Custom Alignment",
+      "distance": 151,
+      "confidence": "strong",
+      "reason": "anchored-node-string"
+    },
+    {
+      "source": "Font family %1%2%3 isn't supported for CPU rendering",
+      "offset": 29410024,
+      "nearestParameter": "Custom Alignment",
+      "distance": 176,
+      "confidence": "strong",
+      "reason": "anchored-node-string"
+    },
+    {
+      "source": "Error while creating texture:",
+      "offset": 29410104,
+      "nearestParameter": "Custom Alignment",
+      "distance": 256,
+      "confidence": "strong",
+      "reason": "anchored-node-string"
+    },
+    {
+      "source": "Missing inputs!",
+      "offset": 29413272,
+      "nearestParameter": "Predivide/Postmultiply",
+      "distance": 176,
+      "confidence": "strong",
+      "reason": "anchored-node-string"
+    },
+    {
+      "source": "Press \"Compute\" to recompute or \"Accept\" to accept result",
+      "offset": 29418232,
+      "nearestParameter": "Sync Views",
+      "distance": 51,
+      "confidence": "strong",
+      "reason": "anchored-node-string"
+    },
+    {
+      "source": "Pinned points are not suitable for neutral points",
+      "offset": 29418416,
+      "nearestParameter": "Sync Views",
+      "distance": 235,
+      "confidence": "strong",
+      "reason": "anchored-node-string"
+    },
+    {
+      "source": "Initial Geometry does not have texture",
+      "offset": 29559008,
+      "nearestParameter": "Blendshape Compression Type",
+      "distance": 134,
+      "confidence": "strong",
+      "reason": "anchored-node-string"
+    },
+    {
+      "source": "Different number of Expression Meshes and Expression Textures",
+      "offset": 29559048,
+      "nearestParameter": "Blendshape Compression Type",
+      "distance": 174,
+      "confidence": "strong",
+      "reason": "anchored-node-string"
+    },
+    {
+      "source": "Neutral Mesh file name for dynamic texture is not specified",
+      "offset": 29559112,
+      "nearestParameter": "Blendshape Compression Type",
+      "distance": 238,
+      "confidence": "strong",
+      "reason": "anchored-node-string"
+    },
+    {
+      "source": "The number of geometry vertices is not equal",
+      "offset": 29582680,
+      "nearestParameter": "Vertex Mask",
+      "distance": 104,
+      "confidence": "strong",
+      "reason": "anchored-node-string"
+    },
+    {
+      "source": "Topology has polygon with size 2.",
+      "offset": 29587536,
+      "nearestParameter": "Base geometry",
+      "distance": 246,
+      "confidence": "strong",
+      "reason": "anchored-node-string"
+    },
+    {
+      "source": "Press \"Reset\" to clear node state",
+      "offset": 29587832,
+      "nearestParameter": "Target geometry",
+      "distance": 27,
+      "confidence": "strong",
+      "reason": "anchored-node-string"
+    },
+    {
+      "source": "No texture on %1",
+      "offset": 29604136,
+      "nearestParameter": "Target Images",
+      "distance": 210,
+      "confidence": "strong",
+      "reason": "anchored-node-string"
+    },
+    {
+      "source": "Missing input cameras",
+      "offset": 29604153,
+      "nearestParameter": "Target Images",
+      "distance": 193,
+      "confidence": "strong",
+      "reason": "anchored-node-string"
+    },
+    {
+      "source": "Has %1 cameras, %2 images and %3 detections",
+      "offset": 29604176,
+      "nearestParameter": "Target Images",
+      "distance": 170,
+      "confidence": "strong",
+      "reason": "anchored-node-string"
+    },
+    {
+      "source": "Camera #%1 has distorsion",
+      "offset": 29604220,
+      "nearestParameter": "Target Images",
+      "distance": 126,
+      "confidence": "strong",
+      "reason": "anchored-node-string"
+    },
+    {
+      "source": "Reference Frame must be less than the last frame of sequence",
+      "offset": 29608040,
+      "nearestParameter": "Reference Frame",
+      "distance": 248,
+      "confidence": "strong",
+      "reason": "anchored-node-string"
+    },
+    {
+      "source": "Reading detection for \"%1\":",
+      "offset": 29608101,
+      "nearestParameter": "Reference Frame",
+      "distance": 187,
+      "confidence": "strong",
+      "reason": "anchored-node-string"
+    },
+    {
+      "source": "Error in detection \"%1\":",
+      "offset": 29608130,
+      "nearestParameter": "Reference Frame",
+      "distance": 158,
+      "confidence": "strong",
+      "reason": "anchored-node-string"
+    },
+    {
+      "source": "Add image to visualize interpolation result",
+      "offset": 29608448,
+      "nearestParameter": "Keyframes Values",
+      "distance": 36,
+      "confidence": "strong",
+      "reason": "anchored-node-string"
+    },
+    {
+      "source": "Add camera to visualize interpolation result",
+      "offset": 29608496,
+      "nearestParameter": "Keyframes Values",
+      "distance": 84,
+      "confidence": "strong",
+      "reason": "anchored-node-string"
+    },
+    {
+      "source": "Number of keyframes indices and values must be the same",
+      "offset": 29608544,
+      "nearestParameter": "Keyframes Values",
+      "distance": 132,
+      "confidence": "strong",
+      "reason": "anchored-node-string"
+    },
+    {
+      "source": "Missing Reference Deformation Source Geometry",
+      "offset": 29611816,
+      "nearestParameter": "Deformable Geometry",
+      "distance": 86,
+      "confidence": "strong",
+      "reason": "anchored-node-string"
+    },
+    {
+      "source": "Missing Reference Deformable Geometry",
+      "offset": 29611864,
+      "nearestParameter": "Deformable Geometry",
+      "distance": 38,
+      "confidence": "strong",
+      "reason": "anchored-node-string"
+    },
+    {
+      "source": "Reference Deformable Geometry and Deformable Geometry has different vertices count",
+      "offset": 29612184,
+      "nearestParameter": "Reference Deformation Source Geometry",
+      "distance": 128,
+      "confidence": "strong",
+      "reason": "anchored-node-string"
+    },
+    {
+      "source": "Reference and file have different topology",
+      "offset": 29622944,
+      "nearestParameter": "Reference Geometry",
+      "distance": 234,
+      "confidence": "strong",
+      "reason": "anchored-node-string"
+    },
+    {
+      "source": "File Name is not specified",
+      "offset": 29623438,
+      "nearestParameter": "Gaussian Sigma",
+      "distance": 50,
+      "confidence": "strong",
+      "reason": "anchored-node-string"
+    },
+    {
+      "source": "File Name must contain '#'!",
+      "offset": 29623465,
+      "nearestParameter": "Gaussian Sigma",
+      "distance": 77,
+      "confidence": "strong",
+      "reason": "anchored-node-string"
+    },
+    {
+      "source": "Source geometry does not have texture coordinates",
+      "offset": 29633624,
+      "nearestParameter": "Visibility Threshold",
+      "distance": 65,
+      "confidence": "strong",
+      "reason": "anchored-node-string"
+    },
+    {
+      "source": "No %1",
+      "offset": 29633674,
+      "nearestParameter": "Visibility Threshold",
+      "distance": 115,
+      "confidence": "strong",
+      "reason": "anchored-node-string"
+    },
+    {
+      "source": "%1 %2, but %3 %4 given",
+      "offset": 29633680,
+      "nearestParameter": "Visibility Threshold",
+      "distance": 121,
+      "confidence": "strong",
+      "reason": "anchored-node-string"
+    },
+    {
+      "source": "%3 %4, but %1 %2 given",
+      "offset": 29633703,
+      "nearestParameter": "Visibility Threshold",
+      "distance": 144,
+      "confidence": "strong",
+      "reason": "anchored-node-string"
+    },
+    {
+      "source": "View Camera #%1 must have zero distortion",
+      "offset": 29633728,
+      "nearestParameter": "Visibility Threshold",
+      "distance": 169,
+      "confidence": "strong",
+      "reason": "anchored-node-string"
+    },
+    {
+      "source": "View Image #%1 must have 1, 3 or 4 channels",
+      "offset": 29633776,
+      "nearestParameter": "Visibility Threshold",
+      "distance": 217,
+      "confidence": "strong",
+      "reason": "anchored-node-string"
+    },
+    {
+      "source": "Not a JSON object",
+      "offset": 29654996,
+      "nearestParameter": "Import Principal Point",
+      "distance": 197,
+      "confidence": "strong",
+      "reason": "anchored-node-string"
+    },
+    {
+      "source": "Can't match any camera type to \"%1\" extension",
+      "offset": 29655640,
+      "nearestParameter": "Far Plane",
+      "distance": 100,
+      "confidence": "strong",
+      "reason": "anchored-node-string"
+    },
+    {
+      "source": "Loaded cameras list is empty",
+      "offset": 29655687,
+      "nearestParameter": "Far Plane",
+      "distance": 147,
+      "confidence": "strong",
+      "reason": "anchored-node-string"
+    },
+    {
+      "source": "Can't load camera at index %1, while loaded only %2 cameras",
+      "offset": 29655728,
+      "nearestParameter": "Far Plane",
+      "distance": 188,
+      "confidence": "strong",
+      "reason": "anchored-node-string"
+    },
+    {
+      "source": "Can't load camera with name \"%1\". Available camera names are: %2",
+      "offset": 29655792,
+      "nearestParameter": "Far Plane",
+      "distance": 252,
+      "confidence": "strong",
+      "reason": "anchored-node-string"
+    },
+    {
+      "source": "LONGEST DIAG",
+      "offset": 29658760,
+      "nearestParameter": "Input Image",
+      "distance": 191,
+      "confidence": "strong",
+      "reason": "anchored-node-string"
+    },
+    {
+      "source": "Outer dim",
+      "offset": 29658773,
+      "nearestParameter": "Input Image",
+      "distance": 178,
+      "confidence": "strong",
+      "reason": "anchored-node-string"
+    },
+    {
+      "source": "Image sholud contatins 1, 3, or 4 channels!",
+      "offset": 29659144,
+      "nearestParameter": "Alpha Threshold",
+      "distance": 34,
+      "confidence": "strong",
+      "reason": "anchored-node-string"
+    },
+    {
+      "source": "C(knN",
+      "offset": 29659231,
+      "nearestParameter": "Alpha Threshold",
+      "distance": 121,
+      "confidence": "strong",
+      "reason": "anchored-node-string"
+    },
+    {
+      "source": "Some points are off screen",
+      "offset": 29662840,
+      "nearestParameter": "Fail if Off Screen",
+      "distance": 122,
+      "confidence": "strong",
+      "reason": "anchored-node-string"
+    },
+    {
+      "source": "%1 are missing",
+      "offset": 29663923,
+      "nearestParameter": "Ignore UV",
+      "distance": 20,
+      "confidence": "strong",
+      "reason": "anchored-node-string"
+    },
+    {
+      "source": "Merging polygons with UV coordinates and polygons without them, impossible",
+      "offset": 29663944,
+      "nearestParameter": "Ignore UV",
+      "distance": 41,
+      "confidence": "strong",
+      "reason": "anchored-node-string"
+    },
+    {
+      "source": "Deformation Source Geometry and Deformation Target Geometry has different topology",
+      "offset": 29712440,
+      "nearestParameter": "Scale Distance",
+      "distance": 33,
+      "confidence": "strong",
+      "reason": "anchored-node-string"
+    },
+    {
+      "source": "For subdivision Deformation Source Geometry and Deformation Target Geometry should be manifold",
+      "offset": 29712528,
+      "nearestParameter": "Scale Distance",
+      "distance": 121,
+      "confidence": "strong",
+      "reason": "anchored-node-string"
+    },
+    {
+      "source": "Currently unable to work with more than 4 objects",
+      "offset": 29716536,
+      "nearestParameter": "Reference Objects",
+      "distance": 174,
+      "confidence": "strong",
+      "reason": "anchored-node-string"
+    },
+    {
+      "source": "Press compute button to start processing",
+      "offset": 29716592,
+      "nearestParameter": "Reference Objects",
+      "distance": 118,
+      "confidence": "strong",
+      "reason": "anchored-node-string"
+    },
+    {
+      "source": "RetargeterData",
+      "offset": 29730727,
+      "nearestParameter": "Geom Sequence",
+      "distance": 124,
+      "confidence": "strong",
+      "reason": "anchored-node-string"
+    },
+    {
+      "source": "Control named %1 has no vertex masks assigned!",
+      "offset": 29731104,
+      "nearestParameter": "N Samples per Batch",
+      "distance": 63,
+      "confidence": "strong",
+      "reason": "anchored-node-string"
+    },
+    {
+      "source": "Keyframe geoms at %1 and %2 has different number of vertices: %3 and %4",
+      "offset": 29731280,
+      "nearestParameter": "N Samples per Batch",
+      "distance": 239,
+      "confidence": "strong",
+      "reason": "anchored-node-string"
+    },
+    {
+      "source": "If specified, Deformable Region Mask must contain Surface Masks entirely",
+      "offset": 29787712,
+      "nearestParameter": "Smoothess Weight",
+      "distance": 37,
+      "confidence": "strong",
+      "reason": "anchored-node-string"
+    },
+    {
+      "source": "Surface Masks must not be empty",
+      "offset": 29787792,
+      "nearestParameter": "Smoothess Weight",
+      "distance": 117,
+      "confidence": "strong",
+      "reason": "anchored-node-string"
+    },
+    {
+      "source": "Preparations:",
+      "offset": 29787886,
+      "nearestParameter": "Smoothess Weight",
+      "distance": 211,
+      "confidence": "strong",
+      "reason": "anchored-node-string"
+    },
+    {
+      "source": "Lip Indices:",
+      "offset": 29787928,
+      "nearestParameter": "Smoothess Weight",
+      "distance": 253,
+      "confidence": "strong",
+      "reason": "anchored-node-string"
+    },
+    {
+      "source": "Bumped WrapAI version to 2025.10.9",
+      "offset": 29800496,
+      "nearestParameter": "Template Geom",
+      "distance": 249,
+      "confidence": "strong",
+      "reason": "anchored-node-string"
+    },
+    {
+      "source": "Points on Triangle has %1 triangle index, but geometry has only %2 triangles",
+      "offset": 29818912,
+      "nearestParameter": "Reality Capture",
+      "distance": 159,
+      "confidence": "strong",
+      "reason": "anchored-node-string"
+    },
+    {
+      "source": "Eye_L_Sideways",
+      "offset": 29853442,
+      "nearestParameter": "Fit Symmetry Exclude Controls",
+      "distance": 245,
+      "confidence": "strong",
+      "reason": "anchored-node-string"
+    },
+    {
+      "source": "SaveBlendRigControls",
+      "offset": 29867232,
+      "nearestParameter": "Compute Current Frame",
+      "distance": 139,
+      "confidence": "strong",
+      "reason": "anchored-node-string"
+    },
+    {
+      "source": "Composing images",
+      "offset": 29872309,
+      "nearestParameter": "Font Size, pt",
+      "distance": 235,
+      "confidence": "strong",
+      "reason": "anchored-node-string"
+    },
+    {
+      "source": "Output ONNX vertices number (%1) mismatches BlendRig vertices number (%2)",
+      "offset": 29890776,
+      "nearestParameter": "Input Rig controls number (%1) mismatches controls list number (%2)",
+      "distance": 152,
+      "confidence": "strong",
+      "reason": "anchored-node-string"
+    },
+    {
+      "source": "Controls List does not contain \"%1\" control from Input Rig controls",
+      "offset": 29890856,
+      "nearestParameter": "Input Rig controls number (%1) mismatches controls list number (%2)",
+      "distance": 72,
+      "confidence": "strong",
+      "reason": "anchored-node-string"
+    },
+    {
+      "source": "BlendRig",
+      "offset": 29892416,
+      "nearestParameter": "Path To Controls List",
+      "distance": 80,
+      "confidence": "strong",
+      "reason": "anchored-node-string"
+    },
+    {
+      "source": "Please, press \"Controls from Reference Blend Rig\" button",
+      "offset": 29896136,
+      "nearestParameter": "Control Values",
+      "distance": 31,
+      "confidence": "strong",
+      "reason": "anchored-node-string"
+    },
+    {
+      "source": "Controls List is not correct",
+      "offset": 29900586,
+      "nearestParameter": "Geom To Latent",
+      "distance": 133,
+      "confidence": "strong",
+      "reason": "anchored-node-string"
+    },
+    {
+      "source": "Controls List do not contain \"%1\" control name from Input Rig controls",
+      "offset": 29900616,
+      "nearestParameter": "Geom To Latent",
+      "distance": 103,
+      "confidence": "strong",
+      "reason": "anchored-node-string"
+    },
+    {
+      "source": "NeuralBlendRigLatent",
+      "offset": 29902345,
+      "nearestParameter": "Path To Neural Rig Encoder",
+      "distance": 188,
+      "confidence": "strong",
+      "reason": "anchored-node-string"
+    },
+    {
+      "source": "DenoiseScreenPointSequence",
+      "offset": 29903188,
+      "nearestParameter": "Image for Preview",
+      "distance": 150,
+      "confidence": "strong",
+      "reason": "anchored-node-string"
+    },
+    {
+      "source": "QMap(",
+      "offset": 29903254,
+      "nearestParameter": "Image for Preview",
+      "distance": 84,
+      "confidence": "strong",
+      "reason": "anchored-node-string"
+    },
+    {
+      "source": "QVector",
+      "offset": 29903263,
+      "nearestParameter": "Image for Preview",
+      "distance": 75,
+      "confidence": "strong",
+      "reason": "anchored-node-string"
+    },
+    {
+      "source": "Names differ from reference: %1",
+      "offset": 29903816,
+      "nearestParameter": "If Missing",
+      "distance": 192,
+      "confidence": "strong",
+      "reason": "anchored-node-string"
+    },
+    {
+      "source": "Top camera has non-zero distortion coefficients!",
+      "offset": 29916680,
+      "nearestParameter": "Camera Bottom",
+      "distance": 96,
+      "confidence": "strong",
+      "reason": "anchored-node-string"
+    },
+    {
+      "source": "Bottom camera has non-zero distortion coefficients!",
+      "offset": 29916736,
+      "nearestParameter": "Camera Bottom",
+      "distance": 152,
+      "confidence": "strong",
+      "reason": "anchored-node-string"
+    },
+    {
+      "source": "Elapsed time for stereo profile:",
+      "offset": 29916792,
+      "nearestParameter": "Camera Bottom",
+      "distance": 208,
+      "confidence": "strong",
+      "reason": "anchored-node-string"
+    },
+    {
+      "source": "Given %1 weights, instead of %2",
+      "offset": 29918936,
+      "nearestParameter": "Neutral Transform",
+      "distance": 50,
+      "confidence": "strong",
+      "reason": "anchored-node-string"
+    },
+    {
+      "source": "Profile path is not exist",
+      "offset": 29922038,
+      "nearestParameter": "Tie Corners",
+      "distance": 55,
+      "confidence": "strong",
+      "reason": "anchored-node-string"
+    },
+    {
+      "source": "Loading profile",
+      "offset": 29922064,
+      "nearestParameter": "Tie Corners",
+      "distance": 81,
+      "confidence": "strong",
+      "reason": "anchored-node-string"
+    },
+    {
+      "source": "<uninitialized>",
+      "offset": 29922236,
+      "nearestParameter": "Tie Corners",
+      "distance": 253,
+      "confidence": "strong",
+      "reason": "anchored-node-string"
+    },
+    {
+      "source": "WGLPathTracer render finished in",
+      "offset": 29940744,
+      "nearestParameter": "Light Sources",
+      "distance": 254,
+      "confidence": "strong",
+      "reason": "anchored-node-string"
+    },
+    {
+      "source": "Saving Masks",
+      "offset": 29944928,
+      "nearestParameter": "Neutral Mesh File Name",
+      "distance": 227,
+      "confidence": "strong",
+      "reason": "anchored-node-string"
+    },
+    {
+      "source": "Can't save to the file: \"%1\"",
+      "offset": 29945538,
+      "nearestParameter": "Save Relaxation Masks",
+      "distance": 121,
+      "confidence": "strong",
+      "reason": "anchored-node-string"
+    },
+    {
+      "source": "The neutral directory name is empty",
+      "offset": 29945576,
+      "nearestParameter": "Save Relaxation Masks",
+      "distance": 159,
+      "confidence": "strong",
+      "reason": "anchored-node-string"
+    },
+    {
+      "source": "The blendshapes directory name is empty",
+      "offset": 29945616,
+      "nearestParameter": "Save Relaxation Masks",
+      "distance": 199,
+      "confidence": "strong",
+      "reason": "anchored-node-string"
+    },
+    {
+      "source": "The masks directory name is empty",
+      "offset": 29945656,
+      "nearestParameter": "Save Relaxation Masks",
+      "distance": 239,
+      "confidence": "strong",
+      "reason": "anchored-node-string"
+    },
+    {
+      "source": "The number of cameras should match the number of screen points",
+      "offset": 29947352,
+      "nearestParameter": "Cube Size",
+      "distance": 150,
+      "confidence": "strong",
+      "reason": "anchored-node-string"
+    },
+    {
+      "source": "All input screen points must contain the same number of points",
+      "offset": 29947416,
+      "nearestParameter": "Cube Size",
+      "distance": 214,
+      "confidence": "strong",
+      "reason": "anchored-node-string"
+    },
+    {
+      "source": "MbP?",
+      "offset": 29949412,
+      "nearestParameter": "Optimizing Rig Neutral Geom",
+      "distance": 47,
+      "confidence": "strong",
+      "reason": "anchored-node-string"
+    },
+    {
+      "source": "Screen Points should have at least 1 point",
+      "offset": 29979792,
+      "nearestParameter": "Z Offset",
+      "distance": 86,
+      "confidence": "strong",
+      "reason": "anchored-node-string"
+    },
+    {
+      "source": "Point \"%1\" doesn't have a number",
+      "offset": 29980744,
+      "nearestParameter": "Reference Screen Points",
+      "distance": 205,
+      "confidence": "strong",
+      "reason": "anchored-node-string"
+    },
+    {
+      "source": "Can't convert number in point \"%1\"",
+      "offset": 29980784,
+      "nearestParameter": "Reference Screen Points",
+      "distance": 165,
+      "confidence": "strong",
+      "reason": "anchored-node-string"
+    },
+    {
+      "source": "The point named \"%1\" does not belong to any point group.",
+      "offset": 29980832,
+      "nearestParameter": "Reference Screen Points",
+      "distance": 117,
+      "confidence": "strong",
+      "reason": "anchored-node-string"
+    },
+    {
+      "source": "Vertices count not match to Reference Screen Points count",
+      "offset": 29981136,
+      "nearestParameter": "Reference Screen Points",
+      "distance": 187,
+      "confidence": "strong",
+      "reason": "anchored-node-string"
+    },
+    {
+      "source": "Floating image cannot be two-channel",
+      "offset": 29995768,
+      "nearestParameter": "Fit Mask",
+      "distance": 191,
+      "confidence": "strong",
+      "reason": "anchored-node-string"
+    },
+    {
+      "source": "Fixed image cannot be two-channel",
+      "offset": 29995808,
+      "nearestParameter": "Fit Mask",
+      "distance": 151,
+      "confidence": "strong",
+      "reason": "anchored-node-string"
+    },
+    {
+      "source": "Patch Width is greater than the Floating Image width",
+      "offset": 29995848,
+      "nearestParameter": "Fit Mask",
+      "distance": 111,
+      "confidence": "strong",
+      "reason": "anchored-node-string"
+    },
+    {
+      "source": "Patch Height is greater than the Floating Image height",
+      "offset": 29995904,
+      "nearestParameter": "Fit Mask",
+      "distance": 55,
+      "confidence": "strong",
+      "reason": "anchored-node-string"
+    },
+    {
+      "source": "Press \"Compute\" to recompute result",
+      "offset": 29996000,
+      "nearestParameter": "Smooth Mask",
+      "distance": 24,
+      "confidence": "strong",
+      "reason": "anchored-node-string"
+    },
+    {
+      "source": "Blendshape contains %1 vertices, but %2 required",
+      "offset": 30004304,
+      "nearestParameter": "Blendshape Name",
+      "distance": 81,
+      "confidence": "strong",
+      "reason": "anchored-node-string"
+    },
+    {
+      "source": "Blendshape and Blend Rig have different topologies",
+      "offset": 30004360,
+      "nearestParameter": "Blendshape Name",
+      "distance": 137,
+      "confidence": "strong",
+      "reason": "anchored-node-string"
+    },
+    {
+      "source": "Blendshape name must not be empty",
+      "offset": 30004416,
+      "nearestParameter": "Blendshape Name",
+      "distance": 193,
+      "confidence": "strong",
+      "reason": "anchored-node-string"
+    },
+    {
+      "source": "Insert Blendshape to BlendRig",
+      "offset": 30004450,
+      "nearestParameter": "Blendshape Name",
+      "distance": 227,
+      "confidence": "strong",
+      "reason": "anchored-node-string"
+    },
+    {
+      "source": "Loading KeyFrames",
+      "offset": 30059559,
+      "nearestParameter": "Weight Points Prefit End",
+      "distance": 71,
+      "confidence": "strong",
+      "reason": "anchored-node-string"
+    },
+    {
+      "source": "Keyframes file is not specified",
+      "offset": 30059584,
+      "nearestParameter": "Weight Points Prefit End",
+      "distance": 96,
+      "confidence": "strong",
+      "reason": "anchored-node-string"
+    },
+    {
+      "source": "Dirs",
+      "offset": 30073239,
+      "nearestParameter": "Component Mode",
+      "distance": 128,
+      "confidence": "strong",
+      "reason": "anchored-node-string"
+    },
+    {
+      "source": "Json",
+      "offset": 30073464,
+      "nearestParameter": "Global Components",
+      "distance": 68,
+      "confidence": "strong",
+      "reason": "anchored-node-string"
+    },
+    {
+      "source": "Masks param is empty, while Component Mode param is set to Per Mask",
+      "offset": 30074136,
+      "nearestParameter": "Compute Mean",
+      "distance": 68,
+      "confidence": "strong",
+      "reason": "anchored-node-string"
+    },
+    {
+      "source": "Components per Mask File param is empty, while Component Mode param is set to Per Mask",
+      "offset": 30074208,
+      "nearestParameter": "Compute Mean",
+      "distance": 140,
+      "confidence": "strong",
+      "reason": "anchored-node-string"
+    },
+    {
+      "source": "Attribute separator isn`t specified",
+      "offset": 30074296,
+      "nearestParameter": "Compute Mean",
+      "distance": 228,
+      "confidence": "strong",
+      "reason": "anchored-node-string"
+    },
+    {
+      "source": "XYZ",
+      "offset": 30085058,
+      "nearestParameter": "Rotation Order",
+      "distance": 24,
+      "confidence": "strong",
+      "reason": "anchored-node-string"
+    },
+    {
+      "source": "XZY",
+      "offset": 30085062,
+      "nearestParameter": "Rotation Order",
+      "distance": 20,
+      "confidence": "strong",
+      "reason": "anchored-node-string"
+    },
+    {
+      "source": "YXZ",
+      "offset": 30085066,
+      "nearestParameter": "Rotation Order",
+      "distance": 16,
+      "confidence": "strong",
+      "reason": "anchored-node-string"
+    },
+    {
+      "source": "YZX",
+      "offset": 30085070,
+      "nearestParameter": "Rotation Order",
+      "distance": 12,
+      "confidence": "strong",
+      "reason": "anchored-node-string"
+    },
+    {
+      "source": "Error in rest pose:",
+      "offset": 30085171,
+      "nearestParameter": "Cluster Name",
+      "distance": 60,
+      "confidence": "strong",
+      "reason": "anchored-node-string"
+    },
+    {
+      "source": "Reading skeleton pose",
+      "offset": 30085192,
+      "nearestParameter": "Cluster Name",
+      "distance": 81,
+      "confidence": "strong",
+      "reason": "anchored-node-string"
+    },
+    {
+      "source": "Error in skeleton poses:",
+      "offset": 30085214,
+      "nearestParameter": "Cluster Name",
+      "distance": 103,
+      "confidence": "strong",
+      "reason": "anchored-node-string"
+    },
+    {
+      "source": "Error in skeleton pose %1:",
+      "offset": 30085240,
+      "nearestParameter": "Cluster Name",
+      "distance": 129,
+      "confidence": "strong",
+      "reason": "anchored-node-string"
+    },
+    {
+      "source": "Error: Neutral geom has %1 vertices. Rest pose skin cluster has %2 vertices.",
+      "offset": 30085352,
+      "nearestParameter": "Cluster Name",
+      "distance": 241,
+      "confidence": "strong",
+      "reason": "anchored-node-string"
+    },
+    {
+      "source": "Transfering points",
+      "offset": 30094013,
+      "nearestParameter": "Max Projection Distance (cm)",
+      "distance": 71,
+      "confidence": "strong",
+      "reason": "anchored-node-string"
+    },
+    {
+      "source": "Point \"%1\" is misstraced",
+      "offset": 30094032,
+      "nearestParameter": "Max Projection Distance (cm)",
+      "distance": 90,
+      "confidence": "strong",
+      "reason": "anchored-node-string"
+    },
+    {
+      "source": "No cached geometry for frame %1",
+      "offset": 30096064,
+      "nearestParameter": "Capacity",
+      "distance": 79,
+      "confidence": "strong",
+      "reason": "anchored-node-string"
+    },
+    {
+      "source": "Iter",
+      "offset": 30097610,
+      "nearestParameter": "Reference JointRig",
+      "distance": 208,
+      "confidence": "strong",
+      "reason": "anchored-node-string"
+    },
+    {
+      "source": "<Neutral",
+      "offset": 30097791,
+      "nearestParameter": "Reference JointRig",
+      "distance": 27,
+      "confidence": "strong",
+      "reason": "anchored-node-string"
+    },
+    {
+      "source": "Error:",
+      "offset": 30098717,
+      "nearestParameter": "Init transforms per bones",
+      "distance": 66,
+      "confidence": "strong",
+      "reason": "anchored-node-string"
+    },
+    {
+      "source": "Transforms:",
+      "offset": 30098729,
+      "nearestParameter": "Init transforms per bones",
+      "distance": 78,
+      "confidence": "strong",
+      "reason": "anchored-node-string"
+    },
+    {
+      "source": "Save Optimized Poses Dir is empty",
+      "offset": 30098744,
+      "nearestParameter": "Init transforms per bones",
+      "distance": 93,
+      "confidence": "strong",
+      "reason": "anchored-node-string"
+    },
+    {
+      "source": "Mismatch number vertices. Target %1 has %2 vertices. Neutral has %3 vertices.",
+      "offset": 30098848,
+      "nearestParameter": "Init transforms per bones",
+      "distance": 197,
+      "confidence": "strong",
+      "reason": "anchored-node-string"
+    },
+    {
+      "source": "Controls List is corrupted: key '%1' is missing.",
+      "offset": 30108768,
+      "nearestParameter": "References Blend Rig",
+      "distance": 246,
+      "confidence": "strong",
+      "reason": "anchored-node-string"
+    },
+    {
+      "source": "Invalid format version: %1. Expected version is 1.",
+      "offset": 30108824,
+      "nearestParameter": "References Blend Rig",
+      "distance": 190,
+      "confidence": "strong",
+      "reason": "anchored-node-string"
+    },
+    {
+      "source": "Failed to parse. Key '%1'.",
+      "offset": 30108875,
+      "nearestParameter": "References Blend Rig",
+      "distance": 139,
+      "confidence": "strong",
+      "reason": "anchored-node-string"
+    },
+    {
+      "source": "%1 is not specified",
+      "offset": 30108952,
+      "nearestParameter": "References Blend Rig",
+      "distance": 62,
+      "confidence": "strong",
+      "reason": "anchored-node-string"
+    },
+    {
+      "source": "File doesn't exist: %1",
+      "offset": 30108972,
+      "nearestParameter": "References Blend Rig",
+      "distance": 42,
+      "confidence": "strong",
+      "reason": "anchored-node-string"
+    },
+    {
+      "source": "Floating and Fixed Images must have same size",
+      "offset": 30111848,
+      "nearestParameter": "Deformation Flow",
+      "distance": 36,
+      "confidence": "strong",
+      "reason": "anchored-node-string"
+    },
+    {
+      "source": "Requires at Least One View.",
+      "offset": 30119389,
+      "nearestParameter": "Example Ind to Return",
+      "distance": 54,
+      "confidence": "strong",
+      "reason": "anchored-node-string"
+    },
+    {
+      "source": "Need Screen Points For Each View For Each Example (Cameras * Examples)",
+      "offset": 30119424,
+      "nearestParameter": "Example Ind to Return",
+      "distance": 89,
+      "confidence": "strong",
+      "reason": "anchored-node-string"
+    },
+    {
+      "source": "Need Screen Points For Each Example For Each View (Cameras * Examples)",
+      "offset": 30119496,
+      "nearestParameter": "Example Ind to Return",
+      "distance": 161,
+      "confidence": "strong",
+      "reason": "anchored-node-string"
+    },
+    {
+      "source": "Need Image For Each View and Each Example Geom",
+      "offset": 30119584,
+      "nearestParameter": "Example Ind to Return",
+      "distance": 249,
+      "confidence": "strong",
+      "reason": "anchored-node-string"
+    },
+    {
+      "source": "Proxy Geom From Geom Stack",
+      "offset": 30125743,
+      "nearestParameter": "Last Keypoint Depth Shift",
+      "distance": 49,
+      "confidence": "strong",
+      "reason": "anchored-node-string"
+    },
+    {
+      "source": "Out Geom Stack From Proxy Geom",
+      "offset": 30125776,
+      "nearestParameter": "Last Keypoint Depth Shift",
+      "distance": 82,
+      "confidence": "strong",
+      "reason": "anchored-node-string"
+    },
+    {
+      "source": "Out Vertex Mask From Geom",
+      "offset": 30125807,
+      "nearestParameter": "Geom",
+      "distance": 69,
+      "confidence": "strong",
+      "reason": "anchored-node-string"
+    },
+    {
+      "source": "Make Out Geom Functor",
+      "offset": 30125833,
+      "nearestParameter": "Geom",
+      "distance": 43,
+      "confidence": "strong",
+      "reason": "anchored-node-string"
+    },
+    {
+      "source": "Closest Point Finder",
+      "offset": 30125855,
+      "nearestParameter": "Geom",
+      "distance": 21,
+      "confidence": "strong",
+      "reason": "anchored-node-string"
+    },
+    {
+      "source": "Vertical Shift Regularization Weight",
+      "offset": 30126560,
+      "nearestParameter": "Fit Tangent Rotation",
+      "distance": 42,
+      "confidence": "strong",
+      "reason": "anchored-node-string"
+    },
+    {
+      "source": "Depth Shift Regularization Weight",
+      "offset": 30126640,
+      "nearestParameter": "Fit Tangent Rotation",
+      "distance": 122,
+      "confidence": "strong",
+      "reason": "anchored-node-string"
+    },
+    {
+      "source": "EyeFoldGeom",
+      "offset": 30131744,
+      "nearestParameter": "Eyefold Outer Width",
+      "distance": 77,
+      "confidence": "strong",
+      "reason": "anchored-node-string"
+    },
+    {
+      "source": "Narrator loading",
+      "offset": 30147155,
+      "nearestParameter": "Input Audio",
+      "distance": 203,
+      "confidence": "strong",
+      "reason": "anchored-node-string"
+    },
+    {
+      "source": "Error: Frame Index %1 is not valid",
+      "offset": 30147240,
+      "nearestParameter": "Input Audio",
+      "distance": 118,
+      "confidence": "strong",
+      "reason": "anchored-node-string"
+    },
+    {
+      "source": "Press \"Compute\" to compute result",
+      "offset": 30147280,
+      "nearestParameter": "Input Audio",
+      "distance": 78,
+      "confidence": "strong",
+      "reason": "anchored-node-string"
+    },
+    {
+      "source": "Missing control keys: %1",
+      "offset": 30147314,
+      "nearestParameter": "Input Audio",
+      "distance": 44,
+      "confidence": "strong",
+      "reason": "anchored-node-string"
+    },
+    {
+      "source": "Geom Index %1 is out of range",
+      "offset": 30162005,
+      "nearestParameter": "Light Brightness",
+      "distance": 49,
+      "confidence": "strong",
+      "reason": "anchored-node-string"
+    },
+    {
+      "source": "Geom at Index %1 has no UVs",
+      "offset": 30162035,
+      "nearestParameter": "Light Brightness",
+      "distance": 79,
+      "confidence": "strong",
+      "reason": "anchored-node-string"
+    },
+    {
+      "source": "PathTracedRender requires OpenGL 3.2 or higher",
+      "offset": 30162064,
+      "nearestParameter": "Light Brightness",
+      "distance": 108,
+      "confidence": "strong",
+      "reason": "anchored-node-string"
+    },
+    {
+      "source": "Not implemented yet",
+      "offset": 30162128,
+      "nearestParameter": "Light Brightness",
+      "distance": 172,
+      "confidence": "strong",
+      "reason": "anchored-node-string"
+    },
+    {
+      "source": "ModifyAudio",
+      "offset": 30164448,
+      "nearestParameter": "Audio",
+      "distance": 12,
+      "confidence": "strong",
+      "reason": "anchored-node-string"
+    },
+    {
+      "source": "Allocating audio",
+      "offset": 30164519,
+      "nearestParameter": "Gain Multiplier",
+      "distance": 46,
+      "confidence": "strong",
+      "reason": "anchored-node-string"
+    },
+    {
+      "source": "Normalizing audio",
+      "offset": 30164536,
+      "nearestParameter": "Gain Multiplier",
+      "distance": 63,
+      "confidence": "strong",
+      "reason": "anchored-node-string"
+    },
+    {
+      "source": "Modifying audio",
+      "offset": 30164554,
+      "nearestParameter": "Gain Multiplier",
+      "distance": 81,
+      "confidence": "strong",
+      "reason": "anchored-node-string"
+    },
+    {
+      "source": "Finalizing audio",
+      "offset": 30164570,
+      "nearestParameter": "Gain Multiplier",
+      "distance": 97,
+      "confidence": "strong",
+      "reason": "anchored-node-string"
+    },
+    {
+      "source": "No valid rules loaded from JSON",
+      "offset": 30169920,
+      "nearestParameter": "Source Rig",
+      "distance": 245,
+      "confidence": "strong",
+      "reason": "anchored-node-string"
+    },
+    {
+      "source": "RetargetBlendRig",
+      "offset": 30170148,
+      "nearestParameter": "Source Rig",
+      "distance": 17,
+      "confidence": "strong",
+      "reason": "anchored-node-string"
+    },
+    {
+      "source": "Reading rules",
+      "offset": 30170289,
+      "nearestParameter": "Rules File",
+      "distance": 66,
+      "confidence": "strong",
+      "reason": "anchored-node-string"
+    },
+    {
+      "source": "Retargeting",
+      "offset": 30170303,
+      "nearestParameter": "Rules File",
+      "distance": 80,
+      "confidence": "strong",
+      "reason": "anchored-node-string"
+    },
+    {
+      "source": "Mixed BlendRigs input at index \"%1\" doesn't match Base BlendRig controls",
+      "offset": 30175040,
+      "nearestParameter": "Base BlendRig",
+      "distance": 201,
+      "confidence": "strong",
+      "reason": "anchored-node-string"
+    },
+    {
+      "source": "Mixed BlendRigs input at index \"%1\" contains new control \"%2\"",
+      "offset": 30175120,
+      "nearestParameter": "Base BlendRig",
+      "distance": 121,
+      "confidence": "strong",
+      "reason": "anchored-node-string"
+    },
+    {
+      "source": "Mixed BlendRigs input at index \"%1\" missing control \"%2\"",
+      "offset": 30175184,
+      "nearestParameter": "Base BlendRig",
+      "distance": 57,
+      "confidence": "strong",
+      "reason": "anchored-node-string"
+    },
+    {
+      "source": "BlendRigControls Animation Frame \"%1\" missing control \"%2\"",
+      "offset": 30175568,
+      "nearestParameter": "Lazy Evaluation",
+      "distance": 167,
+      "confidence": "strong",
+      "reason": "anchored-node-string"
+    },
+    {
+      "source": "BlendRigControls Animation Frame \"%1\" contains new control \"%2\"",
+      "offset": 30175632,
+      "nearestParameter": "Lazy Evaluation",
+      "distance": 231,
+      "confidence": "strong",
+      "reason": "anchored-node-string"
+    },
+    {
+      "source": "SphericalGradientNormals",
+      "offset": 30194304,
+      "nearestParameter": "Positive X Gradient Image",
+      "distance": 25,
+      "confidence": "strong",
+      "reason": "anchored-node-string"
+    },
+    {
+      "source": "All Gradient Images must have same size",
+      "offset": 30194584,
+      "nearestParameter": "Channel",
+      "distance": 38,
+      "confidence": "strong",
+      "reason": "anchored-node-string"
+    },
+    {
+      "source": "All Gradient Images must have same number of channels",
+      "offset": 30194624,
+      "nearestParameter": "Channel",
+      "distance": 78,
+      "confidence": "strong",
+      "reason": "anchored-node-string"
+    },
+    {
+      "source": "Gradient Images do not have %1 channel",
+      "offset": 30194680,
+      "nearestParameter": "Channel",
+      "distance": 134,
+      "confidence": "strong",
+      "reason": "anchored-node-string"
+    },
+    {
+      "source": "ConvertNormalMap",
+      "offset": 30197280,
+      "nearestParameter": "Convert from",
+      "distance": 247,
+      "confidence": "strong",
+      "reason": "anchored-node-string"
+    },
+    {
+      "source": "Computing MikkT",
+      "offset": 30197410,
+      "nearestParameter": "Convert from",
+      "distance": 117,
+      "confidence": "strong",
+      "reason": "anchored-node-string"
+    },
+    {
+      "source": "Computing UV",
+      "offset": 30197426,
+      "nearestParameter": "Convert from",
+      "distance": 101,
+      "confidence": "strong",
+      "reason": "anchored-node-string"
+    },
+    {
+      "source": "Converting",
+      "offset": 30197680,
+      "nearestParameter": "Generate Z",
+      "distance": 87,
+      "confidence": "strong",
+      "reason": "anchored-node-string"
+    },
+    {
+      "source": "NormalFacialWrapping",
+      "offset": 30203332,
+      "nearestParameter": "Normal Maps",
+      "distance": 195,
+      "confidence": "strong",
+      "reason": "anchored-node-string"
+    },
+    {
+      "source": "Coarse-to-Fine Iterations",
+      "offset": 30204071,
+      "nearestParameter": "Blendshape File Names",
+      "distance": 64,
+      "confidence": "strong",
+      "reason": "anchored-node-string"
+    },
+    {
+      "source": "SaveJointRigPose",
+      "offset": 30211520,
+      "nearestParameter": "Pose Name",
+      "distance": 68,
+      "confidence": "strong",
+      "reason": "anchored-node-string"
+    },
+    {
+      "source": "Failed to find pose. Perhaps you meant %1",
+      "offset": 30211704,
+      "nearestParameter": "Pose Name",
+      "distance": 116,
+      "confidence": "strong",
+      "reason": "anchored-node-string"
+    },
+    {
+      "source": "Failed to save rig to \"%1\": %2",
+      "offset": 30211752,
+      "nearestParameter": "Pose Name",
+      "distance": 164,
+      "confidence": "strong",
+      "reason": "anchored-node-string"
+    },
+    {
+      "source": "The config does not contain inner lips",
+      "offset": 30223888,
+      "nearestParameter": "Points Per Segments",
+      "distance": 163,
+      "confidence": "strong",
+      "reason": "anchored-node-string"
+    },
+    {
+      "source": "Create a keyframe to start detection",
+      "offset": 30224184,
+      "nearestParameter": "Zoom Factor",
+      "distance": 49,
+      "confidence": "strong",
+      "reason": "anchored-node-string"
+    },
+    {
+      "source": "The result and reference must have the same structure :",
+      "offset": 30224224,
+      "nearestParameter": "Zoom Factor",
+      "distance": 89,
+      "confidence": "strong",
+      "reason": "anchored-node-string"
+    },
+    {
+      "source": "InsertJointPoseToJointRig",
+      "offset": 30230048,
+      "nearestParameter": "Transform Geometry",
+      "distance": 190,
+      "confidence": "strong",
+      "reason": "anchored-node-string"
+    },
+    {
+      "source": "The Pose Name is empty",
+      "offset": 30230401,
+      "nearestParameter": "Transformation Mode",
+      "distance": 63,
+      "confidence": "strong",
+      "reason": "anchored-node-string"
+    },
+    {
+      "source": "Failed to find joint in pose %1. Perhaps you meant %2",
+      "offset": 30230424,
+      "nearestParameter": "Transformation Mode",
+      "distance": 86,
+      "confidence": "strong",
+      "reason": "anchored-node-string"
+    },
+    {
+      "source": "Error: %1",
+      "offset": 30230481,
+      "nearestParameter": "Transformation Mode",
+      "distance": 143,
+      "confidence": "strong",
+      "reason": "anchored-node-string"
+    },
+    {
+      "source": "PolygonSelection",
+      "offset": 29083680,
+      "nearestParameter": "Full Geometry",
+      "distance": 711,
+      "confidence": "contextual",
+      "reason": "anchored-node-string"
+    },
+    {
+      "source": "Missing %1",
+      "offset": 29084000,
+      "nearestParameter": "Full Geometry",
+      "distance": 391,
+      "confidence": "contextual",
+      "reason": "anchored-node-string"
+    },
+    {
+      "source": "Null %1",
+      "offset": 29084012,
+      "nearestParameter": "Full Geometry",
+      "distance": 379,
+      "confidence": "contextual",
+      "reason": "anchored-node-string"
+    },
+    {
+      "source": "%1 should contain only manifold polygons",
+      "offset": 29084024,
+      "nearestParameter": "Full Geometry",
+      "distance": 367,
+      "confidence": "contextual",
+      "reason": "anchored-node-string"
+    },
+    {
+      "source": "%1 should contain only manifold UVs",
+      "offset": 29084072,
+      "nearestParameter": "Full Geometry",
+      "distance": 319,
+      "confidence": "contextual",
+      "reason": "anchored-node-string"
+    },
+    {
+      "source": "%1 contains %2 disconnected polygon components, should be one",
+      "offset": 29084112,
+      "nearestParameter": "Full Geometry",
+      "distance": 279,
+      "confidence": "contextual",
+      "reason": "anchored-node-string"
+    },
+    {
+      "source": "Image is too large for OpenGL: %1 x %2 (max is %3 x %4)",
+      "offset": 29093728,
+      "nearestParameter": "Base Geometry",
+      "distance": 631,
+      "confidence": "contextual",
+      "reason": "anchored-node-string"
+    },
+    {
+      "source": "Image is too large for OpenGL: %1 x %2",
+      "offset": 29093784,
+      "nearestParameter": "Base Geometry",
+      "distance": 575,
+      "confidence": "contextual",
+      "reason": "anchored-node-string"
+    },
+    {
+      "source": "Vertex Mask Index %1 is out of bounds [-1 - No Mask]",
+      "offset": 29116352,
+      "nearestParameter": "Mask Color",
+      "distance": 274,
+      "confidence": "contextual",
+      "reason": "anchored-node-string"
+    },
+    {
+      "source": "Vertex Mask Index %1 is out of bounds [-1 - No Mask, 0]",
+      "offset": 29116408,
+      "nearestParameter": "Mask Color",
+      "distance": 330,
+      "confidence": "contextual",
+      "reason": "anchored-node-string"
+    },
+    {
+      "source": "Vertex Mask Index %1 is out of bounds [-1 - No Mask, 0..%2]",
+      "offset": 29116464,
+      "nearestParameter": "Mask Color",
+      "distance": 386,
+      "confidence": "contextual",
+      "reason": "anchored-node-string"
+    },
+    {
+      "source": "Visible Polygon Index %1 is out of bounds [-1 - No Selection]",
+      "offset": 29116528,
+      "nearestParameter": "Mask Color",
+      "distance": 450,
+      "confidence": "contextual",
+      "reason": "anchored-node-string"
+    },
+    {
+      "source": "Visible Polygon Index %1 is out of bounds [-1 - No Selection, 0]",
+      "offset": 29116592,
+      "nearestParameter": "Mask Color",
+      "distance": 514,
+      "confidence": "contextual",
+      "reason": "anchored-node-string"
+    },
+    {
+      "source": "Visible Polygon Index %1 is out of bounds [-1 - No Selection, 0..%2]",
+      "offset": 29116664,
+      "nearestParameter": "Mask Color",
+      "distance": 586,
+      "confidence": "contextual",
+      "reason": "anchored-node-string"
+    },
+    {
+      "source": "Reference Camera Index %1 is out of bounds [-1 - Default Camera]",
+      "offset": 29116736,
+      "nearestParameter": "Mask Color",
+      "distance": 658,
+      "confidence": "contextual",
+      "reason": "anchored-node-string"
+    },
+    {
+      "source": "Reference Camera Index %1 is out of bounds [-1 - Default Camera, 0]",
+      "offset": 29116808,
+      "nearestParameter": "Mask Color",
+      "distance": 730,
+      "confidence": "contextual",
+      "reason": "anchored-node-string"
+    },
+    {
+      "source": "Linking high order data structure",
+      "offset": 29140432,
+      "nearestParameter": "Triangles",
+      "distance": 734,
+      "confidence": "contextual",
+      "reason": "anchored-node-string"
+    },
+    {
+      "source": "ERROR! maybe Non-Manifold Edge",
+      "offset": 29140472,
+      "nearestParameter": "Triangles",
+      "distance": 694,
+      "confidence": "contextual",
+      "reason": "anchored-node-string"
+    },
+    {
+      "source": "Cannot remove border edge now",
+      "offset": 29140504,
+      "nearestParameter": "Triangles",
+      "distance": 662,
+      "confidence": "contextual",
+      "reason": "anchored-node-string"
+    },
+    {
+      "source": "Initialization",
+      "offset": 29140544,
+      "nearestParameter": "Triangles",
+      "distance": 622,
+      "confidence": "contextual",
+      "reason": "anchored-node-string"
+    },
+    {
+      "source": "Creating Pure Edges",
+      "offset": 29140658,
+      "nearestParameter": "Triangles",
+      "distance": 508,
+      "confidence": "contextual",
+      "reason": "anchored-node-string"
+    },
+    {
+      "source": "Prepare elapsed",
+      "offset": 29140678,
+      "nearestParameter": "Triangles",
+      "distance": 488,
+      "confidence": "contextual",
+      "reason": "anchored-node-string"
+    },
+    {
+      "source": "Start Decimation",
+      "offset": 29140695,
+      "nearestParameter": "Triangles",
+      "distance": 471,
+      "confidence": "contextual",
+      "reason": "anchored-node-string"
+    },
+    {
+      "source": "Decimation",
+      "offset": 29140712,
+      "nearestParameter": "Triangles",
+      "distance": 454,
+      "confidence": "contextual",
+      "reason": "anchored-node-string"
+    },
+    {
+      "source": "Cannot find good err",
+      "offset": 29140742,
+      "nearestParameter": "Triangles",
+      "distance": 424,
+      "confidence": "contextual",
+      "reason": "anchored-node-string"
+    },
+    {
+      "source": "Faces",
+      "offset": 29140763,
+      "nearestParameter": "Triangles",
+      "distance": 403,
+      "confidence": "contextual",
+      "reason": "anchored-node-string"
+    },
+    {
+      "source": "Heap size",
+      "offset": 29140778,
+      "nearestParameter": "Triangles",
+      "distance": 388,
+      "confidence": "contextual",
+      "reason": "anchored-node-string"
+    },
+    {
+      "source": "Computing quadrics",
+      "offset": 29140789,
+      "nearestParameter": "Triangles",
+      "distance": 377,
+      "confidence": "contextual",
+      "reason": "anchored-node-string"
+    },
+    {
+      "source": "Non-Selected",
+      "offset": 29141955,
+      "nearestParameter": "Keep UVs",
+      "distance": 756,
+      "confidence": "contextual",
+      "reason": "anchored-node-string"
+    },
+    {
+      "source": "Decoding.",
+      "offset": 29160890,
+      "nearestParameter": "Visual Param",
+      "distance": 731,
+      "confidence": "contextual",
+      "reason": "anchored-node-string"
+    },
+    {
+      "source": "Saving Draco",
+      "offset": 29160901,
+      "nearestParameter": "Visual Param",
+      "distance": 720,
+      "confidence": "contextual",
+      "reason": "anchored-node-string"
+    },
+    {
+      "source": "Encoding.",
+      "offset": 29160914,
+      "nearestParameter": "Visual Param",
+      "distance": 707,
+      "confidence": "contextual",
+      "reason": "anchored-node-string"
+    },
+    {
+      "source": "Failed to write: %1",
+      "offset": 29160925,
+      "nearestParameter": "Visual Param",
+      "distance": 696,
+      "confidence": "contextual",
+      "reason": "anchored-node-string"
+    },
+    {
+      "source": "Cannot get vertices",
+      "offset": 29160996,
+      "nearestParameter": "Visual Param",
+      "distance": 625,
+      "confidence": "contextual",
+      "reason": "anchored-node-string"
+    },
+    {
+      "source": "Cannot get normal at %1 position",
+      "offset": 29161032,
+      "nearestParameter": "Visual Param",
+      "distance": 589,
+      "confidence": "contextual",
+      "reason": "anchored-node-string"
+    },
+    {
+      "source": "Cannot get texture coordinate at %1 position",
+      "offset": 29161072,
+      "nearestParameter": "Visual Param",
+      "distance": 549,
+      "confidence": "contextual",
+      "reason": "anchored-node-string"
+    },
+    {
+      "source": "Can't read image #%1:",
+      "offset": 29163968,
+      "nearestParameter": "Premultiply",
+      "distance": 657,
+      "confidence": "contextual",
+      "reason": "anchored-node-string"
+    },
+    {
+      "source": "Press \"Compute\" button to start computation",
+      "offset": 29182312,
+      "nearestParameter": "Padding",
+      "distance": 561,
+      "confidence": "contextual",
+      "reason": "anchored-node-string"
+    },
+    {
+      "source": "HC",
+      "offset": 29182414,
+      "nearestParameter": "Padding",
+      "distance": 663,
+      "confidence": "contextual",
+      "reason": "anchored-node-string"
+    },
+    {
+      "source": "Can't load points from file with missing input %1 geometry!",
+      "offset": 29193256,
+      "nearestParameter": "Right Geometry",
+      "distance": 361,
+      "confidence": "contextual",
+      "reason": "anchored-node-string"
+    },
+    {
+      "source": "With filepath \"%1\"",
+      "offset": 29209740,
+      "nearestParameter": "Save as Sequence",
+      "distance": 431,
+      "confidence": "contextual",
+      "reason": "anchored-node-string"
+    },
+    {
+      "source": "ScreenPoints",
+      "offset": 29304680,
+      "nearestParameter": "Show Labels",
+      "distance": 610,
+      "confidence": "contextual",
+      "reason": "anchored-node-string"
+    },
+    {
+      "source": "MSAA sample count is too large for OpenGL: %1 (max is %2)",
+      "offset": 29322632,
+      "nearestParameter": "OpenGL Resolution Limit",
+      "distance": 315,
+      "confidence": "contextual",
+      "reason": "anchored-node-string"
+    },
+    {
+      "source": "Output texture is too large for OpenGL: %1 x %2 (max is %3 x %4)",
+      "offset": 29322696,
+      "nearestParameter": "OpenGL Resolution Limit",
+      "distance": 379,
+      "confidence": "contextual",
+      "reason": "anchored-node-string"
+    },
+    {
+      "source": "Geometry #%1 texture: %2",
+      "offset": 29322761,
+      "nearestParameter": "OpenGL Resolution Limit",
+      "distance": 444,
+      "confidence": "contextual",
+      "reason": "anchored-node-string"
+    },
+    {
+      "source": "Detection of%1 inner lips has %2 semantic points instead of 3",
+      "offset": 29364000,
+      "nearestParameter": "Facial Annotation",
+      "distance": 540,
+      "confidence": "contextual",
+      "reason": "anchored-node-string"
+    },
+    {
+      "source": "Annotation and Detection have a different number of contours",
+      "offset": 29364064,
+      "nearestParameter": "Facial Annotation",
+      "distance": 476,
+      "confidence": "contextual",
+      "reason": "anchored-node-string"
+    },
+    {
+      "source": "Annotation and detection have a different corners for lips",
+      "offset": 29364280,
+      "nearestParameter": "Facial Annotation",
+      "distance": 260,
+      "confidence": "contextual",
+      "reason": "anchored-node-string"
+    },
+    {
+      "source": "The Background must have 3 or 4 channels, but %1 given!",
+      "offset": 29406648,
+      "nearestParameter": "If Different Channels Count",
+      "distance": 326,
+      "confidence": "contextual",
+      "reason": "anchored-node-string"
+    },
+    {
+      "source": "The Foreground must have 3 or 4 channels, but %1 given!",
+      "offset": 29406704,
+      "nearestParameter": "If Different Channels Count",
+      "distance": 382,
+      "confidence": "contextual",
+      "reason": "anchored-node-string"
+    },
+    {
+      "source": "Merging Image",
+      "offset": 29406760,
+      "nearestParameter": "If Different Channels Count",
+      "distance": 438,
+      "confidence": "contextual",
+      "reason": "anchored-node-string"
+    },
+    {
+      "source": "Error while creating expanded texture:",
+      "offset": 29410136,
+      "nearestParameter": "Custom Alignment",
+      "distance": 288,
+      "confidence": "contextual",
+      "reason": "anchored-node-string"
+    },
+    {
+      "source": "Hidden points are not suitable for neutral points",
+      "offset": 29418472,
+      "nearestParameter": "Sync Views",
+      "distance": 291,
+      "confidence": "contextual",
+      "reason": "anchored-node-string"
+    },
+    {
+      "source": "Pinned points are not suitable for the target mesh",
+      "offset": 29418528,
+      "nearestParameter": "Sync Views",
+      "distance": 347,
+      "confidence": "contextual",
+      "reason": "anchored-node-string"
+    },
+    {
+      "source": "Detected points are not suitable for the target mesh",
+      "offset": 29418584,
+      "nearestParameter": "Sync Views",
+      "distance": 403,
+      "confidence": "contextual",
+      "reason": "anchored-node-string"
+    },
+    {
+      "source": "Can't load free polygons: %1",
+      "offset": 29418637,
+      "nearestParameter": "Sync Views",
+      "distance": 456,
+      "confidence": "contextual",
+      "reason": "anchored-node-string"
+    },
+    {
+      "source": "Can't set free polygons: %1",
+      "offset": 29418666,
+      "nearestParameter": "Sync Views",
+      "distance": 485,
+      "confidence": "contextual",
+      "reason": "anchored-node-string"
+    },
+    {
+      "source": "Alignment points refers to non-existing triangles",
+      "offset": 29418696,
+      "nearestParameter": "Sync Views",
+      "distance": 515,
+      "confidence": "contextual",
+      "reason": "anchored-node-string"
+    },
+    {
+      "source": "Less than 3 alignment points is specified",
+      "offset": 29418752,
+      "nearestParameter": "Sync Views",
+      "distance": 571,
+      "confidence": "contextual",
+      "reason": "anchored-node-string"
+    },
+    {
+      "source": "Neutral geometry texture missing",
+      "offset": 29418800,
+      "nearestParameter": "Sync Views",
+      "distance": 619,
+      "confidence": "contextual",
+      "reason": "anchored-node-string"
+    },
+    {
+      "source": "Target geometry texture missing",
+      "offset": 29418840,
+      "nearestParameter": "Sync Views",
+      "distance": 659,
+      "confidence": "contextual",
+      "reason": "anchored-node-string"
+    },
+    {
+      "source": "Different number of vertices in Initial Geometry Input and Neutral Reference Mesh",
+      "offset": 29559176,
+      "nearestParameter": "Blendshape Compression Type",
+      "distance": 302,
+      "confidence": "contextual",
+      "reason": "anchored-node-string"
+    },
+    {
+      "source": "Initial Geometry Input and Neutral Reference Mesh have different topologies",
+      "offset": 29559264,
+      "nearestParameter": "Blendshape Compression Type",
+      "distance": 390,
+      "confidence": "contextual",
+      "reason": "anchored-node-string"
+    },
+    {
+      "source": "Neutral Train Texture file name is not specified",
+      "offset": 29559344,
+      "nearestParameter": "Blendshape Compression Type",
+      "distance": 470,
+      "confidence": "contextual",
+      "reason": "anchored-node-string"
+    },
+    {
+      "source": "Can't open neutral texture file for dynamic texture",
+      "offset": 29559400,
+      "nearestParameter": "Blendshape Compression Type",
+      "distance": 526,
+      "confidence": "contextual",
+      "reason": "anchored-node-string"
+    },
+    {
+      "source": "Expression Meshes file names for dynamic texture are not specified",
+      "offset": 29559456,
+      "nearestParameter": "Blendshape Compression Type",
+      "distance": 582,
+      "confidence": "contextual",
+      "reason": "anchored-node-string"
+    },
+    {
+      "source": "Different number of vertices in Initial Geometry Input and Blendshape Reference Mesh: \"%1\"",
+      "offset": 29559528,
+      "nearestParameter": "Blendshape Compression Type",
+      "distance": 654,
+      "confidence": "contextual",
+      "reason": "anchored-node-string"
+    },
+    {
+      "source": "Initial Geometry Input and Blendshape Reference Meshes have different topologies",
+      "offset": 29559624,
+      "nearestParameter": "Blendshape Compression Type",
+      "distance": 750,
+      "confidence": "contextual",
+      "reason": "anchored-node-string"
+    },
+    {
+      "source": "SaveScreenPoints",
+      "offset": 29584154,
+      "nearestParameter": "Discard Invisible Points",
+      "distance": 765,
+      "confidence": "contextual",
+      "reason": "anchored-node-string"
+    },
+    {
+      "source": "Topologies have different number of vertices.",
+      "offset": 29587056,
+      "nearestParameter": "Base geometry",
+      "distance": 726,
+      "confidence": "contextual",
+      "reason": "anchored-node-string"
+    },
+    {
+      "source": "Topologies have different maximum vertex degrees.",
+      "offset": 29587104,
+      "nearestParameter": "Base geometry",
+      "distance": 678,
+      "confidence": "contextual",
+      "reason": "anchored-node-string"
+    },
+    {
+      "source": "Topologies have different number of vertices with degree %1.",
+      "offset": 29587160,
+      "nearestParameter": "Base geometry",
+      "distance": 622,
+      "confidence": "contextual",
+      "reason": "anchored-node-string"
+    },
+    {
+      "source": "Topologies have different number of polygons.",
+      "offset": 29587224,
+      "nearestParameter": "Base geometry",
+      "distance": 558,
+      "confidence": "contextual",
+      "reason": "anchored-node-string"
+    },
+    {
+      "source": "Topologies have unmarked vertices without adjacent vertices.",
+      "offset": 29587272,
+      "nearestParameter": "Base geometry",
+      "distance": 510,
+      "confidence": "contextual",
+      "reason": "anchored-node-string"
+    },
+    {
+      "source": "Topologies have different maximum size of polygons.",
+      "offset": 29587336,
+      "nearestParameter": "Base geometry",
+      "distance": 446,
+      "confidence": "contextual",
+      "reason": "anchored-node-string"
+    },
+    {
+      "source": "Topologies have different number of polygons with size %1.",
+      "offset": 29587392,
+      "nearestParameter": "Base geometry",
+      "distance": 390,
+      "confidence": "contextual",
+      "reason": "anchored-node-string"
+    },
+    {
+      "source": "Topology has polygon with size 0.",
+      "offset": 29587456,
+      "nearestParameter": "Base geometry",
+      "distance": 326,
+      "confidence": "contextual",
+      "reason": "anchored-node-string"
+    },
+    {
+      "source": "Topology has polygon with size 1.",
+      "offset": 29587496,
+      "nearestParameter": "Base geometry",
+      "distance": 286,
+      "confidence": "contextual",
+      "reason": "anchored-node-string"
+    },
+    {
+      "source": "FPN4Wrap6WImage5ImageENS_7WObjectEiNS0_17InterpolationModeEE",
+      "offset": 29605280,
+      "nearestParameter": "Reducing Mask on Y Size",
+      "distance": 538,
+      "confidence": "contextual",
+      "reason": "anchored-node-string"
+    },
+    {
+      "source": "Unable to read rotations in %1 frame number",
+      "offset": 29607560,
+      "nearestParameter": "Reference Frame",
+      "distance": 728,
+      "confidence": "contextual",
+      "reason": "anchored-node-string"
+    },
+    {
+      "source": "In \"%1\":",
+      "offset": 29607685,
+      "nearestParameter": "Reference Frame",
+      "distance": 603,
+      "confidence": "contextual",
+      "reason": "anchored-node-string"
+    },
+    {
+      "source": "In \"%1\": In file \"%2\":",
+      "offset": 29607695,
+      "nearestParameter": "Reference Frame",
+      "distance": 593,
+      "confidence": "contextual",
+      "reason": "anchored-node-string"
+    },
+    {
+      "source": "Can't load \"%1\":",
+      "offset": 29607719,
+      "nearestParameter": "Reference Frame",
+      "distance": 569,
+      "confidence": "contextual",
+      "reason": "anchored-node-string"
+    },
+    {
+      "source": "Can't parse \"%1\": %2",
+      "offset": 29607804,
+      "nearestParameter": "Reference Frame",
+      "distance": 484,
+      "confidence": "contextual",
+      "reason": "anchored-node-string"
+    },
+    {
+      "source": "Range can't start from frame 0. But range %1 does, change it to %2",
+      "offset": 29607896,
+      "nearestParameter": "Reference Frame",
+      "distance": 392,
+      "confidence": "contextual",
+      "reason": "anchored-node-string"
+    },
+    {
+      "source": "Reference Frame must be greater than the first frame of sequence",
+      "offset": 29607968,
+      "nearestParameter": "Reference Frame",
+      "distance": 320,
+      "confidence": "contextual",
+      "reason": "anchored-node-string"
+    },
+    {
+      "source": "Detect Ranges",
+      "offset": 29608815,
+      "nearestParameter": "Keyframes Values",
+      "distance": 403,
+      "confidence": "contextual",
+      "reason": "anchored-node-string"
+    },
+    {
+      "source": "Invert Range",
+      "offset": 29608890,
+      "nearestParameter": "Keyframes Values",
+      "distance": 478,
+      "confidence": "contextual",
+      "reason": "anchored-node-string"
+    },
+    {
+      "source": "Keyframing",
+      "offset": 29608967,
+      "nearestParameter": "Keyframes Values",
+      "distance": 555,
+      "confidence": "contextual",
+      "reason": "anchored-node-string"
+    },
+    {
+      "source": "Automatic Range Detection",
+      "offset": 29608978,
+      "nearestParameter": "Keyframes Values",
+      "distance": 566,
+      "confidence": "contextual",
+      "reason": "anchored-node-string"
+    },
+    {
+      "source": "Jump to next range",
+      "offset": 29609004,
+      "nearestParameter": "Keyframes Values",
+      "distance": 592,
+      "confidence": "contextual",
+      "reason": "anchored-node-string"
+    },
+    {
+      "source": "Jump to previous range",
+      "offset": 29609023,
+      "nearestParameter": "Keyframes Values",
+      "distance": 611,
+      "confidence": "contextual",
+      "reason": "anchored-node-string"
+    },
+    {
+      "source": "Set range end",
+      "offset": 29609046,
+      "nearestParameter": "Keyframes Values",
+      "distance": 634,
+      "confidence": "contextual",
+      "reason": "anchored-node-string"
+    },
+    {
+      "source": "Set range start",
+      "offset": 29609060,
+      "nearestParameter": "Keyframes Values",
+      "distance": 648,
+      "confidence": "contextual",
+      "reason": "anchored-node-string"
+    },
+    {
+      "source": "Invert range",
+      "offset": 29609076,
+      "nearestParameter": "Keyframes Values",
+      "distance": 664,
+      "confidence": "contextual",
+      "reason": "anchored-node-string"
+    },
+    {
+      "source": "Deformable Vertex Mask",
+      "offset": 29612315,
+      "nearestParameter": "Reference Deformation Source Geometry",
+      "distance": 259,
+      "confidence": "contextual",
+      "reason": "anchored-node-string"
+    },
+    {
+      "source": "Different number of vertices: %1 and %2",
+      "offset": 29622904,
+      "nearestParameter": "Reference Geometry",
+      "distance": 274,
+      "confidence": "contextual",
+      "reason": "anchored-node-string"
+    },
+    {
+      "source": "Number of cameras and screen points must be the same.",
+      "offset": 29630664,
+      "nearestParameter": "Geometry Points",
+      "distance": 271,
+      "confidence": "contextual",
+      "reason": "anchored-node-string"
+    },
+    {
+      "source": "Camera has distorsion",
+      "offset": 29630718,
+      "nearestParameter": "Geometry Points",
+      "distance": 325,
+      "confidence": "contextual",
+      "reason": "anchored-node-string"
+    },
+    {
+      "source": "Requires at least 1 points to only rotate geom",
+      "offset": 29630744,
+      "nearestParameter": "Geometry Points",
+      "distance": 351,
+      "confidence": "contextual",
+      "reason": "anchored-node-string"
+    },
+    {
+      "source": "Requires at least 1 points to only translate geom",
+      "offset": 29630792,
+      "nearestParameter": "Geometry Points",
+      "distance": 399,
+      "confidence": "contextual",
+      "reason": "anchored-node-string"
+    },
+    {
+      "source": "Requires at least 3 points to align geom",
+      "offset": 29630848,
+      "nearestParameter": "Geometry Points",
+      "distance": 455,
+      "confidence": "contextual",
+      "reason": "anchored-node-string"
+    },
+    {
+      "source": "%1 param inputs #%2 and #%3 have different pixel types: %4 and %5",
+      "offset": 29633824,
+      "nearestParameter": "Visibility Threshold",
+      "distance": 265,
+      "confidence": "contextual",
+      "reason": "anchored-node-string"
+    },
+    {
+      "source": "View Mask #%1 must have 1, 3 or 4 channels",
+      "offset": 29633896,
+      "nearestParameter": "Visibility Threshold",
+      "distance": 337,
+      "confidence": "contextual",
+      "reason": "anchored-node-string"
+    },
+    {
+      "source": "View Image #%1 and View Mask #%1 have different sizes %2 x %3 and %4 x %5",
+      "offset": 29633944,
+      "nearestParameter": "Visibility Threshold",
+      "distance": 385,
+      "confidence": "contextual",
+      "reason": "anchored-node-string"
+    },
+    {
+      "source": "FPN14GeometryStack221GeomStackTriangulatedE7QVectorIN4Wrap7WObjectEERKS2_INS3_10WTransformEEbE",
+      "offset": 29664160,
+      "nearestParameter": "Ignore UV",
+      "distance": 257,
+      "confidence": "contextual",
+      "reason": "anchored-node-string"
+    },
+    {
+      "source": "PFPN14GeometryStack221GeomStackTriangulatedE7QVectorIN4Wrap7WObjectEERKS2_INS3_10WTransformEEbE",
+      "offset": 29664352,
+      "nearestParameter": "Ignore UV",
+      "distance": 449,
+      "confidence": "contextual",
+      "reason": "anchored-node-string"
+    },
+    {
+      "source": "Hole",
+      "offset": 29680384,
+      "nearestParameter": "Floating Vertex Mask",
+      "distance": 663,
+      "confidence": "contextual",
+      "reason": "anchored-node-string"
+    },
+    {
+      "source": "Fixing intersections",
+      "offset": 29681721,
+      "nearestParameter": "Detect Self-Intersections",
+      "distance": 265,
+      "confidence": "contextual",
+      "reason": "anchored-node-string"
+    },
+    {
+      "source": "Singular triangle or inconsistently oriented normals",
+      "offset": 29711872,
+      "nearestParameter": "Deformation Target Geometry",
+      "distance": 412,
+      "confidence": "contextual",
+      "reason": "anchored-node-string"
+    },
+    {
+      "source": "FSt13unordered_setIiSt4hashIiESt8equal_toIiESaIiEERK7QVectorI9QVector3DESA_RKS6_IiEbE",
+      "offset": 29712896,
+      "nearestParameter": "Scale Distance",
+      "distance": 489,
+      "confidence": "contextual",
+      "reason": "anchored-node-string"
+    },
+    {
+      "source": "Different number of",
+      "offset": 29716449,
+      "nearestParameter": "Reference Objects",
+      "distance": 261,
+      "confidence": "contextual",
+      "reason": "anchored-node-string"
+    },
+    {
+      "source": "Can't open file %1 for reading!",
+      "offset": 29731376,
+      "nearestParameter": "N Samples per Batch",
+      "distance": 335,
+      "confidence": "contextual",
+      "reason": "anchored-node-string"
+    },
+    {
+      "source": "Can't open file %1 as JSON: %2",
+      "offset": 29731408,
+      "nearestParameter": "N Samples per Batch",
+      "distance": 367,
+      "confidence": "contextual",
+      "reason": "anchored-node-string"
+    },
+    {
+      "source": "Mask from %1 isn't a JSON array!",
+      "offset": 29731440,
+      "nearestParameter": "N Samples per Batch",
+      "distance": 399,
+      "confidence": "contextual",
+      "reason": "anchored-node-string"
+    },
+    {
+      "source": "Masks at %1 and %2 has different number of vertices: %3 and %4",
+      "offset": 29731480,
+      "nearestParameter": "N Samples per Batch",
+      "distance": 439,
+      "confidence": "contextual",
+      "reason": "anchored-node-string"
+    },
+    {
+      "source": "Can't write the file \"%1\"",
+      "offset": 29731575,
+      "nearestParameter": "N Samples per Batch",
+      "distance": 534,
+      "confidence": "contextual",
+      "reason": "anchored-node-string"
+    },
+    {
+      "source": "No keyframes vertex masks specified!",
+      "offset": 29731640,
+      "nearestParameter": "N Samples per Batch",
+      "distance": 599,
+      "confidence": "contextual",
+      "reason": "anchored-node-string"
+    },
+    {
+      "source": "Loading vertex masks",
+      "offset": 29731677,
+      "nearestParameter": "N Samples per Batch",
+      "distance": 636,
+      "confidence": "contextual",
+      "reason": "anchored-node-string"
+    },
+    {
+      "source": "Can't load keyframes vertex masks: %1",
+      "offset": 29731704,
+      "nearestParameter": "N Samples per Batch",
+      "distance": 663,
+      "confidence": "contextual",
+      "reason": "anchored-node-string"
+    },
+    {
+      "source": "Keyframes vertex masks have %1 vertices, but %2 has %3 vertices!",
+      "offset": 29731744,
+      "nearestParameter": "N Samples per Batch",
+      "distance": 703,
+      "confidence": "contextual",
+      "reason": "anchored-node-string"
+    },
+    {
+      "source": "Source Prediction",
+      "offset": 29776133,
+      "nearestParameter": "Exclude Patch Weight Mean",
+      "distance": 332,
+      "confidence": "contextual",
+      "reason": "anchored-node-string"
+    },
+    {
+      "source": "Blendshapes Target file names are not specified",
+      "offset": 29776232,
+      "nearestParameter": "Exclude Patch Weight Mean",
+      "distance": 431,
+      "confidence": "contextual",
+      "reason": "anchored-node-string"
+    },
+    {
+      "source": "Different number of Blendshapes and Target Blendshapes",
+      "offset": 29776280,
+      "nearestParameter": "Exclude Patch Weight Mean",
+      "distance": 479,
+      "confidence": "contextual",
+      "reason": "anchored-node-string"
+    },
+    {
+      "source": "Neutral Reference and Neutral Target Reference Meshes have different number of vertices",
+      "offset": 29776336,
+      "nearestParameter": "Exclude Patch Weight Mean",
+      "distance": 535,
+      "confidence": "contextual",
+      "reason": "anchored-node-string"
+    },
+    {
+      "source": "Neutral Reference and Neutral Target Reference Meshes have different topologies",
+      "offset": 29776424,
+      "nearestParameter": "Exclude Patch Weight Mean",
+      "distance": 623,
+      "confidence": "contextual",
+      "reason": "anchored-node-string"
+    },
+    {
+      "source": "Different number of vertices in Neutral Reference and Blendshape Reference Mesh: \"%1\"",
+      "offset": 29776504,
+      "nearestParameter": "Exclude Patch Weight Mean",
+      "distance": 703,
+      "confidence": "contextual",
+      "reason": "anchored-node-string"
+    },
+    {
+      "source": "Formulating problem",
+      "offset": 29787942,
+      "nearestParameter": "Smoothess Weight",
+      "distance": 267,
+      "confidence": "contextual",
+      "reason": "anchored-node-string"
+    },
+    {
+      "source": "Problem Formulation:",
+      "offset": 29787962,
+      "nearestParameter": "Smoothess Weight",
+      "distance": 287,
+      "confidence": "contextual",
+      "reason": "anchored-node-string"
+    },
+    {
+      "source": "Performing Iteration %1",
+      "offset": 29787984,
+      "nearestParameter": "Smoothess Weight",
+      "distance": 309,
+      "confidence": "contextual",
+      "reason": "anchored-node-string"
+    },
+    {
+      "source": "Entire Loop:",
+      "offset": 29788010,
+      "nearestParameter": "Smoothess Weight",
+      "distance": 335,
+      "confidence": "contextual",
+      "reason": "anchored-node-string"
+    },
+    {
+      "source": "Performing Lip Welding",
+      "offset": 29788024,
+      "nearestParameter": "Smoothess Weight",
+      "distance": 349,
+      "confidence": "contextual",
+      "reason": "anchored-node-string"
+    },
+    {
+      "source": "Starting",
+      "offset": 29788047,
+      "nearestParameter": "Smoothess Weight",
+      "distance": 372,
+      "confidence": "contextual",
+      "reason": "anchored-node-string"
+    },
+    {
+      "source": "Filtering Triangles",
+      "offset": 29788056,
+      "nearestParameter": "Smoothess Weight",
+      "distance": 381,
+      "confidence": "contextual",
+      "reason": "anchored-node-string"
+    },
+    {
+      "source": "Calculating Lip Data",
+      "offset": 29788076,
+      "nearestParameter": "Smoothess Weight",
+      "distance": 401,
+      "confidence": "contextual",
+      "reason": "anchored-node-string"
+    },
+    {
+      "source": "Preparing Data",
+      "offset": 29794951,
+      "nearestParameter": "Scale Multiplier",
+      "distance": 332,
+      "confidence": "contextual",
+      "reason": "anchored-node-string"
+    },
+    {
+      "source": "Local",
+      "offset": 29794966,
+      "nearestParameter": "Scale Multiplier",
+      "distance": 317,
+      "confidence": "contextual",
+      "reason": "anchored-node-string"
+    },
+    {
+      "source": "%1 and %2 have different topologies",
+      "offset": 29794984,
+      "nearestParameter": "Scale Multiplier",
+      "distance": 299,
+      "confidence": "contextual",
+      "reason": "anchored-node-string"
+    },
+    {
+      "source": "WrapAI_2025.10.9",
+      "offset": 29800424,
+      "nearestParameter": "Template Geom",
+      "distance": 321,
+      "confidence": "contextual",
+      "reason": "anchored-node-string"
+    },
+    {
+      "source": "First Calculated Reference Contour",
+      "offset": 29802672,
+      "nearestParameter": "Screen Point Offset",
+      "distance": 499,
+      "confidence": "contextual",
+      "reason": "anchored-node-string"
+    },
+    {
+      "source": "Second Calculated Reference Contour",
+      "offset": 29802712,
+      "nearestParameter": "Screen Point Offset",
+      "distance": 539,
+      "confidence": "contextual",
+      "reason": "anchored-node-string"
+    },
+    {
+      "source": "Cannot resolve geometry regions corresponding to each contour. Consider respecifying contours.",
+      "offset": 29802752,
+      "nearestParameter": "Screen Point Offset",
+      "distance": 579,
+      "confidence": "contextual",
+      "reason": "anchored-node-string"
+    },
+    {
+      "source": "Fit started",
+      "offset": 29820056,
+      "nearestParameter": "Use Init From Previous Frame",
+      "distance": 296,
+      "confidence": "contextual",
+      "reason": "anchored-node-string"
+    },
+    {
+      "source": "Start FitFace",
+      "offset": 29820068,
+      "nearestParameter": "Use Init From Previous Frame",
+      "distance": 308,
+      "confidence": "contextual",
+      "reason": "anchored-node-string"
+    },
+    {
+      "source": "End FitFace",
+      "offset": 29820082,
+      "nearestParameter": "Use Init From Previous Frame",
+      "distance": 322,
+      "confidence": "contextual",
+      "reason": "anchored-node-string"
+    },
+    {
+      "source": "Fitting is not correct, internal problem",
+      "offset": 29820096,
+      "nearestParameter": "Use Init From Previous Frame",
+      "distance": 336,
+      "confidence": "contextual",
+      "reason": "anchored-node-string"
+    },
+    {
+      "source": "Done",
+      "offset": 29820137,
+      "nearestParameter": "Use Init From Previous Frame",
+      "distance": 377,
+      "confidence": "contextual",
+      "reason": "anchored-node-string"
+    },
+    {
+      "source": "Loading Face Shape Profile",
+      "offset": 29820142,
+      "nearestParameter": "Use Init From Previous Frame",
+      "distance": 382,
+      "confidence": "contextual",
+      "reason": "anchored-node-string"
+    },
+    {
+      "source": "Loading Neutral Geom",
+      "offset": 29820173,
+      "nearestParameter": "Use Init From Previous Frame",
+      "distance": 413,
+      "confidence": "contextual",
+      "reason": "anchored-node-string"
+    },
+    {
+      "source": "Loading Sampling",
+      "offset": 29820194,
+      "nearestParameter": "Use Init From Previous Frame",
+      "distance": 434,
+      "confidence": "contextual",
+      "reason": "anchored-node-string"
+    },
+    {
+      "source": "Loading Points",
+      "offset": 29820211,
+      "nearestParameter": "Use Init From Previous Frame",
+      "distance": 451,
+      "confidence": "contextual",
+      "reason": "anchored-node-string"
+    },
+    {
+      "source": "File %1 has another format for PointsOnTopology",
+      "offset": 29820232,
+      "nearestParameter": "Use Init From Previous Frame",
+      "distance": 472,
+      "confidence": "contextual",
+      "reason": "anchored-node-string"
+    },
+    {
+      "source": "Creating Internal Structures",
+      "offset": 29820280,
+      "nearestParameter": "Use Init From Previous Frame",
+      "distance": 520,
+      "confidence": "contextual",
+      "reason": "anchored-node-string"
+    },
+    {
+      "source": "Face Shape Profile",
+      "offset": 29820309,
+      "nearestParameter": "Use Init From Previous Frame",
+      "distance": 549,
+      "confidence": "contextual",
+      "reason": "anchored-node-string"
+    },
+    {
+      "source": "Unexpected %1 control",
+      "offset": 29851917,
+      "nearestParameter": "Fitting Vertex Mask",
+      "distance": 430,
+      "confidence": "contextual",
+      "reason": "anchored-node-string"
+    },
+    {
+      "source": "In Left Eye Side Control:",
+      "offset": 29851939,
+      "nearestParameter": "Fitting Vertex Mask",
+      "distance": 408,
+      "confidence": "contextual",
+      "reason": "anchored-node-string"
+    },
+    {
+      "source": "In Left Eye Vertical Control:",
+      "offset": 29851968,
+      "nearestParameter": "Fitting Vertex Mask",
+      "distance": 379,
+      "confidence": "contextual",
+      "reason": "anchored-node-string"
+    },
+    {
+      "source": "In Right Eye Side Control:",
+      "offset": 29851999,
+      "nearestParameter": "Fitting Vertex Mask",
+      "distance": 348,
+      "confidence": "contextual",
+      "reason": "anchored-node-string"
+    },
+    {
+      "source": "In Right Eye Vertical Control:",
+      "offset": 29852032,
+      "nearestParameter": "Fitting Vertex Mask",
+      "distance": 315,
+      "confidence": "contextual",
+      "reason": "anchored-node-string"
+    },
+    {
+      "source": "Left Eye Side Control Name",
+      "offset": 29853457,
+      "nearestParameter": "Fit Symmetry Exclude Controls",
+      "distance": 260,
+      "confidence": "contextual",
+      "reason": "anchored-node-string"
+    },
+    {
+      "source": "Eye_L_Vertical",
+      "offset": 29853484,
+      "nearestParameter": "Fit Symmetry Exclude Controls",
+      "distance": 287,
+      "confidence": "contextual",
+      "reason": "anchored-node-string"
+    },
+    {
+      "source": "Left Eye Vertical Control Name",
+      "offset": 29853504,
+      "nearestParameter": "Fit Symmetry Exclude Controls",
+      "distance": 307,
+      "confidence": "contextual",
+      "reason": "anchored-node-string"
+    },
+    {
+      "source": "Eye_R_Sideways",
+      "offset": 29853535,
+      "nearestParameter": "Fit Symmetry Exclude Controls",
+      "distance": 338,
+      "confidence": "contextual",
+      "reason": "anchored-node-string"
+    },
+    {
+      "source": "Right Eye Side Control Name",
+      "offset": 29853550,
+      "nearestParameter": "Fit Symmetry Exclude Controls",
+      "distance": 353,
+      "confidence": "contextual",
+      "reason": "anchored-node-string"
+    },
+    {
+      "source": "Eye_R_Vertical",
+      "offset": 29853578,
+      "nearestParameter": "Fit Symmetry Exclude Controls",
+      "distance": 381,
+      "confidence": "contextual",
+      "reason": "anchored-node-string"
+    },
+    {
+      "source": "Right Eye Vertical Control Name",
+      "offset": 29853600,
+      "nearestParameter": "Fit Symmetry Exclude Controls",
+      "distance": 403,
+      "confidence": "contextual",
+      "reason": "anchored-node-string"
+    },
+    {
+      "source": "Incorrect type of json. Should be \"Token\": number",
+      "offset": 29853632,
+      "nearestParameter": "Fit Symmetry Exclude Controls",
+      "distance": 435,
+      "confidence": "contextual",
+      "reason": "anchored-node-string"
+    },
+    {
+      "source": "Unable to find %1 control, expected in regularization.",
+      "offset": 29853688,
+      "nearestParameter": "Fit Symmetry Exclude Controls",
+      "distance": 491,
+      "confidence": "contextual",
+      "reason": "anchored-node-string"
+    },
+    {
+      "source": "Different number of point correspondences.",
+      "offset": 29853744,
+      "nearestParameter": "Fit Symmetry Exclude Controls",
+      "distance": 547,
+      "confidence": "contextual",
+      "reason": "anchored-node-string"
+    },
+    {
+      "source": "Target geom contains %1 vertices, but %2 required",
+      "offset": 29853792,
+      "nearestParameter": "Fit Symmetry Exclude Controls",
+      "distance": 595,
+      "confidence": "contextual",
+      "reason": "anchored-node-string"
+    },
+    {
+      "source": "Vertex mask contains %1 vertices, but %2 required",
+      "offset": 29853848,
+      "nearestParameter": "Fit Symmetry Exclude Controls",
+      "distance": 651,
+      "confidence": "contextual",
+      "reason": "anchored-node-string"
+    },
+    {
+      "source": "Second Points",
+      "offset": 29853898,
+      "nearestParameter": "Fit Symmetry Exclude Controls",
+      "distance": 701,
+      "confidence": "contextual",
+      "reason": "anchored-node-string"
+    },
+    {
+      "source": "First Points",
+      "offset": 29853912,
+      "nearestParameter": "Fit Symmetry Exclude Controls",
+      "distance": 715,
+      "confidence": "contextual",
+      "reason": "anchored-node-string"
+    },
+    {
+      "source": "FormatVersion: %1 is not specified",
+      "offset": 29890656,
+      "nearestParameter": "Input Rig controls number (%1) mismatches controls list number (%2)",
+      "distance": 272,
+      "confidence": "contextual",
+      "reason": "anchored-node-string"
+    },
+    {
+      "source": "CopyBlendRigControls",
+      "offset": 29898713,
+      "nearestParameter": "Rig to Copy Controls to",
+      "distance": 524,
+      "confidence": "contextual",
+      "reason": "anchored-node-string"
+    },
+    {
+      "source": "Path To Rig Name Controls is not specified",
+      "offset": 29900064,
+      "nearestParameter": "Geom To Latent",
+      "distance": 655,
+      "confidence": "contextual",
+      "reason": "anchored-node-string"
+    },
+    {
+      "source": "Input ONNX controls number (%1) mismatches BlendRig controls number (%2)",
+      "offset": 29900280,
+      "nearestParameter": "Geom To Latent",
+      "distance": 439,
+      "confidence": "contextual",
+      "reason": "anchored-node-string"
+    },
+    {
+      "source": "Input ONNX vertices number (%1) mismatches BlendRig vertices number(%2)",
+      "offset": 29900360,
+      "nearestParameter": "Geom To Latent",
+      "distance": 359,
+      "confidence": "contextual",
+      "reason": "anchored-node-string"
+    },
+    {
+      "source": "Output ONNX latent controls number (%1) mismatches Controls List latent controls number (%2)",
+      "offset": 29900432,
+      "nearestParameter": "Geom To Latent",
+      "distance": 287,
+      "confidence": "contextual",
+      "reason": "anchored-node-string"
+    },
+    {
+      "source": "Unknown method of repairing missing points: %1",
+      "offset": 29903936,
+      "nearestParameter": "If Missing",
+      "distance": 312,
+      "confidence": "contextual",
+      "reason": "anchored-node-string"
+    },
+    {
+      "source": "<parse error>",
+      "offset": 29922396,
+      "nearestParameter": "Tie Corners",
+      "distance": 413,
+      "confidence": "contextual",
+      "reason": "anchored-node-string"
+    },
+    {
+      "source": "PathTracerRender rays shooting",
+      "offset": 29940712,
+      "nearestParameter": "Light Sources",
+      "distance": 286,
+      "confidence": "contextual",
+      "reason": "anchored-node-string"
+    },
+    {
+      "source": "MeshToScreenPoints",
+      "offset": 29981609,
+      "nearestParameter": "Reference Screen Points",
+      "distance": 660,
+      "confidence": "contextual",
+      "reason": "anchored-node-string"
+    },
+    {
+      "source": "Patch Resolution",
+      "offset": 29996243,
+      "nearestParameter": "Smooth Mask",
+      "distance": 267,
+      "confidence": "contextual",
+      "reason": "anchored-node-string"
+    },
+    {
+      "source": "Patch Padding",
+      "offset": 29996260,
+      "nearestParameter": "Smooth Mask",
+      "distance": 284,
+      "confidence": "contextual",
+      "reason": "anchored-node-string"
+    },
+    {
+      "source": "Num Threads",
+      "offset": 29996274,
+      "nearestParameter": "Smooth Mask",
+      "distance": 298,
+      "confidence": "contextual",
+      "reason": "anchored-node-string"
+    },
+    {
+      "source": "Use Patches",
+      "offset": 29996286,
+      "nearestParameter": "Smooth Mask",
+      "distance": 310,
+      "confidence": "contextual",
+      "reason": "anchored-node-string"
+    },
+    {
+      "source": "WarpedImage",
+      "offset": 29996298,
+      "nearestParameter": "Smooth Mask",
+      "distance": 322,
+      "confidence": "contextual",
+      "reason": "anchored-node-string"
+    },
+    {
+      "source": "OpticalFlowField",
+      "offset": 29996310,
+      "nearestParameter": "Smooth Mask",
+      "distance": 334,
+      "confidence": "contextual",
+      "reason": "anchored-node-string"
+    },
+    {
+      "source": "OpticalFlow compute",
+      "offset": 29996327,
+      "nearestParameter": "Smooth Mask",
+      "distance": 351,
+      "confidence": "contextual",
+      "reason": "anchored-node-string"
+    },
+    {
+      "source": "Patch OpticalFlow compute",
+      "offset": 29996347,
+      "nearestParameter": "Smooth Mask",
+      "distance": 371,
+      "confidence": "contextual",
+      "reason": "anchored-node-string"
+    },
+    {
+      "source": "Correct %1 contains heroshape %2, but rig doesn't contain it",
+      "offset": 30003712,
+      "nearestParameter": "Blendshape Name",
+      "distance": 511,
+      "confidence": "contextual",
+      "reason": "anchored-node-string"
+    },
+    {
+      "source": "Trying to add new %1 heroshape, but control with the same name alreary exists",
+      "offset": 30004480,
+      "nearestParameter": "Blendshape Name",
+      "distance": 257,
+      "confidence": "contextual",
+      "reason": "anchored-node-string"
+    },
+    {
+      "source": "Select Keyframes File",
+      "offset": 30059773,
+      "nearestParameter": "Weight Points Prefit End",
+      "distance": 285,
+      "confidence": "contextual",
+      "reason": "anchored-node-string"
+    },
+    {
+      "source": "Select Detection",
+      "offset": 30059795,
+      "nearestParameter": "Weight Points Prefit End",
+      "distance": 307,
+      "confidence": "contextual",
+      "reason": "anchored-node-string"
+    },
+    {
+      "source": "Select Neural Image",
+      "offset": 30059822,
+      "nearestParameter": "Weight Points Prefit End",
+      "distance": 334,
+      "confidence": "contextual",
+      "reason": "anchored-node-string"
+    },
+    {
+      "source": "Select Blendshape Detections File",
+      "offset": 30059848,
+      "nearestParameter": "Weight Points Prefit End",
+      "distance": 360,
+      "confidence": "contextual",
+      "reason": "anchored-node-string"
+    },
+    {
+      "source": "Select Blendshape Images File",
+      "offset": 30059882,
+      "nearestParameter": "Weight Points Prefit End",
+      "distance": 394,
+      "confidence": "contextual",
+      "reason": "anchored-node-string"
+    },
+    {
+      "source": "Config File Name is Empty",
+      "offset": 30059912,
+      "nearestParameter": "Weight Points Prefit End",
+      "distance": 424,
+      "confidence": "contextual",
+      "reason": "anchored-node-string"
+    },
+    {
+      "source": "Neutral Image File Name is Empty",
+      "offset": 30059944,
+      "nearestParameter": "Weight Points Prefit End",
+      "distance": 456,
+      "confidence": "contextual",
+      "reason": "anchored-node-string"
+    },
+    {
+      "source": "Neutral Detection File Names is Empty",
+      "offset": 30059984,
+      "nearestParameter": "Weight Points Prefit End",
+      "distance": 496,
+      "confidence": "contextual",
+      "reason": "anchored-node-string"
+    },
+    {
+      "source": "Blendshape Image File Names is Empty",
+      "offset": 30060024,
+      "nearestParameter": "Weight Points Prefit End",
+      "distance": 536,
+      "confidence": "contextual",
+      "reason": "anchored-node-string"
+    },
+    {
+      "source": "Blendshape Detection File Names is Empty",
+      "offset": 30060064,
+      "nearestParameter": "Weight Points Prefit End",
+      "distance": 576,
+      "confidence": "contextual",
+      "reason": "anchored-node-string"
+    },
+    {
+      "source": "Reference Facial Detection doesn't match with Initial Facial Detection",
+      "offset": 30060112,
+      "nearestParameter": "Weight Points Prefit End",
+      "distance": 624,
+      "confidence": "contextual",
+      "reason": "anchored-node-string"
+    },
+    {
+      "source": "Loading",
+      "offset": 30060220,
+      "nearestParameter": "Weight Points Prefit End",
+      "distance": 732,
+      "confidence": "contextual",
+      "reason": "anchored-node-string"
+    },
+    {
+      "source": "Neutral Facial Detection must contain all segment splines",
+      "offset": 30060232,
+      "nearestParameter": "Weight Points Prefit End",
+      "distance": 744,
+      "confidence": "contextual",
+      "reason": "anchored-node-string"
+    },
+    {
+      "source": "Separator isn`t specified",
+      "offset": 30074332,
+      "nearestParameter": "Compute Mean",
+      "distance": 264,
+      "confidence": "contextual",
+      "reason": "anchored-node-string"
+    },
+    {
+      "source": "Attribute separator is longer than one character",
+      "offset": 30074360,
+      "nearestParameter": "Compute Mean",
+      "distance": 292,
+      "confidence": "contextual",
+      "reason": "anchored-node-string"
+    },
+    {
+      "source": "Separator is longer than one character",
+      "offset": 30074416,
+      "nearestParameter": "Compute Mean",
+      "distance": 348,
+      "confidence": "contextual",
+      "reason": "anchored-node-string"
+    },
+    {
+      "source": "Attribute separator must not be a letter or number",
+      "offset": 30074456,
+      "nearestParameter": "Compute Mean",
+      "distance": 388,
+      "confidence": "contextual",
+      "reason": "anchored-node-string"
+    },
+    {
+      "source": "Separator can`t be a letter or number",
+      "offset": 30074512,
+      "nearestParameter": "Compute Mean",
+      "distance": 444,
+      "confidence": "contextual",
+      "reason": "anchored-node-string"
+    },
+    {
+      "source": "Separator can`t be the same as Attribute separator",
+      "offset": 30074552,
+      "nearestParameter": "Compute Mean",
+      "distance": 484,
+      "confidence": "contextual",
+      "reason": "anchored-node-string"
+    },
+    {
+      "source": "Vertex Directory \"%1\" does not exist",
+      "offset": 30074608,
+      "nearestParameter": "Compute Mean",
+      "distance": 540,
+      "confidence": "contextual",
+      "reason": "anchored-node-string"
+    },
+    {
+      "source": "Vertex Directory \"%1\" is not a directory",
+      "offset": 30074648,
+      "nearestParameter": "Compute Mean",
+      "distance": 580,
+      "confidence": "contextual",
+      "reason": "anchored-node-string"
+    },
+    {
+      "source": "Mask \"%1\" does not exist",
+      "offset": 30074689,
+      "nearestParameter": "Compute Mean",
+      "distance": 621,
+      "confidence": "contextual",
+      "reason": "anchored-node-string"
+    },
+    {
+      "source": "Mask \"%1\" is not a file",
+      "offset": 30074714,
+      "nearestParameter": "Compute Mean",
+      "distance": 646,
+      "confidence": "contextual",
+      "reason": "anchored-node-string"
+    },
+    {
+      "source": "Components per Mask File \"%1\" does not exist",
+      "offset": 30074744,
+      "nearestParameter": "Compute Mean",
+      "distance": 676,
+      "confidence": "contextual",
+      "reason": "anchored-node-string"
+    },
+    {
+      "source": "Components per Mask File \"%1\" is not a file",
+      "offset": 30074792,
+      "nearestParameter": "Compute Mean",
+      "distance": 724,
+      "confidence": "contextual",
+      "reason": "anchored-node-string"
+    },
+    {
+      "source": "Incorrect rotation order",
+      "offset": 30084496,
+      "nearestParameter": "Rotation Order",
+      "distance": 586,
+      "confidence": "contextual",
+      "reason": "anchored-node-string"
+    },
+    {
+      "source": "SphericXYZ is not supported",
+      "offset": 30084521,
+      "nearestParameter": "Rotation Order",
+      "distance": 561,
+      "confidence": "contextual",
+      "reason": "anchored-node-string"
+    },
+    {
+      "source": "Reading rig",
+      "offset": 30084635,
+      "nearestParameter": "Rotation Order",
+      "distance": 447,
+      "confidence": "contextual",
+      "reason": "anchored-node-string"
+    },
+    {
+      "source": "JSON Legacy",
+      "offset": 30084814,
+      "nearestParameter": "Rotation Order",
+      "distance": 268,
+      "confidence": "contextual",
+      "reason": "anchored-node-string"
+    },
+    {
+      "source": "Missing rest pose path!",
+      "offset": 30085429,
+      "nearestParameter": "Cluster Name",
+      "distance": 318,
+      "confidence": "contextual",
+      "reason": "anchored-node-string"
+    },
+    {
+      "source": "Not implemented!",
+      "offset": 30085453,
+      "nearestParameter": "Cluster Name",
+      "distance": 342,
+      "confidence": "contextual",
+      "reason": "anchored-node-string"
+    },
+    {
+      "source": "RigConfig error:",
+      "offset": 30085470,
+      "nearestParameter": "Cluster Name",
+      "distance": 359,
+      "confidence": "contextual",
+      "reason": "anchored-node-string"
+    },
+    {
+      "source": "SaveJointRig",
+      "offset": 30090457,
+      "nearestParameter": "Joint Rig",
+      "distance": 718,
+      "confidence": "contextual",
+      "reason": "anchored-node-string"
+    },
+    {
+      "source": "JointRig",
+      "offset": 30092032,
+      "nearestParameter": "Weights Type",
+      "distance": 572,
+      "confidence": "contextual",
+      "reason": "anchored-node-string"
+    },
+    {
+      "source": "TransferPoints",
+      "offset": 30095338,
+      "nearestParameter": "Capacity",
+      "distance": 647,
+      "confidence": "contextual",
+      "reason": "anchored-node-string"
+    },
+    {
+      "source": "Discard %1 Item%2 Cache",
+      "offset": 30096259,
+      "nearestParameter": "Capacity",
+      "distance": 274,
+      "confidence": "contextual",
+      "reason": "anchored-node-string"
+    },
+    {
+      "source": "Cached",
+      "offset": 30096289,
+      "nearestParameter": "Capacity",
+      "distance": 304,
+      "confidence": "contextual",
+      "reason": "anchored-node-string"
+    },
+    {
+      "source": "CacheGeom",
+      "offset": 30096329,
+      "nearestParameter": "Capacity",
+      "distance": 344,
+      "confidence": "contextual",
+      "reason": "anchored-node-string"
+    },
+    {
+      "source": "Mismatch number transforms. Targets have %1. Transforms have %2.",
+      "offset": 30098928,
+      "nearestParameter": "Init transforms per bones",
+      "distance": 277,
+      "confidence": "contextual",
+      "reason": "anchored-node-string"
+    },
+    {
+      "source": "Vertex %1 isn't attached to any bone.",
+      "offset": 30099000,
+      "nearestParameter": "Init transforms per bones",
+      "distance": 349,
+      "confidence": "contextual",
+      "reason": "anchored-node-string"
+    },
+    {
+      "source": "Select",
+      "offset": 30099163,
+      "nearestParameter": "Init transforms per bones",
+      "distance": 512,
+      "confidence": "contextual",
+      "reason": "anchored-node-string"
+    },
+    {
+      "source": "Select Folder To",
+      "offset": 30099171,
+      "nearestParameter": "Init transforms per bones",
+      "distance": 520,
+      "confidence": "contextual",
+      "reason": "anchored-node-string"
+    },
+    {
+      "source": "Optimize all elapsed",
+      "offset": 30099189,
+      "nearestParameter": "Init transforms per bones",
+      "distance": 538,
+      "confidence": "contextual",
+      "reason": "anchored-node-string"
+    },
+    {
+      "source": "Input ONNX controls number (%1) mismatches Controls List Controls number (%2)",
+      "offset": 30108480,
+      "nearestParameter": "References Blend Rig",
+      "distance": 534,
+      "confidence": "contextual",
+      "reason": "anchored-node-string"
+    },
+    {
+      "source": "Output ONNX controls number (%1) mismatches Controls List controls number (%2)",
+      "offset": 30108560,
+      "nearestParameter": "References Blend Rig",
+      "distance": 454,
+      "confidence": "contextual",
+      "reason": "anchored-node-string"
+    },
+    {
+      "source": "References Rig controls do not contain \"%1\" control name from Controls List",
+      "offset": 30108640,
+      "nearestParameter": "References Blend Rig",
+      "distance": 374,
+      "confidence": "contextual",
+      "reason": "anchored-node-string"
+    },
+    {
+      "source": "FbRK7QVectorIN4Wrap20WNodeInterpolateGeom9CacheGeomEERKS_IiEiR7QStringE",
+      "offset": 30113536,
+      "nearestParameter": "Upscaling Factor",
+      "distance": 480,
+      "confidence": "contextual",
+      "reason": "anchored-node-string"
+    },
+    {
+      "source": "Left geom: %1 point(s) refer to non-existent triangles",
+      "offset": 30115648,
+      "nearestParameter": "Geometry Right",
+      "distance": 651,
+      "confidence": "contextual",
+      "reason": "anchored-node-string"
+    },
+    {
+      "source": "Different Resolutions for Cameras and Images",
+      "offset": 30119632,
+      "nearestParameter": "Example Ind to Return",
+      "distance": 297,
+      "confidence": "contextual",
+      "reason": "anchored-node-string"
+    },
+    {
+      "source": "Example to Return Index is Greater Than Example Amount",
+      "offset": 30119680,
+      "nearestParameter": "Example Ind to Return",
+      "distance": 345,
+      "confidence": "contextual",
+      "reason": "anchored-node-string"
+    },
+    {
+      "source": "Resample %1 Ramps",
+      "offset": 30131377,
+      "nearestParameter": "Eyefold Outer Width",
+      "distance": 290,
+      "confidence": "contextual",
+      "reason": "anchored-node-string"
+    },
+    {
+      "source": "G(knN",
+      "offset": 30148339,
+      "nearestParameter": "Shrink memory",
+      "distance": 714,
+      "confidence": "contextual",
+      "reason": "anchored-node-string"
+    },
+    {
+      "source": "Narrator",
+      "offset": 30151526,
+      "nearestParameter": "Smoothness parameters",
+      "distance": 580,
+      "confidence": "contextual",
+      "reason": "anchored-node-string"
+    },
+    {
+      "source": "WGLUvSpaceShadowTracer rays shooting",
+      "offset": 30161416,
+      "nearestParameter": "Geom Index",
+      "distance": 307,
+      "confidence": "contextual",
+      "reason": "anchored-node-string"
+    },
+    {
+      "source": "WGLUvSpaceShadowTracer render finished in",
+      "offset": 30161456,
+      "nearestParameter": "Geom Index",
+      "distance": 267,
+      "confidence": "contextual",
+      "reason": "anchored-node-string"
+    },
+    {
+      "source": "JSON array is empty",
+      "offset": 30169421,
+      "nearestParameter": "Source Rig",
+      "distance": 744,
+      "confidence": "contextual",
+      "reason": "anchored-node-string"
+    },
+    {
+      "source": "Invalid input type in rule: expected array",
+      "offset": 30169480,
+      "nearestParameter": "Source Rig",
+      "distance": 685,
+      "confidence": "contextual",
+      "reason": "anchored-node-string"
+    },
+    {
+      "source": "Input array is empty in rule",
+      "offset": 30169523,
+      "nearestParameter": "Source Rig",
+      "distance": 642,
+      "confidence": "contextual",
+      "reason": "anchored-node-string"
+    },
+    {
+      "source": "Invalid input element: not a string",
+      "offset": 30169552,
+      "nearestParameter": "Source Rig",
+      "distance": 613,
+      "confidence": "contextual",
+      "reason": "anchored-node-string"
+    },
+    {
+      "source": "Invalid output type in rule: expected object",
+      "offset": 30169640,
+      "nearestParameter": "Source Rig",
+      "distance": 525,
+      "confidence": "contextual",
+      "reason": "anchored-node-string"
+    },
+    {
+      "source": "Output object is empty in rule",
+      "offset": 30169688,
+      "nearestParameter": "Source Rig",
+      "distance": 477,
+      "confidence": "contextual",
+      "reason": "anchored-node-string"
+    },
+    {
+      "source": "Invalid weight for target",
+      "offset": 30169719,
+      "nearestParameter": "Source Rig",
+      "distance": 446,
+      "confidence": "contextual",
+      "reason": "anchored-node-string"
+    },
+    {
+      "source": "Conversion error for target",
+      "offset": 30169761,
+      "nearestParameter": "Source Rig",
+      "distance": 404,
+      "confidence": "contextual",
+      "reason": "anchored-node-string"
+    },
+    {
+      "source": "No valid target-weight pairs found in rule",
+      "offset": 30169816,
+      "nearestParameter": "Source Rig",
+      "distance": 349,
+      "confidence": "contextual",
+      "reason": "anchored-node-string"
+    },
+    {
+      "source": "Mismatch between targets and weights count in rule",
+      "offset": 30169864,
+      "nearestParameter": "Source Rig",
+      "distance": 301,
+      "confidence": "contextual",
+      "reason": "anchored-node-string"
+    },
+    {
+      "source": "Animation Paths Json array element at index %1 in \"subtakes\" array at index %2 should contain non-empty string value \"name\"",
+      "offset": 30174592,
+      "nearestParameter": "Base BlendRig",
+      "distance": 649,
+      "confidence": "contextual",
+      "reason": "anchored-node-string"
+    },
+    {
+      "source": "Animation Paths Json array element at index %1 in \"subtakes\" array at index %2 should contain non-empty string value \"path\"",
+      "offset": 30174720,
+      "nearestParameter": "Base BlendRig",
+      "distance": 521,
+      "confidence": "contextual",
+      "reason": "anchored-node-string"
+    },
+    {
+      "source": "Animation Paths Json array element at index %1 has duplicate name: %2",
+      "offset": 30174848,
+      "nearestParameter": "Base BlendRig",
+      "distance": 393,
+      "confidence": "contextual",
+      "reason": "anchored-node-string"
+    },
+    {
+      "source": "Animation Paths Json array element at index %1 with name: %2 in \"subtakes\" array at index %3 contain duplicate name: %4",
+      "offset": 30174920,
+      "nearestParameter": "Base BlendRig",
+      "distance": 321,
+      "confidence": "contextual",
+      "reason": "anchored-node-string"
+    },
+    {
+      "source": "BlendRigControls Animation Frame \"%1\" doesn't match Base BlendRig controls",
+      "offset": 30175696,
+      "nearestParameter": "Lazy Evaluation",
+      "distance": 295,
+      "confidence": "contextual",
+      "reason": "anchored-node-string"
+    },
+    {
+      "source": "Has invalid Control Masks Json for %1 timeline: %2",
+      "offset": 30175776,
+      "nearestParameter": "Lazy Evaluation",
+      "distance": 375,
+      "confidence": "contextual",
+      "reason": "anchored-node-string"
+    },
+    {
+      "source": "Control Masks Json for %1 timeline does not contain array",
+      "offset": 30175832,
+      "nearestParameter": "Lazy Evaluation",
+      "distance": 431,
+      "confidence": "contextual",
+      "reason": "anchored-node-string"
+    },
+    {
+      "source": "Control Masks Json for %1 timeline at rule index %2 should be array with size 2 or 3, but contains %3 elements instead",
+      "offset": 30175896,
+      "nearestParameter": "Lazy Evaluation",
+      "distance": 495,
+      "confidence": "contextual",
+      "reason": "anchored-node-string"
+    },
+    {
+      "source": "Control Masks Json for %1 timeline at rule index %2 should be array with first string element, but has %3 instead",
+      "offset": 30176016,
+      "nearestParameter": "Lazy Evaluation",
+      "distance": 615,
+      "confidence": "contextual",
+      "reason": "anchored-node-string"
+    },
+    {
+      "source": "Control Masks Json for %1 timeline at rule index %2 should be array with second double element, but has %3 instead",
+      "offset": 30176136,
+      "nearestParameter": "Lazy Evaluation",
+      "distance": 735,
+      "confidence": "contextual",
+      "reason": "anchored-node-string"
+    },
+    {
+      "source": "X?N4Wrap13WStringLookUp23StringLikenessEstimator4BaseE",
+      "offset": 30210878,
+      "nearestParameter": "Pose Name",
+      "distance": 710,
+      "confidence": "contextual",
+      "reason": "anchored-node-string"
+    },
+    {
+      "source": "%1 control contains both symmetry suffixes",
+      "offset": 30212768,
+      "nearestParameter": "Lower Limit",
+      "distance": 438,
+      "confidence": "contextual",
+      "reason": "anchored-node-string"
+    },
+    {
+      "source": "%1 control is included to symmetry fit, but %2 doesn't",
+      "offset": 30212816,
+      "nearestParameter": "Lower Limit",
+      "distance": 390,
+      "confidence": "contextual",
+      "reason": "anchored-node-string"
+    },
+    {
+      "source": "ModifyBlendRigControls",
+      "offset": 30212928,
+      "nearestParameter": "Lower Limit",
+      "distance": 278,
+      "confidence": "contextual",
+      "reason": "anchored-node-string"
+    },
+    {
+      "source": "The number of semantic points in the configuration file for \"%1\" does not match the reference.",
+      "offset": 30223696,
+      "nearestParameter": "Points Per Segments",
+      "distance": 355,
+      "confidence": "contextual",
+      "reason": "anchored-node-string"
+    },
+    {
+      "source": "The reference detection contains a contour \"%1\" which is not included in the configuration file",
+      "offset": 30223792,
+      "nearestParameter": "Points Per Segments",
+      "distance": 259,
+      "confidence": "contextual",
+      "reason": "anchored-node-string"
+    }
+  ]
+}

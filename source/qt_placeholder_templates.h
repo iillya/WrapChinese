@@ -239,7 +239,7 @@ private:
         const int maximumEnd =
             std::min(text.size(), position + kMaximumCapturedLength);
         if (tokenIndex + 1 == tokens.size()) {
-            if (position >= text.size() || text.size() > maximumEnd) return false;
+            if (position > text.size() || text.size() > maximumEnd) return false;
             MatchState branch = state;
             branch.values[field] = text.mid(position);
             branch.assigned[field] = true;
@@ -252,7 +252,9 @@ private:
         }
 
         const QString& delimiter = tokens[tokenIndex + 1].text;
-        int end = text.indexOf(delimiter, position + 1);
+        // QString::arg() accepts an empty value. Start at the current position;
+        // adjacent placeholders were already rejected during catalog loading.
+        int end = text.indexOf(delimiter, position);
         while (end >= 0 && end <= maximumEnd) {
             MatchState branch = state;
             branch.values[field] = text.mid(position, end - position);

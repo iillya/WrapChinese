@@ -54,6 +54,10 @@ inline bool isSupportedShortcut(const QKeySequence& shortcut) noexcept {
                                      Qt::AltModifier;
     const int modifiers = combination & Qt::KeyboardModifierMask;
     if ((modifiers & ~allowedModifiers) != 0) return false;
+    // Shift+` is reserved by runtime UI capture. Keyboard layouts can report
+    // the same physical shortcut as QuoteLeft or AsciiTilde, so reject both.
+    if (modifiers == Qt::ShiftModifier &&
+        (key == Qt::Key_QuoteLeft || key == Qt::Key_AsciiTilde)) return false;
     if (key >= Qt::Key_F1 && key <= Qt::Key_F12) return true;
     return modifiers != Qt::NoModifier;
 }

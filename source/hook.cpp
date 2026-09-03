@@ -877,96 +877,47 @@ void showCaptureResult(int addedCount, int totalCount,
     g_captureDialog = dialog;
     dialog->setObjectName(QStringLiteral("wrap_chinese_capture_result"));
     dialog->setAttribute(Qt::WA_DeleteOnClose);
-    dialog->setWindowTitle(QStringLiteral("未翻译词条"));
+    dialog->setWindowTitle(QStringLiteral("采集未翻译词条"));
     dialog->setWindowModality(parent ? Qt::WindowModal : Qt::ApplicationModal);
-    dialog->setMinimumWidth(560);
+    dialog->setWindowFlag(Qt::WindowContextHelpButtonHint, false);
+    dialog->setFixedWidth(400);
     if (parent) {
         dialog->setFont(parent->font());
         dialog->setWindowIcon(parent->windowIcon());
     }
 
-    QPalette palette = parent ? parent->palette() : QApplication::palette();
-    QColor background = palette.color(QPalette::Window);
-    // Wrap's main palette can report black WindowText even though its custom
-    // controls paint on a dark surface. This dialog owns its surface, so keep
-    // every text role explicitly light instead of inheriting that mismatch.
-    QColor foreground(QStringLiteral("#f2f2f2"));
-    QColor button = palette.color(QPalette::Button);
-    QColor buttonText(QStringLiteral("#f2f2f2"));
-    QColor accent = palette.color(QPalette::Highlight);
-    // Keep the result window consistent with Wrap even when the platform
-    // message-box theme is light.
-    if (background.lightness() > 150) {
-        background = QColor(QStringLiteral("#404040"));
-        button = QColor(QStringLiteral("#4b4b4b"));
-        accent = QColor(QStringLiteral("#66aaff"));
-    }
-    for (QPalette::ColorGroup group : {QPalette::Active, QPalette::Inactive,
-                                       QPalette::Disabled}) {
-        palette.setColor(group, QPalette::Window, background);
-        palette.setColor(group, QPalette::WindowText, foreground);
-        palette.setColor(group, QPalette::Text, foreground);
-        palette.setColor(group, QPalette::BrightText, foreground);
-        palette.setColor(group, QPalette::Button, button);
-        palette.setColor(group, QPalette::ButtonText, buttonText);
-    }
-    dialog->setPalette(palette);
-    dialog->setAutoFillBackground(true);
-    dialog->setStyleSheet(QStringLiteral(
-        "QDialog#wrap_chinese_capture_result { background:%1; color:%2; }"
-        "QDialog#wrap_chinese_capture_result QLabel { color:%2; background:transparent; }"
-        "QDialog#wrap_chinese_capture_result QPushButton { background:%3; color:%4;"
-        " border:1px solid %5; border-radius:3px; padding:6px 18px; }"
-        "QDialog#wrap_chinese_capture_result QPushButton:hover { background:%6; }"
-        "QDialog#wrap_chinese_capture_result QPushButton:pressed { background:%7; }"
-        "QDialog#wrap_chinese_capture_result QPushButton:default { border-color:%8; }")
-        .arg(background.name(), foreground.name(), button.name(),
-             buttonText.name(), button.lighter(135).name(),
-             button.lighter(112).name(), button.darker(120).name(),
-             accent.name()));
-
     QString message;
     if (saved) {
-        message = QStringLiteral("已捕获 %1 条（共 %2 条）。\n\n已保存到：\n%3")
+        message = QStringLiteral("本次新增 %1 条，当前共 %2 条。\n\n保存位置：\n%3")
                       .arg(addedCount)
                       .arg(totalCount)
                       .arg(QDir::toNativeSeparators(savedPath));
         if (usedFallback) {
             message += QStringLiteral(
-                "\n\n原文件暂时无法覆盖，已自动改存备用文件。\n"
-                "原路径：%1")
+                "\n\n原文件无法覆盖，已自动保存为备用文件。\n"
+                "原文件位置：\n%1")
                            .arg(QDir::toNativeSeparators(requestedPath));
         }
     } else {
-        message = QStringLiteral("采集完成，但无法保存文件：\n%1\n\n%2")
+        message = QStringLiteral(
+                      "采集完成，但文件保存失败。\n\n"
+                      "目标位置：\n%1\n\n错误信息：\n%2")
                       .arg(QDir::toNativeSeparators(requestedPath), saveError);
     }
 
     auto* layout = new QVBoxLayout(dialog);
-    layout->setContentsMargins(24, 20, 24, 18);
-    layout->setSpacing(18);
+    layout->setContentsMargins(16, 12, 16, 12);
+    layout->setSpacing(8);
     auto* label = new QLabel(message, dialog);
-    QPalette labelPalette = label->palette();
-    for (QPalette::ColorGroup group : {QPalette::Active, QPalette::Inactive,
-                                       QPalette::Disabled}) {
-        labelPalette.setColor(group, QPalette::WindowText, foreground);
-        labelPalette.setColor(group, QPalette::Text, foreground);
-    }
-    label->setPalette(labelPalette);
     label->setWordWrap(true);
     label->setTextInteractionFlags(Qt::TextSelectableByMouse);
     layout->addWidget(label);
     auto* buttons = new QHBoxLayout;
     buttons->addStretch();
     auto* accept = new QPushButton(QStringLiteral("确定"), dialog);
-    QPalette buttonPalette = accept->palette();
-    for (QPalette::ColorGroup group : {QPalette::Active, QPalette::Inactive,
-                                       QPalette::Disabled})
-        buttonPalette.setColor(group, QPalette::ButtonText, buttonText);
-    accept->setPalette(buttonPalette);
     accept->setDefault(true);
     accept->setAutoDefault(true);
-    accept->setMinimumWidth(96);
+    accept->setMinimumWidth(84);
     QObject::connect(accept, &QPushButton::clicked, dialog, &QDialog::accept);
     buttons->addWidget(accept);
     layout->addLayout(buttons);
@@ -1105,7 +1056,10 @@ void captureUntranslated() {
     bool usedFallback = false;
     QString saveError;
     QString savedPath = path;
-    if (addedCount > 0) {
+    // Create a valid empty capture file on the first run too. Reporting a
+    // successful save for a path that was never created is misleading and
+    // breaks callers that wait for the capture artifact to appear.
+    if (addedCount > 0 || !existingInfo.exists()) {
         const QByteArray bytes = QJsonDocument(root).toJson(QJsonDocument::Indented);
         QString firstError;
         saved = !preserveExisting && writeCaptureFile(path, bytes, firstError);
@@ -1269,7 +1223,11 @@ public:
             if (g_toggleShortcut.count() == 1 &&
                 combination == g_toggleShortcut[0]) {
                 g_swallowedShortcutKeys.insert(key->key());
-                if (!key->isAutoRepeat()) toggleLanguage();
+                if (WrapChineseConfig::shouldActivateShortcut(
+                        g_toggleShortcut, combination, key->isAutoRepeat(),
+                        false)) {
+                    toggleLanguage();
+                }
                 return true;
             }
         }

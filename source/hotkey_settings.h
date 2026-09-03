@@ -4,7 +4,6 @@
 
 #include <QtCore/QEvent>
 #include <QtCore/QSet>
-#include <QtGui/QFont>
 #include <QtGui/QKeyEvent>
 #include <QtGui/QKeySequence>
 #include <QtWidgets/QDialog>
@@ -27,30 +26,17 @@ public:
         setWindowModality(Qt::WindowModal);
         setWindowFlag(Qt::WindowContextHelpButtonHint, false);
         setFixedWidth(400);
-        setFont(QFont(QStringLiteral("Microsoft YaHei UI"), 10));
-        setStyleSheet(QStringLiteral(
-            "QDialog#wrap_chinese_hotkey_settings { background:#292b2e; }"
-            "QDialog#wrap_chinese_hotkey_settings QLabel { color:#d2d5d9; background:transparent; font-size:13px; }"
-            "QDialog#wrap_chinese_hotkey_settings QLabel#hotkeyInstruction { color:#eef0f2; }"
-            "QDialog#wrap_chinese_hotkey_settings QLabel#hotkeyHint { color:#a5abb2; }"
-            "QDialog#wrap_chinese_hotkey_settings QLabel#hotkeyError { color:#ff9f96; }"
-            "QDialog#wrap_chinese_hotkey_settings QPushButton { color:#e6e8ea; background:#383b3f; border:1px solid #50545a; border-radius:5px; padding:3px 10px; min-height:22px; font-size:13px; }"
-            "QDialog#wrap_chinese_hotkey_settings QPushButton:hover { background:#45494e; border-color:#62676e; }"
-            "QDialog#wrap_chinese_hotkey_settings QPushButton:pressed { background:#303337; }"
-            "QDialog#wrap_chinese_hotkey_settings QPushButton:focus { border-color:#6ba7df; }"
-            "QDialog#wrap_chinese_hotkey_settings QPushButton#hotkeyCapture { color:#f2f4f6; background:#202225; border-color:#5b6067; min-height:24px; }"
-            "QDialog#wrap_chinese_hotkey_settings QPushButton#hotkeyCapture:focus { border-color:#5b9bd5; }"
-            "QDialog#wrap_chinese_hotkey_settings QPushButton#hotkeyReset { color:#c3c8cd; background:transparent; }"
-            "QDialog#wrap_chinese_hotkey_settings QPushButton#hotkeyAccept { color:white; background:#3979b8; border-color:#5597d2; }"
-            "QDialog#wrap_chinese_hotkey_settings QPushButton#hotkeyAccept:hover { background:#4488c7; }"
-            "QDialog#wrap_chinese_hotkey_settings QPushButton:disabled { background:#34373a; color:#777c82; border-color:#464a4f; }"));
+        if (parent) {
+            setFont(parent->font());
+            setWindowIcon(parent->windowIcon());
+        }
 
         auto* layout = new QVBoxLayout(this);
-        layout->setContentsMargins(12, 8, 12, 8);
-        layout->setSpacing(5);
+        layout->setContentsMargins(16, 12, 16, 12);
+        layout->setSpacing(8);
 
         auto* instruction = new QLabel(
-            QStringLiteral("点击下方按钮，然后按下新的快捷键。"), this);
+            QStringLiteral("点击中间按钮，然后按下新的快捷键。"), this);
         instruction->setObjectName(QStringLiteral("hotkeyInstruction"));
         layout->addWidget(instruction);
 
@@ -61,7 +47,7 @@ public:
         layout->addWidget(capture_);
 
         auto* hint = new QLabel(
-            QStringLiteral("F1–F12 可直接使用；组合键支持 Ctrl / Shift / Alt。"),
+            QStringLiteral("可直接使用 F1–F12；组合快捷键支持 Ctrl、Shift 和 Alt。"),
             this);
         hint->setObjectName(QStringLiteral("hotkeyHint"));
         layout->addWidget(hint);
@@ -83,6 +69,8 @@ public:
         reset->setAutoDefault(false);
         cancel->setAutoDefault(false);
         ok_->setDefault(true);
+        for (QPushButton* button : {reset, cancel, ok_})
+            button->setMinimumWidth(84);
         buttons->addWidget(reset);
         buttons->addStretch();
         buttons->addWidget(cancel);
@@ -164,7 +152,7 @@ protected:
             keyEvent->key() | static_cast<int>(keyEvent->modifiers()));
         if (!WrapChineseConfig::isSupportedShortcut(candidate)) {
             showError(QStringLiteral(
-                "普通按键需配合 Ctrl、Shift 或 Alt；也可以直接使用功能键。"));
+                "普通按键需配合 Ctrl、Shift 或 Alt，也可以直接使用 F1–F12。"));
             event->accept();
             return true;
         }
@@ -189,8 +177,8 @@ private:
     void finishCapture() {
         capturing_ = false;
         ok_->setEnabled(true);
-        capture_->setText(QStringLiteral("当前：") +
-            pendingShortcut_.toString(QKeySequence::NativeText));
+        capture_->setText(QStringLiteral("当前：%1").arg(
+            pendingShortcut_.toString(QKeySequence::NativeText)));
     }
 
     void clearError() {

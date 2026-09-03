@@ -324,6 +324,10 @@ begin
     end;
 
     CleanupInstallerBackups;
+    { This runtime-created file is not part of [Files], so Inno cannot infer
+      its ownership. Remove it only after every recoverable uninstall action
+      has succeeded; the installer can then remove its now-empty directories. }
+    DeleteOwnedFile(StateFile);
 
   end;
 end;

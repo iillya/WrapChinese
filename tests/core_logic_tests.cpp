@@ -57,6 +57,12 @@ int main(int argc, char** argv) {
     ok &= require(templates.lookup(QStringLiteral("first then second")) ==
                       QStringLiteral("second 后 first"),
                   "prefixless template matched");
+    ok &= require(templates.lookup(QStringLiteral("File  does not exist!")) ==
+                      QStringLiteral("文件  不存在！"),
+                  "empty delimited placeholder matched");
+    ok &= require(templates.lookup(QStringLiteral("first then ")) ==
+                      QStringLiteral(" 后 first"),
+                  "empty trailing placeholder matched");
 
     ok &= require(WrapChineseConfig::isSupportedShortcut(QKeySequence(Qt::Key_F1)),
                   "F1 supported");
@@ -82,6 +88,12 @@ int main(int argc, char** argv) {
                   "Win rejected when mixed with supported modifiers");
     ok &= require(!WrapChineseConfig::isSupportedShortcut(QKeySequence(Qt::Key_L)),
                   "bare ordinary key rejected");
+    ok &= require(!WrapChineseConfig::isSupportedShortcut(
+                      QKeySequence(Qt::SHIFT | Qt::Key_QuoteLeft)),
+                  "capture shortcut spelling with quote-left is reserved");
+    ok &= require(!WrapChineseConfig::isSupportedShortcut(
+                      QKeySequence(Qt::SHIFT | Qt::Key_AsciiTilde)),
+                  "capture shortcut spelling with tilde is reserved");
     ok &= require(WrapChineseConfig::shouldActivateShortcut(
                       ctrlShiftL, Qt::CTRL | Qt::SHIFT | Qt::Key_L,
                       false, false), "matching key press activates");

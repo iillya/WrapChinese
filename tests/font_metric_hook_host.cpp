@@ -200,7 +200,8 @@ int main(int argc, char** argv) {
         }
         hotkeyDialogOpened = hotkeyDialog && captureButton && cancelButton;
         hotkeyDialogStyled = hotkeyDialogOpened && hotkeyDialog->width() == 400 &&
-                             captureButton->font().pixelSize() == 13 &&
+                             hotkeyDialog->styleSheet().isEmpty() &&
+                             hotkeyDialog->font() == window.font() &&
                              !(hotkeyDialog->windowFlags() &
                                Qt::WindowContextHelpButtonHint);
         if (hotkeyDialogOpened) {
@@ -292,8 +293,8 @@ int main(int argc, char** argv) {
     for (const QString& file : corruptFallbacks)
         QFile::remove(hookInfo.absolutePath() + QLatin1Char('/') + file);
 
-    // Let the result window render once and assert that the custom Wrap dialog
-    // stays dark even when the host/platform palette itself is light.
+    // Let the result window render once and verify that it inherits the host's
+    // native presentation instead of maintaining a second custom theme.
     const QString dialogCaptureFile = hookInfo.absolutePath() +
                                       QStringLiteral("/dialog_style_test.json");
     QFile::remove(dialogCaptureFile);
@@ -306,12 +307,10 @@ int main(int argc, char** argv) {
     QLabel* resultLabel = resultDialog ? resultDialog->findChild<QLabel*>() : nullptr;
     QPushButton* resultButton =
         resultDialog ? resultDialog->findChild<QPushButton*>() : nullptr;
-    const bool captureDialogStyled = resultDialog &&
-        resultDialog->palette().color(QPalette::Window).lightness() <= 150 &&
-        resultLabel &&
-        resultLabel->palette().color(QPalette::WindowText) == QColor("#f2f2f2") &&
-        resultButton &&
-        resultButton->palette().color(QPalette::ButtonText) == QColor("#f2f2f2");
+    const bool captureDialogStyled = resultDialog && resultLabel && resultButton &&
+        resultDialog->width() == 400 && resultDialog->styleSheet().isEmpty() &&
+        resultDialog->font() == window.font() &&
+        !(resultDialog->windowFlags() & Qt::WindowContextHelpButtonHint);
     if (resultDialog) resultDialog->close();
     QCoreApplication::processEvents();
     QFile::remove(dialogCaptureFile);
