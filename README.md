@@ -123,3 +123,19 @@ powershell -NoProfile -ExecutionPolicy Bypass -File scripts\smoke_test.ps1
 
 该测试会隐藏启动一次已验证的 Wrap，完成采集后正常退出；发现已有 Wrap 会话时
 会拒绝运行。
+
+## 节点参数运行时采集
+
+以下命令从 `WrapCmd --nodes` 读取当前版本的正式节点清单，只启动一个空工程，
+然后在同一节点图中依次展开添加菜单并选择所有节点。它不移动系统鼠标，也不
+手工拼接易随版本变化的节点 JSON：
+
+```powershell
+python scripts\generate_node_probe_projects.py
+powershell -NoProfile -ExecutionPolicy Bypass -File scripts\run_node_probe.ps1
+python scripts\aggregate_node_probe.py
+```
+
+每个节点创建后都会检查场景项确实增加，再采集当前参数面板。汇总结果写入
+`translations\inventory\node_parameter_runtime_probe.json`；已有 Wrap 会话时脚本
+会拒绝启动，避免碰到正在编辑的工程。
