@@ -199,8 +199,8 @@ int main(int argc, char** argv) {
             }
         }
         hotkeyDialogOpened = hotkeyDialog && captureButton && cancelButton;
-        hotkeyDialogStyled = hotkeyDialogOpened && hotkeyDialog->width() == 640 &&
-                             captureButton->font().pixelSize() == 20;
+        hotkeyDialogStyled = hotkeyDialogOpened && hotkeyDialog->width() == 520 &&
+                             captureButton->font().pixelSize() == 16;
         if (hotkeyDialogOpened) {
             captureButton->click();
             cancelButton->click();

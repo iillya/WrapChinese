@@ -25,19 +25,19 @@ public:
         setObjectName(QStringLiteral("wrap_chinese_hotkey_settings"));
         setAttribute(Qt::WA_DeleteOnClose);
         setWindowModality(Qt::WindowModal);
-        setFixedWidth(640);
+        setFixedWidth(520);
         setFont(QFont(QStringLiteral("Microsoft YaHei UI"), 10));
         setStyleSheet(QStringLiteral(
             "QDialog#wrap_chinese_hotkey_settings { background:#292b2e; }"
-            "QDialog#wrap_chinese_hotkey_settings QLabel { color:#d2d5d9; background:transparent; font-size:20px; }"
+            "QDialog#wrap_chinese_hotkey_settings QLabel { color:#d2d5d9; background:transparent; font-size:16px; }"
             "QDialog#wrap_chinese_hotkey_settings QLabel#hotkeyInstruction { color:#eef0f2; }"
             "QDialog#wrap_chinese_hotkey_settings QLabel#hotkeyHint { color:#a5abb2; }"
             "QDialog#wrap_chinese_hotkey_settings QLabel#hotkeyError { color:#ff9f96; }"
-            "QDialog#wrap_chinese_hotkey_settings QPushButton { color:#e6e8ea; background:#383b3f; border:1px solid #50545a; border-radius:5px; padding:7px 16px; min-height:30px; font-size:20px; }"
+            "QDialog#wrap_chinese_hotkey_settings QPushButton { color:#e6e8ea; background:#383b3f; border:1px solid #50545a; border-radius:5px; padding:5px 14px; min-height:26px; font-size:16px; }"
             "QDialog#wrap_chinese_hotkey_settings QPushButton:hover { background:#45494e; border-color:#62676e; }"
             "QDialog#wrap_chinese_hotkey_settings QPushButton:pressed { background:#303337; }"
             "QDialog#wrap_chinese_hotkey_settings QPushButton:focus { border-color:#6ba7df; }"
-            "QDialog#wrap_chinese_hotkey_settings QPushButton#hotkeyCapture { color:#f2f4f6; background:#202225; border-color:#5b6067; min-height:34px; }"
+            "QDialog#wrap_chinese_hotkey_settings QPushButton#hotkeyCapture { color:#f2f4f6; background:#202225; border-color:#5b6067; min-height:30px; }"
             "QDialog#wrap_chinese_hotkey_settings QPushButton#hotkeyCapture:focus { border-color:#5b9bd5; }"
             "QDialog#wrap_chinese_hotkey_settings QPushButton#hotkeyReset { color:#c3c8cd; background:transparent; }"
             "QDialog#wrap_chinese_hotkey_settings QPushButton#hotkeyAccept { color:white; background:#3979b8; border-color:#5597d2; }"
@@ -45,8 +45,8 @@ public:
             "QDialog#wrap_chinese_hotkey_settings QPushButton:disabled { background:#34373a; color:#777c82; border-color:#464a4f; }"));
 
         auto* layout = new QVBoxLayout(this);
-        layout->setContentsMargins(20, 18, 20, 18);
-        layout->setSpacing(10);
+        layout->setContentsMargins(16, 14, 16, 14);
+        layout->setSpacing(8);
 
         auto* instruction = new QLabel(
             QStringLiteral("点击下方按钮，然后按下新的快捷键。"), this);
@@ -60,7 +60,7 @@ public:
         layout->addWidget(capture_);
 
         auto* hint = new QLabel(
-            QStringLiteral("支持 F1–F12，或 Ctrl / Alt / Win + 普通按键；Esc 取消录入。"),
+            QStringLiteral("F1–F12 可直接使用；普通按键需配合 Ctrl / Alt / Win。"),
             this);
         hint->setObjectName(QStringLiteral("hotkeyHint"));
         layout->addWidget(hint);
