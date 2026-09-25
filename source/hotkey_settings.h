@@ -79,7 +79,10 @@ public:
         connect(capture_, &QPushButton::clicked, this,
                 [this] { beginCapture(); });
         connect(reset, &QPushButton::clicked, this, [this] {
-            pendingShortcut_ = WrapChineseConfig::defaultToggleShortcut();
+            const QKeySequence defaultShortcut =
+                WrapChineseConfig::defaultToggleShortcut();
+            if (!saveShortcut(defaultShortcut)) return;
+            pendingShortcut_ = defaultShortcut;
             finishCapture();
             clearError();
         });
@@ -91,13 +94,7 @@ public:
 protected:
     void accept() override {
         if (capturing_) return;
-        QString error;
-        if (!WrapChineseConfig::saveToggleShortcut(
-                configPath_, pendingShortcut_, &error)) {
-            showError(QStringLiteral("保存失败：") + error);
-            return;
-        }
-        currentShortcut_ = pendingShortcut_;
+        if (!saveShortcut(pendingShortcut_)) return;
         QDialog::accept();
     }
 
@@ -165,6 +162,17 @@ protected:
     }
 
 private:
+    bool saveShortcut(const QKeySequence& shortcut) {
+        QString error;
+        if (!WrapChineseConfig::saveToggleShortcut(
+                configPath_, shortcut, &error)) {
+            showError(QStringLiteral("保存失败：") + error);
+            return false;
+        }
+        currentShortcut_ = shortcut;
+        return true;
+    }
+
     void beginCapture() {
         capturing_ = true;
         swallowedReleases_.clear();

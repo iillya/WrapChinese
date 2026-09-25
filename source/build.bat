@@ -48,7 +48,7 @@ cl /nologo /O2 /W4 /WX /EHsc /std:c++17 /utf-8 /DUNICODE /D_UNICODE ^
   "%CPP%\launcher.cpp" /Fo"%OBJ%\launcher.obj" ^
   "%OBJ%\app_icon.res" ^
   /Fe:"%OUT%\WrapChineseLauncher.exe" ^
-  /link /SUBSYSTEM:WINDOWS user32.lib bcrypt.lib
+  /link /SUBSYSTEM:WINDOWS user32.lib version.lib
 if errorlevel 1 exit /b 1
 
 if not exist "%OUT%\translations" mkdir "%OUT%\translations"

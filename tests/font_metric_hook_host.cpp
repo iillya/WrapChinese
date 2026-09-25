@@ -8,6 +8,7 @@
 #include <QtCore/QFileInfo>
 #include <QtCore/QJsonDocument>
 #include <QtCore/QJsonObject>
+#include <QtCore/QSettings>
 #include <QtCore/QThread>
 #include <QtGui/QFont>
 #include <QtGui/QFontMetrics>
@@ -19,6 +20,7 @@
 #include <QtWidgets/QMenu>
 #include <QtWidgets/QMenuBar>
 #include <QtWidgets/QPushButton>
+#include <QtWidgets/QVBoxLayout>
 
 #include <cmath>
 #include <cstring>
@@ -50,7 +52,23 @@ int main(int argc, char** argv) {
             action->setObjectName(QStringLiteral("lazy_capture_probe"));
         }
     });
-    window.setCentralWidget(new QLabel(captureProbe, &window));
+    auto* central = new QWidget(&window);
+    auto* centralLayout = new QVBoxLayout(central);
+    centralLayout->addWidget(new QLabel(captureProbe, central));
+    auto* richNodeType = new QLabel(QStringLiteral("<b>LoadGeom</b>"), central);
+    auto* nodeName = new QLabel(QStringLiteral("WrapHead2"), central);
+    auto* dynamicNodeTitle = new QLabel(
+        QStringLiteral("<b>LoadGeom</b>&nbsp;Basemesh"), central);
+    auto* dynamicTransformTitle = new QLabel(
+        QStringLiteral("<b>LoadTransform</b> RightEyeTransform"), central);
+    auto* richAttribute = new QLabel(
+        QStringLiteral("<span title=\"x > Basemesh\">CustomName</span>"), central);
+    centralLayout->addWidget(richNodeType);
+    centralLayout->addWidget(nodeName);
+    centralLayout->addWidget(dynamicNodeTitle);
+    centralLayout->addWidget(dynamicTransformTitle);
+    centralLayout->addWidget(richAttribute);
+    window.setCentralWidget(central);
     window.show();
 
     QFontMetrics metrics(QFont(QStringLiteral("Arial"), 12));
@@ -120,6 +138,21 @@ int main(int argc, char** argv) {
     const bool cjkPlaceholderHooked =
         metrics.horizontalAdvance(dynamicSource) ==
         metrics.horizontalAdvance(dynamicTarget);
+    const bool markedHintHooked = metrics.elidedText(
+        QStringLiteral("*ALT* + *LMB* rotates"), Qt::ElideRight,
+        10000) == QStringLiteral("*ALT* + *LMB* 旋转");
+    const bool hintFragmentHooked = metrics.elidedText(
+        QStringLiteral("rotates"), Qt::ElideRight, 10000) ==
+        QStringLiteral("旋转");
+    const bool richLabelHooked =
+        richNodeType->text() == QStringLiteral("<b>加载几何体</b>") &&
+        nodeName->text() == QStringLiteral("Wrap 头部 2") &&
+        dynamicNodeTitle->text() ==
+            QStringLiteral("<b>加载几何体</b>&nbsp;基础网格") &&
+        dynamicTransformTitle->text() ==
+            QStringLiteral("<b>加载变换</b> 右眼变换") &&
+        richAttribute->text() ==
+            QStringLiteral("<span title=\"x > Basemesh\">CustomName</span>");
     const bool advanceHooked = after == expectedAdvance;
     const bool boundsHooked = actualBounds == expectedBounds;
     const bool sizeHooked = actualSize == expectedSize;
@@ -136,6 +169,15 @@ int main(int argc, char** argv) {
                           QString(), false, 1);
     QApplication::sendEvent(&window, &togglePress);
     const bool toggledOnPress = metrics.horizontalAdvance(source) == before;
+    const bool richLabelRestored =
+        richNodeType->text() == QStringLiteral("<b>LoadGeom</b>") &&
+        nodeName->text() == QStringLiteral("WrapHead2") &&
+        dynamicNodeTitle->text() ==
+            QStringLiteral("<b>LoadGeom</b>&nbsp;Basemesh") &&
+        dynamicTransformTitle->text() ==
+            QStringLiteral("<b>LoadTransform</b> RightEyeTransform") &&
+        richAttribute->text() ==
+            QStringLiteral("<span title=\"x > Basemesh\">CustomName</span>");
     QKeyEvent toggleRepeat(QEvent::KeyPress, Qt::Key_F3, Qt::NoModifier,
                            QString(), true, 2);
     QApplication::sendEvent(&window, &toggleRepeat);
@@ -148,6 +190,15 @@ int main(int argc, char** argv) {
     QApplication::sendEvent(&window, &toggleRestore);
     const bool toggleRestored =
         metrics.horizontalAdvance(source) == expectedAdvance;
+    const bool richLabelRetoggled =
+        richNodeType->text() == QStringLiteral("<b>加载几何体</b>") &&
+        nodeName->text() == QStringLiteral("Wrap 头部 2") &&
+        dynamicNodeTitle->text() ==
+            QStringLiteral("<b>加载几何体</b>&nbsp;基础网格") &&
+        dynamicTransformTitle->text() ==
+            QStringLiteral("<b>加载变换</b> 右眼变换") &&
+        richAttribute->text() ==
+            QStringLiteral("<span title=\"x > Basemesh\">CustomName</span>");
 
     QAction* authorAction = menuBar->findChild<QAction*>(
         QStringLiteral("wrap_chinese_author"));
@@ -174,6 +225,8 @@ int main(int argc, char** argv) {
     bool hotkeyDialogOpened = false;
     bool hotkeyDialogStyled = false;
     bool dialogControlsSafe = false;
+    bool resetSavedImmediately = false;
+    bool resetKeptDialogOpen = false;
     if (languageAction) {
         const QPoint languagePoint =
             menuBar->actionGeometry(languageAction).center();
@@ -188,6 +241,10 @@ int main(int argc, char** argv) {
             ? hotkeyDialog->findChild<QPushButton*>(
                   QStringLiteral("hotkeyCapture"))
             : nullptr;
+        QPushButton* resetButton = hotkeyDialog
+            ? hotkeyDialog->findChild<QPushButton*>(
+                  QStringLiteral("hotkeyReset"))
+            : nullptr;
         QPushButton* cancelButton = nullptr;
         if (hotkeyDialog) {
             for (QPushButton* button :
@@ -198,13 +255,28 @@ int main(int argc, char** argv) {
                 }
             }
         }
-        hotkeyDialogOpened = hotkeyDialog && captureButton && cancelButton;
+        hotkeyDialogOpened = hotkeyDialog && captureButton && resetButton &&
+                             cancelButton;
         hotkeyDialogStyled = hotkeyDialogOpened && hotkeyDialog->width() == 400 &&
                              hotkeyDialog->styleSheet().isEmpty() &&
                              hotkeyDialog->font() == window.font() &&
                              !(hotkeyDialog->windowFlags() &
                                Qt::WindowContextHelpButtonHint);
         if (hotkeyDialogOpened) {
+            {
+                QSettings settings(configFile, QSettings::IniFormat);
+                settings.setValue(QStringLiteral("Hotkey/shortcut"),
+                                  QStringLiteral("Ctrl+Shift+L"));
+                settings.sync();
+            }
+            resetButton->click();
+            QCoreApplication::processEvents();
+            QSettings settings(configFile, QSettings::IniFormat);
+            resetSavedImmediately =
+                settings.value(QStringLiteral("Hotkey/shortcut")).toString() ==
+                QStringLiteral("F3");
+            resetKeptDialogOpen = hotkeyDialog->isVisible() &&
+                captureButton->text().contains(QStringLiteral("F3"));
             captureButton->click();
             cancelButton->click();
             QCoreApplication::processEvents();
@@ -329,16 +401,23 @@ int main(int argc, char** argv) {
               << " size_f_hooked=" << sizeFHooked
               << " tight_bounds_f_hooked=" << tightBoundsFHooked
               << " elide_f_hooked=" << elideFHooked
-              << " cjk_placeholder_hooked=" << cjkPlaceholderHooked << "\n"
+              << " cjk_placeholder_hooked=" << cjkPlaceholderHooked
+              << " marked_hint_hooked=" << markedHintHooked
+              << " hint_fragment_hooked=" << hintFragmentHooked
+              << " rich_label_hooked=" << richLabelHooked << "\n"
               << "toggled_on_press=" << toggledOnPress
               << " repeat_ignored=" << repeatIgnored
               << " release_ignored=" << releaseIgnored
-              << " toggle_restored=" << toggleRestored << "\n"
+              << " toggle_restored=" << toggleRestored
+              << " rich_label_restored=" << richLabelRestored
+              << " rich_label_retoggled=" << richLabelRetoggled << "\n"
               << "links_installed=" << linksInstalled
               << " pointing_hand_hooked=" << pointingHandHooked
               << " cursor_restore_hooked=" << cursorRestoreHooked
               << " hotkey_dialog_opened=" << hotkeyDialogOpened
               << " hotkey_dialog_styled=" << hotkeyDialogStyled
+              << " reset_saved_immediately=" << resetSavedImmediately
+              << " reset_kept_dialog_open=" << resetKeptDialogOpen
               << " dialog_controls_safe=" << dialogControlsSafe << "\n"
               << "capture_hotkey_hooked=" << captureHotkeyHooked
               << " lazy_menu_capture_hooked=" << lazyMenuCaptureHooked
@@ -347,11 +426,15 @@ int main(int argc, char** argv) {
               << " corrupt_fallback_written=" << corruptFallbackWritten
               << " capture_dialog_styled=" << captureDialogStyled << "\n";
     return advanceHooked && boundsHooked && sizeHooked &&
-        tightBoundsHooked && elideHooked && cjkPlaceholderHooked && advanceFHooked &&
+        tightBoundsHooked && elideHooked && cjkPlaceholderHooked &&
+        markedHintHooked && hintFragmentHooked &&
+        richLabelHooked && richLabelRestored && richLabelRetoggled &&
+        advanceFHooked &&
         boundsFHooked && sizeFHooked && tightBoundsFHooked &&
         elideFHooked && linksInstalled && pointingHandHooked &&
         cursorRestoreHooked && hotkeyDialogOpened && hotkeyDialogStyled &&
-        dialogControlsSafe && toggledOnPress && repeatIgnored &&
+        resetSavedImmediately && resetKeptDialogOpen && dialogControlsSafe &&
+        toggledOnPress && repeatIgnored &&
         releaseIgnored && toggleRestored && captureHotkeyHooked &&
         lazyMenuCaptureHooked && captureFallbackHooked &&
         corruptOriginalPreserved && corruptFallbackWritten &&

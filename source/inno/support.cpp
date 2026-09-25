@@ -153,11 +153,11 @@ extern "C" __declspec(dllexport) BOOL __stdcall CheckTarget(
             return fail(L"ChineseLauncher 内含目录链接、不可访问文件或超出检查上限，已停止操作。", message, capacity);
         if (checkVersion) {
             const auto host = root + L"\\" + kHostName;
-            if (!regularFile(host) || !amd64(host))
-                return fail(L"请选择包含 x64 Wrap.exe 的软件目录，不要选择 ChineseLauncher 子目录。", message, capacity);
-            if (!WrapChineseCompatibility::matchesSupportedHost(host))
-                return fail(L"Wrap.exe 不是已验证的 2025.10.8 构建，已停止安装。", message, capacity);
-            if (!productQt(root)) return fail(L"目标 Qt 组件不完整或版本不兼容，请确认软件版本。", message, capacity);
+            if (!regularFile(host))
+                return fail(L"请选择包含 Wrap.exe 的软件目录，不要选择 ChineseLauncher 子目录。", message, capacity);
+            if (!WrapChineseCompatibility::isAmd64Image(host))
+                return fail(L"Wrap.exe 不是可兼容的 x64 程序。", message, capacity);
+            if (!productQt(root)) return fail(L"目标 Qt5 x64 组件不完整、架构不匹配或组件版本不一致。", message, capacity);
         }
         if (!hostStopped(root))
             return fail(L"Wrap 或中文启动器正在运行，或无法确认进程状态。请保存工程并正常退出后重试。", message, capacity);

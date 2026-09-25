@@ -38,12 +38,29 @@ std::wstring executablePath() {
 }
 
 bool validRoot(const std::wstring& root) {
-    const std::wstring host = root + L"\\Wrap.exe";
-    return isFile(host) &&
-           WrapChineseCompatibility::matchesSupportedHost(host) &&
-           isFile(root + L"\\Qt5Core.dll") &&
-           isFile(root + L"\\Qt5Gui.dll") &&
-           isFile(root + L"\\Qt5Widgets.dll");
+    return WrapChineseCompatibility::supportsHostDirectory(root);
+}
+
+std::wstring findCompatibleChildRoot(const std::wstring& parent) {
+    WIN32_FIND_DATAW data{};
+    HANDLE search = FindFirstFileW((parent + L"\\Wrap *").c_str(), &data);
+    if (search == INVALID_HANDLE_VALUE) return {};
+    std::wstring selected;
+    do {
+        if (!(data.dwFileAttributes & FILE_ATTRIBUTE_DIRECTORY) ||
+            (data.dwFileAttributes & FILE_ATTRIBUTE_REPARSE_POINT) ||
+            wcscmp(data.cFileName, L".") == 0 ||
+            wcscmp(data.cFileName, L"..") == 0) {
+            continue;
+        }
+        const std::wstring candidate = parent + L"\\" + data.cFileName;
+        if (validRoot(candidate) &&
+            (selected.empty() || candidate > selected)) {
+            selected = candidate;
+        }
+    } while (FindNextFileW(search, &data));
+    FindClose(search);
+    return selected;
 }
 
 std::wstring findWrapRoot(const std::wstring& start) {
@@ -63,11 +80,7 @@ std::wstring findWrapRoot(const std::wstring& start) {
             L"ProgramW6432", programFiles, MAX_PATH);
     if (!length || length >= MAX_PATH) return {};
 
-    const std::wstring faceform = std::wstring(programFiles) + L"\\Faceform";
-    const std::wstring preferred = faceform + L"\\Wrap 2025.10.8";
-    if (validRoot(preferred)) return preferred;
-
-    return {};
+    return findCompatibleChildRoot(std::wstring(programFiles) + L"\\Faceform");
 }
 
 HANDLE moduleSnapshot(DWORD processId) {
@@ -196,6 +209,11 @@ int WINAPI wWinMain(HINSTANCE, HINSTANCE, PWSTR commandLine, int) {
         return 2;
     }
 
+    wchar_t readyEventName[96] = {};
+    swprintf_s(readyEventName, L"Local\\WrapChineseHookReady_%lu",
+               process.dwProcessId);
+    HANDLE readyEvent = CreateEventW(nullptr, TRUE, FALSE, readyEventName);
+
     const size_t pathBytes = (hookPath.size() + 1) * sizeof(wchar_t);
     void* remotePath = VirtualAllocEx(
         process.hProcess, nullptr, pathBytes,
@@ -237,9 +255,14 @@ int WINAPI wWinMain(HINSTANCE, HINSTANCE, PWSTR commandLine, int) {
         CloseHandle(initializationThread);
     }
 
-    if (initialized && ResumeThread(process.hThread) != DWORD(-1)) {
+    const bool resumed = initialized && readyEvent &&
+                         ResumeThread(process.hThread) != DWORD(-1);
+    const bool hookReady = resumed &&
+        WaitForSingleObject(readyEvent, 60000) == WAIT_OBJECT_0;
+    if (hookReady) {
         if (remotePath && completed)
             VirtualFreeEx(process.hProcess, remotePath, 0, MEM_RELEASE);
+        CloseHandle(readyEvent);
         CloseHandle(process.hThread);
         CloseHandle(process.hProcess);
         return 0;
@@ -249,9 +272,10 @@ int WINAPI wWinMain(HINSTANCE, HINSTANCE, PWSTR commandLine, int) {
     WaitForSingleObject(process.hProcess, 5000);
     if (remotePath && completed)
         VirtualFreeEx(process.hProcess, remotePath, 0, MEM_RELEASE);
+    if (readyEvent) CloseHandle(readyEvent);
     CloseHandle(process.hThread);
     CloseHandle(process.hProcess);
-    showError(L"汉化 DLL 加载失败，本次 Wrap 启动已取消。\n"
+    showError(L"当前 Wrap 的 Qt5 能力不足，或汉化 DLL 初始化失败。\n"
               L"原版程序文件没有被修改。");
     return 3;
 }

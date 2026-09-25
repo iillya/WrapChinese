@@ -4,91 +4,108 @@
 #define WIN32_LEAN_AND_MEAN
 #endif
 #include <windows.h>
-#include <bcrypt.h>
 
 #include <array>
 #include <cstdint>
 #include <string>
 #include <vector>
 
-#pragma comment(lib, "bcrypt.lib")
-
 namespace WrapChineseCompatibility {
 
-inline constexpr std::uint64_t kSupportedHostSize = 35733624;
-inline constexpr std::array<unsigned char, 32> kSupportedHostSha256 = {
-    0x1a, 0x28, 0x8e, 0x06, 0xec, 0x62, 0xe7, 0x6d,
-    0x11, 0x10, 0xcd, 0xbc, 0x35, 0xa5, 0x59, 0x56,
-    0x96, 0xa4, 0x6f, 0xa8, 0x3a, 0xb9, 0x93, 0xd1,
-    0x3b, 0xd3, 0xa3, 0x0c, 0xe3, 0x36, 0x6b, 0xc9,
-};
+struct FileVersion final {
+    std::uint16_t major = 0;
+    std::uint16_t minor = 0;
+    std::uint16_t patch = 0;
+    std::uint16_t build = 0;
 
-class FileHandle final {
-public:
-    explicit FileHandle(HANDLE value) : value_(value) {}
-    ~FileHandle() {
-        if (value_ != INVALID_HANDLE_VALUE) CloseHandle(value_);
+    bool operator==(const FileVersion& other) const noexcept {
+        return major == other.major && minor == other.minor &&
+               patch == other.patch && build == other.build;
     }
-    FileHandle(const FileHandle&) = delete;
-    FileHandle& operator=(const FileHandle&) = delete;
-    HANDLE get() const noexcept { return value_; }
-
-private:
-    HANDLE value_ = INVALID_HANDLE_VALUE;
 };
 
-class AlgorithmHandle final {
-public:
-    ~AlgorithmHandle() {
-        if (value) BCryptCloseAlgorithmProvider(value, 0);
+inline bool isRegularFile(const std::wstring& path) {
+    const DWORD attributes = GetFileAttributesW(path.c_str());
+    return attributes != INVALID_FILE_ATTRIBUTES &&
+           !(attributes & (FILE_ATTRIBUTE_DIRECTORY |
+                           FILE_ATTRIBUTE_REPARSE_POINT));
+}
+
+inline bool isAmd64Image(const std::wstring& path) {
+    HANDLE file = CreateFileW(path.c_str(), GENERIC_READ, FILE_SHARE_READ,
+                              nullptr, OPEN_EXISTING,
+                              FILE_ATTRIBUTE_NORMAL | FILE_FLAG_OPEN_REPARSE_POINT,
+                              nullptr);
+    if (file == INVALID_HANDLE_VALUE) return false;
+
+    IMAGE_DOS_HEADER dos{};
+    DWORD read = 0;
+    bool valid = ReadFile(file, &dos, sizeof(dos), &read, nullptr) &&
+                 read == sizeof(dos) && dos.e_magic == IMAGE_DOS_SIGNATURE &&
+                 dos.e_lfanew >= static_cast<LONG>(sizeof(dos));
+    LARGE_INTEGER offset{};
+    offset.QuadPart = valid ? dos.e_lfanew : 0;
+    valid = valid && SetFilePointerEx(file, offset, nullptr, FILE_BEGIN);
+
+    DWORD signature = 0;
+    IMAGE_FILE_HEADER header{};
+    if (valid) {
+        valid = ReadFile(file, &signature, sizeof(signature), &read, nullptr) &&
+                read == sizeof(signature) && signature == IMAGE_NT_SIGNATURE &&
+                ReadFile(file, &header, sizeof(header), &read, nullptr) &&
+                read == sizeof(header) &&
+                header.Machine == IMAGE_FILE_MACHINE_AMD64;
     }
-    BCRYPT_ALG_HANDLE value = nullptr;
-};
+    CloseHandle(file);
+    return valid;
+}
 
-class HashHandle final {
-public:
-    ~HashHandle() {
-        if (value) BCryptDestroyHash(value);
+inline bool readFileVersion(const std::wstring& path, FileVersion& result) {
+    DWORD ignored = 0;
+    const DWORD size = GetFileVersionInfoSizeW(path.c_str(), &ignored);
+    if (!size || size > 1024 * 1024) return false;
+    std::vector<unsigned char> bytes(size);
+    if (!GetFileVersionInfoW(path.c_str(), 0, size, bytes.data())) return false;
+
+    VS_FIXEDFILEINFO* info = nullptr;
+    UINT length = 0;
+    if (!VerQueryValueW(bytes.data(), L"\\", reinterpret_cast<void**>(&info),
+                        &length) ||
+        length < sizeof(*info) || info->dwSignature != 0xfeef04bd) {
+        return false;
     }
-    BCRYPT_HASH_HANDLE value = nullptr;
-};
+    result = {HIWORD(info->dwFileVersionMS), LOWORD(info->dwFileVersionMS),
+              HIWORD(info->dwFileVersionLS), LOWORD(info->dwFileVersionLS)};
+    return true;
+}
 
-inline bool matchesSupportedHost(const std::wstring& path) {
-    FileHandle file(CreateFileW(
-        path.c_str(), GENERIC_READ, FILE_SHARE_READ, nullptr, OPEN_EXISTING,
-        FILE_ATTRIBUTE_NORMAL | FILE_FLAG_OPEN_REPARSE_POINT, nullptr));
-    if (file.get() == INVALID_HANDLE_VALUE) return false;
-    BY_HANDLE_FILE_INFORMATION info{};
-    if (!GetFileInformationByHandle(file.get(), &info) ||
-        (info.dwFileAttributes &
-         (FILE_ATTRIBUTE_DIRECTORY | FILE_ATTRIBUTE_REPARSE_POINT))) return false;
-    const std::uint64_t size =
-        (static_cast<std::uint64_t>(info.nFileSizeHigh) << 32U) |
-        info.nFileSizeLow;
-    if (size != kSupportedHostSize) return false;
-
-    AlgorithmHandle algorithm;
-    if (BCryptOpenAlgorithmProvider(&algorithm.value, BCRYPT_SHA256_ALGORITHM,
-                                    nullptr, 0) < 0) return false;
-    HashHandle hash;
-    if (BCryptCreateHash(algorithm.value, &hash.value, nullptr, 0, nullptr, 0,
-                         0) < 0) return false;
-
-    std::vector<unsigned char> buffer(1024 * 1024);
-    for (;;) {
-        DWORD bytesRead = 0;
-        if (!ReadFile(file.get(), buffer.data(),
-                      static_cast<DWORD>(buffer.size()), &bytesRead, nullptr)) {
+inline bool supportsQt5Directory(const std::wstring& root) {
+    constexpr std::array<const wchar_t*, 3> modules = {
+        L"Qt5Core.dll", L"Qt5Gui.dll", L"Qt5Widgets.dll"};
+    FileVersion runtime{};
+    bool haveVersion = false;
+    for (const wchar_t* module : modules) {
+        const std::wstring path = root + L"\\" + module;
+        FileVersion current{};
+        if (!isRegularFile(path) || !isAmd64Image(path) ||
+            !readFileVersion(path, current) || current.major != 5) {
             return false;
         }
-        if (!bytesRead) break;
-        if (BCryptHashData(hash.value, buffer.data(), bytesRead, 0) < 0)
-            return false;
+        if (haveVersion && !(current == runtime)) return false;
+        runtime = current;
+        haveVersion = true;
     }
-    std::array<unsigned char, 32> digest{};
-    if (BCryptFinishHash(hash.value, digest.data(),
-                         static_cast<ULONG>(digest.size()), 0) < 0) return false;
-    return digest == kSupportedHostSha256;
+    return haveVersion;
+}
+
+inline bool supportsHostDirectory(const std::wstring& root) {
+    const std::wstring host = root + L"\\Wrap.exe";
+    return isRegularFile(host) && isAmd64Image(host) &&
+           supportsQt5Directory(root);
+}
+
+inline bool supportsRuntimeVersion(const char* version) noexcept {
+    return version && version[0] == '5' && version[1] == '.';
 }
 
 } // namespace WrapChineseCompatibility

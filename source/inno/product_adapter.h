@@ -2,11 +2,14 @@
 #include "product_config.h"
 
 bool productQt(const std::wstring& root) {
-    if (kQtVersions.empty()) return true;
+    if (kQtMajors.empty()) return true;
     unsigned major = 0;
-    for (const auto& v : kQtVersions) {
-        const auto core = root + L"\\Qt" + std::to_wstring(v[0]) + L"Core.dll";
-        if (regularFile(core)) { if (major && major != v[0]) return false; major = v[0]; }
+    for (const DWORD candidate : kQtMajors) {
+        const auto core = root + L"\\Qt" + std::to_wstring(candidate) + L"Core.dll";
+        if (regularFile(core)) {
+            if (major && major != candidate) return false;
+            major = candidate;
+        }
     }
     if (!major) return false;
     std::vector<DWORD> versionSeen;
@@ -21,13 +24,11 @@ bool productQt(const std::wstring& root) {
         VS_FIXEDFILEINFO* info = nullptr; UINT size = 0;
         if (!VerQueryValueW(bytes.data(), L"\\", reinterpret_cast<void**>(&info), &size) ||
             size < sizeof(*info) || info->dwSignature != 0xfeef04bd) return false;
-        const std::vector<DWORD> current{HIWORD(info->dwFileVersionMS), LOWORD(info->dwFileVersionMS), HIWORD(info->dwFileVersionLS)};
-        bool compatible = false;
-        for (const auto& baseline : kQtVersions) {
-            if (current[0] != baseline[0]) continue;
-            compatible = current == baseline;
-        }
-        if (!compatible || (!versionSeen.empty() && versionSeen != current)) return false;
+        const std::vector<DWORD> current{
+            HIWORD(info->dwFileVersionMS), LOWORD(info->dwFileVersionMS),
+            HIWORD(info->dwFileVersionLS), LOWORD(info->dwFileVersionLS)};
+        if (current[0] != major ||
+            (!versionSeen.empty() && versionSeen != current)) return false;
         versionSeen = current;
     }
     return true;

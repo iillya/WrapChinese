@@ -1,4 +1,4 @@
-// Wrap 2025.10.8 Chinese display-layer localizer.
+// Wrap Qt 5 Chinese display-layer localizer.
 //
 // The host executable and project data remain untouched. A launcher injects
 // this MinGW/Qt 5 DLL before Wrap starts. Translation is applied at Qt's
@@ -11,6 +11,7 @@
 #include "hook_lifecycle.h"
 #include "hotkey_settings.h"
 #include "qt_placeholder_templates.h"
+#include "runtime_compatibility.h"
 #include "translation_lookup_cache.h"
 
 #include <QtCore/QAbstractItemModel>
@@ -105,6 +106,16 @@ QPointer<QAction> g_githubAction;
 QPointer<QDialog> g_captureDialog;
 QPointer<WrapChineseHotkeyDialog> g_hotkeyDialog;
 QSet<int> g_swallowedShortcutKeys;
+
+void signalHookReady() {
+    wchar_t eventName[96] = {};
+    swprintf_s(eventName, L"Local\\WrapChineseHookReady_%lu",
+               GetCurrentProcessId());
+    HANDLE event = OpenEventW(EVENT_MODIFY_STATE, FALSE, eventName);
+    if (!event) return;
+    SetEvent(event);
+    CloseHandle(event);
+}
 
 std::unordered_map<std::string, std::string> g_translations;
 std::unordered_map<std::string, std::string> g_normalized;
@@ -280,7 +291,83 @@ QString withoutMnemonics(const QString& text) {
     return result;
 }
 
+QString exactTranslation(const QString& source) {
+    const QByteArray utf8 = source.toUtf8();
+    const auto found = g_translations.find(utf8.toStdString());
+    return found == g_translations.end()
+        ? QString()
+        : QString::fromUtf8(found->second.data(), int(found->second.size()));
+}
+
+bool isUpperCamelIdentifier(const QString& text) {
+    if (text.isEmpty() || !text.front().isUpper()) return false;
+    for (const QChar ch : text) {
+        if (ch.isLetterOrNumber() || ch == QLatin1Char('_')) continue;
+        return false;
+    }
+    return true;
+}
+
+QString translatedRichIdentifiers(const QString& source) {
+    if (!source.contains(QLatin1Char('<')) || !source.contains(QLatin1Char('>')))
+        return {};
+    QString result;
+    QString token;
+    bool inTag = false;
+    bool inEntity = false;
+    QChar tagQuote;
+    bool changed = false;
+    const auto flushToken = [&] {
+        if (token.isEmpty()) return;
+        const QString target = isUpperCamelIdentifier(token)
+            ? exactTranslation(token) : QString();
+        if (!target.isEmpty()) {
+            result += target;
+            changed = true;
+        } else {
+            result += token;
+        }
+        token.clear();
+    };
+    for (const QChar ch : source) {
+        if (!inTag && !inEntity && ch == QLatin1Char('<')) {
+            flushToken();
+            inTag = true;
+            tagQuote = QChar();
+            result += ch;
+        } else if (inTag && tagQuote.isNull() &&
+                   (ch == QLatin1Char('\'') || ch == QLatin1Char('"'))) {
+            tagQuote = ch;
+            result += ch;
+        } else if (inTag && !tagQuote.isNull() && ch == tagQuote) {
+            tagQuote = QChar();
+            result += ch;
+        } else if (inTag && tagQuote.isNull() && ch == QLatin1Char('>')) {
+            inTag = false;
+            result += ch;
+        } else if (!inTag && !inEntity && ch == QLatin1Char('&')) {
+            flushToken();
+            inEntity = true;
+            result += ch;
+        } else if (inEntity && ch == QLatin1Char(';')) {
+            inEntity = false;
+            result += ch;
+        } else if (inTag || inEntity) {
+            result += ch;
+        } else if (ch.isLetterOrNumber() || ch == QLatin1Char('_')) {
+            token += ch;
+        } else {
+            flushToken();
+            result += ch;
+        }
+    }
+    flushToken();
+    if (inTag || inEntity || !tagQuote.isNull() || !changed) return {};
+    return result;
+}
+
 QString translatedUncached(const QString& raw) {
+    if (raw.size() > kMaximumDictionarySourceLength) return {};
     int first = 0;
     while (first < raw.size() && raw[first].isSpace()) ++first;
     int last = raw.size();
@@ -296,6 +383,8 @@ QString translatedUncached(const QString& raw) {
     if (exact != g_translations.end())
         return decorate(QString::fromUtf8(exact->second.data(),
                                           int(exact->second.size())));
+    const QString rich = translatedRichIdentifiers(key);
+    if (!rich.isEmpty()) return decorate(rich);
 
     QString suffix;
     if (key.endsWith(QLatin1Char('*'))) {
@@ -400,8 +489,32 @@ public:
     }
 };
 
+constexpr char kLabelSourceProperty[] = "wrapChineseLabelSource";
+constexpr char kLabelAppliedProperty[] = "wrapChineseLabelApplied";
+
+void applyLabelText(QLabel* label) {
+    const QString current = label->text();
+    const QVariant savedSource = label->property(kLabelSourceProperty);
+    const QString lastApplied = label->property(kLabelAppliedProperty).toString();
+    QString source;
+    if (!savedSource.isValid() || current != lastApplied) {
+        // The host changed the label since our previous pass. Treat the new
+        // value as authoritative so dynamic node selections stay current.
+        source = current;
+        label->setProperty(kLabelSourceProperty, source);
+    } else {
+        source = savedSource.toString();
+    }
+    const QString target = translated(source);
+    const QString display = target.isEmpty() ? source : target;
+    if (lastApplied != display)
+        label->setProperty(kLabelAppliedProperty, display);
+    if (current != display) label->setText(display);
+}
+
 void applyWidget(QWidget* widget) {
-    if (!widget || !g_enabled.load(std::memory_order_relaxed)) return;
+    if (!widget) return;
+    if (auto* label = qobject_cast<QLabel*>(widget)) applyLabelText(label);
     auto* view = qobject_cast<QAbstractItemView*>(widget);
     if (!view || view->property("wrapChineseDelegateInstalled").toBool()) return;
     auto* delegate = view->itemDelegate();
@@ -425,6 +538,7 @@ void refreshMeasuredLayouts() {
     // invalidating parent layouts then makes the translated width take effect
     // immediately instead of waiting for a later panel interaction.
     const QWidgetList widgets = QApplication::allWidgets();
+    for (QWidget* widget : widgets) applyWidget(widget);
     for (QWidget* widget : widgets) {
         if (!widget) continue;
         QEvent fontChange(QEvent::FontChange);
@@ -1236,6 +1350,9 @@ public:
             if (!g_menuBar)
                 QTimer::singleShot(0, [] { installMenuActions(); });
         }
+        if (event->type() == QEvent::Paint) {
+            if (auto* label = qobject_cast<QLabel*>(object)) applyLabelText(label);
+        }
         return false;
     }
 };
@@ -1764,6 +1881,7 @@ void initializeOnGuiThread(QApplication* application) {
             timer->deleteLater();
         });
     }
+    signalHookReady();
     const QString probeNodeType =
         qEnvironmentVariable("WRAP_CHINESE_PROBE_NODE_TYPE");
     const QString probePlanPath =
@@ -1788,6 +1906,12 @@ void initializeOnGuiThread(QApplication* application) {
 }
 
 DWORD WINAPI worker(LPVOID) {
+    if (!WrapChineseCompatibility::supportsRuntimeVersion(qVersion()) ||
+        !GetModuleHandleW(L"Qt5Core.dll") ||
+        !GetModuleHandleW(L"Qt5Gui.dll") ||
+        !GetModuleHandleW(L"Qt5Widgets.dll")) {
+        return 3;
+    }
     QApplication* application = nullptr;
     for (int attempt = 0;
          attempt < WrapHookLifecycle::kApplicationWaitAttempts; ++attempt) {

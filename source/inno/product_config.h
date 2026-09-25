@@ -11,4 +11,4 @@ inline const std::vector<const wchar_t*> kExtensions = {L".wrap"};
 inline const std::vector<const wchar_t*> kQtModules = {
     L"Core", L"Gui", L"Widgets"
 };
-inline const std::vector<std::vector<DWORD>> kQtVersions = {{5, 15, 3}};
+inline const std::vector<DWORD> kQtMajors = {5};

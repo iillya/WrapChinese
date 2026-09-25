@@ -1,6 +1,6 @@
 # WrapChinese
 
-WrapChinese 是面向 Windows 版 **Faceform Wrap 2025.10.8** 的中文显示层补丁。
+WrapChinese 是面向 Windows x64 版 **Faceform Wrap（Qt 5）** 的中文显示层补丁。
 它通过独立启动器在 Wrap 启动前加载汉化 DLL，不修改 `Wrap.exe`、Qt DLL、
 `.wrap` 工程或用户输入的数据。
 
@@ -16,12 +16,12 @@ WrapChinese 是面向 Windows 版 **Faceform Wrap 2025.10.8** 的中文显示层
 
 ## 支持版本
 
-- Faceform Wrap 2025.10.8 x64
-- Wrap 随附的 Qt 5.15.3 MinGW x64 运行时
+- Windows x64 版 Faceform Wrap
+- Wrap 随附的完整 Qt 5 MinGW x64 运行时
 
-安装器会验证 `Wrap.exe` 的已知构建指纹、x64 体系结构以及 Qt
-Core/Gui/Widgets 的精确版本。不满足条件时不会写入补丁。其他 Wrap 版本需要
-重新验证导出符号和实际界面，不能直接视为已支持。
+安装器不再核对具体 Wrap 版本或程序哈希，而是验证 `Wrap.exe` 架构以及 Qt
+Core/Gui/Widgets 的架构、ABI 大类和组件一致性。DLL 加载时继续验证实际导入
+能力，非核心绘制能力缺失时独立降级。当前实测版本为 Wrap 2025.10.8。
 
 ## 安装与使用
 
@@ -37,7 +37,7 @@ Core/Gui/Widgets 的精确版本。不满足条件时不会写入补丁。其他
 安装后的结构为：
 
 ```text
-Wrap 2025.10.8\
+Wrap <版本>\
 |-- Wrap.exe
 `-- ChineseLauncher\
     |-- WrapChineseLauncher.exe
