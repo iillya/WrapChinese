@@ -1,4 +1,4 @@
-"""Verify every MinGW Qt symbol used by the Wrap display and width hooks."""
+"""Verify every MinGW Qt symbol used by the Wrap paint-only hooks."""
 
 from pathlib import Path
 import argparse
@@ -12,23 +12,6 @@ SYMBOLS = (
     "_ZN8QPainter8drawTextERK6QRectFiRK7QStringPS0_",
     "_ZN8QPainter8drawTextERK7QPointFRK7QString",
     "_ZN8QPainter8drawTextERK7QPointFRK7QStringii",
-    # QFontMetrics integer layout hooks.
-    "_ZNK12QFontMetrics17horizontalAdvanceERK7QStringi",
-    "_ZNK12QFontMetrics5widthERK7QStringi",
-    "_ZNK12QFontMetrics5widthERK7QStringii",
-    "_ZNK12QFontMetrics12boundingRectERK7QString",
-    "_ZNK12QFontMetrics12boundingRectERK5QRectiRK7QStringiPi",
-    "_ZNK12QFontMetrics4sizeEiRK7QStringiPi",
-    "_ZNK12QFontMetrics17tightBoundingRectERK7QString",
-    "_ZNK12QFontMetrics10elidedTextERK7QStringN2Qt13TextElideModeEii",
-    # QFontMetricsF floating-point layout hooks.
-    "_ZNK13QFontMetricsF17horizontalAdvanceERK7QStringi",
-    "_ZNK13QFontMetricsF5widthERK7QString",
-    "_ZNK13QFontMetricsF12boundingRectERK7QString",
-    "_ZNK13QFontMetricsF12boundingRectERK6QRectFiRK7QStringiPi",
-    "_ZNK13QFontMetricsF4sizeEiRK7QStringiPi",
-    "_ZNK13QFontMetricsF17tightBoundingRectERK7QString",
-    "_ZNK13QFontMetricsF10elidedTextERK7QStringN2Qt13TextElideModeEdi",
 )
 
 

@@ -1,8 +1,9 @@
 // Wrap Qt 5 Chinese display-layer localizer.
 //
 // The host executable and project data remain untouched. A launcher injects
-// this MinGW/Qt 5 DLL before Wrap starts. Translation is applied at Qt's
-// translator, style, item-delegate and QPainter boundaries.
+// this MinGW/Qt 5 DLL before Wrap starts. Translation is applied only at
+// style, item-delegate, rich-label and QPainter display boundaries. Host text
+// properties and serialized data stay unchanged; display measurements may adapt.
 
 #define WIN32_LEAN_AND_MEAN
 #include <windows.h>
@@ -33,14 +34,17 @@
 #include <QtCore/QSet>
 #include <QtCore/QStandardPaths>
 #include <QtCore/QTimer>
-#include <QtCore/QTranslator>
 #include <QtCore/QUrl>
 #include <QtGui/QDesktopServices>
 #include <QtGui/QContextMenuEvent>
 #include <QtGui/QFontMetrics>
+#include "widget_display_metrics.h"
+#include "ui_paint_boundary.h"
 #include <QtGui/QKeyEvent>
 #include <QtGui/QMouseEvent>
 #include <QtGui/QPainter>
+#include <QtGui/QTextDocument>
+#include <QtGui/QAbstractTextDocumentLayout>
 #include <QtGui/QTextOption>
 #include <QtWidgets/QAbstractButton>
 #include <QtWidgets/QAbstractItemView>
@@ -53,7 +57,6 @@
 #include <QtWidgets/QGraphicsView>
 #include <QtWidgets/QHBoxLayout>
 #include <QtWidgets/QLabel>
-#include <QtWidgets/QLayout>
 #include <QtWidgets/QLineEdit>
 #include <QtWidgets/QMenu>
 #include <QtWidgets/QMenuBar>
@@ -63,6 +66,7 @@
 #include <QtWidgets/QStyleFactory>
 #include <QtWidgets/QStyledItemDelegate>
 #include <QtWidgets/QTabBar>
+#include <QtWidgets/QStyleOption>
 #include <QtWidgets/QToolBox>
 #include <QtWidgets/QVBoxLayout>
 
@@ -72,12 +76,17 @@
 #include <functional>
 #include <memory>
 #include <string>
+#include <typeinfo>
 #include <unordered_map>
 #include <unordered_set>
 #include <utility>
 #include <vector>
 
 namespace {
+
+using WrapImportHooks::resolveFunction;
+using WrapImportHooks::functionAddress;
+using WrapImportHooks::replaceImports;
 
 constexpr wchar_t kHookPrefix[] = L"WrapChineseHook";
 constexpr wchar_t kGuiModule[] = L"Qt5Gui.dll";
@@ -93,8 +102,10 @@ QString g_pluginDir;
 std::atomic_bool g_enabled{true};
 std::atomic_bool g_initializationStarted{false};
 bool g_drawHooksInstalled = false;
-bool g_fontMetricHooksInstalled = false;
 bool g_proxyStyleInstalled = false;
+#ifdef WRAP_CHINESE_TEST_HOOKS
+std::atomic_uint32_t g_translatedRichLabelDraws{0};
+#endif
 QKeySequence g_toggleShortcut = WrapChineseConfig::defaultToggleShortcut();
 bool g_captureEnabled = true;
 QString g_configPath;
@@ -440,24 +451,63 @@ QString recoverElided(const QString& text) {
     return result;
 }
 
-class DictionaryTranslator final : public QTranslator {
-public:
-    using QTranslator::QTranslator;
-    bool isEmpty() const override { return g_translations.empty(); }
-    QString translate(const char*, const char* sourceText,
-                      const char*, int) const override {
-        if (!sourceText) return {};
-        return translated(QString::fromUtf8(sourceText));
-    }
-};
+bool isDisplayPaintDevice(const QPainter* painter) {
+    return UiPaintBoundary::isDisplayPainter(painter);
+}
 
 class ChineseProxyStyle final : public QProxyStyle {
 public:
     using QProxyStyle::QProxyStyle;
+
+    void drawControl(ControlElement element, const QStyleOption* option,
+                     QPainter* painter, const QWidget* widget = nullptr) const override {
+        UiPaintBoundary::WidgetPaintScope scope(painter, widget);
+        QProxyStyle::drawControl(element, option, painter, widget);
+    }
+
+    void drawPrimitive(PrimitiveElement element, const QStyleOption* option,
+                       QPainter* painter, const QWidget* widget = nullptr) const override {
+        UiPaintBoundary::WidgetPaintScope scope(painter, widget);
+        QProxyStyle::drawPrimitive(element, option, painter, widget);
+    }
+
+    void drawComplexControl(ComplexControl control, const QStyleOptionComplex* option,
+                            QPainter* painter, const QWidget* widget = nullptr) const override {
+        UiPaintBoundary::WidgetPaintScope scope(painter, widget);
+        QProxyStyle::drawComplexControl(control, option, painter, widget);
+    }
+
+
+
+    QSize sizeFromContents(ContentsType type, const QStyleOption* option,
+                           const QSize& contents, const QWidget* widget = nullptr) const override {
+        if (type == CT_TabBarTab && !WidgetDisplayMetrics::sizeHooked) {
+            if (const auto* tab = qstyleoption_cast<const QStyleOptionTab*>(option)) {
+                const QString text = translated(tab->text);
+                if (!text.isEmpty()) {
+                    QStyleOptionTab display(*tab);
+                    display.text = text;
+                    const int delta = tab->fontMetrics.size(Qt::TextShowMnemonic, text).width() -
+                        tab->fontMetrics.size(Qt::TextShowMnemonic, tab->text).width();
+                    QSize measured(contents);
+                    const bool vertical = tab->shape == QTabBar::RoundedWest ||
+                        tab->shape == QTabBar::RoundedEast || tab->shape == QTabBar::TriangularWest ||
+                        tab->shape == QTabBar::TriangularEast;
+                    if (vertical) measured.setHeight(qMax(0, measured.height() + delta));
+                    else measured.setWidth(qMax(0, measured.width() + delta));
+                    return QProxyStyle::sizeFromContents(type, &display, measured, widget);
+                }
+            }
+        }
+        return QProxyStyle::sizeFromContents(type, option, contents, widget);
+    }
+
+
     void drawItemText(QPainter* painter, const QRect& rect, int flags,
                       const QPalette& palette, bool enabled, const QString& text,
                       QPalette::ColorRole role = QPalette::NoRole) const override {
-        const QString value = translated(text);
+        const QString value = isDisplayPaintDevice(painter)
+            ? translated(text) : QString();
         const QString draw = value.isEmpty() ? text : value;
         if (text == QStringLiteral("Bilibili 神说要凑数汉化") ||
             text == QStringLiteral("GitHub 仓库")) {
@@ -489,83 +539,38 @@ public:
     }
 };
 
-constexpr char kLabelSourceProperty[] = "wrapChineseLabelSource";
-constexpr char kLabelAppliedProperty[] = "wrapChineseLabelApplied";
-
-void applyLabelText(QLabel* label) {
-    const QString current = label->text();
-    const QVariant savedSource = label->property(kLabelSourceProperty);
-    const QString lastApplied = label->property(kLabelAppliedProperty).toString();
-    QString source;
-    if (!savedSource.isValid() || current != lastApplied) {
-        // The host changed the label since our previous pass. Treat the new
-        // value as authoritative so dynamic node selections stay current.
-        source = current;
-        label->setProperty(kLabelSourceProperty, source);
-    } else {
-        source = savedSource.toString();
-    }
-    const QString target = translated(source);
-    const QString display = target.isEmpty() ? source : target;
-    if (lastApplied != display)
-        label->setProperty(kLabelAppliedProperty, display);
-    if (current != display) label->setText(display);
-}
-
 void applyWidget(QWidget* widget) {
     if (!widget) return;
-    if (auto* label = qobject_cast<QLabel*>(widget)) applyLabelText(label);
     auto* view = qobject_cast<QAbstractItemView*>(widget);
-    if (!view || view->property("wrapChineseDelegateInstalled").toBool()) return;
+    if (!view) return;
     auto* delegate = view->itemDelegate();
+    if (dynamic_cast<TranslateDelegate*>(delegate)) return;
     if (!delegate || QString::fromLatin1(delegate->metaObject()->className()) !=
-                         QLatin1String("QStyledItemDelegate")) return;
+                          QLatin1String("QStyledItemDelegate")) return;
     view->setItemDelegate(new TranslateDelegate(view));
-    view->setProperty("wrapChineseDelegateInstalled", true);
 }
 
 void repaintAll() {
     for (QWidget* widget : QApplication::allWidgets()) {
         if (!widget) continue;
-        widget->updateGeometry();
         if (widget->isVisible()) widget->update();
     }
-}
-
-void refreshMeasuredLayouts() {
-    // Some Wrap controls cache their label width before the injected hook gets
-    // its first GUI-thread turn. FontChange clears those private metric caches;
-    // invalidating parent layouts then makes the translated width take effect
-    // immediately instead of waiting for a later panel interaction.
-    const QWidgetList widgets = QApplication::allWidgets();
-    for (QWidget* widget : widgets) applyWidget(widget);
-    for (QWidget* widget : widgets) {
-        if (!widget) continue;
-        QEvent fontChange(QEvent::FontChange);
-        QApplication::sendEvent(widget, &fontChange);
-    }
-    for (QWidget* widget : widgets) {
-        if (!widget) continue;
-        if (auto* menuBar = qobject_cast<QMenuBar*>(widget)) {
-            QEvent styleChange(QEvent::StyleChange);
-            QApplication::sendEvent(menuBar, &styleChange);
-            continue;
-        }
-        if (qobject_cast<QMenu*>(widget)) continue;
-        widget->updateGeometry();
-        if (QLayout* layout = widget->layout()) layout->invalidate();
-    }
-    for (QWidget* widget : QApplication::topLevelWidgets()) {
-        if (!widget || !widget->isVisible()) continue;
-        if (QLayout* layout = widget->layout()) layout->activate();
-    }
-    repaintAll();
 }
 
 void toggleLanguage() {
     g_enabled.store(!g_enabled.load(std::memory_order_relaxed),
                     std::memory_order_relaxed);
-    refreshMeasuredLayouts();
+    std::vector<QPointer<QWidget>> widgets;
+    for (QWidget* widget : QApplication::allWidgets()) widgets.emplace_back(widget);
+    for (const auto& widget : widgets) {
+        if (!widget) continue;
+        const bool styleCache = qobject_cast<QTabBar*>(widget.data()) ||
+            qobject_cast<QMenuBar*>(widget.data()) || qobject_cast<QMenu*>(widget.data());
+        QEvent event(styleCache ? QEvent::StyleChange : QEvent::FontChange);
+        QCoreApplication::sendEvent(widget, &event);
+        if (widget) widget->updateGeometry();
+    }
+    repaintAll();
 }
 
 bool isCandidate(QString text) {
@@ -1313,6 +1318,63 @@ void installMenuActions() {
     g_menuBar = bar;
 }
 
+bool paintTranslatedRichLabel(QLabel* label) {
+    if (!label || typeid(*label) != typeid(QLabel) ||
+        label->frameShape() != QFrame::NoFrame ||
+        label->indent() > 0 ||
+        (label->textInteractionFlags() &
+         (Qt::TextSelectableByMouse | Qt::TextSelectableByKeyboard)) ||
+        label->buddy()) return false;
+    const QString source = label->text();
+    if (source.contains(QLatin1String("<a"), Qt::CaseInsensitive) ||
+        source.contains(QLatin1String("<img"), Qt::CaseInsensitive)) return false;
+    if (!(label->textFormat() == Qt::RichText ||
+          (label->textFormat() == Qt::AutoText && Qt::mightBeRichText(source))))
+        return false;
+    const QString target = translated(source);
+    if (target.isEmpty() || target == source) return false;
+
+    // Paint a private document into this plain label's widget. The host's
+    // QLabel::text(), backing document and layouts retain the source string.
+    QRect content = label->contentsRect().adjusted(
+        label->margin(), label->margin(),
+        -label->margin(), -label->margin());
+    if (content.isEmpty()) return false;
+    QTextDocument display;
+    display.setDocumentMargin(0);
+    display.setDefaultFont(label->font());
+    QTextOption option;
+    option.setAlignment(label->alignment());
+    option.setWrapMode(label->wordWrap()
+        ? QTextOption::WordWrap : QTextOption::NoWrap);
+    display.setDefaultTextOption(option);
+    display.setHtml(target);
+    display.setTextWidth(content.width());
+    const qreal height = display.size().height();
+    qreal top = content.top();
+    if (label->alignment() & Qt::AlignVCenter)
+        top += (content.height() - height) / 2;
+    else if (label->alignment() & Qt::AlignBottom)
+        top += content.height() - height;
+    QPainter painter(label);
+    painter.setClipRect(content);
+    painter.translate(content.left(), top);
+    // QTextDocument draws with its layout palette, not QPainter::pen().
+    // Preserve the host foreground color so dark themes and disabled labels
+    // remain legible after their private display document is translated.
+    QAbstractTextDocumentLayout::PaintContext context;
+    context.palette = label->palette();
+    const QPalette::ColorGroup group = label->isEnabled()
+        ? context.palette.currentColorGroup() : QPalette::Disabled;
+    context.palette.setColor(QPalette::Text,
+        context.palette.color(group, label->foregroundRole()));
+    display.documentLayout()->draw(&painter, context);
+#ifdef WRAP_CHINESE_TEST_HOOKS
+    g_translatedRichLabelDraws.fetch_add(1, std::memory_order_relaxed);
+#endif
+    return true;
+}
+
 class ApplicationFilter final : public QObject {
 public:
     using QObject::QObject;
@@ -1351,7 +1413,8 @@ public:
                 QTimer::singleShot(0, [] { installMenuActions(); });
         }
         if (event->type() == QEvent::Paint) {
-            if (auto* label = qobject_cast<QLabel*>(object)) applyLabelText(label);
+            if (auto* label = qobject_cast<QLabel*>(object))
+                return paintTranslatedRichLabel(label);
         }
         return false;
     }
@@ -1371,7 +1434,10 @@ DrawPointF2 g_drawPointF2 = nullptr;
 thread_local bool g_inDrawHook = false;
 
 QString translatePaint(QPainter* painter, const QString& text) {
-    if (g_inDrawHook || text.size() < 2) return {};
+    // Widget-owned image caches are display output. Unscoped images, pictures
+    // and printers may contain exported data and keep their source text.
+    if (g_inDrawHook || text.size() < 2 || !isDisplayPaintDevice(painter))
+        return {};
     bool valueOnly = true;
     for (const QChar ch : text) {
         if (ch.isDigit() || ch.isSpace() || QStringLiteral(".,%+-eE:/\\").contains(ch))
@@ -1380,15 +1446,13 @@ QString translatePaint(QPainter* painter, const QString& text) {
         break;
     }
     if (valueOnly) return {};
-    if (painter && painter->device() &&
-        painter->device()->devType() == QInternal::Widget) {
-        auto* widget = static_cast<QWidget*>(painter->device());
-        if (auto* label = qobject_cast<QLabel*>(widget)) {
-            QString full = label->text();
-            if (full != text && !full.isEmpty()) {
-                const QString target = translated(full);
-                if (!target.isEmpty()) return target;
-            }
+    auto* widget = painter->device()->devType() == QInternal::Widget
+        ? static_cast<QWidget*>(painter->device()) : nullptr;
+    if (auto* label = qobject_cast<QLabel*>(widget)) {
+        const QString full = label->text();
+        if (full != text && !full.isEmpty()) {
+            const QString target = translated(full);
+            if (!target.isEmpty()) return target;
         }
     }
     const QString direct = translated(text);
@@ -1442,242 +1506,7 @@ void hookedDrawPointF2(QPainter* painter, const QPointF& point,
                       value.isEmpty() ? length : -1);
 }
 
-// Wrap and its Qt runtime were built with MinGW. These free-function pointer
-// declarations deliberately mirror the Itanium member-function ABI by making
-// `this` explicit. tests/mingw_sret_probe.cpp verifies that aggregate-return
-// functions use the same hidden return-pointer / self argument order.
-using FmAdvance = int (*)(const QFontMetrics*, const QString&, int);
-using FmWidth = int (*)(const QFontMetrics*, const QString&, int);
-using FmWidthFlags = int (*)(const QFontMetrics*, const QString&, int, int);
-using FmBoundingRect = QRect (*)(const QFontMetrics*, const QString&);
-using FmBoundingRectArea = QRect (*)(const QFontMetrics*, const QRect&, int,
-                                     const QString&, int, int*);
-using FmSize = QSize (*)(const QFontMetrics*, int, const QString&, int, int*);
-using FmTightBoundingRect = QRect (*)(const QFontMetrics*, const QString&);
-using FmElidedText = QString (*)(const QFontMetrics*, const QString&,
-                                 Qt::TextElideMode, int, int);
-
-using FmfAdvance = qreal (*)(const QFontMetricsF*, const QString&, int);
-using FmfWidth = qreal (*)(const QFontMetricsF*, const QString&);
-using FmfBoundingRect = QRectF (*)(const QFontMetricsF*, const QString&);
-using FmfBoundingRectArea = QRectF (*)(const QFontMetricsF*, const QRectF&, int,
-                                       const QString&, int, int*);
-using FmfSize = QSizeF (*)(const QFontMetricsF*, int, const QString&, int, int*);
-using FmfTightBoundingRect = QRectF (*)(const QFontMetricsF*, const QString&);
-using FmfElidedText = QString (*)(const QFontMetricsF*, const QString&,
-                                  Qt::TextElideMode, qreal, int);
-
-FmAdvance g_fmAdvance = nullptr;
-FmWidth g_fmWidth = nullptr;
-FmWidthFlags g_fmWidthFlags = nullptr;
-FmBoundingRect g_fmBoundingRect = nullptr;
-FmBoundingRectArea g_fmBoundingRectArea = nullptr;
-FmSize g_fmSize = nullptr;
-FmTightBoundingRect g_fmTightBoundingRect = nullptr;
-FmElidedText g_fmElidedText = nullptr;
-FmfAdvance g_fmfAdvance = nullptr;
-FmfWidth g_fmfWidth = nullptr;
-FmfBoundingRect g_fmfBoundingRect = nullptr;
-FmfBoundingRectArea g_fmfBoundingRectArea = nullptr;
-FmfSize g_fmfSize = nullptr;
-FmfTightBoundingRect g_fmfTightBoundingRect = nullptr;
-FmfElidedText g_fmfElidedText = nullptr;
-thread_local bool g_inFontMetricHook = false;
-
-class FontMetricGuard {
-public:
-    FontMetricGuard() : previous_(g_inFontMetricHook) { g_inFontMetricHook = true; }
-    ~FontMetricGuard() { g_inFontMetricHook = previous_; }
-    bool reentered() const { return previous_; }
-private:
-    bool previous_;
-};
-
-QString translateMeasured(const QString& text, bool reentered) {
-    if (reentered || text.size() < 2) return {};
-    return translated(text);
-}
-
-int hookedFmAdvance(const QFontMetrics* self, const QString& text, int length) {
-    if (!g_fmAdvance) return 0;
-    FontMetricGuard guard;
-    const QString value = translateMeasured(text, guard.reentered());
-    return g_fmAdvance(self, value.isEmpty() ? text : value,
-                       value.isEmpty() ? length : -1);
-}
-
-int hookedFmWidth(const QFontMetrics* self, const QString& text, int length) {
-    if (!g_fmWidth) return 0;
-    FontMetricGuard guard;
-    const QString value = translateMeasured(text, guard.reentered());
-    return g_fmWidth(self, value.isEmpty() ? text : value,
-                     value.isEmpty() ? length : -1);
-}
-
-int hookedFmWidthFlags(const QFontMetrics* self, const QString& text,
-                       int length, int flags) {
-    if (!g_fmWidthFlags) return 0;
-    FontMetricGuard guard;
-    const QString value = translateMeasured(text, guard.reentered());
-    return g_fmWidthFlags(self, value.isEmpty() ? text : value,
-                          value.isEmpty() ? length : -1, flags);
-}
-
-QRect hookedFmBoundingRect(const QFontMetrics* self, const QString& text) {
-    if (!g_fmBoundingRect) return {};
-    FontMetricGuard guard;
-    const QString value = translateMeasured(text, guard.reentered());
-    return g_fmBoundingRect(self, value.isEmpty() ? text : value);
-}
-
-QRect hookedFmBoundingRectArea(const QFontMetrics* self, const QRect& rect,
-                               int flags, const QString& text,
-                               int tabStops, int* tabArray) {
-    if (!g_fmBoundingRectArea) return {};
-    FontMetricGuard guard;
-    const QString value = translateMeasured(text, guard.reentered());
-    return g_fmBoundingRectArea(self, rect, flags,
-                                value.isEmpty() ? text : value,
-                                tabStops, tabArray);
-}
-
-QSize hookedFmSize(const QFontMetrics* self, int flags, const QString& text,
-                   int tabStops, int* tabArray) {
-    if (!g_fmSize) return {};
-    FontMetricGuard guard;
-    const QString value = translateMeasured(text, guard.reentered());
-    return g_fmSize(self, flags, value.isEmpty() ? text : value,
-                    tabStops, tabArray);
-}
-
-QRect hookedFmTightBoundingRect(const QFontMetrics* self,
-                                const QString& text) {
-    if (!g_fmTightBoundingRect) return {};
-    FontMetricGuard guard;
-    const QString value = translateMeasured(text, guard.reentered());
-    return g_fmTightBoundingRect(self, value.isEmpty() ? text : value);
-}
-
-QString hookedFmElidedText(const QFontMetrics* self, const QString& text,
-                           Qt::TextElideMode mode, int width, int flags) {
-    if (!g_fmElidedText) return text;
-    FontMetricGuard guard;
-    const QString value = translateMeasured(text, guard.reentered());
-    return g_fmElidedText(self, value.isEmpty() ? text : value,
-                          mode, width, flags);
-}
-
-qreal hookedFmfAdvance(const QFontMetricsF* self, const QString& text,
-                       int length) {
-    if (!g_fmfAdvance) return 0.0;
-    FontMetricGuard guard;
-    const QString value = translateMeasured(text, guard.reentered());
-    return g_fmfAdvance(self, value.isEmpty() ? text : value,
-                        value.isEmpty() ? length : -1);
-}
-
-qreal hookedFmfWidth(const QFontMetricsF* self, const QString& text) {
-    if (!g_fmfWidth) return 0.0;
-    FontMetricGuard guard;
-    const QString value = translateMeasured(text, guard.reentered());
-    return g_fmfWidth(self, value.isEmpty() ? text : value);
-}
-
-QRectF hookedFmfBoundingRect(const QFontMetricsF* self, const QString& text) {
-    if (!g_fmfBoundingRect) return {};
-    FontMetricGuard guard;
-    const QString value = translateMeasured(text, guard.reentered());
-    return g_fmfBoundingRect(self, value.isEmpty() ? text : value);
-}
-
-QRectF hookedFmfBoundingRectArea(const QFontMetricsF* self, const QRectF& rect,
-                                 int flags, const QString& text,
-                                 int tabStops, int* tabArray) {
-    if (!g_fmfBoundingRectArea) return {};
-    FontMetricGuard guard;
-    const QString value = translateMeasured(text, guard.reentered());
-    return g_fmfBoundingRectArea(self, rect, flags,
-                                 value.isEmpty() ? text : value,
-                                 tabStops, tabArray);
-}
-
-QSizeF hookedFmfSize(const QFontMetricsF* self, int flags,
-                     const QString& text, int tabStops, int* tabArray) {
-    if (!g_fmfSize) return {};
-    FontMetricGuard guard;
-    const QString value = translateMeasured(text, guard.reentered());
-    return g_fmfSize(self, flags, value.isEmpty() ? text : value,
-                     tabStops, tabArray);
-}
-
-QRectF hookedFmfTightBoundingRect(const QFontMetricsF* self,
-                                  const QString& text) {
-    if (!g_fmfTightBoundingRect) return {};
-    FontMetricGuard guard;
-    const QString value = translateMeasured(text, guard.reentered());
-    return g_fmfTightBoundingRect(self, value.isEmpty() ? text : value);
-}
-
-QString hookedFmfElidedText(const QFontMetricsF* self, const QString& text,
-                            Qt::TextElideMode mode, qreal width, int flags) {
-    if (!g_fmfElidedText) return text;
-    FontMetricGuard guard;
-    const QString value = translateMeasured(text, guard.reentered());
-    return g_fmfElidedText(self, value.isEmpty() ? text : value,
-                           mode, width, flags);
-}
-
-template <typename Function>
-Function resolveFunction(HMODULE module, const char* symbol) {
-    const FARPROC address = GetProcAddress(module, symbol);
-    static_assert(sizeof(Function) == sizeof(address),
-                  "Function pointer size does not match FARPROC");
-    Function function = nullptr;
-    std::memcpy(&function, &address, sizeof(function));
-    return function;
-}
-
-template <typename Function>
-void* functionAddress(Function function) {
-    static_assert(sizeof(Function) == sizeof(void*),
-                  "Function pointer size does not match data pointer");
-    void* address = nullptr;
-    std::memcpy(&address, &function, sizeof(address));
-    return address;
-}
-
-bool replaceImports(HMODULE module, void* original, void* replacement) {
-    if (!module || !original || !replacement) return false;
-    auto* base = reinterpret_cast<unsigned char*>(module);
-    auto* dos = reinterpret_cast<IMAGE_DOS_HEADER*>(base);
-    if (dos->e_magic != IMAGE_DOS_SIGNATURE) return false;
-    auto* nt = reinterpret_cast<IMAGE_NT_HEADERS*>(base + dos->e_lfanew);
-    if (nt->Signature != IMAGE_NT_SIGNATURE) return false;
-    const DWORD importRva = nt->OptionalHeader
-        .DataDirectory[IMAGE_DIRECTORY_ENTRY_IMPORT].VirtualAddress;
-    if (!importRva) return false;
-    bool changed = false;
-    auto* descriptor = reinterpret_cast<IMAGE_IMPORT_DESCRIPTOR*>(base + importRva);
-    for (; descriptor->Name; ++descriptor) {
-        if (!descriptor->FirstThunk) continue;
-        auto* thunk = reinterpret_cast<IMAGE_THUNK_DATA*>(base + descriptor->FirstThunk);
-        for (; thunk->u1.Function; ++thunk) {
-            auto** slot = reinterpret_cast<void**>(&thunk->u1.Function);
-            if (*slot != original) continue;
-            DWORD oldProtect = 0;
-            if (!VirtualProtect(slot, sizeof(void*), PAGE_READWRITE, &oldProtect)) continue;
-            const bool replaced = InterlockedCompareExchangePointer(
-                slot, replacement, original) == original;
-            DWORD ignored = 0;
-            VirtualProtect(slot, sizeof(void*), oldProtect, &ignored);
-            if (replaced) changed = true;
-        }
-    }
-    return changed;
-}
-
 std::unordered_set<HMODULE> g_drawScannedModules;
-std::unordered_set<HMODULE> g_fontMetricScannedModules;
 
 void patchDrawTextModules() {
     struct Symbol { void* original; void* replacement; } symbols[] = {
@@ -1732,101 +1561,8 @@ void installDrawTextHooks() {
     if (g_drawHooksInstalled) patchDrawTextModules();
 }
 
-bool patchFontMetricModules() {
-    struct Symbol { void* original; void* replacement; } symbols[] = {
-        {functionAddress(g_fmAdvance), functionAddress(&hookedFmAdvance)},
-        {functionAddress(g_fmWidth), functionAddress(&hookedFmWidth)},
-        {functionAddress(g_fmWidthFlags), functionAddress(&hookedFmWidthFlags)},
-        {functionAddress(g_fmBoundingRect), functionAddress(&hookedFmBoundingRect)},
-        {functionAddress(g_fmBoundingRectArea), functionAddress(&hookedFmBoundingRectArea)},
-        {functionAddress(g_fmSize), functionAddress(&hookedFmSize)},
-        {functionAddress(g_fmTightBoundingRect), functionAddress(&hookedFmTightBoundingRect)},
-        {functionAddress(g_fmElidedText), functionAddress(&hookedFmElidedText)},
-        {functionAddress(g_fmfAdvance), functionAddress(&hookedFmfAdvance)},
-        {functionAddress(g_fmfWidth), functionAddress(&hookedFmfWidth)},
-        {functionAddress(g_fmfBoundingRect), functionAddress(&hookedFmfBoundingRect)},
-        {functionAddress(g_fmfBoundingRectArea), functionAddress(&hookedFmfBoundingRectArea)},
-        {functionAddress(g_fmfSize), functionAddress(&hookedFmfSize)},
-        {functionAddress(g_fmfTightBoundingRect), functionAddress(&hookedFmfTightBoundingRect)},
-        {functionAddress(g_fmfElidedText), functionAddress(&hookedFmfElidedText)},
-    };
-    HANDLE snapshot = CreateToolhelp32Snapshot(
-        TH32CS_SNAPMODULE | TH32CS_SNAPMODULE32, GetCurrentProcessId());
-    if (snapshot == INVALID_HANDLE_VALUE) return false;
-    bool changed = false;
-    std::unordered_set<HMODULE> currentModules;
-    MODULEENTRY32W entry{};
-    entry.dwSize = sizeof(entry);
-    if (Module32FirstW(snapshot, &entry)) {
-        do {
-            if (_wcsnicmp(entry.szModule, kHookPrefix, wcslen(kHookPrefix)) == 0 ||
-                _wcsicmp(entry.szModule, kCoreModule) == 0 ||
-                _wcsicmp(entry.szModule, kGuiModule) == 0) continue;
-            HMODULE module = GetModuleHandleW(entry.szModule);
-            if (!module) continue;
-            currentModules.insert(module);
-            if (!g_fontMetricScannedModules.insert(module).second) continue;
-            for (const Symbol& symbol : symbols)
-                changed = replaceImports(module, symbol.original,
-                                         symbol.replacement) || changed;
-        } while (Module32NextW(snapshot, &entry));
-    }
-    CloseHandle(snapshot);
-    for (auto it = g_fontMetricScannedModules.begin();
-         it != g_fontMetricScannedModules.end();) {
-        if (!currentModules.count(*it)) it = g_fontMetricScannedModules.erase(it);
-        else ++it;
-    }
-    return changed;
-}
-
-void installFontMetricHooks() {
-    if (g_fontMetricHooksInstalled) return;
-    HMODULE gui = GetModuleHandleW(kGuiModule);
-    if (!gui) return;
-
-    g_fmAdvance = resolveFunction<FmAdvance>(
-        gui, "_ZNK12QFontMetrics17horizontalAdvanceERK7QStringi");
-    g_fmWidth = resolveFunction<FmWidth>(
-        gui, "_ZNK12QFontMetrics5widthERK7QStringi");
-    g_fmWidthFlags = resolveFunction<FmWidthFlags>(
-        gui, "_ZNK12QFontMetrics5widthERK7QStringii");
-    g_fmBoundingRect = resolveFunction<FmBoundingRect>(
-        gui, "_ZNK12QFontMetrics12boundingRectERK7QString");
-    g_fmBoundingRectArea = resolveFunction<FmBoundingRectArea>(
-        gui, "_ZNK12QFontMetrics12boundingRectERK5QRectiRK7QStringiPi");
-    g_fmSize = resolveFunction<FmSize>(
-        gui, "_ZNK12QFontMetrics4sizeEiRK7QStringiPi");
-    g_fmTightBoundingRect = resolveFunction<FmTightBoundingRect>(
-        gui, "_ZNK12QFontMetrics17tightBoundingRectERK7QString");
-    g_fmElidedText = resolveFunction<FmElidedText>(
-        gui, "_ZNK12QFontMetrics10elidedTextERK7QStringN2Qt13TextElideModeEii");
-
-    g_fmfAdvance = resolveFunction<FmfAdvance>(
-        gui, "_ZNK13QFontMetricsF17horizontalAdvanceERK7QStringi");
-    g_fmfWidth = resolveFunction<FmfWidth>(
-        gui, "_ZNK13QFontMetricsF5widthERK7QString");
-    g_fmfBoundingRect = resolveFunction<FmfBoundingRect>(
-        gui, "_ZNK13QFontMetricsF12boundingRectERK7QString");
-    g_fmfBoundingRectArea = resolveFunction<FmfBoundingRectArea>(
-        gui, "_ZNK13QFontMetricsF12boundingRectERK6QRectFiRK7QStringiPi");
-    g_fmfSize = resolveFunction<FmfSize>(
-        gui, "_ZNK13QFontMetricsF4sizeEiRK7QStringiPi");
-    g_fmfTightBoundingRect = resolveFunction<FmfTightBoundingRect>(
-        gui, "_ZNK13QFontMetricsF17tightBoundingRectERK7QString");
-    g_fmfElidedText = resolveFunction<FmfElidedText>(
-        gui, "_ZNK13QFontMetricsF10elidedTextERK7QStringN2Qt13TextElideModeEdi");
-
-    g_fontMetricHooksInstalled =
-        g_fmAdvance || g_fmWidth || g_fmWidthFlags || g_fmBoundingRect ||
-        g_fmBoundingRectArea || g_fmSize || g_fmTightBoundingRect ||
-        g_fmElidedText || g_fmfAdvance || g_fmfWidth || g_fmfBoundingRect ||
-        g_fmfBoundingRectArea || g_fmfSize || g_fmfTightBoundingRect ||
-        g_fmfElidedText;
-    if (g_fontMetricHooksInstalled) patchFontMetricModules();
-}
-
 void installProxyStyle() {
+    WidgetDisplayMetrics::install(translated);
     if (g_proxyStyleInstalled || !QApplication::instance()) return;
     const QString key = QApplication::style()
         ? QApplication::style()->objectName() : QStringLiteral("fusion");
@@ -1841,9 +1577,6 @@ void initializeOnGuiThread(QApplication* application) {
     g_pluginDir = selfDirectory();
     if (g_pluginDir.isEmpty()) return;
     loadDictionaries();
-    // Install measurement first. Existing and subsequently constructed Wrap
-    // widgets must see Chinese metrics before they cache their size hints.
-    installFontMetricHooks();
     installDrawTextHooks();
     QString error;
     g_configPath = qEnvironmentVariable("WRAP_CHINESE_CONFIG_PATH");
@@ -1853,15 +1586,13 @@ void initializeOnGuiThread(QApplication* application) {
         WrapChineseConfig::load(g_configPath, &error);
     g_toggleShortcut = config.toggleShortcut;
     g_captureEnabled = config.captureEnabled;
-    auto* translator = new DictionaryTranslator(application);
-    application->installTranslator(translator);
     installProxyStyle();
     for (QWidget* widget : QApplication::allWidgets()) applyWidget(widget);
     application->installEventFilter(new ApplicationFilter(application));
     installMenuActions();
-    refreshMeasuredLayouts();
+    repaintAll();
     for (const int delay : {0, 250, 1000, 3000})
-        QTimer::singleShot(delay, application, [] { refreshMeasuredLayouts(); });
+        QTimer::singleShot(delay, application, [] { repaintAll(); });
 
     if (!qEnvironmentVariable("WRAP_CHINESE_WIDGET_INVENTORY_PATH").isEmpty())
         QTimer::singleShot(2500, application, [] { writeWidgetInventory(); });
@@ -1871,7 +1602,6 @@ void initializeOnGuiThread(QApplication* application) {
         timer->setInterval(WrapHookLifecycle::kDeferredScanIntervalMs);
         QObject::connect(timer, &QTimer::timeout, [] {
             patchDrawTextModules();
-            if (patchFontMetricModules()) refreshMeasuredLayouts();
             installMenuActions();
         });
         timer->start();
@@ -1934,10 +1664,25 @@ extern "C" __declspec(dllexport) const char* WrapChineseVersion() {
     return "1.0.0";
 }
 
+#ifdef WRAP_CHINESE_TEST_HOOKS
+extern "C" __declspec(dllexport) unsigned int WrapChineseTestRichLabelDraws() {
+    return g_translatedRichLabelDraws.load(std::memory_order_relaxed);
+}
+#endif
+
 extern "C" __declspec(dllexport) DWORD WINAPI WrapChineseInitialize() {
     bool expected = false;
     if (!g_initializationStarted.compare_exchange_strong(
             expected, true, std::memory_order_acq_rel)) return 1;
+    // Patched imports and Qt callbacks live until process shutdown. The host
+    // must not unload their code via a later FreeLibrary/plugin refresh.
+    HMODULE pinned = nullptr;
+    if (!GetModuleHandleExW(GET_MODULE_HANDLE_EX_FLAG_FROM_ADDRESS |
+                           GET_MODULE_HANDLE_EX_FLAG_PIN,
+                           reinterpret_cast<LPCWSTR>(g_selfModule), &pinned)) {
+        g_initializationStarted.store(false, std::memory_order_release);
+        return 0;
+    }
     HANDLE thread = CreateThread(nullptr, 0, worker, nullptr, 0, nullptr);
     if (!thread) {
         g_initializationStarted.store(false, std::memory_order_release);

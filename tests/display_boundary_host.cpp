@@ -9,31 +9,49 @@
 #include <QtCore/QJsonDocument>
 #include <QtCore/QJsonObject>
 #include <QtCore/QSettings>
+#include <QtCore/QPointer>
 #include <QtCore/QThread>
 #include <QtGui/QFont>
 #include <QtGui/QFontMetrics>
 #include <QtGui/QMouseEvent>
+#include <QtGui/QPainter>
+#include <QtGui/QPicture>
+#include <QtGui/QStandardItemModel>
 #include <QtWidgets/QApplication>
 #include <QtWidgets/QDialog>
 #include <QtWidgets/QLabel>
+#include <QtWidgets/QListView>
 #include <QtWidgets/QMainWindow>
 #include <QtWidgets/QMenu>
 #include <QtWidgets/QMenuBar>
 #include <QtWidgets/QPushButton>
+#include <QtWidgets/QStyledItemDelegate>
 #include <QtWidgets/QVBoxLayout>
+#include <QtWidgets/QTabBar>
 
 #include <cmath>
 #include <cstring>
 #include <iostream>
 
+class LanguageChangeCounter final : public QObject {
+public:
+    int count = 0;
+    bool eventFilter(QObject*, QEvent* event) override {
+        if (event->type() == QEvent::LanguageChange) ++count;
+        return false;
+    }
+};
+
 int main(int argc, char** argv) {
     QApplication application(argc, argv);
     if (argc != 2) {
-        std::cerr << "usage: font_metric_hook_host <hook-dll>\n";
+        std::cerr << "usage: display_boundary_host <hook-dll>\n";
         return 2;
     }
 
     QMainWindow window;
+    LanguageChangeCounter languageChanges;
+    window.installEventFilter(&languageChanges);
     window.resize(1000, 500);
     QMenuBar* menuBar = window.menuBar();
     menuBar->setNativeMenuBar(false);
@@ -63,11 +81,20 @@ int main(int argc, char** argv) {
         QStringLiteral("<b>LoadTransform</b> RightEyeTransform"), central);
     auto* richAttribute = new QLabel(
         QStringLiteral("<span title=\"x > Basemesh\">CustomName</span>"), central);
+    auto* selectableRich = new QLabel(QStringLiteral("<b>LoadGeom</b>"), central);
+    selectableRich->setTextInteractionFlags(Qt::TextSelectableByMouse);
     centralLayout->addWidget(richNodeType);
     centralLayout->addWidget(nodeName);
     centralLayout->addWidget(dynamicNodeTitle);
     centralLayout->addWidget(dynamicTransformTitle);
     centralLayout->addWidget(richAttribute);
+    centralLayout->addWidget(selectableRich);
+    auto* model = new QStandardItemModel(1, 1, central);
+    model->setData(model->index(0, 0), QStringLiteral("File"));
+    auto* listView = new QListView(central);
+    listView->setModel(model);
+    centralLayout->addWidget(listView);
+    QAbstractItemDelegate* originalDelegate = listView->itemDelegate();
     window.setCentralWidget(central);
     window.show();
 
@@ -75,15 +102,27 @@ int main(int argc, char** argv) {
     const QString source = QStringLiteral("File");
     const QString target = QStringLiteral("文件");
     const int before = metrics.horizontalAdvance(source);
-    const int expectedAdvance = metrics.horizontalAdvance(target);
-    const QRect expectedBounds = metrics.boundingRect(target);
-    const QSize expectedSize = metrics.size(Qt::TextSingleLine, target);
-    const QRect expectedTightBounds = metrics.tightBoundingRect(target);
+    const QRect beforeBounds = metrics.boundingRect(source);
+    const QSize beforeSize = metrics.size(Qt::TextSingleLine, source);
+    const QRect beforeTightBounds = metrics.tightBoundingRect(source);
+    const QString beforeElided = metrics.elidedText(source, Qt::ElideRight, 1000);
     QFontMetricsF metricsF(QFont(QStringLiteral("Arial"), 12));
-    const qreal expectedAdvanceF = metricsF.horizontalAdvance(target);
-    const QRectF expectedBoundsF = metricsF.boundingRect(target);
-    const QSizeF expectedSizeF = metricsF.size(Qt::TextSingleLine, target);
-    const QRectF expectedTightBoundsF = metricsF.tightBoundingRect(target);
+    const qreal beforeAdvanceF = metricsF.horizontalAdvance(source);
+    const QRectF beforeBoundsF = metricsF.boundingRect(source);
+    const QSizeF beforeSizeF = metricsF.size(Qt::TextSingleLine, source);
+    const QRectF beforeTightBoundsF = metricsF.tightBoundingRect(source);
+    const QString beforeElidedF = metricsF.elidedText(
+        source, Qt::ElideRight, 1000.0);
+    const QString beforeTr = QCoreApplication::translate("WrapChineseHostProbe", "File");
+    const auto recordOffscreenText = [](const QString& value) {
+        QPicture picture;
+        QPainter painter(&picture);
+        painter.drawText(QRect(0, 0, 200, 48), Qt::AlignLeft | Qt::AlignVCenter,
+                         value);
+        painter.end();
+        return QByteArray(picture.data(), picture.size());
+    };
+    const QByteArray beforeOffscreen = recordOffscreenText(source);
 
     const QFileInfo hookInfo(QString::fromLocal8Bit(argv[1]));
     const QString captureFile = hookInfo.absolutePath() +
@@ -113,6 +152,18 @@ int main(int argc, char** argv) {
         std::cerr << "WrapChineseInitialize failed\n";
         return 3;
     }
+    using RichLabelDrawCount = unsigned int (*)();
+    const FARPROC drawCountAddress =
+        GetProcAddress(hook, "WrapChineseTestRichLabelDraws");
+    RichLabelDrawCount richLabelDrawCount = nullptr;
+    static_assert(sizeof(richLabelDrawCount) == sizeof(drawCountAddress),
+                  "function pointer sizes must match");
+    std::memcpy(&richLabelDrawCount, &drawCountAddress,
+                sizeof(richLabelDrawCount));
+    if (!richLabelDrawCount) {
+        std::cerr << "Rich-label paint probe is unavailable\n";
+        return 3;
+    }
 
     QElapsedTimer timer;
     timer.start();
@@ -120,86 +171,87 @@ int main(int argc, char** argv) {
         QCoreApplication::processEvents(QEventLoop::AllEvents, 50);
         QThread::msleep(10);
     }
+    richNodeType->repaint();
+    const unsigned int richDrawsBeforeToggle = richLabelDrawCount();
+    const bool richLabelDrawsChinese = richDrawsBeforeToggle > 0;
 
     const int after = metrics.horizontalAdvance(source);
-    const QRect actualBounds = metrics.boundingRect(source);
-    const QSize actualSize = metrics.size(Qt::TextSingleLine, source);
-    const QRect actualTightBounds = metrics.tightBoundingRect(source);
-    const QString actualElided = metrics.elidedText(source, Qt::ElideRight, 1000);
-    const qreal actualAdvanceF = metricsF.horizontalAdvance(source);
-    const QRectF actualBoundsF = metricsF.boundingRect(source);
-    const QSizeF actualSizeF = metricsF.size(Qt::TextSingleLine, source);
-    const QRectF actualTightBoundsF = metricsF.tightBoundingRect(source);
-    const QString actualElidedF = metricsF.elidedText(
-        source, Qt::ElideRight, 1000.0);
-    const QString dynamicSource = QStringLiteral(
-        "File 模型.obj does not exist!");
-    const QString dynamicTarget = QStringLiteral("文件 模型.obj 不存在！");
-    const bool cjkPlaceholderHooked =
-        metrics.horizontalAdvance(dynamicSource) ==
-        metrics.horizontalAdvance(dynamicTarget);
-    const bool markedHintHooked = metrics.elidedText(
-        QStringLiteral("*ALT* + *LMB* rotates"), Qt::ElideRight,
-        10000) == QStringLiteral("*ALT* + *LMB* 旋转");
-    const bool hintFragmentHooked = metrics.elidedText(
-        QStringLiteral("rotates"), Qt::ElideRight, 10000) ==
-        QStringLiteral("旋转");
-    const bool richLabelHooked =
-        richNodeType->text() == QStringLiteral("<b>加载几何体</b>") &&
-        nodeName->text() == QStringLiteral("Wrap 头部 2") &&
-        dynamicNodeTitle->text() ==
-            QStringLiteral("<b>加载几何体</b>&nbsp;基础网格") &&
-        dynamicTransformTitle->text() ==
-            QStringLiteral("<b>加载变换</b> 右眼变换") &&
-        richAttribute->text() ==
-            QStringLiteral("<span title=\"x > Basemesh\">CustomName</span>");
-    const bool advanceHooked = after == expectedAdvance;
-    const bool boundsHooked = actualBounds == expectedBounds;
-    const bool sizeHooked = actualSize == expectedSize;
-    const bool tightBoundsHooked = actualTightBounds == expectedTightBounds;
-    const bool elideHooked = actualElided == target;
-    const bool advanceFHooked =
-        std::abs(actualAdvanceF - expectedAdvanceF) < 0.001;
-    const bool boundsFHooked = actualBoundsF == expectedBoundsF;
-    const bool sizeFHooked = actualSizeF == expectedSizeF;
-    const bool tightBoundsFHooked = actualTightBoundsF == expectedTightBoundsF;
-    const bool elideFHooked = actualElidedF == target;
+    const bool metricsUnchanged = after == before &&
+        metrics.boundingRect(source) == beforeBounds &&
+        metrics.size(Qt::TextSingleLine, source) == beforeSize &&
+        metrics.tightBoundingRect(source) == beforeTightBounds &&
+        metrics.elidedText(source, Qt::ElideRight, 1000) == beforeElided &&
+        std::abs(metricsF.horizontalAdvance(source) - beforeAdvanceF) < 0.001 &&
+        metricsF.boundingRect(source) == beforeBoundsF &&
+        metricsF.size(Qt::TextSingleLine, source) == beforeSizeF &&
+        metricsF.tightBoundingRect(source) == beforeTightBoundsF &&
+        metricsF.elidedText(source, Qt::ElideRight, 1000.0) == beforeElidedF;
+    const auto hostTextUnchanged = [&] {
+        return richNodeType->text() == QStringLiteral("<b>LoadGeom</b>") &&
+            nodeName->text() == QStringLiteral("WrapHead2") &&
+            dynamicNodeTitle->text() ==
+                QStringLiteral("<b>LoadGeom</b>&nbsp;Basemesh") &&
+            dynamicTransformTitle->text() ==
+                QStringLiteral("<b>LoadTransform</b> RightEyeTransform") &&
+            richAttribute->text() ==
+                QStringLiteral("<span title=\"x > Basemesh\">CustomName</span>") &&
+            menuBar->actions().at(0)->text() == source;
+    };
+    const bool labelsUnchanged = hostTextUnchanged();
+    const bool modelUnchanged =
+        model->data(model->index(0, 0), Qt::DisplayRole).toString() == source;
+    const bool translatorUnchanged =
+        QCoreApplication::translate("WrapChineseHostProbe", "File") == beforeTr;
+    const bool delegateInstalled = listView->itemDelegate() != originalDelegate;
+    const auto displayedText = [&] {
+        auto* styled = dynamic_cast<QStyledItemDelegate*>(listView->itemDelegate());
+        return styled ? styled->displayText(QVariant(source), QLocale()) : QString();
+    };
+    const bool delegateDisplaysChinese = displayedText() == target;
+    QTabBar tabs;
+    tabs.addTab(source);
+    QTabBar referenceTabs;
+    referenceTabs.addTab(target);
+    const QSize chineseTabSize = tabs.sizeHint();
+    if (chineseTabSize != referenceTabs.sizeHint()) return 6;
+    tabs.setShape(QTabBar::RoundedWest);
+    referenceTabs.setShape(QTabBar::RoundedWest);
+    if (tabs.sizeHint() != referenceTabs.sizeHint()) return 7;
+    tabs.setShape(QTabBar::RoundedNorth);
+    const bool offscreenUnchanged =
+        recordOffscreenText(source) == beforeOffscreen;
 
     QKeyEvent togglePress(QEvent::KeyPress, Qt::Key_F3, Qt::NoModifier,
                           QString(), false, 1);
     QApplication::sendEvent(&window, &togglePress);
-    const bool toggledOnPress = metrics.horizontalAdvance(source) == before;
-    const bool richLabelRestored =
-        richNodeType->text() == QStringLiteral("<b>LoadGeom</b>") &&
-        nodeName->text() == QStringLiteral("WrapHead2") &&
-        dynamicNodeTitle->text() ==
-            QStringLiteral("<b>LoadGeom</b>&nbsp;Basemesh") &&
-        dynamicTransformTitle->text() ==
-            QStringLiteral("<b>LoadTransform</b> RightEyeTransform") &&
-        richAttribute->text() ==
-            QStringLiteral("<span title=\"x > Basemesh\">CustomName</span>");
+    richNodeType->repaint();
+    const bool richLabelDisabled =
+        richLabelDrawCount() == richDrawsBeforeToggle;
+    const bool toggledOnPress = displayedText() == source;
+    QTabBar englishTabs;
+    englishTabs.addTab(source);
+    if (tabs.sizeHint() != englishTabs.sizeHint() || tabs.tabText(0) != source)
+        return 8;
+    const bool labelsUnchangedOff = hostTextUnchanged();
     QKeyEvent toggleRepeat(QEvent::KeyPress, Qt::Key_F3, Qt::NoModifier,
                            QString(), true, 2);
     QApplication::sendEvent(&window, &toggleRepeat);
-    const bool repeatIgnored = metrics.horizontalAdvance(source) == before;
+    const bool repeatIgnored = displayedText() == source;
     QKeyEvent toggleRelease(QEvent::KeyRelease, Qt::Key_F3, Qt::NoModifier);
     QApplication::sendEvent(&window, &toggleRelease);
-    const bool releaseIgnored = metrics.horizontalAdvance(source) == before;
+    const bool releaseIgnored = displayedText() == source;
     QKeyEvent toggleRestore(QEvent::KeyPress, Qt::Key_F3, Qt::NoModifier,
                             QString(), false, 1);
     QApplication::sendEvent(&window, &toggleRestore);
-    const bool toggleRestored =
-        metrics.horizontalAdvance(source) == expectedAdvance;
-    const bool richLabelRetoggled =
-        richNodeType->text() == QStringLiteral("<b>加载几何体</b>") &&
-        nodeName->text() == QStringLiteral("Wrap 头部 2") &&
-        dynamicNodeTitle->text() ==
-            QStringLiteral("<b>加载几何体</b>&nbsp;基础网格") &&
-        dynamicTransformTitle->text() ==
-            QStringLiteral("<b>加载变换</b> 右眼变换") &&
-        richAttribute->text() ==
-            QStringLiteral("<span title=\"x > Basemesh\">CustomName</span>");
-
+    richNodeType->repaint();
+    const bool richLabelRestored =
+        richLabelDrawCount() > richDrawsBeforeToggle;
+    const bool toggleRestored = displayedText() == target;
+    if (tabs.sizeHint() != chineseTabSize || tabs.tabText(0) != source) return 9;
+    const bool labelsUnchangedOn = hostTextUnchanged();
+    const bool modelAndTrUnchangedAfterToggle =
+        model->data(model->index(0, 0), Qt::DisplayRole).toString() == source &&
+        QCoreApplication::translate("WrapChineseHostProbe", "File") == beforeTr;
     QAction* authorAction = menuBar->findChild<QAction*>(
         QStringLiteral("wrap_chinese_author"));
     QAction* githubAction = menuBar->findChild<QAction*>(
@@ -277,11 +329,13 @@ int main(int argc, char** argv) {
                 QStringLiteral("F3");
             resetKeptDialogOpen = hotkeyDialog->isVisible() &&
                 captureButton->text().contains(QStringLiteral("F3"));
+            const QPointer<QDialog> dialogGuard(hotkeyDialog);
             captureButton->click();
             cancelButton->click();
             QCoreApplication::processEvents();
-            dialogControlsSafe =
-                metrics.horizontalAdvance(source) == expectedAdvance;
+            dialogControlsSafe = (!dialogGuard || !dialogGuard->isVisible()) &&
+                hostTextUnchanged() &&
+                model->data(model->index(0, 0), Qt::DisplayRole).toString() == source;
         }
     }
 
@@ -388,29 +442,44 @@ int main(int argc, char** argv) {
     QFile::remove(dialogCaptureFile);
     QFile::remove(configFile);
 
+    QCoreApplication::processEvents();
+    const unsigned int beforeSelectable = richLabelDrawCount();
+    selectableRich->repaint();
+    const bool selectableRichPreserved =
+        selectableRich->text() == QStringLiteral("<b>LoadGeom</b>") &&
+        richLabelDrawCount() == beforeSelectable;
+    const QString updatedTitle =
+        QStringLiteral("<b>LoadTransform</b>&nbsp;Basemesh");
+    const unsigned int beforeDynamic = richLabelDrawCount();
+    dynamicNodeTitle->setText(updatedTitle);
+    dynamicNodeTitle->repaint();
+    const bool dynamicRichTranslated =
+        dynamicNodeTitle->text() == updatedTitle &&
+        richLabelDrawCount() > beforeDynamic;
+
     std::cout << "advance_before=" << before
               << " advance_after=" << after
-              << " advance_expected=" << expectedAdvance << "\n"
-              << "advance_hooked=" << advanceHooked
-              << " bounds_hooked=" << boundsHooked
-              << " size_hooked=" << sizeHooked
-              << " tight_bounds_hooked=" << tightBoundsHooked
-              << " elide_hooked=" << elideHooked << "\n"
-              << "advance_f_hooked=" << advanceFHooked
-              << " bounds_f_hooked=" << boundsFHooked
-              << " size_f_hooked=" << sizeFHooked
-              << " tight_bounds_f_hooked=" << tightBoundsFHooked
-              << " elide_f_hooked=" << elideFHooked
-              << " cjk_placeholder_hooked=" << cjkPlaceholderHooked
-              << " marked_hint_hooked=" << markedHintHooked
-              << " hint_fragment_hooked=" << hintFragmentHooked
-              << " rich_label_hooked=" << richLabelHooked << "\n"
+              << " metrics_unchanged=" << metricsUnchanged
+              << " language_change_events=" << languageChanges.count
+              << " labels_unchanged=" << labelsUnchanged
+              << " model_unchanged=" << modelUnchanged
+              << " translator_unchanged=" << translatorUnchanged
+              << " rich_label_draws_chinese=" << richLabelDrawsChinese
+              << " selectable_rich_preserved=" << selectableRichPreserved
+              << " dynamic_rich_translated=" << dynamicRichTranslated
+              << " rich_label_disabled=" << richLabelDisabled
+              << " rich_label_restored=" << richLabelRestored
+              << " delegate_installed=" << delegateInstalled
+              << " delegate_displays_chinese=" << delegateDisplaysChinese
+              << " offscreen_unchanged=" << offscreenUnchanged << "\n"
               << "toggled_on_press=" << toggledOnPress
               << " repeat_ignored=" << repeatIgnored
               << " release_ignored=" << releaseIgnored
               << " toggle_restored=" << toggleRestored
-              << " rich_label_restored=" << richLabelRestored
-              << " rich_label_retoggled=" << richLabelRetoggled << "\n"
+              << " labels_unchanged_off=" << labelsUnchangedOff
+              << " labels_unchanged_on=" << labelsUnchangedOn
+              << " model_tr_unchanged_after_toggle="
+              << modelAndTrUnchangedAfterToggle << "\n"
               << "links_installed=" << linksInstalled
               << " pointing_hand_hooked=" << pointingHandHooked
               << " cursor_restore_hooked=" << cursorRestoreHooked
@@ -425,13 +494,14 @@ int main(int argc, char** argv) {
               << " corrupt_original_preserved=" << corruptOriginalPreserved
               << " corrupt_fallback_written=" << corruptFallbackWritten
               << " capture_dialog_styled=" << captureDialogStyled << "\n";
-    return advanceHooked && boundsHooked && sizeHooked &&
-        tightBoundsHooked && elideHooked && cjkPlaceholderHooked &&
-        markedHintHooked && hintFragmentHooked &&
-        richLabelHooked && richLabelRestored && richLabelRetoggled &&
-        advanceFHooked &&
-        boundsFHooked && sizeFHooked && tightBoundsFHooked &&
-        elideFHooked && linksInstalled && pointingHandHooked &&
+    // UI widths may change; data, untranslated internal contexts, and exports may not.
+    return labelsUnchanged && modelUnchanged &&
+        translatorUnchanged && richLabelDrawsChinese && richLabelDisabled &&
+        richLabelRestored && selectableRichPreserved &&
+        dynamicRichTranslated && delegateInstalled && delegateDisplaysChinese &&
+        offscreenUnchanged &&
+        labelsUnchangedOff && labelsUnchangedOn &&
+        modelAndTrUnchangedAfterToggle && linksInstalled && pointingHandHooked &&
         cursorRestoreHooked && hotkeyDialogOpened && hotkeyDialogStyled &&
         resetSavedImmediately && resetKeptDialogOpen && dialogControlsSafe &&
         toggledOnPress && repeatIgnored &&

@@ -8,6 +8,7 @@
 #include "runtime_compatibility.h"
 
 #include <string>
+#include <utility>
 #include <vector>
 
 namespace {
@@ -99,15 +100,27 @@ LPTHREAD_START_ROUTINE remoteLoadLibrary(DWORD processId) {
     FARPROC localFunction = localKernel
         ? GetProcAddress(localKernel, "LoadLibraryW") : nullptr;
     if (!localFunction) return nullptr;
+    // An export can forward into KernelBase. Its RVA belongs to the module
+    // containing the resolved address, not necessarily to kernel32.
+    HMODULE owner = nullptr;
+    if (!GetModuleHandleExW(GET_MODULE_HANDLE_EX_FLAG_FROM_ADDRESS |
+                           GET_MODULE_HANDLE_EX_FLAG_UNCHANGED_REFCOUNT,
+                           reinterpret_cast<LPCWSTR>(localFunction), &owner))
+        return nullptr;
+    wchar_t ownerPath[MAX_PATH] = {};
+    const DWORD ownerLength = GetModuleFileNameW(owner, ownerPath, MAX_PATH);
+    if (!ownerLength || ownerLength >= MAX_PATH) return nullptr;
+    const std::wstring ownerFile(ownerPath, ownerLength);
+    const std::wstring ownerName = ownerFile.substr(ownerFile.find_last_of(L"\\/") + 1);
     const uintptr_t offset = reinterpret_cast<uintptr_t>(localFunction) -
-                             reinterpret_cast<uintptr_t>(localKernel);
+                             reinterpret_cast<uintptr_t>(owner);
     HANDLE snapshot = moduleSnapshot(processId);
     if (snapshot != INVALID_HANDLE_VALUE) {
         MODULEENTRY32W entry{};
         entry.dwSize = sizeof(entry);
         if (Module32FirstW(snapshot, &entry)) {
             do {
-                if (_wcsicmp(entry.szModule, L"kernel32.dll") == 0) {
+                if (_wcsicmp(entry.szModule, ownerName.c_str()) == 0) {
                     CloseHandle(snapshot);
                     return reinterpret_cast<LPTHREAD_START_ROUTINE>(
                         reinterpret_cast<uintptr_t>(entry.modBaseAddr) + offset);
@@ -139,6 +152,69 @@ HMODULE findInjectedModule(DWORD processId, const std::wstring& expectedPath) {
     }
     CloseHandle(snapshot);
     return found;
+}
+
+bool hasWrapWindow(DWORD processId) {
+    struct Search { DWORD processId; bool found; } search{processId, false};
+    EnumWindows([](HWND window, LPARAM context) -> BOOL {
+        auto* state = reinterpret_cast<Search*>(context);
+        DWORD owner = 0;
+        GetWindowThreadProcessId(window, &owner);
+        if (owner != state->processId || !IsWindowVisible(window)) return TRUE;
+        wchar_t className[128]{};
+        GetClassNameW(window, className, _countof(className));
+        if (wcsncmp(className, L"Qt", 2) == 0) {
+            state->found = true;
+            return FALSE;
+        }
+        return TRUE;
+    }, reinterpret_cast<LPARAM>(&search));
+    return search.found;
+}
+
+bool waitForExistingWrapTransition(const std::wstring& hostPath,
+                                   const std::wstring& hookPath,
+                                   DWORD timeoutMs) {
+    HANDLE snapshot = CreateToolhelp32Snapshot(TH32CS_SNAPPROCESS, 0);
+    if (snapshot == INVALID_HANDLE_VALUE) return true;
+    std::vector<std::pair<DWORD, HANDLE>> pending;
+    const std::wstring imageName = hostPath.substr(hostPath.find_last_of(L"\\/") + 1);
+    PROCESSENTRY32W entry{};
+    entry.dwSize = sizeof(entry);
+    if (Process32FirstW(snapshot, &entry)) {
+        do {
+            if (entry.th32ProcessID == GetCurrentProcessId() ||
+                _wcsicmp(entry.szExeFile, imageName.c_str()) != 0) continue;
+            HANDLE process = OpenProcess(PROCESS_QUERY_LIMITED_INFORMATION | SYNCHRONIZE,
+                                         FALSE, entry.th32ProcessID);
+            if (!process) continue;
+            std::vector<wchar_t> image(32768);
+            DWORD length = static_cast<DWORD>(image.size());
+            const bool sameImage = QueryFullProcessImageNameW(process, 0, image.data(), &length) &&
+                                   _wcsicmp(std::wstring(image.data(), length).c_str(),
+                                            hostPath.c_str()) == 0;
+            if (sameImage && WaitForSingleObject(process, 0) == WAIT_TIMEOUT &&
+                findInjectedModule(entry.th32ProcessID, hookPath) &&
+                !hasWrapWindow(entry.th32ProcessID)) {
+                pending.emplace_back(entry.th32ProcessID, process);
+            } else {
+                CloseHandle(process);
+            }
+        } while (Process32NextW(snapshot, &entry));
+    }
+    CloseHandle(snapshot);
+    const ULONGLONG deadline = GetTickCount64() + timeoutMs;
+    bool ready = true;
+    for (const auto& old : pending) {
+        while (WaitForSingleObject(old.second, 0) == WAIT_TIMEOUT &&
+               !hasWrapWindow(old.first)) {
+            if (GetTickCount64() >= deadline) { ready = false; break; }
+            Sleep(100);
+        }
+        if (!ready) break;
+    }
+    for (const auto& old : pending) CloseHandle(old.second);
+    return ready;
 }
 
 LPTHREAD_START_ROUTINE remoteExport(const std::wstring& modulePath,
@@ -183,6 +259,11 @@ int WINAPI wWinMain(HINSTANCE, HINSTANCE, PWSTR commandLine, int) {
         showError(L"找不到 Wrap.exe 或 WrapChineseHook.dll。\n"
                   L"请将完整补丁安装到 Wrap 的 ChineseLauncher 目录。");
         return 1;
+    }
+
+    if (!waitForExistingWrapTransition(hostPath, hookPath, 30000)) {
+        showError(L"上一个 Wrap 进程仍在关闭。请稍后再打开工程。");
+        return 3;
     }
 
     std::wstring fullCommand = L"\"" + hostPath + L"\"";
@@ -257,8 +338,10 @@ int WINAPI wWinMain(HINSTANCE, HINSTANCE, PWSTR commandLine, int) {
 
     const bool resumed = initialized && readyEvent &&
                          ResumeThread(process.hThread) != DWORD(-1);
-    const bool hookReady = resumed &&
-        WaitForSingleObject(readyEvent, 60000) == WAIT_OBJECT_0;
+    const HANDLE readinessHandles[] = {readyEvent, process.hProcess};
+    const DWORD readiness = resumed
+        ? WaitForMultipleObjects(2, readinessHandles, FALSE, 60000) : WAIT_FAILED;
+    const bool hookReady = readiness == WAIT_OBJECT_0;
     if (hookReady) {
         if (remotePath && completed)
             VirtualFreeEx(process.hProcess, remotePath, 0, MEM_RELEASE);
@@ -266,6 +349,19 @@ int WINAPI wWinMain(HINSTANCE, HINSTANCE, PWSTR commandLine, int) {
         CloseHandle(process.hThread);
         CloseHandle(process.hProcess);
         return 0;
+    }
+
+    if (readiness == WAIT_OBJECT_0 + 1) {
+        DWORD exitCode = 3;
+        GetExitCodeProcess(process.hProcess, &exitCode);
+        if (remotePath && completed)
+            VirtualFreeEx(process.hProcess, remotePath, 0, MEM_RELEASE);
+        if (readyEvent) CloseHandle(readyEvent);
+        CloseHandle(process.hThread);
+        CloseHandle(process.hProcess);
+        if (exitCode == 0) return 0; // The host handed the project to another instance.
+        showError(L"Wrap 在汉化初始化前异常退出。请检查原版软件的启动日志。");
+        return 3;
     }
 
     TerminateProcess(process.hProcess, 3);
