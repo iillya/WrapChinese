@@ -5,8 +5,10 @@ import json
 import os
 from pathlib import Path
 import re
+import shutil
 import subprocess
 import tempfile
+import uuid
 
 ROOT = Path(__file__).resolve().parents[2]
 HERE = Path(__file__).resolve().parent
@@ -56,7 +58,7 @@ def includes(entries):
 def main():
     parser = argparse.ArgumentParser(description=__doc__)
     parser.add_argument('--iscc', type=Path, default=os.environ.get('INNO_ISCC', ROOT.parent / '_ThirdParty/InnoSetup/7.1.0/ISCC.exe'))
-    parser.add_argument('--version', default='1.0.0')
+    parser.add_argument('--version', default='1.0.1')
     parser.add_argument('--test-mode', action='store_true')
     args = parser.parse_args()
     if not re.fullmatch(r'\d+\.\d+\.\d+(?:\.\d+)?', args.version): parser.error('Invalid version')
@@ -80,7 +82,18 @@ def main():
         target = build / 'test-package' if args.test_mode else ROOT / 'dist'
         target.mkdir(parents=True, exist_ok=True)
         destination = target / (cfg['id'] + 'Installer.exe')
-        os.replace(stage / destination.name, destination)
+        # Inno's temporary output may have an owner-only DACL. Create the
+        # published file in the destination directory so it inherits normal
+        # workspace permissions, then replace atomically without copying ACLs.
+        pending = target / ('.' + destination.name + '.' + uuid.uuid4().hex + '.tmp')
+        try:
+            with (stage / destination.name).open('rb') as source, pending.open('xb') as output:
+                shutil.copyfileobj(source, output)
+            if hashlib.sha256(pending.read_bytes()).digest() != hashlib.sha256((stage / destination.name).read_bytes()).digest():
+                raise RuntimeError('Installer copy verification failed')
+            os.replace(pending, destination)
+        finally:
+            pending.unlink(missing_ok=True)
     manifest = {'version': args.version, 'test_mode': args.test_mode, 'installer': str(destination),
                 'sha256': hashlib.sha256(destination.read_bytes()).hexdigest(),
                 'payload': [{'name': name, 'sha256': digest} for name, _, digest in entries]}

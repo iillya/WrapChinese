@@ -12,6 +12,8 @@
 
 #include "../runtime_compatibility.h"
 
+#include "association_user.h"
+
 namespace {
 struct Handle {
     HANDLE value;
@@ -110,33 +112,7 @@ bool hostStopped(const std::wstring& root) {
 }
 
 std::wstring interactiveSid() {
-    DWORD session = 0;
-    if (!ProcessIdToSessionId(GetCurrentProcessId(), &session)) return {};
-    Handle snapshot(CreateToolhelp32Snapshot(TH32CS_SNAPPROCESS, 0));
-    if (snapshot.value == INVALID_HANDLE_VALUE) return {};
-    PROCESSENTRY32W item{};
-    item.dwSize = sizeof(item);
-    if (!Process32FirstW(snapshot.value, &item)) return {};
-    do {
-        DWORD candidateSession = 0;
-        if (_wcsicmp(item.szExeFile, L"explorer.exe") != 0 ||
-            !ProcessIdToSessionId(item.th32ProcessID, &candidateSession) || candidateSession != session) continue;
-        Handle process(OpenProcess(PROCESS_QUERY_LIMITED_INFORMATION, FALSE, item.th32ProcessID));
-        HANDLE rawToken = nullptr;
-        if (!process.value || !OpenProcessToken(process.value, TOKEN_QUERY, &rawToken)) continue;
-        Handle token(rawToken);
-        DWORD size = 0;
-        GetTokenInformation(token.value, TokenUser, nullptr, 0, &size);
-        if (!size || size > 65536) continue;
-        std::vector<BYTE> bytes(size);
-        if (!GetTokenInformation(token.value, TokenUser, bytes.data(), size, &size)) continue;
-        LPWSTR sid = nullptr;
-        if (!ConvertSidToStringSidW(reinterpret_cast<TOKEN_USER*>(bytes.data())->User.Sid, &sid)) continue;
-        const std::wstring result(sid);
-        LocalFree(sid);
-        return result;
-    } while (Process32NextW(snapshot.value, &item));
-    return {};
+    return InstallerUser::interactiveSid();
 }
 }
 
