@@ -5,13 +5,14 @@ from __future__ import annotations
 
 import argparse
 import json
+import os
 import re
 import subprocess
 from pathlib import Path
 
 
 ROOT = Path(__file__).resolve().parents[1]
-DEFAULT_WRAP_CMD = Path(r"C:\Program Files\Faceform\Wrap 2025.10.8\WrapCmd.exe")
+DEFAULT_WRAP_CMD = Path(os.environ.get("WRAP_ROOT", r"C:\Program Files\Faceform\Wrap 2025.11.14")) / "WrapCmd.exe"
 NODE_TYPE = re.compile(r"^[A-Za-z][A-Za-z0-9_]*$")
 
 

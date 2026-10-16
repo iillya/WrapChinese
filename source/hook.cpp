@@ -13,9 +13,14 @@
 #include "hotkey_settings.h"
 #include "qt_placeholder_templates.h"
 #include "runtime_compatibility.h"
+#include "numeric_template_sources.h"
 #include "translation_lookup_cache.h"
+#include "shortcut_hint_display.h"
+#include "brush_ui_diagnostics.h"
 
 #include <QtCore/QAbstractItemModel>
+#include <QtCore/QCache>
+#include <QtCore/QElapsedTimer>
 #include <QtCore/QCoreApplication>
 #include <QtCore/QDateTime>
 #include <QtCore/QDir>
@@ -27,8 +32,12 @@
 #include <QtCore/QJsonDocument>
 #include <QtCore/QJsonObject>
 #include <QtCore/QMap>
-#include <QtCore/QMetaMethod>
 #include <QtCore/QMetaObject>
+#ifdef WRAP_CHINESE_DEVELOPER_TOOLS
+#include <QtCore/QMetaMethod>
+#include <QtWidgets/QGraphicsView>
+#include <QtWidgets/QShortcut>
+#endif
 #include <QtCore/QPointer>
 #include <QtCore/QSaveFile>
 #include <QtCore/QSet>
@@ -54,7 +63,6 @@
 #include <QtWidgets/QDialog>
 #include <QtWidgets/QDockWidget>
 #include <QtWidgets/QGroupBox>
-#include <QtWidgets/QGraphicsView>
 #include <QtWidgets/QHBoxLayout>
 #include <QtWidgets/QLabel>
 #include <QtWidgets/QLineEdit>
@@ -62,7 +70,6 @@
 #include <QtWidgets/QMenuBar>
 #include <QtWidgets/QProxyStyle>
 #include <QtWidgets/QPushButton>
-#include <QtWidgets/QShortcut>
 #include <QtWidgets/QStyleFactory>
 #include <QtWidgets/QStyledItemDelegate>
 #include <QtWidgets/QTabBar>
@@ -72,12 +79,9 @@
 
 #include <algorithm>
 #include <atomic>
-#include <cstring>
 #include <functional>
 #include <memory>
-#include <string>
 #include <typeinfo>
-#include <unordered_map>
 #include <unordered_set>
 #include <utility>
 #include <vector>
@@ -91,6 +95,7 @@ using WrapImportHooks::replaceImports;
 constexpr wchar_t kHookPrefix[] = L"WrapChineseHook";
 constexpr wchar_t kGuiModule[] = L"Qt5Gui.dll";
 constexpr wchar_t kCoreModule[] = L"Qt5Core.dll";
+constexpr char kEngineVersion[] = "1.0.2";
 constexpr qint64 kMaximumDictionaryBytes = 32LL * 1024 * 1024;
 constexpr int kMaximumDictionaryFiles = 32;
 constexpr std::size_t kMaximumDictionaryEntries = 200000;
@@ -103,6 +108,16 @@ std::atomic_bool g_enabled{true};
 std::atomic_bool g_initializationStarted{false};
 bool g_drawHooksInstalled = false;
 bool g_proxyStyleInstalled = false;
+bool g_shuttingDown = false;
+QPointer<QObject> g_applicationFilter;
+QPointer<QObject> g_menuFilter;
+QPointer<QTimer> g_maintenanceTimer;
+QElapsedTimer g_moduleScanAge;
+bool g_modulesDirty = false;
+QString g_proxyStyleDecision = QStringLiteral("not-attempted");
+QString g_originalStyleKey;
+std::unique_ptr<QPalette> g_originalPalette;
+QPointer<QStyle> g_translationStyle;
 #ifdef WRAP_CHINESE_TEST_HOOKS
 std::atomic_uint32_t g_translatedRichLabelDraws{0};
 #endif
@@ -128,11 +143,12 @@ void signalHookReady() {
     CloseHandle(event);
 }
 
-std::unordered_map<std::string, std::string> g_translations;
-std::unordered_map<std::string, std::string> g_normalized;
-std::vector<std::pair<std::string, std::string>> g_sortedKeys;
+QHash<QString, QString> g_translations;
+QHash<QString, QString> g_normalized;
+QJsonArray g_dictionaryConflicts;
 
 WrapChinesePlaceholders::Catalog g_templates;
+thread_local WrapChineseLookupCache::DirectMapped<> g_measurementCache;
 thread_local WrapChineseLookupCache::DirectMapped<> g_lookupCache;
 
 QString selfDirectory() {
@@ -171,7 +187,7 @@ bool containsCjk(const QString& text) {
             (value >= 0xac00 && value <= 0xd7af) ||
             (value >= 0xd7b0 && value <= 0xd7ff) ||
             (value >= 0xf900 && value <= 0xfaff) ||
-            (value >= 0xff00 && value <= 0xffef) ||
+            (value >= 0xff66 && value <= 0xffdc) ||
             (value >= 0x20000 && value <= 0x323af) ||
             (value >= 0x2f800 && value <= 0x2fa1f)) return true;
     }
@@ -184,6 +200,18 @@ QString normalize(QString text) {
     text.remove(QChar(0x200b));
     text.remove(QChar(0x200d));
     text.remove(QChar(0xfeff));
+    text.remove(QChar(0x200c));
+    text.remove(QChar(0x2060));
+    text.remove(QChar(0x00ad));
+    for (int i = 0; i < text.size(); ++i) {
+        ushort ch = text.at(i).unicode();
+        if (ch >= 0xff01 && ch <= 0xff5e) ch -= 0xfee0;
+        if (ch == '_') ch = ' ';
+        if (ch >= 0x2018 && ch <= 0x201b) ch = '\'';
+        if (ch == 0x201c || ch == 0x201d) ch = '"';
+        if ((ch >= 0x2010 && ch <= 0x2015) || ch == 0x2212) ch = '-';
+        text[i] = QChar(ch);
+    }
     text = text.simplified();
     while (text.endsWith(QChar(0x2026))) text.chop(1);
     while (text.endsWith(QLatin1String("..."))) text.chop(3);
@@ -200,10 +228,12 @@ QString normalize(QString text) {
             ++index;
         }
     }
-    text = mnemonicFree.toCaseFolded().normalized(QString::NormalizationForm_C);
+    text = mnemonicFree.toCaseFolded().normalized(QString::NormalizationForm_D);
     QString result;
     result.reserve(text.size());
     for (const QChar ch : text) {
+        if (ch.category() == QChar::Mark_NonSpacing || ch.category() == QChar::Mark_SpacingCombining ||
+            ch.category() == QChar::Mark_Enclosing) continue;
         if (ch.isSpace()) {
             if (!result.isEmpty() && !result.endsWith(QLatin1Char(' ')))
                 result += QLatin1Char(' ');
@@ -211,20 +241,21 @@ QString normalize(QString text) {
         }
         result.append(ch);
     }
-    return result.trimmed();
+    return result.trimmed().normalized(QString::NormalizationForm_C);
 }
 
 void loadDictionaries() {
+    // Called once, on the GUI thread, before any display hook is published.
     g_translations.clear();
     g_normalized.clear();
-    g_sortedKeys.clear();
+    g_dictionaryConflicts = QJsonArray();
     g_templates.clear();
     g_lookupCache.clear();
+    g_measurementCache.clear();
     QDir directory(g_pluginDir + QStringLiteral("/translations"));
-    QStringList files = directory.entryList(
-        {QStringLiteral("*_zh.json")}, QDir::Files, QDir::Name);
-    if (files.size() > kMaximumDictionaryFiles)
-        files = files.mid(0, kMaximumDictionaryFiles);
+    const QStringList files = directory.entryList(
+        {QStringLiteral("*_zh.json")}, QDir::Files, QDir::Name).mid(0, kMaximumDictionaryFiles);
+    QHash<QString, QString> normalizedSources;
     for (const QString& name : files) {
         QFile file(directory.filePath(name));
         if (!file.open(QIODevice::ReadOnly) || file.size() <= 0 ||
@@ -233,57 +264,41 @@ void loadDictionaries() {
         const QJsonDocument document = QJsonDocument::fromJson(file.readAll(), &error);
         if (error.error != QJsonParseError::NoError || !document.isObject()) continue;
         const QJsonObject root = document.object();
-        const QJsonValue translationValue =
-            root.value(QStringLiteral("translations"));
+        const QJsonValue translationValue = root.value(QStringLiteral("translations"));
         if (root.value(QStringLiteral("$schema")).toString() !=
                 QStringLiteral("sp-translation-v1") ||
-            root.value(QStringLiteral("language")).toString() !=
-                QStringLiteral("zh-CN") ||
+            root.value(QStringLiteral("language")).toString() != QStringLiteral("zh-CN") ||
             !translationValue.isObject()) continue;
         const QJsonObject translations = translationValue.toObject();
         for (auto it = translations.constBegin(); it != translations.constEnd(); ++it) {
-            if (g_translations.size() >= kMaximumDictionaryEntries) break;
             if (!it.value().isString() || it.key().trimmed().isEmpty() ||
                 it.key().size() > kMaximumDictionarySourceLength) continue;
             const QString target = it.value().toString();
-            if (target.trimmed().isEmpty() ||
-                target.size() > kMaximumDictionaryTargetLength) continue;
-            std::vector<WrapChinesePlaceholders::Token> templateTokens;
-            QHash<QString, int> templateFields;
-            if (WrapChinesePlaceholders::parsePattern(
-                    it.key(), templateTokens, templateFields)) {
-                WrapChinesePlaceholders::Catalog validator;
-                if (!validator.addOrAssign(it.key(), target)) continue;
+            if (target.trimmed().isEmpty() || target.size() > kMaximumDictionaryTargetLength ||
+                !WrapChinesePlaceholders::validatePair(it.key(), target)) continue;
+            if (g_translations.size() >= int(kMaximumDictionaryEntries) &&
+                !g_translations.contains(it.key())) continue;
+            g_translations.insert(it.key(), target);
+            const QString folded = normalize(it.key());
+            if (!folded.isEmpty()) {
+                const auto prior = g_normalized.constFind(folded);
+                if (prior != g_normalized.constEnd() && *prior != target &&
+                    g_dictionaryConflicts.size() < 256)
+                    g_dictionaryConflicts.append(QJsonObject{
+                        {QStringLiteral("file"), name},
+                        {QStringLiteral("previous_source"), normalizedSources.value(folded)},
+                        {QStringLiteral("source"), it.key()}});
+                // Entry and file iteration order is stable; later input wins.
+                g_normalized.insert(folded, target);
+                normalizedSources.insert(folded, it.key());
             }
-            g_translations[it.key().toUtf8().toStdString()] =
-                target.toUtf8().toStdString();
         }
     }
-    std::vector<std::pair<std::string, std::string>> entries(
-        g_translations.begin(), g_translations.end());
-    std::sort(entries.begin(), entries.end(),
-              [](const auto& left, const auto& right) {
-        return left.first < right.first;
-    });
-    std::unordered_set<std::string> ambiguousNormalized;
-    for (const auto& entry : entries) {
-        const QString source = QString::fromUtf8(entry.first.data(), int(entry.first.size()));
-        const QString target = QString::fromUtf8(entry.second.data(), int(entry.second.size()));
-        const std::string folded = normalize(source).toUtf8().toStdString();
-        if (!folded.empty()) {
-            const auto found = g_normalized.find(folded);
-            if (found == g_normalized.end()) g_normalized.emplace(folded, entry.second);
-            else if (found->second != entry.second) ambiguousNormalized.insert(folded);
-        }
-        std::string lower = source.toLower().toUtf8().toStdString();
-        g_sortedKeys.emplace_back(std::move(lower), entry.first);
-        if (source.contains(QLatin1Char('%')))
-            g_templates.addOrAssign(source, target);
+    for (const char* sourceUtf8 : kNumericTemplateSources) {
+        const QString source = QString::fromUtf8(sourceUtf8);
+        const auto target = g_translations.constFind(source);
+        if (target != g_translations.constEnd()) g_templates.addOrAssign(source, *target);
     }
-    for (const std::string& key : ambiguousNormalized) g_normalized.erase(key);
-    g_templates.finalize();
-    std::sort(g_sortedKeys.begin(), g_sortedKeys.end(),
-              [](const auto& left, const auto& right) { return left.first < right.first; });
 }
 
 QString withoutMnemonics(const QString& text) {
@@ -303,11 +318,7 @@ QString withoutMnemonics(const QString& text) {
 }
 
 QString exactTranslation(const QString& source) {
-    const QByteArray utf8 = source.toUtf8();
-    const auto found = g_translations.find(utf8.toStdString());
-    return found == g_translations.end()
-        ? QString()
-        : QString::fromUtf8(found->second.data(), int(found->second.size()));
+    return g_translations.value(source);
 }
 
 bool isUpperCamelIdentifier(const QString& text) {
@@ -326,11 +337,13 @@ QString translatedRichIdentifiers(const QString& source) {
     QString token;
     bool inTag = false;
     bool inEntity = false;
+    bool nodeType = false;
+    QString tag;
     QChar tagQuote;
     bool changed = false;
     const auto flushToken = [&] {
         if (token.isEmpty()) return;
-        const QString target = isUpperCamelIdentifier(token)
+        const QString target = nodeType && isUpperCamelIdentifier(token)
             ? exactTranslation(token) : QString();
         if (!target.isEmpty()) {
             result += target;
@@ -344,17 +357,27 @@ QString translatedRichIdentifiers(const QString& source) {
         if (!inTag && !inEntity && ch == QLatin1Char('<')) {
             flushToken();
             inTag = true;
+            tag = QLatin1Char('<');
             tagQuote = QChar();
             result += ch;
         } else if (inTag && tagQuote.isNull() &&
                    (ch == QLatin1Char('\'') || ch == QLatin1Char('"'))) {
             tagQuote = ch;
+            tag += ch;
             result += ch;
         } else if (inTag && !tagQuote.isNull() && ch == tagQuote) {
             tagQuote = QChar();
+            tag += ch;
             result += ch;
         } else if (inTag && tagQuote.isNull() && ch == QLatin1Char('>')) {
             inTag = false;
+            tag += ch;
+            // Wrap titles bold the node type; the following instance name is
+            // project data, even if it happens to occur in the dictionary.
+            if (tag.compare(QLatin1String("<b>"), Qt::CaseInsensitive) == 0)
+                nodeType = true;
+            else if (tag.compare(QLatin1String("</b>"), Qt::CaseInsensitive) == 0)
+                nodeType = false;
             result += ch;
         } else if (!inTag && !inEntity && ch == QLatin1Char('&')) {
             flushToken();
@@ -364,6 +387,7 @@ QString translatedRichIdentifiers(const QString& source) {
             inEntity = false;
             result += ch;
         } else if (inTag || inEntity) {
+            if (inTag) tag += ch;
             result += ch;
         } else if (ch.isLetterOrNumber() || ch == QLatin1Char('_')) {
             token += ch;
@@ -377,8 +401,13 @@ QString translatedRichIdentifiers(const QString& source) {
     return result;
 }
 
-QString translatedUncached(const QString& raw) {
+QString translatedUncached(const QString& raw, bool allowNumeric = true) {
     if (raw.size() > kMaximumDictionarySourceLength) return {};
+    // Content paths and URLs do not become interface copy through normalization.
+    if (raw.startsWith(QLatin1Char('/')) || raw.startsWith(QLatin1Char('\\')) ||
+        raw.startsWith(QLatin1String(":/")) || raw.contains(QLatin1String("://")) ||
+        (raw.size() >= 3 && raw.at(0).isLetter() && raw.at(1) == QLatin1Char(':') &&
+         (raw.at(2) == QLatin1Char('/') || raw.at(2) == QLatin1Char('\\')))) return {};
     int first = 0;
     while (first < raw.size() && raw[first].isSpace()) ++first;
     int last = raw.size();
@@ -390,10 +419,8 @@ QString translatedUncached(const QString& raw) {
     const auto decorate = [&](const QString& value) {
         return value.isEmpty() ? QString() : leading + value + trailing;
     };
-    const auto exact = g_translations.find(key.toUtf8().toStdString());
-    if (exact != g_translations.end())
-        return decorate(QString::fromUtf8(exact->second.data(),
-                                          int(exact->second.size())));
+    const auto exact = g_translations.constFind(key);
+    if (exact != g_translations.constEnd()) return decorate(*exact);
     const QString rich = translatedRichIdentifiers(key);
     if (!rich.isEmpty()) return decorate(rich);
 
@@ -404,51 +431,27 @@ QString translatedUncached(const QString& raw) {
         suffix = QStringLiteral("*");
     }
     const QString mnemonic = withoutMnemonics(key);
-    const auto clean = g_translations.find(mnemonic.toUtf8().toStdString());
-    if (clean != g_translations.end())
-        return decorate(QString::fromUtf8(clean->second.data(),
-                                          int(clean->second.size())) + suffix);
+    const auto clean = g_translations.constFind(mnemonic);
+    if (clean != g_translations.constEnd()) return decorate(*clean + suffix);
 
-    const QString dynamic = g_templates.lookup(mnemonic);
-    if (!dynamic.isEmpty()) return decorate(dynamic + suffix);
     if (containsCjk(mnemonic)) return {};
-
-    const std::string folded = normalize(mnemonic).toUtf8().toStdString();
-    const auto fuzzy = g_normalized.find(folded);
-    if (fuzzy != g_normalized.end())
-        return decorate(QString::fromUtf8(fuzzy->second.data(),
-                                          int(fuzzy->second.size())) + suffix);
-    return {};
+    const auto fuzzy = g_normalized.constFind(normalize(mnemonic));
+    if (fuzzy != g_normalized.constEnd()) return decorate(*fuzzy + suffix);
+    // Templates match the full, case-sensitive source, without trimming,
+    // mnemonic removal, suffix stripping or normalization.
+    return allowNumeric ? g_templates.lookup(raw) : QString();
 }
 
 QString translated(const QString& raw) {
-    if (!g_enabled.load(std::memory_order_relaxed)) return {};
+    if (!g_enabled.load(std::memory_order_acquire) ||
+        raw.size() > kMaximumDictionarySourceLength) return {};
     return g_lookupCache.lookup(raw, [&] { return translatedUncached(raw); });
 }
 
-QString recoverElided(const QString& text) {
-    if (!g_enabled.load(std::memory_order_relaxed)) return {};
-    if (!(text.endsWith(QChar(0x2026)) || text.endsWith(QLatin1String("..."))))
-        return {};
-    QString head = text;
-    head.chop(text.endsWith(QChar(0x2026)) ? 1 : 3);
-    head = head.trimmed().toLower();
-    if (head.size() < 2) return {};
-    const std::string prefix = head.toUtf8().toStdString();
-    auto it = std::lower_bound(
-        g_sortedKeys.begin(), g_sortedKeys.end(), prefix,
-        [](const auto& entry, const std::string& value) { return entry.first < value; });
-    QString result;
-    for (; it != g_sortedKeys.end(); ++it) {
-        if (it->first.compare(0, prefix.size(), prefix) != 0) break;
-        const auto found = g_translations.find(it->second);
-        if (found == g_translations.end()) continue;
-        const QString candidate = QString::fromUtf8(
-            found->second.data(), int(found->second.size()));
-        if (result.isEmpty()) result = candidate;
-        else if (result != candidate) return {};
-    }
-    return result;
+QString translatedForMeasurement(const QString& source) {
+    if (!g_enabled.load(std::memory_order_acquire) ||
+        source.size() > kMaximumDictionarySourceLength) return {};
+    return g_measurementCache.lookup(source, [&] { return translatedUncached(source, false); });
 }
 
 bool isDisplayPaintDevice(const QPainter* painter) {
@@ -462,6 +465,20 @@ public:
     void drawControl(ControlElement element, const QStyleOption* option,
                      QPainter* painter, const QWidget* widget = nullptr) const override {
         UiPaintBoundary::WidgetPaintScope scope(painter, widget);
+        if (element == CE_MenuBarItem) {
+            const auto* bar = qobject_cast<const QMenuBar*>(widget);
+            const auto* item = qstyleoption_cast<const QStyleOptionMenuItem*>(option);
+            const auto* action = bar && item ? bar->actionAt(item->rect.center()) : nullptr;
+            if (action && (action == g_authorAction || action == g_githubAction) &&
+                (item->state & State_Enabled)) {
+                QStyleOptionMenuItem display(*item);
+                const QColor blue(0x66, 0xaa, 0xff);
+                for (auto role : {QPalette::WindowText, QPalette::ButtonText, QPalette::Text})
+                    display.palette.setColor(role, blue);
+                QProxyStyle::drawControl(element, &display, painter, widget);
+                return;
+            }
+        }
         QProxyStyle::drawControl(element, option, painter, widget);
     }
 
@@ -509,16 +526,6 @@ public:
         const QString value = isDisplayPaintDevice(painter)
             ? translated(text) : QString();
         const QString draw = value.isEmpty() ? text : value;
-        if (text == QStringLiteral("Bilibili 神说要凑数汉化") ||
-            text == QStringLiteral("GitHub 仓库")) {
-            QPalette linkPalette = palette;
-            const QColor blue(0x66, 0xaa, 0xff);
-            linkPalette.setColor(QPalette::WindowText, blue);
-            linkPalette.setColor(QPalette::ButtonText, blue);
-            QProxyStyle::drawItemText(painter, rect, flags, linkPalette,
-                                      enabled, draw, role);
-            return;
-        }
         QProxyStyle::drawItemText(painter, rect, flags, palette, enabled, draw, role);
     }
     QRect itemTextRect(const QFontMetrics& metrics, const QRect& rect,
@@ -539,15 +546,28 @@ public:
     }
 };
 
+struct DelegateAttachment {
+    QPointer<QAbstractItemView> view;
+    QPointer<QAbstractItemDelegate> original, display;
+};
+std::vector<DelegateAttachment> g_delegates;
+
 void applyWidget(QWidget* widget) {
     if (!widget) return;
     auto* view = qobject_cast<QAbstractItemView*>(widget);
     if (!view) return;
     auto* delegate = view->itemDelegate();
     if (dynamic_cast<TranslateDelegate*>(delegate)) return;
-    if (!delegate || QString::fromLatin1(delegate->metaObject()->className()) !=
-                          QLatin1String("QStyledItemDelegate")) return;
-    view->setItemDelegate(new TranslateDelegate(view));
+    // Subclasses without Q_OBJECT inherit the base metaObject name. Replacing
+    // one of those removes the host's paint(), sizeHint() and editor behavior.
+    if (!delegate || typeid(*delegate) != typeid(QStyledItemDelegate)) return;
+    auto* display = new TranslateDelegate(view);
+    display->setItemEditorFactory(
+        static_cast<QStyledItemDelegate*>(delegate)->itemEditorFactory());
+    g_delegates.erase(std::remove_if(g_delegates.begin(), g_delegates.end(),
+        [](const auto& item) { return !item.view || !item.display; }), g_delegates.end());
+    g_delegates.push_back({view, delegate, display});
+    view->setItemDelegate(display);
 }
 
 void repaintAll() {
@@ -559,7 +579,7 @@ void repaintAll() {
 
 void toggleLanguage() {
     g_enabled.store(!g_enabled.load(std::memory_order_relaxed),
-                    std::memory_order_relaxed);
+                    std::memory_order_release);
     std::vector<QPointer<QWidget>> widgets;
     for (QWidget* widget : QApplication::allWidgets()) widgets.emplace_back(widget);
     for (const auto& widget : widgets) {
@@ -596,15 +616,7 @@ void collectModel(QAbstractItemModel* model, const QModelIndex& parent,
                   const std::function<void(const QString&)>& add,
                   int depth, int& budget) {
     if (!model || depth > 48 || budget <= 0) return;
-    // Some tree models do not create the children of a collapsed branch until
-    // fetchMore() is requested. Hydrate each branch with a bounded loop so the
-    // sniffer sees those labels without visibly opening the tree.
-    for (int pass = 0; pass < 16 && model->canFetchMore(parent) && budget > 0;
-         ++pass) {
-        const int oldRows = model->rowCount(parent);
-        model->fetchMore(parent);
-        if (model->rowCount(parent) <= oldRows) break;
-    }
+    // Capture is read-only: never fetch lazy project/model content.
     const int rows = model->rowCount(parent);
     const int columns = std::min(model->columnCount(parent), 256);
     for (int row = 0; row < rows && budget > 0; ++row) {
@@ -650,328 +662,9 @@ bool writeCaptureFile(const QString& path, const QByteArray& bytes,
 }
 
 void captureUntranslated();
-QWidget* findGraphView();
-
-void writeWidgetInventory() {
-    const QString path = qEnvironmentVariable(
-        "WRAP_CHINESE_WIDGET_INVENTORY_PATH");
-    if (path.isEmpty()) return;
-    QJsonArray widgets;
-    for (QWidget* widget : QApplication::allWidgets()) {
-        if (!widget) continue;
-        const QRect geometry = widget->geometry();
-        QJsonObject item{
-            {QStringLiteral("class"),
-             QString::fromLatin1(widget->metaObject()->className())},
-            {QStringLiteral("object_name"), widget->objectName()},
-            {QStringLiteral("title"), widget->windowTitle()},
-            {QStringLiteral("visible"), widget->isVisible()},
-            {QStringLiteral("enabled"), widget->isEnabled()},
-            {QStringLiteral("x"), geometry.x()},
-            {QStringLiteral("y"), geometry.y()},
-            {QStringLiteral("width"), geometry.width()},
-            {QStringLiteral("height"), geometry.height()},
-        };
-        if (QWidget* parent = widget->parentWidget()) {
-            item.insert(QStringLiteral("parent_class"),
-                        QString::fromLatin1(parent->metaObject()->className()));
-            item.insert(QStringLiteral("parent_object_name"),
-                        parent->objectName());
-        }
-        widgets.append(item);
-    }
-    QJsonObject root{
-        {QStringLiteral("schema"),
-         QStringLiteral("wrap-widget-inventory-v1")},
-        {QStringLiteral("widgets"), widgets},
-    };
-    if (QWidget* graph = findGraphView()) {
-        QJsonArray metaObjects;
-        for (QObject* object = graph; object; object = object->parent()) {
-            const QMetaObject* meta = object->metaObject();
-            QJsonArray methods;
-            for (int index = meta->methodOffset(); index < meta->methodCount(); ++index)
-                methods.append(QString::fromLatin1(
-                    meta->method(index).methodSignature()));
-            metaObjects.append(QJsonObject{
-                {QStringLiteral("class"),
-                 QString::fromLatin1(meta->className())},
-                {QStringLiteral("methods"), methods},
-            });
-        }
-        root.insert(QStringLiteral("graph_meta_objects"), metaObjects);
-
-        QJsonArray shortcuts;
-        for (QShortcut* shortcut : graph->window()->findChildren<QShortcut*>()) {
-            shortcuts.append(QJsonObject{
-                {QStringLiteral("key"), shortcut->key().toString()},
-                {QStringLiteral("enabled"), shortcut->isEnabled()},
-                {QStringLiteral("context"), static_cast<int>(shortcut->context())},
-            });
-        }
-        root.insert(QStringLiteral("shortcuts"), shortcuts);
-
-        QSet<QAction*> seenActions;
-        QJsonArray actions;
-        for (QWidget* widget : QApplication::allWidgets()) {
-            if (!widget || widget->window() != graph->window()) continue;
-            for (QAction* action : widget->actions()) {
-                if (!action || seenActions.contains(action)) continue;
-                seenActions.insert(action);
-                QJsonArray menuActions;
-                if (QMenu* menu = action->menu()) {
-                    for (QAction* child : menu->actions())
-                        menuActions.append(child ? child->text() : QString());
-                }
-                actions.append(QJsonObject{
-                    {QStringLiteral("text"), action->text()},
-                    {QStringLiteral("object_name"), action->objectName()},
-                    {QStringLiteral("shortcut"), action->shortcut().toString()},
-                    {QStringLiteral("enabled"), action->isEnabled()},
-                    {QStringLiteral("owner_class"),
-                     QString::fromLatin1(widget->metaObject()->className())},
-                    {QStringLiteral("menu_actions"), menuActions},
-                });
-            }
-        }
-        root.insert(QStringLiteral("actions"), actions);
-    }
-    QString error;
-    writeCaptureFile(path,
-        QJsonDocument(root).toJson(QJsonDocument::Indented), error);
-}
-
-QWidget* findGraphView() {
-    constexpr char kGraphViewClass[] =
-        "Wrap::WGraphViewportItems::GraphicsView";
-    for (QWidget* widget : QApplication::allWidgets()) {
-        if (widget && widget->isVisible() &&
-            std::strcmp(widget->metaObject()->className(), kGraphViewClass) == 0)
-            return widget;
-    }
-    return nullptr;
-}
-
-bool openNodeMenu(QWidget* graphWidget) {
-    if (!graphWidget) return false;
-    auto* graph = qobject_cast<QGraphicsView*>(graphWidget);
-    QWidget* target = graph ? graph->viewport() : graphWidget;
-    QPoint local = target->rect().center();
-    if (graph) {
-        bool foundBlank = false;
-        for (int y = 40; y < target->height() - 40 && !foundBlank; y += 55) {
-            for (int x = 40; x < target->width() - 40; x += 70) {
-                const QPoint candidate(x, y);
-                if (graph->items(candidate).isEmpty()) {
-                    local = candidate;
-                    foundBlank = true;
-                    break;
-                }
-            }
-        }
-        if (!foundBlank) {
-            const QRectF occupied = graph->scene()->itemsBoundingRect();
-            const QPointF blankScene(occupied.right() + 300.0,
-                                     occupied.center().y());
-            QRectF sceneRect = graph->sceneRect();
-            sceneRect |= QRectF(blankScene.x() - target->width() / 2.0,
-                                blankScene.y() - target->height() / 2.0,
-                                target->width(), target->height());
-            graph->setSceneRect(sceneRect);
-            graph->centerOn(blankScene);
-            QApplication::processEvents(QEventLoop::ExcludeUserInputEvents);
-            local = target->rect().center();
-        }
-    }
-    const QPoint global = target->mapToGlobal(local);
-    QMouseEvent press(QEvent::MouseButtonPress, QPointF(local), QPointF(global),
-                      Qt::RightButton, Qt::RightButton, Qt::NoModifier);
-    QApplication::sendEvent(target, &press);
-    QMouseEvent release(QEvent::MouseButtonRelease, QPointF(local),
-                        QPointF(global), Qt::RightButton, Qt::NoButton,
-                        Qt::NoModifier);
-    QApplication::sendEvent(target, &release);
-    const QPoint graphLocal = graphWidget->mapFromGlobal(global);
-    QContextMenuEvent context(QContextMenuEvent::Mouse, graphLocal, global);
-    return QApplication::sendEvent(graphWidget, &context);
-}
-
-QAction* findNodeMenuAction(QMenu* menu, const QString& nodeType) {
-    if (!menu) return nullptr;
-    for (QAction* action : menu->actions()) {
-        if (!action) continue;
-        QString text = action->text();
-        text.remove(QLatin1Char('&'));
-        if (!action->menu() &&
-            text.trimmed().compare(nodeType, Qt::CaseInsensitive) == 0)
-            return action;
-        if (QAction* match = findNodeMenuAction(action->menu(), nodeType))
-            return match;
-    }
-    return nullptr;
-}
-
-void writeProbeStatus(const QString& nodeType, bool success,
-                      int beforeItems, int afterItems,
-                      const QString& menuClass, const QString& error) {
-    const QString path =
-        qEnvironmentVariable("WRAP_CHINESE_PROBE_STATUS_PATH");
-    if (path.isEmpty()) return;
-    const QJsonObject root{
-        {QStringLiteral("schema"), QStringLiteral("wrap-node-probe-status-v1")},
-        {QStringLiteral("node_type"), nodeType},
-        {QStringLiteral("success"), success},
-        {QStringLiteral("scene_items_before"), beforeItems},
-        {QStringLiteral("scene_items_after"), afterItems},
-        {QStringLiteral("menu_class"), menuClass},
-        {QStringLiteral("error"), error},
-    };
-    QString writeError;
-    writeCaptureFile(path,
-        QJsonDocument(root).toJson(QJsonDocument::Indented), writeError);
-}
-
-void startNodeProbe(QApplication* application, const QString& nodeType,
-                    const std::function<void(bool)>& completion) {
-    QTimer::singleShot(1000, application, [application, nodeType, completion] {
-        QWidget* graphWidget = findGraphView();
-        auto* graph = qobject_cast<QGraphicsView*>(graphWidget);
-        if (!graphWidget || !graph || !graph->scene()) {
-            writeProbeStatus(nodeType, false, -1, -1, QString(),
-                             QStringLiteral("graph view was not found"));
-            completion(false);
-            return;
-        }
-        const int beforeItems = graph->scene()->items().size();
-        graphWidget->setFocus(Qt::OtherFocusReason);
-        // Keep the temporary node menu in Wrap's canonical English so its
-        // leaf actions can be selected deterministically by node type.
-        g_enabled.store(false, std::memory_order_relaxed);
-
-        QTimer::singleShot(200, application,
-                           [application, nodeType, graph, beforeItems,
-                            completion] {
-            auto* nodeMenu =
-                qobject_cast<QMenu*>(QApplication::activePopupWidget());
-            const QString menuClass = nodeMenu
-                ? QString::fromLatin1(nodeMenu->metaObject()->className())
-                : QString();
-            QAction* nodeAction = findNodeMenuAction(nodeMenu, nodeType);
-            if (!nodeAction) {
-                g_enabled.store(true, std::memory_order_relaxed);
-                writeWidgetInventory();
-                writeProbeStatus(nodeType, false, beforeItems, beforeItems,
-                                 menuClass,
-                                 QStringLiteral("node action was not found in the expanded menu"));
-                if (nodeMenu) nodeMenu->close();
-                completion(false);
-                return;
-            }
-            nodeAction->trigger();
-            // Programmatic QAction activation does not automatically unwind
-            // every parent popup the way a physical click does.
-            for (QWidget* widget : QApplication::allWidgets()) {
-                if (auto* menu = qobject_cast<QMenu*>(widget)) {
-                    if (menu->isVisible()) menu->close();
-                }
-            }
-            g_enabled.store(true, std::memory_order_relaxed);
-            QTimer::singleShot(900, application,
-                               [application, nodeType, graph, beforeItems,
-                                menuClass, completion] {
-                    const int afterItems = graph && graph->scene()
-                        ? graph->scene()->items().size() : -1;
-                    const bool success = afterItems > beforeItems;
-                    writeProbeStatus(
-                        nodeType, success, beforeItems, afterItems, menuClass,
-                        success ? QString()
-                                : QStringLiteral("node menu selection did not add a scene item"));
-                    if (!success) {
-                        completion(false);
-                        return;
-                    }
-                    captureUntranslated();
-                    QTimer::singleShot(700, application, [] {
-                        captureUntranslated();
-                    });
-                    QTimer::singleShot(1000, application,
-                                       [completion] { completion(true); });
-            });
-        });
-        // The node menu runs a nested event loop.  Register selection first
-        // so it executes while that menu is open.
-        openNodeMenu(graphWidget);
-    });
-}
-
-struct ProbePlanJob {
-    QString nodeType;
-    QString capturePath;
-    QString statusPath;
-};
-
-void startNodeProbePlan(QApplication* application, const QString& planPath) {
-    QFile input(planPath);
-    if (!input.open(QIODevice::ReadOnly)) {
-        application->quit();
-        return;
-    }
-    QJsonParseError parseError{};
-    const QJsonDocument document =
-        QJsonDocument::fromJson(input.readAll(), &parseError);
-    const QJsonObject root = document.object();
-    const QJsonArray nodeValues = root.value(QStringLiteral("nodes")).toArray();
-    if (parseError.error != QJsonParseError::NoError || !document.isObject() ||
-        nodeValues.isEmpty()) {
-        application->quit();
-        return;
-    }
-    auto jobs = std::make_shared<std::vector<ProbePlanJob>>();
-    jobs->reserve(static_cast<std::size_t>(nodeValues.size()));
-    for (const QJsonValue& value : nodeValues) {
-        const QJsonObject item = value.toObject();
-        ProbePlanJob job{
-            item.value(QStringLiteral("node_type")).toString(),
-            item.value(QStringLiteral("capture")).toString(),
-            item.value(QStringLiteral("status")).toString(),
-        };
-        if (job.nodeType.isEmpty() || job.capturePath.isEmpty() ||
-            job.statusPath.isEmpty()) {
-            application->quit();
-            return;
-        }
-        jobs->push_back(std::move(job));
-    }
-
-    auto next = std::make_shared<std::function<void(std::size_t)>>();
-    *next = [application, jobs, next](std::size_t index) {
-        if (index >= jobs->size()) {
-            application->quit();
-            return;
-        }
-        const ProbePlanJob& job = (*jobs)[index];
-        qputenv("WRAP_CHINESE_CAPTURE_PATH", job.capturePath.toUtf8());
-        qputenv("WRAP_CHINESE_PROBE_STATUS_PATH", job.statusPath.toUtf8());
-        startNodeProbe(application, job.nodeType,
-                       [application, next, index](bool success) {
-            if (!success) {
-                application->quit();
-                return;
-            }
-            (*next)(index + 1);
-        });
-    };
-
-    const QString baseline =
-        root.value(QStringLiteral("baseline_capture")).toString();
-    QTimer::singleShot(1200, application, [baseline, next] {
-        if (!baseline.isEmpty()) {
-            qputenv("WRAP_CHINESE_CAPTURE_PATH", baseline.toUtf8());
-            captureUntranslated();
-        }
-        (*next)(0);
-    });
-}
+#ifdef WRAP_CHINESE_DEVELOPER_TOOLS
+#include "developer_probe.h"
+#endif
 
 QString fallbackCapturePath(const QString& preferredPath) {
     const QFileInfo info(preferredPath);
@@ -987,7 +680,8 @@ QString fallbackCapturePath(const QString& preferredPath) {
 void showCaptureResult(int addedCount, int totalCount,
                        const QString& requestedPath,
                        const QString& savedPath, bool saved,
-                       bool usedFallback, const QString& saveError) {
+                       bool usedFallback, const QString& saveError,
+                       const QString& diagnosticsPath) {
     if (g_captureDialog) g_captureDialog->close();
 
     QWidget* parent = g_menuBar ? g_menuBar->window()
@@ -1011,6 +705,8 @@ void showCaptureResult(int addedCount, int totalCount,
                       .arg(addedCount)
                       .arg(totalCount)
                       .arg(QDir::toNativeSeparators(savedPath));
+        if (!diagnosticsPath.isEmpty())
+            message += QStringLiteral("\n\n界面诊断：\n%1").arg(QDir::toNativeSeparators(diagnosticsPath));
         if (usedFallback) {
             message += QStringLiteral(
                 "\n\n原文件无法覆盖，已自动保存为备用文件。\n"
@@ -1107,18 +803,16 @@ void captureUntranslated() {
         visitedMenus.insert(menu);
         add(menu->title());
 
-        // Wrap creates parts of its menu tree lazily. Trigger the same logical
-        // expansion recursively without moving the pointer or showing menus.
-        QPointer<QMenu> guard(menu);
-        QMetaObject::invokeMethod(menu, "aboutToShow", Qt::DirectConnection);
-        if (!guard) return;
-        const QList<QAction*> menuActions = menu->actions();
-        for (QAction* action : menuActions) collectAction(action);
-        if (guard)
-            QMetaObject::invokeMethod(menu, "aboutToHide", Qt::DirectConnection);
+        // Inspect existing actions only; emitting aboutToShow/aboutToHide can
+        // run arbitrary host slots and mutate state during a read-only capture.
+        for (QAction* action : menu->actions()) collectAction(action);
     };
 
-    for (QWidget* widget : QApplication::allWidgets()) {
+    std::vector<QPointer<QWidget>> captureWidgets;
+    for (auto* widget : QApplication::allWidgets()) captureWidgets.emplace_back(widget);
+    for (const auto& guardedWidget : captureWidgets) {
+        QWidget* widget = guardedWidget.data();
+        if (!widget) continue;
         add(widget->windowTitle());
         add(widget->toolTip());
         add(widget->statusTip());
@@ -1200,14 +894,35 @@ void captureUntranslated() {
         saveError = existingError;
     }
 
+    QString diagnosticsPath;
+    if (saved && !savedPath.isEmpty()) {
+        const QString candidate = QFileInfo(savedPath).dir().filePath(
+            QStringLiteral("Wrap_window_diagnostics.json"));
+        const QJsonObject diagnostics = BrushUiDiagnostics::snapshot(QJsonObject{
+            {QStringLiteral("engine_version"), QString::fromLatin1(kEngineVersion)},
+            {QStringLiteral("translation_enabled"), g_enabled.load(std::memory_order_acquire)},
+            {QStringLiteral("proxy_style_decision"), g_proxyStyleDecision},
+            {QStringLiteral("dictionary_conflicts"), g_dictionaryConflicts},
+            {QStringLiteral("original_style_key"), g_originalStyleKey},
+            {QStringLiteral("proxy_style_live"), g_translationStyle && QApplication::style() == g_translationStyle.data()},
+            {QStringLiteral("text_hooks_installed"), g_drawHooksInstalled},
+            {QStringLiteral("hint_hooks_available"), ShortcutHintDisplay::originalContents &&
+                ShortcutHintDisplay::originalPoint && ShortcutHintDisplay::originalRect},
+            {QStringLiteral("hint_recipe_count"), int(ShortcutHintDisplay::caches.size())},
+        });
+        QString diagnosticError;
+        if (writeCaptureFile(candidate,
+                QJsonDocument(diagnostics).toJson(QJsonDocument::Indented), diagnosticError))
+            diagnosticsPath = candidate;
+    }
     if (qEnvironmentVariableIntValue("WRAP_CHINESE_QUIET_TEST") == 1) return;
     const int totalCount = entries.size();
     QTimer::singleShot(
         0, QApplication::instance(),
         [addedCount, totalCount, path, savedPath, saved, usedFallback,
-         saveError] {
+         saveError, diagnosticsPath] {
             showCaptureResult(addedCount, totalCount, path, savedPath, saved,
-                              usedFallback, saveError);
+                              usedFallback, saveError, diagnosticsPath);
         });
 }
 
@@ -1234,7 +949,13 @@ void openHotkeyDialog() {
 
 class MenuMouseFilter final : public QObject {
 public:
-    using QObject::QObject;
+    explicit MenuMouseFilter(QMenuBar* bar)
+        : QObject(bar), bar_(bar), tracking_(bar->hasMouseTracking()) {
+        bar->setMouseTracking(true);
+    }
+    ~MenuMouseFilter() override {
+        if (bar_) { bar_->unsetCursor(); bar_->setMouseTracking(tracking_); }
+    }
     bool eventFilter(QObject* object, QEvent* event) override {
         auto* bar = qobject_cast<QMenuBar*>(object);
         if (!bar) return false;
@@ -1249,7 +970,7 @@ public:
             else bar->unsetCursor();
             return false;
         }
-        if (event->type() == QEvent::Leave) {
+        if (event->type() == QEvent::Leave || event->type() == QEvent::Hide) {
             bar->unsetCursor();
             return false;
         }
@@ -1264,14 +985,24 @@ public:
         }
         return false;
     }
+private:
+    QPointer<QMenuBar> bar_;
+    bool tracking_;
+
 };
 
+void patchDrawTextModules();
+
 void installMenuActions() {
-    if (g_menuBar) return;
-    QMenuBar* bar = nullptr;
+    if (g_shuttingDown) return;
+    QMenuBar* bar = g_menuBar;
+    if (!bar)
     for (QWidget* widget : QApplication::allWidgets()) {
         auto* candidate = qobject_cast<QMenuBar*>(widget);
-        if (candidate && candidate->actions().size() >= 2) {
+        bool hasFile = false;
+        if (candidate) for (const auto* action : candidate->actions())
+            if (withoutMnemonics(action->text()).trimmed() == QLatin1String("File")) hasFile = true;
+        if (hasFile) {
             bar = candidate;
             break;
         }
@@ -1287,17 +1018,12 @@ void installMenuActions() {
             break;
         }
     }
-    g_languageAction = new QAction(QStringLiteral("中/英"), bar);
-    g_languageAction->setObjectName(QStringLiteral("wrap_chinese_language"));
-    QObject::connect(g_languageAction, &QAction::triggered, [] { toggleLanguage(); });
-    QAction* insertionPoint = nullptr;
-    const QList<QAction*> existing = bar->actions();
-    const int helpIndex = existing.indexOf(help);
-    if (helpIndex >= 0 && helpIndex + 1 < existing.size())
-        insertionPoint = existing.at(helpIndex + 1);
-    if (insertionPoint) bar->insertAction(insertionPoint, g_languageAction);
-    else bar->addAction(g_languageAction);
-
+    if (!g_languageAction) {
+        g_languageAction = new QAction(QStringLiteral("中/英"), bar);
+        g_languageAction->setObjectName(QStringLiteral("qt_chinese_language"));
+        QObject::connect(g_languageAction, &QAction::triggered, [] { toggleLanguage(); });
+        bar->addAction(g_languageAction);
+    }
     const QString authorUrl =
         QStringLiteral("https://space.bilibili.com/281243426?spm_id_from=333.1007.0.0");
     const QString githubUrl = QStringLiteral("https://github.com/iillya/WrapChinese");
@@ -1309,17 +1035,76 @@ void installMenuActions() {
         bar->addAction(action);
         return action;
     };
-    g_authorAction = addLink(QStringLiteral("Bilibili 神说要凑数汉化"),
-                             authorUrl, QStringLiteral("wrap_chinese_author"));
-    g_githubAction = addLink(QStringLiteral("GitHub 仓库"),
-                             githubUrl, QStringLiteral("wrap_chinese_github"));
-    bar->installEventFilter(new MenuMouseFilter(bar));
-    bar->setMouseTracking(true);
+    if (!g_authorAction)
+        g_authorAction = addLink(QStringLiteral("Bilibili 神说要凑数汉化"),
+                                 authorUrl, QStringLiteral("qt_chinese_author"));
+    if (!g_githubAction)
+        g_githubAction = addLink(QStringLiteral("GitHub 仓库"),
+                                 githubUrl, QStringLiteral("qt_chinese_github"));
+    const auto actions = bar->actions();
+    const int helpIndex = actions.indexOf(help);
+    const int desired = helpIndex >= 0 ? helpIndex + 1 : actions.size() - 3;
+    if (actions.indexOf(g_languageAction) != desired ||
+        actions.indexOf(g_authorAction) != desired + 1 || actions.indexOf(g_githubAction) != desired + 2) {
+        QAction* anchor = nullptr;
+        if (helpIndex >= 0) for (int i = helpIndex + 1; i < actions.size(); ++i) {
+            auto* action = actions.at(i);
+            if (action != g_languageAction && action != g_authorAction && action != g_githubAction) {
+                anchor = action; break;
+            }
+        }
+        for (auto* action : {g_languageAction.data(), g_authorAction.data(), g_githubAction.data()})
+            bar->insertAction(anchor, action);
+    }
+    if (!g_menuFilter) {
+        g_menuFilter = new MenuMouseFilter(bar);
+        bar->installEventFilter(g_menuFilter);
+    }
     g_menuBar = bar;
 }
 
+void scheduleMaintenance(bool modules) {
+    if (g_shuttingDown) return;
+    g_modulesDirty = g_modulesDirty || modules;
+    if (!g_maintenanceTimer) {
+        g_maintenanceTimer = new QTimer(QCoreApplication::instance());
+        g_maintenanceTimer->setSingleShot(true);
+        QObject::connect(g_maintenanceTimer, &QTimer::timeout, [] {
+            installMenuActions();
+            if (g_modulesDirty) {
+                if (!g_moduleScanAge.isValid() || g_moduleScanAge.elapsed() >=
+                        WrapHookLifecycle::kDeferredScanIntervalMs) {
+                    g_modulesDirty = false;
+                    patchDrawTextModules();
+                    g_moduleScanAge.restart();
+                } else {
+                    g_maintenanceTimer->start(WrapHookLifecycle::kDeferredScanIntervalMs -
+                                             int(g_moduleScanAge.elapsed()));
+                }
+            }
+        });
+    }
+    if (!g_maintenanceTimer->isActive()) g_maintenanceTimer->start(0);
+}
+
+struct RichLabelDocument {
+    QString source, target;
+    QFont font;
+    Qt::Alignment alignment;
+    Qt::LayoutDirection direction;
+    bool wordWrap;
+    int width;
+    QTextDocument document;
+};
+// Keys are never dereferenced; a reused address is checked against every layout
+// input. Cost is in KiB and capped, so old/destroyed widgets retain no objects.
+QCache<const QLabel*, RichLabelDocument> g_richDocuments(512);
+#ifdef WRAP_CHINESE_TEST_HOOKS
+unsigned g_richDocumentBuilds = 0;
+#endif
+
 bool paintTranslatedRichLabel(QLabel* label) {
-    if (!label || typeid(*label) != typeid(QLabel) ||
+    if (!g_enabled.load(std::memory_order_acquire) || !label || typeid(*label) != typeid(QLabel) ||
         label->frameShape() != QFrame::NoFrame ||
         label->indent() > 0 ||
         (label->textInteractionFlags() &
@@ -1340,16 +1125,32 @@ bool paintTranslatedRichLabel(QLabel* label) {
         label->margin(), label->margin(),
         -label->margin(), -label->margin());
     if (content.isEmpty()) return false;
-    QTextDocument display;
-    display.setDocumentMargin(0);
-    display.setDefaultFont(label->font());
-    QTextOption option;
-    option.setAlignment(label->alignment());
-    option.setWrapMode(label->wordWrap()
-        ? QTextOption::WordWrap : QTextOption::NoWrap);
-    display.setDefaultTextOption(option);
-    display.setHtml(target);
-    display.setTextWidth(content.width());
+    RichLabelDocument* cached = g_richDocuments.object(label);
+    if (!cached || cached->source != source || cached->target != target ||
+        cached->font != label->font() || cached->alignment != label->alignment() ||
+        cached->direction != label->layoutDirection() || cached->wordWrap != label->wordWrap() ||
+        cached->width != content.width()) {
+        auto* fresh = new RichLabelDocument;
+        fresh->source = source; fresh->target = target; fresh->font = label->font();
+        fresh->alignment = label->alignment(); fresh->direction = label->layoutDirection();
+        fresh->wordWrap = label->wordWrap(); fresh->width = content.width();
+        fresh->document.setDocumentMargin(0);
+        fresh->document.setDefaultFont(fresh->font);
+        QTextOption option;
+        option.setAlignment(fresh->alignment);
+        option.setTextDirection(fresh->direction);
+        option.setWrapMode(fresh->wordWrap ? QTextOption::WordWrap : QTextOption::NoWrap);
+        fresh->document.setDefaultTextOption(option);
+        fresh->document.setHtml(target);
+        fresh->document.setTextWidth(fresh->width);
+        const int cost = qMax(1, (source.size() * 2 + target.size() * 2 + 4095) / 1024);
+        if (!g_richDocuments.insert(label, fresh, cost)) return false;
+        cached = fresh;
+#ifdef WRAP_CHINESE_TEST_HOOKS
+        ++g_richDocumentBuilds;
+#endif
+    }
+    QTextDocument& display = cached->document;
     const qreal height = display.size().height();
     qreal top = content.top();
     if (label->alignment() & Qt::AlignVCenter)
@@ -1383,13 +1184,14 @@ public:
             auto* key = static_cast<QKeyEvent*>(event);
             if (g_swallowedShortcutKeys.remove(key->key())) return true;
         }
-        if (event->type() == QEvent::KeyPress && !g_hotkeyDialogOpen &&
+        if ((event->type() == QEvent::KeyPress || event->type() == QEvent::ShortcutOverride) && !g_hotkeyDialogOpen &&
             !QApplication::activeModalWidget()) {
             auto* key = static_cast<QKeyEvent*>(event);
             const bool isTildeKey = key->key() == Qt::Key_AsciiTilde ||
                                     key->key() == Qt::Key_QuoteLeft;
             if (g_captureEnabled && isTildeKey &&
                 key->modifiers() == Qt::ShiftModifier) {
+                if (event->type() == QEvent::ShortcutOverride) { event->accept(); return true; }
                 g_swallowedShortcutKeys.insert(key->key());
                 if (!key->isAutoRepeat()) captureUntranslated();
                 return true;
@@ -1398,6 +1200,7 @@ public:
                 key->key() | static_cast<int>(key->modifiers());
             if (g_toggleShortcut.count() == 1 &&
                 combination == g_toggleShortcut[0]) {
+                if (event->type() == QEvent::ShortcutOverride) { event->accept(); return true; }
                 g_swallowedShortcutKeys.insert(key->key());
                 if (WrapChineseConfig::shouldActivateShortcut(
                         g_toggleShortcut, combination, key->isAutoRepeat(),
@@ -1407,10 +1210,14 @@ public:
                 return true;
             }
         }
-        if (event->type() == QEvent::Show) {
-            if (auto* widget = qobject_cast<QWidget*>(object)) applyWidget(widget);
-            if (!g_menuBar)
-                QTimer::singleShot(0, [] { installMenuActions(); });
+        if (event->type() == QEvent::Show || event->type() == QEvent::Polish ||
+            event->type() == QEvent::LayoutRequest || event->type() == QEvent::ActionAdded) {
+            if (auto* widget = qobject_cast<QWidget*>(object)) {
+                applyWidget(widget);
+                if (event->type() == QEvent::Show || event->type() == QEvent::Polish)
+                    scheduleMaintenance(true);
+                else if (qobject_cast<QMenuBar*>(widget)) scheduleMaintenance(false);
+            }
         }
         if (event->type() == QEvent::Paint) {
             if (auto* label = qobject_cast<QLabel*>(object))
@@ -1436,7 +1243,8 @@ thread_local bool g_inDrawHook = false;
 QString translatePaint(QPainter* painter, const QString& text) {
     // Widget-owned image caches are display output. Unscoped images, pictures
     // and printers may contain exported data and keep their source text.
-    if (g_inDrawHook || text.size() < 2 || !isDisplayPaintDevice(painter))
+    if (g_inDrawHook || !g_enabled.load(std::memory_order_acquire) ||
+        text.size() < 2 || !isDisplayPaintDevice(painter))
         return {};
     bool valueOnly = true;
     for (const QChar ch : text) {
@@ -1446,17 +1254,21 @@ QString translatePaint(QPainter* painter, const QString& text) {
         break;
     }
     if (valueOnly) return {};
-    auto* widget = painter->device()->devType() == QInternal::Widget
-        ? static_cast<QWidget*>(painter->device()) : nullptr;
-    if (auto* label = qobject_cast<QLabel*>(widget)) {
+    const auto* widget = painter->device()->devType() == QInternal::Widget
+        ? static_cast<const QWidget*>(painter->device()) : UiPaintBoundary::displayWidget();
+    const bool truncated = text.endsWith(QChar(0x2026)) || text.endsWith(QLatin1String("..."));
+    if (truncated) if (const auto* label = qobject_cast<const QLabel*>(widget)) {
         const QString full = label->text();
-        if (full != text && !full.isEmpty()) {
+        if (full != text && !full.isEmpty() && label->textFormat() != Qt::RichText &&
+            (label->textFormat() == Qt::PlainText || !Qt::mightBeRichText(full))) {
             const QString target = translated(full);
             if (!target.isEmpty()) return target;
         }
     }
-    const QString direct = translated(text);
-    return direct.isEmpty() ? recoverElided(text) : direct;
+    // A truncated painter fragment cannot identify the original UI label.
+    // Only the verified full QLabel source above may recover it.
+    if (truncated) return {};
+    return translated(text);
 }
 
 class DrawGuard {
@@ -1497,19 +1309,23 @@ void hookedDrawPointF(QPainter* painter, const QPointF& point, const QString& te
 }
 
 void hookedDrawPointF2(QPainter* painter, const QPointF& point,
-                       const QString& text, int from, int length) {
-    const QString value = translatePaint(painter, text);
+                       const QString& text, int textFlags, int justificationPadding) {
+    // BypassShaping selects a single Common-script font engine in Qt 5 and
+    // cannot guarantee Chinese font fallback. Preserve the English in that
+    // specialized path rather than altering the host flags or losing glyphs.
+    const QString value = (textFlags & Qt::TextBypassShaping)
+        ? QString() : translatePaint(painter, text);
     DrawGuard guard;
     if (g_drawPointF2)
         g_drawPointF2(painter, point, value.isEmpty() ? text : value,
-                      value.isEmpty() ? from : 0,
-                      value.isEmpty() ? length : -1);
+                      textFlags, justificationPadding);
 }
 
 std::unordered_set<HMODULE> g_drawScannedModules;
+std::vector<WrapImportHooks::PatchRecord> g_drawPatches;
 
 void patchDrawTextModules() {
-    struct Symbol { void* original; void* replacement; } symbols[] = {
+    const WrapImportHooks::Replacement symbols[] = {
         {functionAddress(g_drawRect), functionAddress(&hookedDrawRect)},
         {functionAddress(g_drawRectFOption), functionAddress(&hookedDrawRectFOption)},
         {functionAddress(g_drawRectFAlign), functionAddress(&hookedDrawRectFAlign)},
@@ -1530,8 +1346,8 @@ void patchDrawTextModules() {
             if (!module) continue;
             currentModules.insert(module);
             if (!g_drawScannedModules.insert(module).second) continue;
-            for (const Symbol& symbol : symbols)
-                replaceImports(module, symbol.original, symbol.replacement);
+            replaceImports(module, symbols, sizeof(symbols) / sizeof(symbols[0]), &g_drawPatches);
+            ShortcutHintDisplay::patchModule(module);
         } while (Module32NextW(snapshot, &entry));
     }
     CloseHandle(snapshot);
@@ -1546,6 +1362,7 @@ void installDrawTextHooks() {
     if (g_drawHooksInstalled) return;
     HMODULE gui = GetModuleHandleW(kGuiModule);
     if (!gui) return;
+    ShortcutHintDisplay::resolveHooks(gui);
     g_drawRect = resolveFunction<DrawRect>(
         gui, "_ZN8QPainter8drawTextERK5QRectiRK7QStringPS0_");
     g_drawRectFOption = resolveFunction<DrawRectFOption>(
@@ -1558,25 +1375,94 @@ void installDrawTextHooks() {
         gui, "_ZN8QPainter8drawTextERK7QPointFRK7QStringii");
     g_drawHooksInstalled = g_drawRect || g_drawRectFOption || g_drawRectFAlign ||
                            g_drawPointF || g_drawPointF2;
-    if (g_drawHooksInstalled) patchDrawTextModules();
+    if (g_drawHooksInstalled) { patchDrawTextModules(); g_moduleScanAge.start(); }
 }
 
 void installProxyStyle() {
-    WidgetDisplayMetrics::install(translated);
+    WidgetDisplayMetrics::install(translatedForMeasurement);
     if (g_proxyStyleInstalled || !QApplication::instance()) return;
-    const QString key = QApplication::style()
-        ? QApplication::style()->objectName() : QStringLiteral("fusion");
-    QStyle* base = QStyleFactory::create(key);
-    if (!base) base = QStyleFactory::create(QStringLiteral("fusion"));
-    if (!base) return;
-    QApplication::setStyle(new ChineseProxyStyle(base));
+    QStyle* current = QApplication::style();
+    if (!current) {
+        g_proxyStyleDecision = QStringLiteral("skipped-no-host-style");
+        return;
+    }
+    // Never reconstruct a stylesheet wrapper or a custom product style as
+    // Fusion. Painter/delegate/metric hooks still provide display translation.
+    if (!qApp->styleSheet().isEmpty() || current->inherits("QStyleSheetStyle")) {
+        g_proxyStyleDecision = QStringLiteral("skipped-host-stylesheet");
+        return;
+    }
+    const QString key = current->objectName();
+    if (key.isEmpty() || !QStyleFactory::keys().contains(key, Qt::CaseInsensitive)) {
+        g_proxyStyleDecision = QStringLiteral("skipped-unrecreatable-host-style");
+        return;
+    }
+    std::unique_ptr<QStyle> base(QStyleFactory::create(key));
+    if (!base || typeid(*base) != typeid(*current)) {
+        g_proxyStyleDecision = QStringLiteral("skipped-custom-host-style");
+        return;
+    }
+    g_originalStyleKey = key;
+    g_originalPalette = std::make_unique<QPalette>(QApplication::palette());
+    auto* display = new ChineseProxyStyle(base.release());
+    QApplication::setStyle(display);
+    g_translationStyle = display;
     g_proxyStyleInstalled = true;
+    g_proxyStyleDecision = QStringLiteral("installed-recreated-native-style");
+}
+
+void shutdownDisplay() {
+    if (g_shuttingDown) return;
+    g_shuttingDown = true;
+    g_enabled.store(false, std::memory_order_release);
+    if (g_maintenanceTimer) { g_maintenanceTimer->stop(); delete g_maintenanceTimer.data(); }
+    if (g_applicationFilter && QCoreApplication::instance())
+        QCoreApplication::instance()->removeEventFilter(g_applicationFilter);
+    delete g_applicationFilter.data();
+    if (g_menuBar && g_menuFilter) g_menuBar->removeEventFilter(g_menuFilter);
+    for (auto* action : {g_languageAction.data(), g_authorAction.data(), g_githubAction.data()})
+        delete action;
+    if (g_hotkeyDialog) g_hotkeyDialog->close();
+    if (g_captureDialog) g_captureDialog->close();
+    for (const auto& item : g_delegates) {
+        if (item.view && item.original && item.view->itemDelegate() == item.display) {
+            item.view->setItemDelegate(item.original);
+            delete item.display.data();
+        }
+    }
+    g_delegates.clear();
+    ShortcutHintDisplay::shutdown();
+    WidgetDisplayMetrics::shutdown();
+    WrapImportHooks::restoreImports(g_drawPatches);
+    g_drawScannedModules.clear();
+    g_drawHooksInstalled = false;
+    if (g_translationStyle && QApplication::style() == g_translationStyle.data()) {
+        if (auto* native = QStyleFactory::create(g_originalStyleKey)) {
+            QApplication::setStyle(native);
+            if (g_originalPalette) QApplication::setPalette(*g_originalPalette);
+        }
+    }
+    g_translationStyle = nullptr;
+    // Restoring QStyle sends StyleChange; Qt may reset mouse tracking there.
+    // Restore our recorded menu state after that native style processing.
+    delete g_menuFilter.data();
+    g_proxyStyleInstalled = false;
+    g_originalPalette.reset();
+    g_richDocuments.clear();
+    g_lookupCache.clear();
+    g_measurementCache.clear();
+    g_swallowedShortcutKeys.clear();
+    repaintAll();
 }
 
 void initializeOnGuiThread(QApplication* application) {
     g_pluginDir = selfDirectory();
     if (g_pluginDir.isEmpty()) return;
     loadDictionaries();
+    ShortcutHintDisplay::initialize(exactTranslation, &g_enabled);
+    QObject::connect(application, &QCoreApplication::aboutToQuit, [] { shutdownDisplay(); });
+    QObject::connect(application, &QObject::destroyed,
+                     [] { ShortcutHintDisplay::clearCaches(); g_richDocuments.clear(); });
     installDrawTextHooks();
     QString error;
     g_configPath = qEnvironmentVariable("WRAP_CHINESE_CONFIG_PATH");
@@ -1588,14 +1474,16 @@ void initializeOnGuiThread(QApplication* application) {
     g_captureEnabled = config.captureEnabled;
     installProxyStyle();
     for (QWidget* widget : QApplication::allWidgets()) applyWidget(widget);
-    application->installEventFilter(new ApplicationFilter(application));
+    g_applicationFilter = new ApplicationFilter(application);
+    application->installEventFilter(g_applicationFilter);
     installMenuActions();
     repaintAll();
-    for (const int delay : {0, 250, 1000, 3000})
-        QTimer::singleShot(delay, application, [] { repaintAll(); });
 
+#ifdef WRAP_CHINESE_DEVELOPER_TOOLS
     if (!qEnvironmentVariable("WRAP_CHINESE_WIDGET_INVENTORY_PATH").isEmpty())
         QTimer::singleShot(2500, application, [] { writeWidgetInventory(); });
+
+#endif
 
     if (WrapHookLifecycle::kEnableDeferredPolling) {
         auto* timer = new QTimer(application);
@@ -1612,6 +1500,7 @@ void initializeOnGuiThread(QApplication* application) {
         });
     }
     signalHookReady();
+#ifdef WRAP_CHINESE_DEVELOPER_TOOLS
     const QString probeNodeType =
         qEnvironmentVariable("WRAP_CHINESE_PROBE_NODE_TYPE");
     const QString probePlanPath =
@@ -1633,6 +1522,7 @@ void initializeOnGuiThread(QApplication* application) {
                                [application] { application->quit(); });
         }
     }
+#endif
 }
 
 DWORD WINAPI worker(LPVOID) {
@@ -1661,12 +1551,19 @@ DWORD WINAPI worker(LPVOID) {
 } // namespace
 
 extern "C" __declspec(dllexport) const char* WrapChineseVersion() {
-    return "1.0.0";
+    return kEngineVersion;
 }
 
 #ifdef WRAP_CHINESE_TEST_HOOKS
 extern "C" __declspec(dllexport) unsigned int WrapChineseTestRichLabelDraws() {
     return g_translatedRichLabelDraws.load(std::memory_order_relaxed);
+}
+extern "C" __declspec(dllexport) unsigned int WrapChineseTestRichDocumentBuilds() {
+    return g_richDocumentBuilds;
+}
+extern "C" __declspec(dllexport) void WrapChineseTestShutdown() { shutdownDisplay(); }
+extern "C" __declspec(dllexport) void WrapChineseTestShutdownHintHooks() {
+    ShortcutHintDisplay::shutdown();
 }
 #endif
 

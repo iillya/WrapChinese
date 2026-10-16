@@ -33,23 +33,6 @@ bool regularFile(const std::wstring& path) {
     return attr != INVALID_FILE_ATTRIBUTES && !(attr & (FILE_ATTRIBUTE_DIRECTORY | FILE_ATTRIBUTE_REPARSE_POINT));
 }
 
-bool amd64(const std::wstring& path) {
-    Handle file(CreateFileW(path.c_str(), GENERIC_READ, FILE_SHARE_READ, nullptr,
-                            OPEN_EXISTING, FILE_ATTRIBUTE_NORMAL, nullptr));
-    if (file.value == INVALID_HANDLE_VALUE) return false;
-    IMAGE_DOS_HEADER dos{};
-    DWORD count = 0, signature = 0;
-    IMAGE_FILE_HEADER pe{};
-    LARGE_INTEGER offset{};
-    if (!ReadFile(file.value, &dos, sizeof(dos), &count, nullptr) ||
-        count != sizeof(dos) || dos.e_magic != IMAGE_DOS_SIGNATURE || dos.e_lfanew < sizeof(dos)) return false;
-    offset.QuadPart = dos.e_lfanew;
-    return SetFilePointerEx(file.value, offset, nullptr, FILE_BEGIN) &&
-        ReadFile(file.value, &signature, sizeof(signature), &count, nullptr) && count == sizeof(signature) &&
-        signature == IMAGE_NT_SIGNATURE && ReadFile(file.value, &pe, sizeof(pe), &count, nullptr) &&
-        count == sizeof(pe) && pe.Machine == IMAGE_FILE_MACHINE_AMD64;
-}
-
 #include "product_adapter.h"
 
 bool safePath(const std::wstring& root) {
@@ -133,7 +116,7 @@ extern "C" __declspec(dllexport) BOOL __stdcall CheckTarget(
                 return fail(L"请选择包含 Wrap.exe 的软件目录，不要选择 ChineseLauncher 子目录。", message, capacity);
             if (!WrapChineseCompatibility::isAmd64Image(host))
                 return fail(L"Wrap.exe 不是可兼容的 x64 程序。", message, capacity);
-            if (!productQt(root)) return fail(L"目标 Qt5 x64 组件不完整、架构不匹配或组件版本不一致。", message, capacity);
+            if (!productQt(root)) return fail(L"目标 Qt5 MinGW x64 组件不完整、ABI 不匹配或组件版本不一致。", message, capacity);
         }
         if (!hostStopped(root))
             return fail(L"Wrap 或中文启动器正在运行，或无法确认进程状态。请保存工程并正常退出后重试。", message, capacity);

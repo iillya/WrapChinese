@@ -8,7 +8,3 @@ inline const std::vector<const wchar_t*> kKnownHandlers = {
     L"WrapProjectFile"
 };
 inline const std::vector<const wchar_t*> kExtensions = {L".wrap"};
-inline const std::vector<const wchar_t*> kQtModules = {
-    L"Core", L"Gui", L"Widgets"
-};
-inline const std::vector<DWORD> kQtMajors = {5};

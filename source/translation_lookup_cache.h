@@ -20,6 +20,8 @@ class DirectMapped final {
 public:
     template <typename Resolver>
     QString lookup(const QString& source, Resolver&& resolver) {
+        // Do not hash or retain arbitrarily large host/user documents.
+        if (source.size() > 4096) return {};
         const std::size_t hash = qHash(source);
         Entry& entry = entries_[hash & (SlotCount - 1)];
         if (entry.valid && entry.hash == hash && entry.source == source)

@@ -37,7 +37,18 @@ def unique_object(pairs):
 def normalized_key(text: str) -> str:
     text = text.replace("\u00a0", " ").replace("\u3000", " ")
     text = text.replace("\u200b", "").replace("\u200d", "").replace("\ufeff", "")
-    text = " ".join(text.split())
+    text = text.replace("\u200c", "").replace("\u2060", "").replace("\u00ad", "")
+    mapped = []
+    for ch in text:
+        value = ord(ch)
+        if 0xff01 <= value <= 0xff5e:
+            ch = chr(value - 0xfee0)
+        if ch == "_": ch = " "
+        if 0x2018 <= value <= 0x201b: ch = "'"
+        if value in (0x201c, 0x201d): ch = '"'
+        if 0x2010 <= value <= 0x2015 or value == 0x2212: ch = "-"
+        mapped.append(ch)
+    text = " ".join("".join(mapped).split())
     while text.endswith("…"):
         text = text[:-1]
     while text.endswith("..."):
@@ -53,7 +64,9 @@ def normalized_key(text: str) -> str:
             mnemonic_free.append("&")
             index += 1
         index += 1
-    return unicodedata.normalize("NFC", "".join(mnemonic_free).casefold()).strip()
+    decomposed = unicodedata.normalize("NFD", "".join(mnemonic_free).casefold())
+    result = "".join(ch for ch in decomposed if unicodedata.category(ch) not in ("Mn", "Mc", "Me"))
+    return unicodedata.normalize("NFC", result).strip()
 
 
 def main() -> int:
@@ -83,7 +96,6 @@ def main() -> int:
     errors: list[str] = []
     if len(translations) > MAXIMUM_ENTRIES:
         errors.append("dictionary exceeds runtime entry limit")
-    values: dict[str, str] = {}
     normalized: dict[str, tuple[str, str]] = {}
     for source, target in translations.items():
         if not isinstance(source, str) or not source.strip():
@@ -116,11 +128,6 @@ def main() -> int:
                 f"ambiguous normalized keys: {prior_normalized[0]!r} and {source!r}")
         else:
             normalized[folded] = (source, target)
-        prior = values.get(target)
-        if prior and prior != source and len(target) > 2:
-            # Duplicates are not invalid, but they are useful during review.
-            pass
-        values[target] = source
     print(f"entries={len(translations)} errors={len(errors)}")
     for error in errors[:100]:
         print(f"ERROR: {error}")

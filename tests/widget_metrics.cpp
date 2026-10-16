@@ -26,6 +26,14 @@ static QString lookup(const QString& text) {
 // Exercise the production style callbacks, including a temporary image cache.
 static QString cacheDrawText;
 static QString cacheStyleText;
+static int recordedTextFlags = 0;
+static int recordedJustification = 0;
+static void capturePointArguments(QPainter*, const QPointF&, const QString& text,
+                                  int flags, int padding) {
+    cacheDrawText = text;
+    recordedTextFlags = flags;
+    recordedJustification = padding;
+}
 static bool unrelatedCacheRetainsSource = true;
 static void captureCacheDraw(QPainter*, const QRect&, int, const QString& text, QRect*) {
     cacheDrawText = text;
@@ -62,7 +70,9 @@ public:
 };
 static bool checkDisplayCaches(const QString& target) {
     const auto previous = g_drawRect;
+    const auto previousPoint = g_drawPointF2;
     g_drawRect = captureCacheDraw;
+    g_drawPointF2 = capturePointArguments;
     ChineseProxyStyle style(new CacheRecordingStyle);
     QWidget owner;
     owner.setAttribute(Qt::WA_DontShowOnScreen);
@@ -72,6 +82,17 @@ static bool checkDisplayCaches(const QString& target) {
     QPicture picture;
     const QString source = QStringLiteral("UV");
     bool ok = true;
+    {
+        QPainter painter(&image);
+        UiPaintBoundary::WidgetPaintScope scope(&painter, &owner);
+        const int flags = Qt::TextForceRightToLeft;
+        hookedDrawPointF2(&painter, QPointF(10, 20), source, flags, 17);
+        ok = cacheDrawText == target && recordedTextFlags == flags && recordedJustification == 17;
+        hookedDrawPointF2(&painter, QPointF(10, 20), source,
+                         flags | Qt::TextBypassShaping, 23);
+        ok = ok && cacheDrawText == source && recordedTextFlags == (flags | Qt::TextBypassShaping) &&
+            recordedJustification == 23;
+    }
     for (QPaintDevice* device : {static_cast<QPaintDevice*>(&image),
                                 static_cast<QPaintDevice*>(&pixmap),
                                 static_cast<QPaintDevice*>(&picture)}) {
@@ -92,6 +113,7 @@ static bool checkDisplayCaches(const QString& target) {
         ok = ok && cacheDrawText == source;
     }
     g_drawRect = previous;
+    g_drawPointF2 = previousPoint;
     ok = ok && unrelatedCacheRetainsSource;
     std::printf("widget-owned style caches and unrelated export isolation: %s\n", ok ? "PASS" : "FAIL");
     return ok;
@@ -102,7 +124,12 @@ int main(int argc, char** argv) {
     app.setStyle(QStringLiteral("Fusion"));
     const QString source = QStringLiteral("UV");
     const QString target = lookup(source);
-    g_translations["UV"] = target.toUtf8().toStdString();
+    g_translations["UV"] = target;
+    g_translations["MergePointPairs"] = QStringLiteral("合并点对");
+    if (translatedRichIdentifiers(QStringLiteral("<b>MergePointPairs</b> MergePointPairs")) !=
+        QStringLiteral("<b>合并点对</b> MergePointPairs") ||
+        !translatedRichIdentifiers(QStringLiteral("<span>MergePointPairs</span>")).isEmpty())
+        return 5;
     if (!checkDisplayCaches(target)) return 4;
     const QFontMetrics fm(app.font());
     const int originalWidth = fm.horizontalAdvance(source);

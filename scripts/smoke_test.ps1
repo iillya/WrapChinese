@@ -3,11 +3,13 @@ param([switch]$Visible)
 
 $ErrorActionPreference = 'Stop'
 $root = Split-Path -Parent $PSScriptRoot
-$launcherPath = Join-Path $root 'build\out\WrapChineseLauncher.exe'
+$launcherPath = Join-Path $root 'build\dev\out\WrapChineseLauncher.exe'
 $captureName = if ($Visible) { 'runtime_visible_latest.json' } else { 'runtime_smoke_latest.json' }
 $capturePath = Join-Path $root ("translations\inventory\$captureName")
-$expectedHost = 'C:\Program Files\Faceform\Wrap 2025.10.8\Wrap.exe'
+$expectedRoot = if ($env:WRAP_ROOT) { $env:WRAP_ROOT } else { 'C:\Program Files\Faceform\Wrap 2025.11.14' }
+$expectedHost = Join-Path $expectedRoot 'Wrap.exe'
 $variableNames = @(
+    'WRAP_ROOT',
     'WRAP_CHINESE_AUTO_CAPTURE',
     'WRAP_CHINESE_SMOKE_TEST',
     'WRAP_CHINESE_HEADLESS_CAPTURE',
@@ -28,10 +30,11 @@ try {
         throw 'Wrap is already running; smoke test refused to avoid touching a user session.'
     }
     if (-not (Test-Path -LiteralPath $launcherPath -PathType Leaf)) {
-        throw "Launcher is missing: $launcherPath"
+        throw "Developer launcher is missing (source\build.bat --developer-tools): $launcherPath"
     }
 
     $startedAt = Get-Date
+    $env:WRAP_ROOT = $expectedRoot
     $env:WRAP_CHINESE_AUTO_CAPTURE = '1'
     $env:WRAP_CHINESE_SMOKE_TEST = '1'
     if ($Visible) { Remove-Item Env:WRAP_CHINESE_HEADLESS_CAPTURE -ErrorAction SilentlyContinue }

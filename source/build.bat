@@ -5,9 +5,17 @@ set "ROOT=%~dp0.."
 set "CPP=%ROOT%\source"
 set "OUT=%ROOT%\build\out"
 set "OBJ=%ROOT%\build\obj"
+set "DEVELOPER_FLAGS="
+set "DEVELOPER_CL_FLAGS="
+if /I "%~1"=="--developer-tools" (
+  set "OUT=%ROOT%\build\dev\out"
+  set "OBJ=%ROOT%\build\dev\obj"
+  set "DEVELOPER_FLAGS=-DWRAP_CHINESE_DEVELOPER_TOOLS"
+  set "DEVELOPER_CL_FLAGS=/DWRAP_CHINESE_DEVELOPER_TOOLS"
+)
 set "QT=%ROOT%\..\_ThirdParty\Qt\5.15.2\mingw81_64"
 set "MINGW=%ROOT%\..\_ThirdParty\QtTools\Tools\mingw810_64"
-if not defined WRAP_ROOT set "WRAP_ROOT=C:\Program Files\Faceform\Wrap 2025.10.8"
+if not defined WRAP_ROOT set "WRAP_ROOT=C:\Program Files\Faceform\Wrap 2025.11.14"
 
 if not exist "%QT%\lib\libQt5Widgets.a" (
   echo [ERROR] Qt 5.15.2 MinGW SDK not found: %QT%
@@ -26,7 +34,7 @@ set "PATH=%MINGW%\bin;%PATH%"
 
 echo === Compiling Wrap Qt display hook ===
 "%MINGW%\bin\g++.exe" -std=c++17 -O2 -Wall -Wextra -Werror -shared ^
-  -DUNICODE -D_UNICODE -DQT_NO_DEBUG ^
+  -DUNICODE -D_UNICODE -DQT_NO_DEBUG %DEVELOPER_FLAGS% ^
   -I"%QT%\include" -I"%QT%\include\QtCore" -I"%QT%\include\QtGui" -I"%QT%\include\QtWidgets" ^
   "%CPP%\hook.cpp" -o "%OUT%\WrapChineseHook.dll" ^
   -L"%QT%\lib" -lQt5Widgets -lQt5Gui -lQt5Core ^
@@ -44,7 +52,7 @@ if not exist "%VCVARS%" (
 call "%VCVARS%" >nul
 rc /nologo /fo "%OBJ%\app_icon.res" "%ROOT%\icon\app_icon.rc"
 if errorlevel 1 exit /b 1
-cl /nologo /O2 /W4 /WX /EHsc /std:c++17 /utf-8 /DUNICODE /D_UNICODE ^
+cl /nologo /O2 /W4 /WX /EHsc /std:c++17 /utf-8 /DUNICODE /D_UNICODE %DEVELOPER_CL_FLAGS% ^
   "%CPP%\launcher.cpp" /Fo"%OBJ%\launcher.obj" ^
   "%OBJ%\app_icon.res" ^
   /Fe:"%OUT%\WrapChineseLauncher.exe" ^
@@ -63,6 +71,7 @@ findstr /C:"WrapChineseInitialize" "%OBJ%\hook-imports.txt" >nul || exit /b 1
 findstr /C:"WrapChineseVersion" "%OBJ%\hook-imports.txt" >nul || exit /b 1
 
 if /I "%~1"=="--runtime-only" goto done
+if /I "%~1"=="--developer-tools" goto done
 call "%CPP%\build_inno.bat" --package-only
 if errorlevel 1 exit /b 1
 

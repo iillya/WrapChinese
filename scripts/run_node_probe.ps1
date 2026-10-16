@@ -9,9 +9,10 @@ $ErrorActionPreference = 'Stop'
 $root = Split-Path -Parent $PSScriptRoot
 $probeRoot = Join-Path $root 'build\node_probe'
 $manifestPath = Join-Path $probeRoot 'manifest.json'
-$launcherPath = Join-Path $root 'build\out\WrapChineseLauncher.exe'
+$launcherPath = Join-Path $root 'build\dev\out\WrapChineseLauncher.exe'
 $configPath = Join-Path $probeRoot 'WrapChinese-probe.ini'
 $variableNames = @(
+    'WRAP_ROOT',
     'WRAP_CHINESE_AUTO_CAPTURE',
     'WRAP_CHINESE_SMOKE_TEST',
     'WRAP_CHINESE_HEADLESS_CAPTURE',
@@ -32,7 +33,7 @@ if (-not (Test-Path -LiteralPath $manifestPath -PathType Leaf)) {
     throw "Generate the probe projects first: $manifestPath"
 }
 if (-not (Test-Path -LiteralPath $launcherPath -PathType Leaf)) {
-    throw "Build the launcher first: $launcherPath"
+    throw "Build developer tools first (source\build.bat --developer-tools): $launcherPath"
 }
 if (@(Get-Process -Name 'Wrap' -ErrorAction SilentlyContinue).Count -ne 0) {
     throw 'Wrap is already running; the node probe will not touch a user session.'
@@ -58,6 +59,8 @@ foreach ($name in $variableNames) {
 }
 
 try {
+    # Use the same installation that generated the project format/node list.
+    $env:WRAP_ROOT = Split-Path -Parent ([string]$manifest.wrap_cmd)
     $env:WRAP_CHINESE_AUTO_CAPTURE = '0'
     $env:WRAP_CHINESE_SMOKE_TEST = '0'
     $env:WRAP_CHINESE_CONFIG_PATH = $configPath

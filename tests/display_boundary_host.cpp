@@ -44,6 +44,8 @@ public:
 
 int main(int argc, char** argv) {
     QApplication application(argc, argv);
+    if (qEnvironmentVariableIntValue("WRAP_CHINESE_TEST_STYLESHEET") == 1)
+        application.setStyleSheet(QStringLiteral("QWidget { color: #dddddd; background-color: #494949; }"));
     if (argc != 2) {
         std::cerr << "usage: display_boundary_host <hook-dll>\n";
         return 2;
@@ -253,11 +255,11 @@ int main(int argc, char** argv) {
         model->data(model->index(0, 0), Qt::DisplayRole).toString() == source &&
         QCoreApplication::translate("WrapChineseHostProbe", "File") == beforeTr;
     QAction* authorAction = menuBar->findChild<QAction*>(
-        QStringLiteral("wrap_chinese_author"));
+        QStringLiteral("qt_chinese_author"));
     QAction* githubAction = menuBar->findChild<QAction*>(
-        QStringLiteral("wrap_chinese_github"));
+        QStringLiteral("qt_chinese_github"));
     QAction* languageAction = menuBar->findChild<QAction*>(
-        QStringLiteral("wrap_chinese_language"));
+        QStringLiteral("qt_chinese_language"));
     const bool linksInstalled = authorAction && githubAction && languageAction;
     bool pointingHandHooked = false;
     bool cursorRestoreHooked = false;
@@ -349,6 +351,17 @@ int main(int argc, char** argv) {
     };
     triggerCapture();
     QCoreApplication::processEvents();
+    QFile diagnostics(hookInfo.absolutePath() + QStringLiteral("/Wrap_window_diagnostics.json"));
+    bool diagnosticsSafe = false;
+    if (diagnostics.open(QIODevice::ReadOnly)) {
+        const QJsonObject snapshot = QJsonDocument::fromJson(diagnostics.readAll()).object();
+        diagnosticsSafe = snapshot.value(QStringLiteral("schema")).toString() ==
+            QStringLiteral("wrap-window-diagnostics-v1") &&
+            snapshot.value(QStringLiteral("engine_version")).toString() == QStringLiteral("1.0.2") &&
+            snapshot.contains(QStringLiteral("proxy_style_decision")) &&
+            !snapshot.contains(QStringLiteral("window_title"));
+        diagnostics.close();
+    }
     QFile capture(captureFile);
     bool captureHotkeyHooked = false;
     bool lazyMenuCaptureHooked = false;
@@ -356,10 +369,14 @@ int main(int argc, char** argv) {
         const QJsonObject translations = QJsonDocument::fromJson(capture.readAll())
             .object().value(QStringLiteral("translations")).toObject();
         captureHotkeyHooked = translations.contains(captureProbe);
-        lazyMenuCaptureHooked = translations.contains(lazyCaptureProbe);
+        lazyMenuCaptureHooked = !translations.contains(lazyCaptureProbe) &&
+            !lazyMenu->findChild<QAction*>(QStringLiteral("lazy_capture_probe"));
         capture.close();
     }
     QFile::remove(captureFile);
+    // The host may later expand its own menu. Capture can then read the newly
+    // created actions, without ever emitting expansion signals itself.
+    QMetaObject::invokeMethod(lazyMenu, "aboutToShow", Qt::DirectConnection);
 
     // A directory at the requested filename reliably reproduces a destination
     // that cannot be overwritten. The hook must preserve the capture in a
@@ -496,7 +513,7 @@ int main(int argc, char** argv) {
               << " capture_dialog_styled=" << captureDialogStyled << "\n";
     // UI widths may change; data, untranslated internal contexts, and exports may not.
     return labelsUnchanged && modelUnchanged &&
-        translatorUnchanged && richLabelDrawsChinese && richLabelDisabled &&
+        translatorUnchanged && richLabelDrawsChinese && richLabelDisabled && diagnosticsSafe &&
         richLabelRestored && selectableRichPreserved &&
         dynamicRichTranslated && delegateInstalled && delegateDisplaysChinese &&
         offscreenUnchanged &&

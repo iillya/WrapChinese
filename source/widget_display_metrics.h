@@ -1,6 +1,7 @@
 #pragma once
 #include <windows.h>
 #include "import_hook.h"
+#include "ui_paint_boundary.h"
 #include <QtGui/QFontMetricsF>
 // MinGW x64 ABI wrappers. Only Qt5Widgets imports are redirected; host
 // measurements, models, export code and Qt5Gui remain in their source language.
@@ -13,6 +14,7 @@ static DWORD guiThread = 0;
 static unsigned patchedSlots = 0;
 static bool sizeHooked = false;
 static bool g_fontMetricHooksInstalled = false;
+inline std::vector<WrapImportHooks::PatchRecord> patches;
 using FmAdvance = int (*)(const QFontMetrics*, const QString&, int);
 using FmWidth = int (*)(const QFontMetrics*, const QString&, int);
 using FmWidthFlags = int (*)(const QFontMetrics*, const QString&, int, int);
@@ -61,7 +63,8 @@ private:
 };
 
 QString translateMeasured(const QString& text, bool reentered) {
-    if (reentered || !lookup || GetCurrentThreadId() != guiThread || text.size() < 2) return {};
+    if (reentered || GetCurrentThreadId() != guiThread || !lookup || text.size() < 2 ||
+        UiPaintBoundary::isEditor(UiPaintBoundary::displayWidget())) return {};
     return lookup(text);
 }
 
@@ -195,7 +198,7 @@ QString hookedFmfElidedText(const QFontMetricsF* self, const QString& text,
 }
 
 bool patchFontMetricModules() {
-    struct Symbol { void* original; void* replacement; } symbols[] = {
+    const WrapImportHooks::Replacement symbols[] = {
         {functionAddress(g_fmAdvance), functionAddress(&hookedFmAdvance)},
         {functionAddress(g_fmWidth), functionAddress(&hookedFmWidth)},
         {functionAddress(g_fmWidthFlags), functionAddress(&hookedFmWidthFlags)},
@@ -214,13 +217,19 @@ bool patchFontMetricModules() {
     };
     HMODULE widgets = GetModuleHandleW(L"Qt5Widgets.dll");
     if (!widgets) return false;
-    for (const auto& symbol : symbols) {
-        if (replaceImports(widgets, symbol.original, symbol.replacement)) {
-            ++patchedSlots;
-            if (symbol.original == functionAddress(g_fmSize)) sizeHooked = true;
-        }
-    }
+    replaceImports(widgets, symbols, sizeof(symbols) / sizeof(symbols[0]), &patches);
+    patchedSlots = unsigned(patches.size());
+    for (const auto& patch : patches)
+        if (patch.original == functionAddress(g_fmSize)) sizeHooked = true;
     return patchedSlots != 0;
+}
+
+inline void shutdown() {
+    WrapImportHooks::restoreImports(patches);
+    patchedSlots = 0;
+    sizeHooked = false;
+    g_fontMetricHooksInstalled = false;
+    lookup = nullptr;
 }
 
 void install(QString (*translate)(const QString&)) {

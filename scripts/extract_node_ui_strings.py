@@ -12,6 +12,7 @@ from __future__ import annotations
 import argparse
 import bisect
 import json
+import os
 import re
 from collections import defaultdict
 from pathlib import Path
@@ -63,7 +64,7 @@ def main() -> int:
     parser = argparse.ArgumentParser()
     parser.add_argument(
         "exe", nargs="?", type=Path,
-        default=Path(r"C:\Program Files\Faceform\Wrap 2025.10.8\Wrap.exe"),
+        default=Path(os.environ.get("WRAP_ROOT", r"C:\Program Files\Faceform\Wrap 2025.11.14")) / "Wrap.exe",
     )
     parser.add_argument(
         "--anchors", type=Path,

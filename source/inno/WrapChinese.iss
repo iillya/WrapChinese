@@ -4,11 +4,9 @@
 #endif
 #define ProductId "WrapChinese.Inno"
 #define ProductName "Wrap 中文补丁"
-#define AssocId "WrapChinese.Inno.casc"
 #ifdef TestMode
   #define ProductId "WrapChinese.Inno.IsolatedTests"
   #define ProductName "Wrap Inno Isolated Tests"
-  #define AssocId "WrapChinese.Inno.IsolatedTests.casc"
 #endif
 
 [Setup]

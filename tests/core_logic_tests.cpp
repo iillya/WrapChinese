@@ -23,46 +23,34 @@ int main(int argc, char** argv) {
 
     WrapChinesePlaceholders::Catalog templates;
     QString error;
-    ok &= require(templates.addOrAssign(
-        QStringLiteral("File %1 does not exist!"),
-        QStringLiteral("文件 %1 不存在！"), &error), "basic placeholder accepted");
-    ok &= require(templates.addOrAssign(
-        QStringLiteral("Slots %10 / %2 / %L1 / %n"),
-        QStringLiteral("项 %n；%L1；%2；%10"), &error),
-        "two-digit, localized and plural placeholders accepted");
-    ok &= require(templates.addOrAssign(
-        QStringLiteral("Pair %1 / %1"), QStringLiteral("配对 %1 / %1"),
-        &error), "repeated placeholder accepted");
-    ok &= require(templates.addOrAssign(
-        QStringLiteral("%1 then %2"), QStringLiteral("%2 后 %1"), &error),
-        "prefixless and reordered placeholders accepted");
-    ok &= require(!templates.addOrAssign(
-        QStringLiteral("Bad %1%2"), QStringLiteral("错误 %1 %2"), &error),
-        "adjacent source placeholders rejected");
-    ok &= require(!templates.addOrAssign(
-        QStringLiteral("Missing %1"), QStringLiteral("缺少 %2"), &error),
-        "mismatched placeholders rejected");
-    templates.finalize();
-    ok &= require(templates.lookup(QStringLiteral("File 模型.obj does not exist!")) ==
-                      QStringLiteral("文件 模型.obj 不存在！"),
-                  "CJK placeholder value matched");
-    ok &= require(templates.lookup(QStringLiteral("Slots ten / two / one / 4")) ==
-                      QStringLiteral("项 4；one；two；ten"),
-                  "placeholder variants and reordering matched");
-    ok &= require(templates.lookup(QStringLiteral("Pair same / same")) ==
-                      QStringLiteral("配对 same / same"),
-                  "repeated placeholder equality matched");
-    ok &= require(templates.lookup(QStringLiteral("Pair left / right")).isEmpty(),
-                  "repeated placeholder mismatch rejected");
-    ok &= require(templates.lookup(QStringLiteral("first then second")) ==
-                      QStringLiteral("second 后 first"),
-                  "prefixless template matched");
-    ok &= require(templates.lookup(QStringLiteral("File  does not exist!")) ==
-                      QStringLiteral("文件  不存在！"),
-                  "empty delimited placeholder matched");
-    ok &= require(templates.lookup(QStringLiteral("first then ")) ==
-                      QStringLiteral(" 后 first"),
-                  "empty trailing placeholder matched");
+    ok &= require(templates.addOrAssign(QStringLiteral("Count %1 / %2 / %1"),
+        QStringLiteral("数量 %2；%1；%1"), &error), "numeric reordered/repeated fields accepted");
+    ok &= require(!templates.addOrAssign(QStringLiteral("File %L1"),
+        QStringLiteral("文件 %L1")), "localized fields rejected for numeric matching");
+    ok &= require(!templates.addOrAssign(QStringLiteral("Bad %1%2"),
+        QStringLiteral("错误 %1 %2")), "adjacent fields rejected");
+    ok &= require(!templates.addOrAssign(QStringLiteral("%1 then %2"),
+        QStringLiteral("%2 后 %1")), "prefixless pattern rejected");
+    ok &= require(!templates.addOrAssign(QStringLiteral("Bad %1"),
+        QStringLiteral("错误 %2")), "mismatched fields rejected");
+    ok &= require(templates.lookup(QStringLiteral("Count -12.50 / +3 / -12.50")) ==
+        QStringLiteral("数量 +3；-12.50；-12.50"), "numeric values preserved verbatim");
+    for (const QString& bad : {QStringLiteral("Count file / 1 / file"),
+            QStringLiteral("Count 1 / 2 / 3"), QStringLiteral("Count  / 2 / "),
+            QStringLiteral("Count 1e5 / 2 / 1e5"), QStringLiteral("Count 1,000 / 2 / 1,000"),
+            QStringLiteral("Count 12345678901234567 / 2 / 12345678901234567"),
+            QStringLiteral("Count 1.123456789 / 2 / 1.123456789"),
+            QStringLiteral("count 1 / 2 / 1"), QStringLiteral(" Count 1 / 2 / 1")})
+        ok &= require(templates.lookup(bad).isEmpty(), "unsafe numeric input rejected");
+    ok &= require(templates.addOrAssign(QStringLiteral("Count %2 / %1 / %2"),
+        QStringLiteral("歧义 %1；%2")) == false, "field occurrence mismatch rejected");
+    ok &= require(templates.addOrAssign(QStringLiteral("Count %2 / %1 / %2"),
+        QStringLiteral("歧义 %1；%2；%2")), "overlapping template accepted for ambiguity check");
+    ok &= require(templates.lookup(QStringLiteral("Count 1 / 2 / 1")).isEmpty(), "ambiguous full match rejected");
+    ok &= require(WrapChinesePlaceholders::validatePair(QStringLiteral("File %1: %2%3"),
+        QStringLiteral("文件 %1：%2%3")), "general exact placeholders validated separately");
+    ok &= require(!WrapChinesePlaceholders::validatePair(QStringLiteral("File %1"),
+        QStringLiteral("文件 %2")), "invalid exact placeholder pair rejected");
 
     ok &= require(WrapChineseConfig::isSupportedShortcut(QKeySequence(Qt::Key_F1)),
                   "F1 supported");
@@ -135,6 +123,11 @@ int main(int argc, char** argv) {
     cache.lookup(QStringLiteral("Unknown"), miss);
     cache.lookup(QStringLiteral("Unknown"), miss);
     ok &= require(misses == 1, "cache stores miss");
+
+    int longResolutions = 0;
+    const QString longSource(1000000, QLatin1Char('A'));
+    cache.lookup(longSource, [&] { ++longResolutions; return QStringLiteral("bad"); });
+    ok &= require(longResolutions == 0, "oversized strings are neither resolved nor cached");
 
     std::cout << "placeholder_templates=" << templates.size()
               << " config_roundtrip=" << (loaded.toggleShortcut == ctrlShiftL)

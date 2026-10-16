@@ -12,6 +12,10 @@ SYMBOLS = (
     "_ZN8QPainter8drawTextERK6QRectFiRK7QStringPS0_",
     "_ZN8QPainter8drawTextERK7QPointFRK7QString",
     "_ZN8QPainter8drawTextERK7QPointFRK7QStringii",
+    # Cached Markdown hints: source rasterization and UI-only presentation.
+    "_ZN13QTextDocument12drawContentsEP8QPainterRK6QRectF",
+    "_ZN8QPainter10drawPixmapERK7QPointFRK7QPixmap",
+    "_ZN8QPainter10drawPixmapERK6QRectFRK7QPixmapS2_",
 )
 
 

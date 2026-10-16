@@ -7,6 +7,7 @@
 
 #include <array>
 #include <cstdint>
+#include <cstring>
 #include <string>
 #include <vector>
 
@@ -79,6 +80,74 @@ inline bool readFileVersion(const std::wstring& path, FileVersion& result) {
     return true;
 }
 
+// Inspect the on-disk export table without loading/executing another Qt ABI.
+inline bool hasExport(const std::wstring& path, const char* expected) {
+    struct Image {
+        HANDLE file = INVALID_HANDLE_VALUE, mapping = nullptr;
+        const unsigned char* bytes = nullptr;
+        ~Image() {
+            if (bytes) UnmapViewOfFile(bytes);
+            if (mapping) CloseHandle(mapping);
+            if (file != INVALID_HANDLE_VALUE) CloseHandle(file);
+        }
+    } image;
+    image.file = CreateFileW(path.c_str(), GENERIC_READ, FILE_SHARE_READ, nullptr,
+                             OPEN_EXISTING, FILE_FLAG_OPEN_REPARSE_POINT, nullptr);
+    LARGE_INTEGER length{};
+    if (image.file == INVALID_HANDLE_VALUE || !GetFileSizeEx(image.file, &length) ||
+        length.QuadPart < 64 || length.QuadPart > 128 * 1024 * 1024) return false;
+    image.mapping = CreateFileMappingW(image.file, nullptr, PAGE_READONLY, 0, 0, nullptr);
+    if (!image.mapping) return false;
+    image.bytes = static_cast<const unsigned char*>(MapViewOfFile(image.mapping, FILE_MAP_READ, 0, 0, 0));
+    if (!image.bytes) return false;
+    const auto size = static_cast<std::size_t>(length.QuadPart);
+    const auto span = [&](std::size_t offset, std::size_t bytes) {
+        return offset <= size && bytes <= size - offset;
+    };
+    IMAGE_DOS_HEADER dos{};
+    if (!span(0, sizeof(dos))) return false;
+    std::memcpy(&dos, image.bytes, sizeof(dos));
+    IMAGE_NT_HEADERS64 nt{};
+    if (dos.e_magic != IMAGE_DOS_SIGNATURE || dos.e_lfanew < LONG(sizeof(dos)) ||
+        !span(std::size_t(dos.e_lfanew), sizeof(nt))) return false;
+    std::memcpy(&nt, image.bytes + dos.e_lfanew, sizeof(nt));
+    if (nt.Signature != IMAGE_NT_SIGNATURE || nt.FileHeader.Machine != IMAGE_FILE_MACHINE_AMD64 ||
+        nt.OptionalHeader.Magic != IMAGE_NT_OPTIONAL_HDR64_MAGIC ||
+        nt.FileHeader.SizeOfOptionalHeader < sizeof(IMAGE_OPTIONAL_HEADER64) ||
+        nt.FileHeader.NumberOfSections > 96 ||
+        nt.OptionalHeader.NumberOfRvaAndSizes <= IMAGE_DIRECTORY_ENTRY_EXPORT) return false;
+    const std::size_t sectionOffset = std::size_t(dos.e_lfanew) + 24 + nt.FileHeader.SizeOfOptionalHeader;
+    if (!span(sectionOffset, std::size_t(nt.FileHeader.NumberOfSections) * sizeof(IMAGE_SECTION_HEADER))) return false;
+    const auto atRva = [&](DWORD rva, std::size_t bytes) -> const unsigned char* {
+        if (rva < nt.OptionalHeader.SizeOfHeaders && span(rva, bytes)) return image.bytes + rva;
+        for (unsigned i = 0; i < nt.FileHeader.NumberOfSections; ++i) {
+            IMAGE_SECTION_HEADER section{};
+            std::memcpy(&section, image.bytes + sectionOffset + i * sizeof(section), sizeof(section));
+            if (rva < section.VirtualAddress) continue;
+            const std::size_t delta = rva - section.VirtualAddress;
+            if (delta <= section.SizeOfRawData && bytes <= section.SizeOfRawData - delta &&
+                span(std::size_t(section.PointerToRawData) + delta, bytes))
+                return image.bytes + section.PointerToRawData + delta;
+        }
+        return nullptr;
+    };
+    const auto directory = nt.OptionalHeader.DataDirectory[IMAGE_DIRECTORY_ENTRY_EXPORT];
+    const auto* exportBytes = atRva(directory.VirtualAddress, sizeof(IMAGE_EXPORT_DIRECTORY));
+    if (!directory.VirtualAddress || !exportBytes) return false;
+    IMAGE_EXPORT_DIRECTORY exports{};
+    std::memcpy(&exports, exportBytes, sizeof(exports));
+    if (!exports.NumberOfNames || exports.NumberOfNames > 65536) return false;
+    const auto* names = atRva(exports.AddressOfNames, std::size_t(exports.NumberOfNames) * sizeof(DWORD));
+    if (!names) return false;
+    const auto expectedLength = std::strlen(expected) + 1;
+    for (DWORD i = 0; i < exports.NumberOfNames; ++i) {
+        DWORD rva = 0; std::memcpy(&rva, names + i * sizeof(DWORD), sizeof(rva));
+        const auto* name = atRva(rva, expectedLength);
+        if (name && std::memcmp(name, expected, expectedLength) == 0) return true;
+    }
+    return false;
+}
+
 inline bool supportsQt5Directory(const std::wstring& root) {
     constexpr std::array<const wchar_t*, 3> modules = {
         L"Qt5Core.dll", L"Qt5Gui.dll", L"Qt5Widgets.dll"};
@@ -95,7 +164,10 @@ inline bool supportsQt5Directory(const std::wstring& root) {
         runtime = current;
         haveVersion = true;
     }
-    return haveVersion;
+    return haveVersion &&
+        hasExport(root + L"\\Qt5Core.dll", "_ZN7QObject16staticMetaObjectE") &&
+        hasExport(root + L"\\Qt5Gui.dll", "_ZN8QPainter8drawTextERK7QPointFRK7QString") &&
+        hasExport(root + L"\\Qt5Widgets.dll", "_ZN12QApplicationC1ERiPPci");
 }
 
 inline bool supportsHostDirectory(const std::wstring& root) {

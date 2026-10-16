@@ -9,6 +9,7 @@ from __future__ import annotations
 
 import argparse
 import json
+import os
 import re
 from collections import Counter
 from pathlib import Path
@@ -91,7 +92,7 @@ def main() -> int:
     parser = argparse.ArgumentParser()
     parser.add_argument(
         "exe", nargs="?", type=Path,
-        default=Path(r"C:\Program Files\Faceform\Wrap 2025.10.8\Wrap.exe"),
+        default=Path(os.environ.get("WRAP_ROOT", r"C:\Program Files\Faceform\Wrap 2025.11.14")) / "Wrap.exe",
     )
     parser.add_argument(
         "--output", type=Path,

@@ -65,6 +65,12 @@ std::wstring findCompatibleChildRoot(const std::wstring& parent) {
 }
 
 std::wstring findWrapRoot(const std::wstring& start) {
+#ifdef WRAP_CHINESE_DEVELOPER_TOOLS
+    wchar_t requested[32768] = {};
+    const DWORD requestedLength = GetEnvironmentVariableW(L"WRAP_ROOT", requested, 32768);
+    if (requestedLength)
+        return requestedLength < 32768 && validRoot(requested) ? requested : std::wstring();
+#endif
     std::wstring directory = start;
     for (int depth = 0; depth < 12 && !directory.empty(); ++depth) {
         if (validRoot(directory)) return directory;
@@ -276,12 +282,14 @@ int WINAPI wWinMain(HINSTANCE, HINSTANCE, PWSTR commandLine, int) {
 
     STARTUPINFOW startup{};
     startup.cb = sizeof(startup);
+#ifdef WRAP_CHINESE_DEVELOPER_TOOLS
     wchar_t headless[4] = {};
     if (GetEnvironmentVariableW(L"WRAP_CHINESE_HEADLESS_CAPTURE", headless, 4) &&
         headless[0] == L'1') {
         startup.dwFlags = STARTF_USESHOWWINDOW;
         startup.wShowWindow = SW_HIDE;
     }
+#endif
     PROCESS_INFORMATION process{};
     if (!CreateProcessW(hostPath.c_str(), mutableCommand.data(), nullptr, nullptr,
                         FALSE, CREATE_SUSPENDED, nullptr, wrapRoot.c_str(),

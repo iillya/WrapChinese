@@ -1,0 +1,1233 @@
+{
+  "schema": "wrap-shortcut-hints-review-v1",
+  "date": "2026-10-16",
+  "host": "C:\\Program Files\\Faceform\\Wrap 2025.11.14\\Wrap.exe",
+  "host_sha256": "a7a079eac386c892b37981f833538830346de8e01703bc50456597f24bec76a9",
+  "dictionary_before_sha256": "1924432b28c97dd3ee1ab8ef0657fc09ab3e8c5e3d7f778b24a8bedbc74f2c33",
+  "dictionary_after_sha256": "eaf9827d71915382ff44aa0ab4d78d704ef8dd1a0fc26d2f323e08b0ae4c5a34",
+  "hint_count": 94,
+  "changes": [
+    {
+      "source": "*1*-*9* select output",
+      "previous": null,
+      "target": "*1*-*9* 选择输出",
+      "reason": "补充显示词条"
+    },
+    {
+      "source": "*<* and *>* to move between frame ranges",
+      "previous": null,
+      "target": "*<* 和 *>* 切换帧范围",
+      "reason": "补充显示词条"
+    },
+    {
+      "source": "*ALT* + *LMB* / *MMB* pans",
+      "previous": null,
+      "target": "*ALT* + *LMB* / *MMB* 平移",
+      "reason": "补充显示词条"
+    },
+    {
+      "source": "*ALT* + *LMB* on existing spline to start drawing a spline",
+      "previous": null,
+      "target": "*ALT* + *LMB* 单击已有样条，开始绘制新样条",
+      "reason": "补充显示词条"
+    },
+    {
+      "source": "*C* to toggle display mode color/texture",
+      "previous": null,
+      "target": "*C* 切换颜色/纹理显示",
+      "reason": "补充显示词条"
+    },
+    {
+      "source": "*CTRL* + *F* fits the view to the next point in the opposite viewport",
+      "previous": null,
+      "target": "*CTRL* + *F* 将对侧视口的下一个点居中显示",
+      "reason": "补充显示词条"
+    },
+    {
+      "source": "*CTRL* + *LMB* disables points",
+      "previous": null,
+      "target": "*CTRL* + *LMB* 禁用点",
+      "reason": "补充显示词条"
+    },
+    {
+      "source": "*CTRL* + *LMB* disables/enables points",
+      "previous": null,
+      "target": "*CTRL* + *LMB* 禁用/启用点",
+      "reason": "补充显示词条"
+    },
+    {
+      "source": "*CTRL* + *LMB* drag to erase",
+      "previous": null,
+      "target": "*CTRL* + *LMB* 拖动以擦除",
+      "reason": "补充显示词条"
+    },
+    {
+      "source": "*CTRL* + *LMB* drag to invert brush effect",
+      "previous": null,
+      "target": "*CTRL* + *LMB* 拖动以反转笔刷效果",
+      "reason": "补充显示词条"
+    },
+    {
+      "source": "*CTRL* + *LMB* on a camera to remove it",
+      "previous": null,
+      "target": "*CTRL* + *LMB* 单击相机以移除",
+      "reason": "补充显示词条"
+    },
+    {
+      "source": "*CTRL* + *LMB* removes points",
+      "previous": null,
+      "target": "*CTRL* + *LMB* 移除点",
+      "reason": "补充显示词条"
+    },
+    {
+      "source": "*CTRL* + *LMB* removes selection",
+      "previous": null,
+      "target": "*CTRL* + *LMB* 移除选区",
+      "reason": "补充显示词条"
+    },
+    {
+      "source": "*CTRL* + *LMB* to delete extra point",
+      "previous": null,
+      "target": "*CTRL* + *LMB* 删除多余点",
+      "reason": "补充显示词条"
+    },
+    {
+      "source": "*CTRL* + *LMB* to delete spline point",
+      "previous": null,
+      "target": "*CTRL* + *LMB* 删除样条点",
+      "reason": "补充显示词条"
+    },
+    {
+      "source": "*CTRL* + *LMB* to remove from selection",
+      "previous": null,
+      "target": "*CTRL* + *LMB* 从选区中移除",
+      "reason": "补充显示词条"
+    },
+    {
+      "source": "*CTRL* + *RMB* to copy spline",
+      "previous": null,
+      "target": "*CTRL* + *RMB* 复制样条",
+      "reason": "补充显示词条"
+    },
+    {
+      "source": "*CTRL* + *SHIFT* + *LMB* to delete spline",
+      "previous": null,
+      "target": "*CTRL* + *SHIFT* + *LMB* 删除样条",
+      "reason": "补充显示词条"
+    },
+    {
+      "source": "*D* to edit splines",
+      "previous": null,
+      "target": "*D* 编辑样条",
+      "reason": "补充显示词条"
+    },
+    {
+      "source": "*D* to show result points",
+      "previous": null,
+      "target": "*D* 显示结果点",
+      "reason": "补充显示词条"
+    },
+    {
+      "source": "*D* to toggle geometry opacity",
+      "previous": null,
+      "target": "*D* 切换几何体半透明显示",
+      "reason": "补充显示词条"
+    },
+    {
+      "source": "*ESC* to cancel changes",
+      "previous": null,
+      "target": "*ESC* 取消修改",
+      "reason": "补充显示词条"
+    },
+    {
+      "source": "*ESC* to cancel creating",
+      "previous": null,
+      "target": "*ESC* 取消创建",
+      "reason": "补充显示词条"
+    },
+    {
+      "source": "*ESC* to cancel editing",
+      "previous": null,
+      "target": "*ESC* 取消编辑",
+      "reason": "补充显示词条"
+    },
+    {
+      "source": "*H* 100% view",
+      "previous": null,
+      "target": "*H* 按 100% 比例显示",
+      "reason": "补充显示词条"
+    },
+    {
+      "source": "*J* to invert current frame",
+      "previous": null,
+      "target": "*J* 反转当前帧",
+      "reason": "补充显示词条"
+    },
+    {
+      "source": "*K* to invert current frame range",
+      "previous": null,
+      "target": "*K* 反转当前帧范围",
+      "reason": "补充显示词条"
+    },
+    {
+      "source": "*LMB* adds or move points",
+      "previous": null,
+      "target": "*LMB* 添加或移动点",
+      "reason": "补充显示词条"
+    },
+    {
+      "source": "*LMB* adds points",
+      "previous": null,
+      "target": "*LMB* 添加点",
+      "reason": "补充显示词条"
+    },
+    {
+      "source": "*LMB* and drag a point to move it",
+      "previous": null,
+      "target": "*LMB* 拖动点以移动",
+      "reason": "补充显示词条"
+    },
+    {
+      "source": "*LMB* and drag to make the eye follow the cursor",
+      "previous": null,
+      "target": "*LMB* 拖动以使眼球跟随光标",
+      "reason": "补充显示词条"
+    },
+    {
+      "source": "*LMB* and drag to move",
+      "previous": null,
+      "target": "*LMB* 拖动以移动",
+      "reason": "补充显示词条"
+    },
+    {
+      "source": "*LMB* and drag to move points",
+      "previous": null,
+      "target": "*LMB* 拖动以移动点",
+      "reason": "补充显示词条"
+    },
+    {
+      "source": "*LMB* and drag to paint",
+      "previous": null,
+      "target": "*LMB* 拖动以绘制",
+      "reason": "补充显示词条"
+    },
+    {
+      "source": "*LMB* and drag to sculpt",
+      "previous": null,
+      "target": "*LMB* 拖动以雕刻",
+      "reason": "补充显示词条"
+    },
+    {
+      "source": "*LMB* changes frame",
+      "previous": null,
+      "target": "*LMB* 切换帧",
+      "reason": "补充显示词条"
+    },
+    {
+      "source": "*LMB* double-click to select component",
+      "previous": null,
+      "target": "*LMB* 双击以选择连通部分",
+      "reason": "补充显示词条"
+    },
+    {
+      "source": "*LMB* drag to select with lasso",
+      "previous": null,
+      "target": "*LMB* 拖动以套索选择",
+      "reason": "补充显示词条"
+    },
+    {
+      "source": "*LMB* on a camera to switch to the camera mode",
+      "previous": null,
+      "target": "*LMB* 单击相机以进入相机模式",
+      "reason": "补充显示词条"
+    },
+    {
+      "source": "*LMB* on a point to select it",
+      "previous": null,
+      "target": "*LMB* 单击点以选择",
+      "reason": "补充显示词条"
+    },
+    {
+      "source": "*LMB* on geometry to add point to spline",
+      "previous": null,
+      "target": "*LMB* 单击几何体以添加样条点",
+      "reason": "补充显示词条"
+    },
+    {
+      "source": "*LMB* on geometry to start drawing a spline",
+      "previous": null,
+      "target": "*LMB* 单击几何体以开始绘制样条",
+      "reason": "补充显示词条"
+    },
+    {
+      "source": "*LMB* on image to start drawing",
+      "previous": null,
+      "target": "*LMB* 单击图像以开始绘制",
+      "reason": "补充显示词条"
+    },
+    {
+      "source": "*LMB* on spline and drag to edit",
+      "previous": null,
+      "target": "*LMB* 拖动样条以编辑",
+      "reason": "补充显示词条"
+    },
+    {
+      "source": "*LMB* on the mesh to pin the selected point",
+      "previous": null,
+      "target": "*LMB* 单击网格以固定所选点",
+      "reason": "补充显示词条"
+    },
+    {
+      "source": "*LMB* release to add new point(s)",
+      "previous": null,
+      "target": "*LMB* 松开以添加新点",
+      "reason": "补充显示词条"
+    },
+    {
+      "source": "*LMB* release to move point(s)",
+      "previous": null,
+      "target": "*LMB* 松开以移动点",
+      "reason": "补充显示词条"
+    },
+    {
+      "source": "*LMB* selects points",
+      "previous": null,
+      "target": "*LMB* 选择点",
+      "reason": "补充显示词条"
+    },
+    {
+      "source": "*LMB* selects vertex",
+      "previous": null,
+      "target": "*LMB* 选择顶点",
+      "reason": "补充显示词条"
+    },
+    {
+      "source": "*LMB* to select",
+      "previous": null,
+      "target": "*LMB* 选择",
+      "reason": "补充显示词条"
+    },
+    {
+      "source": "*M* to remove the keyframe",
+      "previous": null,
+      "target": "*M* 移除关键帧",
+      "reason": "补充显示词条"
+    },
+    {
+      "source": "*MMB* and drag to change the brush intensity",
+      "previous": null,
+      "target": "*MMB* 拖动以调整笔刷强度",
+      "reason": "补充显示词条"
+    },
+    {
+      "source": "*MMB* and drag to change the brush strength",
+      "previous": null,
+      "target": "*MMB* 拖动以调整笔刷强度",
+      "reason": "补充显示词条"
+    },
+    {
+      "source": "*N* to add the keyframe",
+      "previous": null,
+      "target": "*N* 添加关键帧",
+      "reason": "补充显示词条"
+    },
+    {
+      "source": "*N* to show or hide Reference Detection",
+      "previous": null,
+      "target": "*N* 显示/隐藏参考检测结果",
+      "reason": "补充显示词条"
+    },
+    {
+      "source": "*RMB* / *ENTER* to finish spline or *LMB* outside geometry",
+      "previous": null,
+      "target": "*RMB* / *ENTER* 结束样条，或 *LMB* 单击几何体外部",
+      "reason": "补充显示词条"
+    },
+    {
+      "source": "*RMB* and drag to change the brush size",
+      "previous": null,
+      "target": "*RMB* 拖动以调整笔刷大小",
+      "reason": "补充显示词条"
+    },
+    {
+      "source": "*RMB* on image to select current spline",
+      "previous": null,
+      "target": "*RMB* 单击图像以选择当前样条",
+      "reason": "补充显示词条"
+    },
+    {
+      "source": "*RMB* to open selection menu",
+      "previous": null,
+      "target": "*RMB* 打开选择菜单",
+      "reason": "补充显示词条"
+    },
+    {
+      "source": "*S* toggle source / result",
+      "previous": null,
+      "target": "*S* 切换源数据/结果",
+      "reason": "补充显示词条"
+    },
+    {
+      "source": "*SHIFT* + *LMB* double-click near selected to add a loop",
+      "previous": null,
+      "target": "*SHIFT* + *LMB* 在选区附近双击以添加环线",
+      "reason": "补充显示词条"
+    },
+    {
+      "source": "*SHIFT* + *LMB* drag to relax",
+      "previous": null,
+      "target": "*SHIFT* + *LMB* 拖动以松弛",
+      "reason": "补充显示词条"
+    },
+    {
+      "source": "*SHIFT* + *LMB* drag to smooth",
+      "previous": null,
+      "target": "*SHIFT* + *LMB* 拖动以平滑",
+      "reason": "补充显示词条"
+    },
+    {
+      "source": "*SHIFT* + *LMB* on geometry to add shortest path to spline",
+      "previous": null,
+      "target": "*SHIFT* + *LMB* 单击几何体以添加最短路径到样条",
+      "reason": "补充显示词条"
+    },
+    {
+      "source": "*SHIFT* + *LMB* on selected spline to continue drawing",
+      "previous": null,
+      "target": "*SHIFT* + *LMB* 单击已选样条以继续绘制",
+      "reason": "补充显示词条"
+    },
+    {
+      "source": "*SHIFT* + *LMB* on spline to select it",
+      "previous": null,
+      "target": "*SHIFT* + *LMB* 单击样条以选择",
+      "reason": "补充显示词条"
+    },
+    {
+      "source": "*SHIFT* + *LMB* to add to selection",
+      "previous": null,
+      "target": "*SHIFT* + *LMB* 添加到选区",
+      "reason": "补充显示词条"
+    },
+    {
+      "source": "*SHIFT* + *LMB* to snap to spline",
+      "previous": null,
+      "target": "*SHIFT* + *LMB* 吸附到样条",
+      "reason": "补充显示词条"
+    },
+    {
+      "source": "*SHIFT* + *LMB* unpins points",
+      "previous": null,
+      "target": "*SHIFT* + *LMB* 取消固定点",
+      "reason": "补充显示词条"
+    },
+    {
+      "source": "*SHIFT* + *MMB* and drag to change the smooth iterations",
+      "previous": null,
+      "target": "*SHIFT* + *MMB* 拖动以调整平滑迭代次数",
+      "reason": "补充显示词条"
+    },
+    {
+      "source": "*SHIFT* + *RMB* and drag to change the brush falloff",
+      "previous": null,
+      "target": "*SHIFT* + *RMB* 拖动以调整笔刷衰减",
+      "reason": "补充显示词条"
+    },
+    {
+      "source": "*SHIFT* + *RMB* on image to select current segment",
+      "previous": null,
+      "target": "*SHIFT* + *RMB* 单击图像以选择当前分段",
+      "reason": "补充显示词条"
+    },
+    {
+      "source": "*SHIFT* + *SPACE* to select next spline on current segment",
+      "previous": null,
+      "target": "*SHIFT* + *SPACE* 选择当前分段的下一条样条",
+      "reason": "补充显示词条"
+    },
+    {
+      "source": "*SHIFT* + *SPACE* to switch between cameras",
+      "previous": null,
+      "target": "*SHIFT* + *SPACE* 切换相机",
+      "reason": "补充显示词条"
+    },
+    {
+      "source": "*SHIFT* + *V* to show or hide Detection",
+      "previous": null,
+      "target": "*SHIFT* + *V* 显示/隐藏检测结果",
+      "reason": "补充显示词条"
+    },
+    {
+      "source": "*SPACE* to return to default camera",
+      "previous": null,
+      "target": "*SPACE* 返回默认相机",
+      "reason": "补充显示词条"
+    },
+    {
+      "source": "*SPACE* to select next segment",
+      "previous": null,
+      "target": "*SPACE* 选择下一分段",
+      "reason": "补充显示词条"
+    },
+    {
+      "source": "*U* and *I* to move between keyframes",
+      "previous": null,
+      "target": "*U* 和 *I* 切换关键帧",
+      "reason": "补充显示词条"
+    },
+    {
+      "source": "*V* to show or hide Unselected Splines",
+      "previous": null,
+      "target": "*V* 显示/隐藏未选样条",
+      "reason": "补充显示词条"
+    },
+    {
+      "source": "*X* to toggle geometry wireframe",
+      "previous": null,
+      "target": "*X* 切换几何体线框显示",
+      "reason": "补充显示词条"
+    },
+    {
+      "source": "*[* and *]* to set frame range borders",
+      "previous": null,
+      "target": "*[* 和 *]* 设置帧范围边界",
+      "reason": "补充显示词条"
+    },
+    {
+      "source": "*[* or *]* changes the brush size",
+      "previous": null,
+      "target": "*[* 或 *]* 调整笔刷大小",
+      "reason": "补充显示词条"
+    },
+    {
+      "source": "Hold *SPACE* to show fitted mesh",
+      "previous": "按住 *空格键* 显示拟合网格",
+      "target": "按住 *SPACE* 显示拟合网格",
+      "reason": "保留原始 SPACE 按键标记与图示"
+    },
+    {
+      "source": "MergePointPairs",
+      "previous": null,
+      "target": "合并点对",
+      "reason": "补充显示词条"
+    },
+    {
+      "source": "StretchVertexMask",
+      "previous": null,
+      "target": "扩展顶点遮罩",
+      "reason": "补充显示词条"
+    },
+    {
+      "source": "PolygonSelectionToPoints",
+      "previous": null,
+      "target": "多边形选区转点",
+      "reason": "补充显示词条"
+    },
+    {
+      "source": "Use",
+      "previous": null,
+      "target": "使用",
+      "reason": "补充显示词条"
+    },
+    {
+      "source": "Selected Polygons",
+      "previous": null,
+      "target": "已选多边形",
+      "reason": "补充显示词条"
+    },
+    {
+      "source": "Unselected Polygons",
+      "previous": null,
+      "target": "未选多边形",
+      "reason": "补充显示词条"
+    },
+    {
+      "source": "Release *SPACE* to show target mesh",
+      "previous": "松开 *空格键* 显示目标网格",
+      "target": "松开 *SPACE* 显示目标网格",
+      "reason": "保留原始 SPACE 按键标记与图示"
+    },
+    {
+      "source": "Play forward (no audio). Shortcut: Shift+Right / Dot (.)",
+      "previous": null,
+      "target": "向前播放（无音频）。快捷键：Shift + Right / Dot（.）",
+      "reason": "补充时间轴播放快捷键提示"
+    }
+  ],
+  "hints": [
+    {
+      "source": "*1*-*9* select output",
+      "target": "*1*-*9* 选择输出",
+      "offset": 29233250,
+      "status": "approved",
+      "evidence": "local executable; image-backed context help"
+    },
+    {
+      "source": "*<* and *>* to move between frame ranges",
+      "target": "*<* 和 *>* 切换帧范围",
+      "offset": 28914913,
+      "status": "approved",
+      "evidence": "local executable; image-backed context help"
+    },
+    {
+      "source": "*ALT* + *LMB* / *MMB* pans",
+      "target": "*ALT* + *LMB* / *MMB* 平移",
+      "offset": 28695912,
+      "status": "approved",
+      "evidence": "local executable; image-backed context help"
+    },
+    {
+      "source": "*ALT* + *LMB* on existing spline to start drawing a spline",
+      "target": "*ALT* + *LMB* 单击已有样条，开始绘制新样条",
+      "offset": 28993492,
+      "status": "approved",
+      "evidence": "local executable; image-backed context help"
+    },
+    {
+      "source": "*ALT* + *LMB* rotates",
+      "target": "*ALT* + *LMB* 旋转",
+      "offset": 29289328,
+      "status": "approved",
+      "evidence": "local executable; image-backed context help"
+    },
+    {
+      "source": "*ALT* + *MMB* pans",
+      "target": "*ALT* + *MMB* 平移",
+      "offset": 29289350,
+      "status": "approved",
+      "evidence": "local executable; image-backed context help"
+    },
+    {
+      "source": "*ALT* + *RMB* zooms",
+      "target": "*ALT* + *RMB* 缩放",
+      "offset": 28695939,
+      "status": "approved",
+      "evidence": "local executable; image-backed context help"
+    },
+    {
+      "source": "*C* to toggle display mode color/texture",
+      "target": "*C* 切换颜色/纹理显示",
+      "offset": 28721277,
+      "status": "approved",
+      "evidence": "local executable; image-backed context help"
+    },
+    {
+      "source": "*CTRL* + *F* fits the view to the next point in the opposite viewport",
+      "target": "*CTRL* + *F* 将对侧视口的下一个点居中显示",
+      "offset": 28747086,
+      "status": "approved",
+      "evidence": "local executable; image-backed context help"
+    },
+    {
+      "source": "*CTRL* + *LMB* disables points",
+      "target": "*CTRL* + *LMB* 禁用点",
+      "offset": 28848588,
+      "status": "approved",
+      "evidence": "local executable; image-backed context help"
+    },
+    {
+      "source": "*CTRL* + *LMB* disables/enables points",
+      "target": "*CTRL* + *LMB* 禁用/启用点",
+      "offset": 28848357,
+      "status": "approved",
+      "evidence": "local executable; image-backed context help"
+    },
+    {
+      "source": "*CTRL* + *LMB* drag to erase",
+      "target": "*CTRL* + *LMB* 拖动以擦除",
+      "offset": 28828439,
+      "status": "approved",
+      "evidence": "local executable; image-backed context help"
+    },
+    {
+      "source": "*CTRL* + *LMB* drag to invert brush effect",
+      "target": "*CTRL* + *LMB* 拖动以反转笔刷效果",
+      "offset": 28720919,
+      "status": "approved",
+      "evidence": "local executable; image-backed context help"
+    },
+    {
+      "source": "*CTRL* + *LMB* on a camera to remove it",
+      "target": "*CTRL* + *LMB* 单击相机以移除",
+      "offset": 28743935,
+      "status": "approved",
+      "evidence": "local executable; image-backed context help"
+    },
+    {
+      "source": "*CTRL* + *LMB* removes points",
+      "target": "*CTRL* + *LMB* 移除点",
+      "offset": 28747056,
+      "status": "approved",
+      "evidence": "local executable; image-backed context help"
+    },
+    {
+      "source": "*CTRL* + *LMB* removes selection",
+      "target": "*CTRL* + *LMB* 移除选区",
+      "offset": 28906268,
+      "status": "approved",
+      "evidence": "local executable; image-backed context help"
+    },
+    {
+      "source": "*CTRL* + *LMB* to delete extra point",
+      "target": "*CTRL* + *LMB* 删除多余点",
+      "offset": 29205116,
+      "status": "approved",
+      "evidence": "local executable; image-backed context help"
+    },
+    {
+      "source": "*CTRL* + *LMB* to delete spline point",
+      "target": "*CTRL* + *LMB* 删除样条点",
+      "offset": 28993678,
+      "status": "approved",
+      "evidence": "local executable; image-backed context help"
+    },
+    {
+      "source": "*CTRL* + *LMB* to remove from selection",
+      "target": "*CTRL* + *LMB* 从选区中移除",
+      "offset": 28749048,
+      "status": "approved",
+      "evidence": "local executable; image-backed context help"
+    },
+    {
+      "source": "*CTRL* + *RMB* to copy spline",
+      "target": "*CTRL* + *RMB* 复制样条",
+      "offset": 29205052,
+      "status": "approved",
+      "evidence": "local executable; image-backed context help"
+    },
+    {
+      "source": "*CTRL* + *SHIFT* + *LMB* to delete spline",
+      "target": "*CTRL* + *SHIFT* + *LMB* 删除样条",
+      "offset": 29205153,
+      "status": "approved",
+      "evidence": "local executable; image-backed context help"
+    },
+    {
+      "source": "*D* to edit splines",
+      "target": "*D* 编辑样条",
+      "offset": 28993839,
+      "status": "approved",
+      "evidence": "local executable; image-backed context help"
+    },
+    {
+      "source": "*D* to show result points",
+      "target": "*D* 显示结果点",
+      "offset": 28993716,
+      "status": "approved",
+      "evidence": "local executable; image-backed context help"
+    },
+    {
+      "source": "*D* to toggle geometry opacity",
+      "target": "*D* 切换几何体半透明显示",
+      "offset": 28721179,
+      "status": "approved",
+      "evidence": "local executable; image-backed context help"
+    },
+    {
+      "source": "*ESC* to cancel changes",
+      "target": "*ESC* 取消修改",
+      "offset": 28994110,
+      "status": "approved",
+      "evidence": "local executable; image-backed context help"
+    },
+    {
+      "source": "*ESC* to cancel creating",
+      "target": "*ESC* 取消创建",
+      "offset": 28809026,
+      "status": "approved",
+      "evidence": "local executable; image-backed context help"
+    },
+    {
+      "source": "*ESC* to cancel editing",
+      "target": "*ESC* 取消编辑",
+      "offset": 28808927,
+      "status": "approved",
+      "evidence": "local executable; image-backed context help"
+    },
+    {
+      "source": "*F* fits to view",
+      "target": "*F* 适应视图",
+      "offset": 28695977,
+      "status": "approved",
+      "evidence": "local executable; image-backed context help"
+    },
+    {
+      "source": "*H* 100% view",
+      "target": "*H* 按 100% 比例显示",
+      "offset": 28695994,
+      "status": "approved",
+      "evidence": "local executable; image-backed context help"
+    },
+    {
+      "source": "*J* to invert current frame",
+      "target": "*J* 反转当前帧",
+      "offset": 28914761,
+      "status": "approved",
+      "evidence": "local executable; image-backed context help"
+    },
+    {
+      "source": "*K* to invert current frame range",
+      "target": "*K* 反转当前帧范围",
+      "offset": 28914789,
+      "status": "approved",
+      "evidence": "local executable; image-backed context help"
+    },
+    {
+      "source": "*LMB* adds or move points",
+      "target": "*LMB* 添加或移动点",
+      "offset": 28808832,
+      "status": "approved",
+      "evidence": "local executable; image-backed context help"
+    },
+    {
+      "source": "*LMB* adds points",
+      "target": "*LMB* 添加点",
+      "offset": 28747008,
+      "status": "approved",
+      "evidence": "local executable; image-backed context help"
+    },
+    {
+      "source": "*LMB* and drag a point to move it",
+      "target": "*LMB* 拖动点以移动",
+      "offset": 28848554,
+      "status": "approved",
+      "evidence": "local executable; image-backed context help"
+    },
+    {
+      "source": "*LMB* and drag to make the eye follow the cursor",
+      "target": "*LMB* 拖动以使眼球跟随光标",
+      "offset": 28914712,
+      "status": "approved",
+      "evidence": "local executable; image-backed context help"
+    },
+    {
+      "source": "*LMB* and drag to move",
+      "target": "*LMB* 拖动以移动",
+      "offset": 28747026,
+      "status": "approved",
+      "evidence": "local executable; image-backed context help"
+    },
+    {
+      "source": "*LMB* and drag to move points",
+      "target": "*LMB* 拖动以移动点",
+      "offset": 28747026,
+      "status": "approved",
+      "evidence": "local executable; image-backed context help"
+    },
+    {
+      "source": "*LMB* and drag to paint",
+      "target": "*LMB* 拖动以绘制",
+      "offset": 28828384,
+      "status": "approved",
+      "evidence": "local executable; image-backed context help"
+    },
+    {
+      "source": "*LMB* and drag to sculpt",
+      "target": "*LMB* 拖动以雕刻",
+      "offset": 28720864,
+      "status": "approved",
+      "evidence": "local executable; image-backed context help"
+    },
+    {
+      "source": "*LMB* changes frame",
+      "target": "*LMB* 切换帧",
+      "offset": 29233497,
+      "status": "approved",
+      "evidence": "local executable; image-backed context help"
+    },
+    {
+      "source": "*LMB* double-click to select component",
+      "target": "*LMB* 双击以选择连通部分",
+      "offset": 28748973,
+      "status": "approved",
+      "evidence": "local executable; image-backed context help"
+    },
+    {
+      "source": "*LMB* drag to select with lasso",
+      "target": "*LMB* 拖动以套索选择",
+      "offset": 28748912,
+      "status": "approved",
+      "evidence": "local executable; image-backed context help"
+    },
+    {
+      "source": "*LMB* on a camera to switch to the camera mode",
+      "target": "*LMB* 单击相机以进入相机模式",
+      "offset": 28743888,
+      "status": "approved",
+      "evidence": "local executable; image-backed context help"
+    },
+    {
+      "source": "*LMB* on a point to select it",
+      "target": "*LMB* 单击点以选择",
+      "offset": 28848524,
+      "status": "approved",
+      "evidence": "local executable; image-backed context help"
+    },
+    {
+      "source": "*LMB* on geometry to add point to spline",
+      "target": "*LMB* 单击几何体以添加样条点",
+      "offset": 28993880,
+      "status": "approved",
+      "evidence": "local executable; image-backed context help"
+    },
+    {
+      "source": "*LMB* on geometry to start drawing a spline",
+      "target": "*LMB* 单击几何体以开始绘制样条",
+      "offset": 28993448,
+      "status": "approved",
+      "evidence": "local executable; image-backed context help"
+    },
+    {
+      "source": "*LMB* on image to start drawing",
+      "target": "*LMB* 单击图像以开始绘制",
+      "offset": 29204720,
+      "status": "approved",
+      "evidence": "local executable; image-backed context help"
+    },
+    {
+      "source": "*LMB* on spline and drag to edit",
+      "target": "*LMB* 拖动样条以编辑",
+      "offset": 28993645,
+      "status": "approved",
+      "evidence": "local executable; image-backed context help"
+    },
+    {
+      "source": "*LMB* on the mesh to pin the selected point",
+      "target": "*LMB* 单击网格以固定所选点",
+      "offset": 28848480,
+      "status": "approved",
+      "evidence": "local executable; image-backed context help"
+    },
+    {
+      "source": "*LMB* release to add new point(s)",
+      "target": "*LMB* 松开以添加新点",
+      "offset": 28808992,
+      "status": "approved",
+      "evidence": "local executable; image-backed context help"
+    },
+    {
+      "source": "*LMB* release to move point(s)",
+      "target": "*LMB* 松开以移动点",
+      "offset": 28808896,
+      "status": "approved",
+      "evidence": "local executable; image-backed context help"
+    },
+    {
+      "source": "*LMB* selects",
+      "target": "*LMB* 选择",
+      "offset": 28848336,
+      "status": "approved",
+      "evidence": "local executable; image-backed context help"
+    },
+    {
+      "source": "*LMB* selects points",
+      "target": "*LMB* 选择点",
+      "offset": 28848336,
+      "status": "approved",
+      "evidence": "local executable; image-backed context help"
+    },
+    {
+      "source": "*LMB* selects vertex",
+      "target": "*LMB* 选择顶点",
+      "offset": 28906224,
+      "status": "approved",
+      "evidence": "local executable; image-backed context help"
+    },
+    {
+      "source": "*LMB* to select",
+      "target": "*LMB* 选择",
+      "offset": 28748896,
+      "status": "approved",
+      "evidence": "local executable; image-backed context help"
+    },
+    {
+      "source": "*M* to remove the keyframe",
+      "target": "*M* 移除关键帧",
+      "offset": 28914847,
+      "status": "approved",
+      "evidence": "local executable; image-backed context help"
+    },
+    {
+      "source": "*MMB* and drag to change the brush intensity",
+      "target": "*MMB* 拖动以调整笔刷强度",
+      "offset": 28828508,
+      "status": "approved",
+      "evidence": "local executable; image-backed context help"
+    },
+    {
+      "source": "*MMB* and drag to change the brush strength",
+      "target": "*MMB* 拖动以调整笔刷强度",
+      "offset": 28721002,
+      "status": "approved",
+      "evidence": "local executable; image-backed context help"
+    },
+    {
+      "source": "*MMB* pans",
+      "target": "*MMB* 平移",
+      "offset": 28695928,
+      "status": "approved",
+      "evidence": "local executable; image-backed context help"
+    },
+    {
+      "source": "*MMB* wheel zooms",
+      "target": "*MMB* 滚轮缩放",
+      "offset": 28695959,
+      "status": "approved",
+      "evidence": "local executable; image-backed context help"
+    },
+    {
+      "source": "*N* to add the keyframe",
+      "target": "*N* 添加关键帧",
+      "offset": 28914823,
+      "status": "approved",
+      "evidence": "local executable; image-backed context help"
+    },
+    {
+      "source": "*N* to show or hide Reference Detection",
+      "target": "*N* 显示/隐藏参考检测结果",
+      "offset": 29204831,
+      "status": "approved",
+      "evidence": "local executable; image-backed context help"
+    },
+    {
+      "source": "*RMB* / *ENTER* to finish spline or *LMB* outside geometry",
+      "target": "*RMB* / *ENTER* 结束样条，或 *LMB* 单击几何体外部",
+      "offset": 28994051,
+      "status": "approved",
+      "evidence": "local executable; image-backed context help"
+    },
+    {
+      "source": "*RMB* and drag to change the brush size",
+      "target": "*RMB* 拖动以调整笔刷大小",
+      "offset": 28720962,
+      "status": "approved",
+      "evidence": "local executable; image-backed context help"
+    },
+    {
+      "source": "*RMB* on image to select current spline",
+      "target": "*RMB* 单击图像以选择当前样条",
+      "offset": 29204922,
+      "status": "approved",
+      "evidence": "local executable; image-backed context help"
+    },
+    {
+      "source": "*RMB* to open selection menu",
+      "target": "*RMB* 打开选择菜单",
+      "offset": 28748944,
+      "status": "approved",
+      "evidence": "local executable; image-backed context help"
+    },
+    {
+      "source": "*S* aligns camera to axis",
+      "target": "*S* 将相机对齐到坐标轴",
+      "offset": 29289438,
+      "status": "approved",
+      "evidence": "local executable; image-backed context help"
+    },
+    {
+      "source": "*S* toggle source / result",
+      "target": "*S* 切换源数据/结果",
+      "offset": 28837682,
+      "status": "approved",
+      "evidence": "local executable; image-backed context help"
+    },
+    {
+      "source": "*SHIFT* + *LMB* double-click near selected to add a loop",
+      "target": "*SHIFT* + *LMB* 在选区附近双击以添加环线",
+      "offset": 28749088,
+      "status": "approved",
+      "evidence": "local executable; image-backed context help"
+    },
+    {
+      "source": "*SHIFT* + *LMB* drag to relax",
+      "target": "*SHIFT* + *LMB* 拖动以松弛",
+      "offset": 28720889,
+      "status": "approved",
+      "evidence": "local executable; image-backed context help"
+    },
+    {
+      "source": "*SHIFT* + *LMB* drag to smooth",
+      "target": "*SHIFT* + *LMB* 拖动以平滑",
+      "offset": 28828408,
+      "status": "approved",
+      "evidence": "local executable; image-backed context help"
+    },
+    {
+      "source": "*SHIFT* + *LMB* on geometry to add shortest path to spline",
+      "target": "*SHIFT* + *LMB* 单击几何体以添加最短路径到样条",
+      "offset": 28993992,
+      "status": "approved",
+      "evidence": "local executable; image-backed context help"
+    },
+    {
+      "source": "*SHIFT* + *LMB* on selected spline to continue drawing",
+      "target": "*SHIFT* + *LMB* 单击已选样条以继续绘制",
+      "offset": 28993590,
+      "status": "approved",
+      "evidence": "local executable; image-backed context help"
+    },
+    {
+      "source": "*SHIFT* + *LMB* on spline to select it",
+      "target": "*SHIFT* + *LMB* 单击样条以选择",
+      "offset": 28993551,
+      "status": "approved",
+      "evidence": "local executable; image-backed context help"
+    },
+    {
+      "source": "*SHIFT* + *LMB* to add to selection",
+      "target": "*SHIFT* + *LMB* 添加到选区",
+      "offset": 28749012,
+      "status": "approved",
+      "evidence": "local executable; image-backed context help"
+    },
+    {
+      "source": "*SHIFT* + *LMB* to snap to spline",
+      "target": "*SHIFT* + *LMB* 吸附到样条",
+      "offset": 29205082,
+      "status": "approved",
+      "evidence": "local executable; image-backed context help"
+    },
+    {
+      "source": "*SHIFT* + *LMB* unpins points",
+      "target": "*SHIFT* + *LMB* 取消固定点",
+      "offset": 28848396,
+      "status": "approved",
+      "evidence": "local executable; image-backed context help"
+    },
+    {
+      "source": "*SHIFT* + *MMB* and drag to change the smooth iterations",
+      "target": "*SHIFT* + *MMB* 拖动以调整平滑迭代次数",
+      "offset": 28828606,
+      "status": "approved",
+      "evidence": "local executable; image-backed context help"
+    },
+    {
+      "source": "*SHIFT* + *RMB* and drag to change the brush falloff",
+      "target": "*SHIFT* + *RMB* 拖动以调整笔刷衰减",
+      "offset": 28721046,
+      "status": "approved",
+      "evidence": "local executable; image-backed context help"
+    },
+    {
+      "source": "*SHIFT* + *RMB* on image to select current segment",
+      "target": "*SHIFT* + *RMB* 单击图像以选择当前分段",
+      "offset": 29204871,
+      "status": "approved",
+      "evidence": "local executable; image-backed context help"
+    },
+    {
+      "source": "*SHIFT* + *SPACE* to select next spline on current segment",
+      "target": "*SHIFT* + *SPACE* 选择当前分段的下一条样条",
+      "offset": 29204962,
+      "status": "approved",
+      "evidence": "local executable; image-backed context help"
+    },
+    {
+      "source": "*SHIFT* + *SPACE* to switch between cameras",
+      "target": "*SHIFT* + *SPACE* 切换相机",
+      "offset": 28721099,
+      "status": "approved",
+      "evidence": "local executable; image-backed context help"
+    },
+    {
+      "source": "*SHIFT* + *V* to show or hide Detection",
+      "target": "*SHIFT* + *V* 显示/隐藏检测结果",
+      "offset": 29204791,
+      "status": "approved",
+      "evidence": "local executable; image-backed context help"
+    },
+    {
+      "source": "*SPACE* to return to default camera",
+      "target": "*SPACE* 返回默认相机",
+      "offset": 28721143,
+      "status": "approved",
+      "evidence": "local executable; image-backed context help"
+    },
+    {
+      "source": "*SPACE* to select next segment",
+      "target": "*SPACE* 选择下一分段",
+      "offset": 29205021,
+      "status": "approved",
+      "evidence": "local executable; image-backed context help"
+    },
+    {
+      "source": "*U* and *I* to move between keyframes",
+      "target": "*U* 和 *I* 切换关键帧",
+      "offset": 28914954,
+      "status": "approved",
+      "evidence": "local executable; image-backed context help"
+    },
+    {
+      "source": "*V* to show or hide Unselected Splines",
+      "target": "*V* 显示/隐藏未选样条",
+      "offset": 29204752,
+      "status": "approved",
+      "evidence": "local executable; image-backed context help"
+    },
+    {
+      "source": "*X* to toggle geometry wireframe",
+      "target": "*X* 切换几何体线框显示",
+      "offset": 28721244,
+      "status": "approved",
+      "evidence": "local executable; image-backed context help"
+    },
+    {
+      "source": "*[* and *]* to set frame range borders",
+      "target": "*[* 和 *]* 设置帧范围边界",
+      "offset": 28914874,
+      "status": "approved",
+      "evidence": "local executable; image-backed context help"
+    },
+    {
+      "source": "*[* or *]* changes the brush size",
+      "target": "*[* 或 *]* 调整笔刷大小",
+      "offset": 28721210,
+      "status": "approved",
+      "evidence": "local executable; image-backed context help"
+    },
+    {
+      "source": "Hold *A* to hide the sculpted mesh",
+      "target": "按住 *A* 隐藏雕刻网格",
+      "offset": 28721318,
+      "status": "approved",
+      "evidence": "local executable; image-backed context help"
+    },
+    {
+      "source": "Hold *SPACE* to show fitted mesh",
+      "target": "按住 *SPACE* 显示拟合网格",
+      "offset": 28848649,
+      "status": "approved",
+      "evidence": "local executable; image-backed context help"
+    },
+    {
+      "source": "Hold *Z* to show the source mesh",
+      "target": "按住 *Z* 显示源网格",
+      "offset": 28721353,
+      "status": "approved",
+      "evidence": "local executable; image-backed context help"
+    },
+    {
+      "source": "Release *SPACE* to show target mesh",
+      "target": "松开 *SPACE* 显示目标网格",
+      "offset": 28848433,
+      "status": "approved",
+      "evidence": "local executable; image-backed context help"
+    }
+  ],
+  "supplementary_terms": {
+    "MergePointPairs": "合并点对",
+    "StretchVertexMask": "扩展顶点遮罩",
+    "PolygonSelectionToPoints": "多边形选区转点",
+    "Use": "使用",
+    "Selected Polygons": "已选多边形",
+    "Unselected Polygons": "未选多边形"
+  },
+  "ui_validation": "Passed isolated offscreen tests on host Qt 5.15.3: 94 complete hints, 97 prose chunks, 6 supplementary labels, 14 Brush rows, image keycaps, DPR, source preservation, export isolation, language toggling, raster eviction and IAT restoration. Actual Wrap UI not launched per user request.",
+  "runtime_modules": {
+    "Qt5Core.dll": "2f404fa97c28011f3a0add611fda22e26d55e372d7c2243a13b3ed81af6549b8",
+    "Qt5Gui.dll": "a810922320dd5b9027852989b524d4238f6f121de951e7807d041bb38f8f97c1",
+    "Qt5Widgets.dll": "44f6e2440fe2d62e297b4201f02e1e00b0e53fe9107d079c21100da5fd26d8ab"
+  },
+  "python_version": "3.12.14",
+  "binary_scan_limit_bytes": 268435456
+}
